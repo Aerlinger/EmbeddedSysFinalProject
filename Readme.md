@@ -1,22 +1,65 @@
-# CS w4840 final project:
+# [Embedded Systems] (http://www.cs.columbia.edu/~sedwards/classes/2013/4840/index.html) Final Project
 
 ---
 ## Team
 * Anthony Erlinger  
-* Arthy Padma Anandhi Sundaram  
-* Yu Chen  
-* Jaebin Choi  
+* Arthy Padma Anandhi Sundaram (Software level)
+* Yu Chen (Architecture and RTL)
+* Jaebin Choi (Low-Level and RTL)
 
 ## Abstract
+The primary objective, and **first milestone** of this project is to build an implementation of a
+MOS 6502 CPU on the Altera DE2.  Given its prominent history, there is a
+wealth of data available regarding the implementation of the 6502. We
+intend to reproduce the chip in VHDL by studying both its
+microarchitecture and physical layout and as well as its “black box”
+instruction set architecture.  
 
-The primary objective, and first milestone of this project is to build an implementation of a
-MOS 6502 CPU on the Altera DE2. 
+The **second milestone** will involve interfacing the 4004 with the Altera’s
+network interface and processing the incoming hardware stream at a very
+low level. We will also run extensive tests on our implementation to be
+sure that we can process the incoming network data in a meaningful way.
+
+Our **third milestone** is the most difficult will involve the processing
+the incoming data with the 4004. Given the high bandwidth of the input,
+some additional hardware may be necessary to downsample the incoming
+data at a reasonable throughput for the 4004. It is also reasonable to
+assume that much of the input will be pseudo-random. Therefore, we will
+perform basic operations on the data to make it more “palatable” to the
+human ear. Toward this end, basic instructions running within the CPU
+itself will process the incoming data stream to perform basic filtering
+operations (delay, modulation, volume, and so on) followed by piping the
+processed data to the sound card.
+
+
+### Hardware RTL Design (Stage I):
+1. Retrieve raw data from network card on Altera DE2 and store in RAM.
+2. Design a basic CPU architecture to process data from the sound card
+code from NIOS
+
+### Software Design (Stage II):
+1. Write rigourous tests to very implementation in stage I.
+2. Fetch and store data into RAM or memory-mapped IO.
+
+
+### DSP and higher level applications (Stage III):
+1. Running C code on 6502 see [compiler](http://www.cc65.org) in
+   references.
+3. Signal Processing: Run a closed loop running in a regular interval that:
+  a. Fetches data from RAM
+  b. Basic processing (Type)
+  c. Send data to output device (Audio or Video)
+
+### Noteworthy Challenges:
+1. C code compilation
+2. Implementing fully functional 6502 ISA
+3. Stability and synchronization/clocking
 
 ---
 ## Important References:
-* [Assembly Demo]: (http://skilldrick.github.com/easy6502/)
-* [MOS 6502 CPU] (http://visual6502.org/)
-* [General Resources]: (http://www.6502.org/)
-* [Compiler]: (http://www.cc65.org/)
-* [programming manual]: (http://arlet.home.xs4all.nl/mcs6500_family_programming_manual.pdf)
-* [6502 Forums]: (http://forum.6502.org/)
+* Assembly Demo: (http://skilldrick.github.com/easy6502/)
+* Programming manual: (http://arlet.home.xs4all.nl/mcs6500_family_programming_manual.pdf)
+* MOS 6502 CPU: (http://visual6502.org/)
+* General Resources: (http://www.6502.org/)
+* 6502 Forums: (http://forum.6502.org/)
+* 6502 C Compiler: (http://www.cc65.org/)
