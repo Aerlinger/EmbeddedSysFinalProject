@@ -18,7 +18,7 @@ intend to reproduce the chip in VHDL by studying both its
 microarchitecture and physical layout and as well as its “black box”
 instruction set architecture.  
 
-The **second milestone** will involve interfacing the 4004 with the Altera’s
+The **second milestone** will involve interfacing the 6502 with the Altera’s
 network interface and processing the incoming hardware stream at a very
 low level. We will also run extensive tests on our implementation to be
 sure that we can process the incoming network data in a meaningful way.
@@ -26,7 +26,7 @@ sure that we can process the incoming network data in a meaningful way.
 Our **third milestone** is the most difficult will involve the processing
 the incoming data with the 4004. Given the high bandwidth of the input,
 some additional hardware may be necessary to downsample the incoming
-data at a reasonable throughput for the 4004. It is also reasonable to
+data at a reasonable throughput for the 6502. It is also reasonable to
 assume that much of the input will be pseudo-random. Therefore, we will
 perform basic operations on the data to make it more “palatable” to the
 human ear. Toward this end, basic instructions running within the CPU
