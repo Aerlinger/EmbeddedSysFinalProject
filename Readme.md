@@ -68,15 +68,14 @@ Read and understand the first two references listed below. It's also a
 good idea to become proficent in VHDL before attempting the project as
 it will likely save time down the line.
 
-#### Project Basecamp Site:
-(https://basecamp.com/2199038/projects/2382494-cs-4840-final)
+#### Project Basecamp Site: https://basecamp.com/2199038/projects/2382494-cs-4840-final
 
 ## Important References:
-* 6502 Assembly Demo: (http://skilldrick.github.com/easy6502/)
-* 6502 Programming manual: (http://arlet.home.xs4all.nl/mcs6500_family_programming_manual.pdf)
-* Interactive Simulator: (http://visual6502.org/JSSim/index.html)
-* MOS 6502 CPU: (http://visual6502.org/)
-* General Resources: (http://www.6502.org/)
-* 6502 Forums: (http://forum.6502.org/)
-* 6502 C Compiler: (http://www.cc65.org/)
-* Git Repo: (http://www.cs.columbia.edu/~sedwards/classes/2013/4840/git-tutorial.pdf) 
+* 6502 Assembly Demo: http://skilldrick.github.com/easy6502/
+* 6502 Programming manual: http://arlet.home.xs4all.nl/mcs6500_family_programming_manual.pdf
+* Interactive Simulator: http://visual6502.org/JSSim/index.html
+* MOS 6502 CPU: http://visual6502.org/
+* General Resources: http://www.6502.org/
+* 6502 Forums: http://forum.6502.org/
+* 6502 C Compiler: http://www.cc65.org/
+* Git Repo: http://www.cs.columbia.edu/~sedwards/classes/2013/4840/git-tutorial.pdf
