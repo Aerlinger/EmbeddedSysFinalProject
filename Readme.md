@@ -2,8 +2,9 @@
 
 ---
 ## Team
-* Anthony Erlinger  
-* Arthy Padma Anandhi Sundaram (Software level)
+* Anthony Erlinger (Team management, Software Design, Testing, and
+low-level design)
+* Arthy Padma Anandhi Sundaram (Software and ISA design)
 * Yu Chen (Architecture and RTL)
 * Jaebin Choi (Low-Level and RTL)
 
@@ -43,23 +44,37 @@ code from NIOS
 
 
 ### DSP and higher level applications (Stage III):
-1. Running C code on 6502 see [compiler](http://www.cc65.org) in
-   references.
-3. Signal Processing: Run a closed loop running in a regular interval that:
-  a. Fetches data from RAM
-  b. Basic processing (Type)
-  c. Send data to output device (Audio or Video)
+1. Running C code on 6502 see [compiler](http://www.cc65.org) in references.
+3. Signal Processing: Run a closed loop running in a regular interval that:  
+  a. Fetches data from RAM  
+  b. Basic processing (Type)  
+  c. Send data to output device (Audio or Video)  
+
+### Deadlines
+ * **Stage I:** Apr. 2  
+ * **Stage II:** Apr. 16  
+ * **Stage III:** Apr. 30  
+ 
 
 ### Noteworthy Challenges:
-1. C code compilation
-2. Implementing fully functional 6502 ISA
-3. Stability and synchronization/clocking
+1. C code compilation  
+2. Implementing fully functional 6502 ISA  
+3. Stability and synchronization/clocking  
 
----
+### Getting started:
+Read and understand the first two references listed below. It's also a
+good idea to become proficent in VHDL before attempting the project as
+it will likely save time down the line.
+
+#### Project Basecamp Site:
+(https://basecamp.com/2199038/projects/2382494-cs-4840-final)
+
 ## Important References:
-* Assembly Demo: (http://skilldrick.github.com/easy6502/)
-* Programming manual: (http://arlet.home.xs4all.nl/mcs6500_family_programming_manual.pdf)
+* 6502 Assembly Demo: (http://skilldrick.github.com/easy6502/)
+* 6502 Programming manual: (http://arlet.home.xs4all.nl/mcs6500_family_programming_manual.pdf)
+* Interactive Simulator: (http://visual6502.org/JSSim/index.html)
 * MOS 6502 CPU: (http://visual6502.org/)
 * General Resources: (http://www.6502.org/)
 * 6502 Forums: (http://forum.6502.org/)
 * 6502 C Compiler: (http://www.cc65.org/)
+* Git Repo: (http://www.cs.columbia.edu/~sedwards/classes/2013/4840/git-tutorial.pdf) 
