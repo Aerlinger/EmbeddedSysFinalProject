@@ -24,7 +24,7 @@ low level. We will also run extensive tests on our implementation to be
 sure that we can process the incoming network data in a meaningful way.
 
 Our **third milestone** is the most difficult will involve the processing
-the incoming data with the 4004. Given the high bandwidth of the input,
+the incoming data with the 6502. Given the high bandwidth of the input,
 some additional hardware may be necessary to downsample the incoming
 data at a reasonable throughput for the 6502. It is also reasonable to
 assume that much of the input will be pseudo-random. Therefore, we will
