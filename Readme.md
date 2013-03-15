@@ -1,4 +1,4 @@
-# [Embedded Systems] (http://www.cs.columbia.edu/~sedwards/classes/2013/4840/index.html) Final Project
+# [CS 4840 Embedded Systems] (http://www.cs.columbia.edu/~sedwards/classes/2013/4840/index.html) Final Project
 
 ---
 ## Team
@@ -6,7 +6,9 @@
 low-level design)
 * Arthy Padma Anandhi Sundaram (Software and ISA design)
 * Yu Chen (Architecture and RTL)
-* Jaebin Choi (Low-Level and RTL)
+* Jaebin Choi (Low-Level and RTL)   
+
+##### [Columbia University] (www.columbia.edu) Fall 2013
 
 ## Abstract
 The primary objective, and **first milestone** of this project is to build an implementation of a
@@ -51,9 +53,9 @@ code from NIOS
   c. Send data to output device (Audio or Video)  
 
 ### Deadlines
- * **Stage I:** Apr. 2  
- * **Stage II:** Apr. 16  
- * **Stage III:** Apr. 30  
+ * **Milestone I:** Apr. 2  
+ * **Milestone II:** Apr. 16  
+ * **Milestone III:** Apr. 30  
  
 
 ### Noteworthy Challenges:
