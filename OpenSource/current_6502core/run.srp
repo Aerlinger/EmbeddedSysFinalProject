@@ -1,0 +1,247 @@
+Release 5.2.02i - xst F.30a
+Copyright (c) 1995-2002 Xilinx, Inc.  All rights reserved.
+--> 
+TABLE OF CONTENTS
+  1) Synthesis Options Summary
+  2) HDL Compilation
+  3) HDL Analysis
+  4) HDL Synthesis
+     4.1) HDL Synthesis Report
+  5) Low Level Synthesis
+  6) Final Report
+     6.1) Device utilization summary
+     6.2) TIMING REPORT
+
+
+=========================================================================
+*                      Synthesis Options Summary                        *
+=========================================================================
+---- Source Parameters
+Input File Name                    : c6502.prj
+Input Format                       : vhdl
+
+---- Target Parameters
+Output File Name                   : o.ngc
+Output Format                      : ngc
+Target Device                      : 2s50tq144-5
+
+=========================================================================
+
+WARNING:Xst:29 - Optimization Effort not specified
+The following parameters have been added:
+Optimization Criterion             : SPEED
+Optimization Effort                : 1
+
+=========================================================================
+
+=========================================================================
+*                          HDL Compilation                              *
+=========================================================================
+Compiling vhdl file C:/cdrom2/prog.vhd in Library work.
+Entity <c6502> (Architecture <c6502_architecture>) compiled.
+
+=========================================================================
+*                            HDL Analysis                               *
+=========================================================================
+
+Analyzing Entity <c6502> (Architecture <c6502_architecture>).
+WARNING:Xst:819 - C:/cdrom2/prog.vhd line 2214: The following signals are missing in the process sensitivity list:
+   pc_r, data, mem_addr_r, addr_hi_r, addr_lo_r, ac_r, offset_r, x_r, y_r.
+INFO:Xst:1304 - Contents of register <rd> in unit <c6502> never changes during circuit operation. The register is replaced by logic.
+Entity <c6502> analyzed. Unit <c6502> generated.
+
+
+=========================================================================
+*                           HDL Synthesis                               *
+=========================================================================
+
+Synthesizing Unit <c6502>.
+    Related source file is C:/cdrom2/prog.vhd.
+WARNING:Xst:646 - Signal <counter> is assigned but never used.
+WARNING:Xst:646 - Signal <pc_r> is assigned but never used.
+WARNING:Xst:646 - Signal <x_r> is assigned but never used.
+WARNING:Xst:646 - Signal <y_r> is assigned but never used.
+WARNING:Xst:646 - Signal <addr_lo_r> is assigned but never used.
+WARNING:Xst:646 - Signal <addr_hi_r> is assigned but never used.
+WARNING:Xst:646 - Signal <tmp_data_r> is assigned but never used.
+WARNING:Xst:646 - Signal <mem_addr> is assigned but never used.
+WARNING:Xst:646 - Signal <next_state> is assigned but never used.
+WARNING:Xst:646 - Signal <addr_lo> is assigned but never used.
+WARNING:Xst:646 - Signal <addr_hi> is assigned but never used.
+WARNING:Xst:646 - Signal <pc> is assigned but never used.
+WARNING:Xst:646 - Signal <x> is assigned but never used.
+WARNING:Xst:646 - Signal <y> is assigned but never used.
+    Using one-hot encoding for signal <current_state>.
+WARNING:Xst:737 - Found 8-bit latch for signal <ac>.
+    Found 8-bit adder for signal <$n0004>.
+    Found 8-bit register for signal <ac_r>.
+    Found 16-bit register for signal <ar_r>.
+WARNING:Xst:1306 - Output <wr> is never assigned.
+WARNING:Xst:1306 - Output <ce1> is never assigned.
+WARNING:Xst:652 - Inout <data<7>> is used but never assigned.
+WARNING:Xst:652 - Inout <data<6>> is used but never assigned.
+WARNING:Xst:652 - Inout <data<5>> is used but never assigned.
+WARNING:Xst:652 - Inout <data<4>> is used but never assigned.
+WARNING:Xst:652 - Inout <data<3>> is used but never assigned.
+WARNING:Xst:652 - Inout <data<2>> is used but never assigned.
+WARNING:Xst:652 - Inout <data<1>> is used but never assigned.
+WARNING:Xst:652 - Inout <data<0>> is used but never assigned.
+WARNING:Xst:653 - Signal <current_state<16>> is used but never assigned. Tied to value 0.
+WARNING:Xst:653 - Signal <current_state<15>> is used but never assigned. Tied to value 0.
+WARNING:Xst:653 - Signal <current_state<14>> is used but never assigned. Tied to value 0.
+WARNING:Xst:653 - Signal <current_state<13>> is used but never assigned. Tied to value 0.
+WARNING:Xst:653 - Signal <current_state<12>> is used but never assigned. Tied to value 0.
+WARNING:Xst:653 - Signal <current_state<11>> is used but never assigned. Tied to value 0.
+WARNING:Xst:653 - Signal <current_state<10>> is used but never assigned. Tied to value 0.
+WARNING:Xst:653 - Signal <current_state<9>> is used but never assigned. Tied to value 0.
+WARNING:Xst:653 - Signal <current_state<8>> is used but never assigned. Tied to value 0.
+WARNING:Xst:653 - Signal <current_state<7>> is used but never assigned. Tied to value 0.
+WARNING:Xst:653 - Signal <current_state<6>> is used but never assigned. Tied to value 0.
+WARNING:Xst:653 - Signal <current_state<5>> is used but never assigned. Tied to value 0.
+WARNING:Xst:653 - Signal <current_state<4>> is used but never assigned. Tied to value 0.
+WARNING:Xst:653 - Signal <current_state<3>> is used but never assigned. Tied to value 0.
+WARNING:Xst:653 - Signal <current_state<2>> is used but never assigned. Tied to value 0.
+WARNING:Xst:653 - Signal <current_state<1>> is used but never assigned. Tied to value 0.
+WARNING:Xst:653 - Signal <ar<15>> is used but never assigned. Tied to value 0.
+WARNING:Xst:653 - Signal <ar<14>> is used but never assigned. Tied to value 0.
+WARNING:Xst:653 - Signal <ar<13>> is used but never assigned. Tied to value 0.
+WARNING:Xst:653 - Signal <ar<12>> is used but never assigned. Tied to value 0.
+WARNING:Xst:653 - Signal <ar<11>> is used but never assigned. Tied to value 0.
+WARNING:Xst:653 - Signal <ar<10>> is used but never assigned. Tied to value 0.
+WARNING:Xst:653 - Signal <ar<9>> is used but never assigned. Tied to value 0.
+WARNING:Xst:653 - Signal <ar<8>> is used but never assigned. Tied to value 0.
+WARNING:Xst:653 - Signal <ar<7>> is used but never assigned. Tied to value 0.
+WARNING:Xst:653 - Signal <ar<6>> is used but never assigned. Tied to value 0.
+WARNING:Xst:653 - Signal <ar<5>> is used but never assigned. Tied to value 0.
+WARNING:Xst:653 - Signal <ar<4>> is used but never assigned. Tied to value 0.
+WARNING:Xst:653 - Signal <ar<3>> is used but never assigned. Tied to value 0.
+WARNING:Xst:653 - Signal <ar<2>> is used but never assigned. Tied to value 0.
+WARNING:Xst:653 - Signal <ar<1>> is used but never assigned. Tied to value 0.
+WARNING:Xst:653 - Signal <ar<0>> is used but never assigned. Tied to value 0.
+    Summary:
+	inferred  24 D-type flip-flop(s).
+	inferred   1 Adder/Subtracter(s).
+Unit <c6502> synthesized.
+
+
+=========================================================================
+HDL Synthesis Report
+
+Macro Statistics
+# Registers                        : 2
+  8-bit register                   : 1
+  16-bit register                  : 1
+# Latches                          : 1
+  8-bit latch                      : 1
+# Adders/Subtractors               : 1
+  8-bit adder                      : 1
+
+=========================================================================
+
+=========================================================================
+*                         Low Level Synthesis                           *
+=========================================================================
+WARNING:Xst:1293 - FF/Latch  <ac_7> is constant in block <c6502>.
+WARNING:Xst:1293 - FF/Latch  <ac_r_7> is constant in block <c6502>.
+WARNING:Xst:1293 - FF/Latch  <ar_r_13> is constant in block <c6502>.
+WARNING:Xst:1293 - FF/Latch  <ar_r_12> is constant in block <c6502>.
+WARNING:Xst:1293 - FF/Latch  <ar_r_11> is constant in block <c6502>.
+WARNING:Xst:1293 - FF/Latch  <ar_r_10> is constant in block <c6502>.
+WARNING:Xst:1293 - FF/Latch  <ar_r_9> is constant in block <c6502>.
+WARNING:Xst:1293 - FF/Latch  <ar_r_8> is constant in block <c6502>.
+WARNING:Xst:1293 - FF/Latch  <ar_r_7> is constant in block <c6502>.
+WARNING:Xst:1293 - FF/Latch  <ar_r_6> is constant in block <c6502>.
+WARNING:Xst:1293 - FF/Latch  <ar_r_5> is constant in block <c6502>.
+WARNING:Xst:1293 - FF/Latch  <ar_r_4> is constant in block <c6502>.
+WARNING:Xst:1293 - FF/Latch  <ar_r_3> is constant in block <c6502>.
+WARNING:Xst:1293 - FF/Latch  <ar_r_2> is constant in block <c6502>.
+WARNING:Xst:1293 - FF/Latch  <ar_r_1> is constant in block <c6502>.
+WARNING:Xst:1293 - FF/Latch  <ar_r_0> is constant in block <c6502>.
+WARNING:Xst:1293 - FF/Latch  <ac_6> is constant in block <c6502>.
+WARNING:Xst:1293 - FF/Latch  <ac_r_6> is constant in block <c6502>.
+WARNING:Xst:1293 - FF/Latch  <ac_4> is constant in block <c6502>.
+WARNING:Xst:1293 - FF/Latch  <ac_r_4> is constant in block <c6502>.
+WARNING:Xst:1293 - FF/Latch  <ac_2> is constant in block <c6502>.
+WARNING:Xst:1293 - FF/Latch  <ac_r_2> is constant in block <c6502>.
+WARNING:Xst:1293 - FF/Latch  <ac_0> is constant in block <c6502>.
+WARNING:Xst:1293 - FF/Latch  <ac_r_0> is constant in block <c6502>.
+WARNING:Xst:1293 - FF/Latch  <ac_3> is constant in block <c6502>.
+WARNING:Xst:1293 - FF/Latch  <ac_r_3> is constant in block <c6502>.
+WARNING:Xst:1293 - FF/Latch  <ac_1> is constant in block <c6502>.
+WARNING:Xst:1293 - FF/Latch  <ac_r_1> is constant in block <c6502>.
+WARNING:Xst:1293 - FF/Latch  <ac_5> is constant in block <c6502>.
+WARNING:Xst:1293 - FF/Latch  <ac_r_5> is constant in block <c6502>.
+WARNING:Xst:1293 - FF/Latch  <ar_r_14> is constant in block <c6502>.
+WARNING:Xst:1293 - FF/Latch  <ar_r_15> is constant in block <c6502>.
+
+Optimizing unit <c6502> ...
+
+Mapping all equations...
+Loading device for application Xst from file 'v50.nph' in environment C:/Xilinx.
+Building and optimizing final netlist ...
+
+=========================================================================
+*                            Final Report                               *
+=========================================================================
+Final Results
+Top Level Output File Name         : o.ngc
+Output Format                      : ngc
+Optimization Criterion             : SPEED
+Keep Hierarchy                     : no
+Macro Generator                    : macro+
+
+Design Statistics
+# IOs                              : 37
+
+Macro Statistics :
+# Registers                        : 2
+#      16-bit register             : 1
+#      8-bit register              : 1
+
+Cell Usage :
+# BELS                             : 1
+#      GND                         : 1
+# IO Buffers                       : 25
+#      OBUF                        : 25
+=========================================================================
+
+Device utilization summary:
+---------------------------
+
+Selected Device : 2s50tq144-5 
+
+ Number of bonded IOBs:                 25  out of     96    26%  
+
+
+=========================================================================
+TIMING REPORT
+
+NOTE: THESE TIMING NUMBERS ARE ONLY A SYNTHESIS ESTIMATE.
+      FOR ACCURATE TIMING INFORMATION PLEASE REFER TO THE TRACE REPORT
+      GENERATED AFTER PLACE-and-ROUTE.
+
+Clock Information:
+------------------
+No clock signals found in this design
+
+Timing Summary:
+---------------
+Speed Grade: -5
+
+   Minimum period: No path found
+   Minimum input arrival time before clock: No path found
+   Maximum output required time after clock: No path found
+   Maximum combinational path delay: No path found
+
+Timing Detail:
+--------------
+All values displayed in nanoseconds (ns)
+
+=========================================================================
+CPU : 23.03 / 23.49 s | Elapsed : 23.00 / 23.00 s
+ 
+--> 
+
+Total memory usage is 49612 kilobytes
+
+

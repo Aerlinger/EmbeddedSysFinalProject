@@ -1,0 +1,73 @@
+.mstheme
+{
+	nav-banner-image: url(expbannd.gif);
+	separator-image: url(exphorsd.gif);
+	list-image-1: url(expbul1d.gif);
+	list-image-2: url(expbul2d.gif);
+	list-image-3: url(expbul3d.gif);
+	navbutton-horiz-pushed: url(exphbusd.gif);
+	navbutton-horiz-normal: url(exphbudd.gif);
+	navbutton-vert-pushed: url(expvbusd.gif);
+	navbutton-vert-normal: url(expvbudd.gif);
+	navbutton-home-normal: url(exphombd.gif);
+	navbutton-up-normal: url(expupbd.gif);
+	navbutton-prev-normal: url(expprebd.gif);
+	navbutton-next-normal: url(expnexbd.gif);
+}
+.mstheme-bannertxt
+{
+	font-family: "Book Antiqua", "Times New Roman", Times;
+	font-size: 6;
+	color: rgb(255,255,204);
+}
+.mstheme-horiz-navtxt
+{
+	font-family: "Book Antiqua", "Times New Roman", Times;
+	font-size: 2;
+	font-weight: bold;
+	color: rgb(255,255,204);
+}
+.mstheme-vert-navtxt
+{
+	font-family: "Book Antiqua", "Times New Roman", Times;
+	font-size: 2;
+	font-weight: bold;
+	color: rgb(255,255,204);
+}
+.mstheme-navtxthome
+{
+	font-family: Arial, Helvetica;
+	font-size: 1;
+	color: rgb(255,255,204);
+}
+.mstheme-navtxtup
+{
+	font-family: Arial, Helvetica;
+	font-size: 1;
+	color: rgb(255,255,204);
+}
+.mstheme-navtxtprev
+{
+	font-family: Arial, Helvetica;
+	font-size: 1;
+	color: rgb(255,255,204);
+}
+.mstheme-navtxtnext
+{
+	font-family: Arial, Helvetica;
+	font-size: 1;
+	color: rgb(255,255,204);
+}
+UL
+{ 
+	list-style-image: url(expbul1d.gif);
+}
+UL UL
+{
+	list-style-image: url(expbul2d.gif);
+}
+UL UL UL
+{
+	list-style-image: url(expbul3d.gif);
+}
+

@@ -1,0 +1,82 @@
+.mstheme
+{
+	nav-banner-image: url(expbanna.gif);
+	separator-image: url(exphorsa.gif);
+	list-image-1: url(expbul1a.gif);
+	list-image-2: url(expbul2a.gif);
+	list-image-3: url(expbul3a.gif);
+	navbutton-horiz-pushed: url(exphbusa.gif);
+	navbutton-horiz-normal: url(exphbuda.gif);
+	navbutton-horiz-hovered: url(exphbuha.gif);
+	navbutton-vert-pushed: url(expvbusa.gif);
+	navbutton-vert-normal: url(expvbuda.gif);
+	navbutton-vert-hovered: url(expvbuha.gif);
+	navbutton-home-normal: url(exphomda.gif);
+	navbutton-home-hovered: url(exphomha.gif);
+	navbutton-home-pushed: url(exphomsa.gif);
+	navbutton-up-normal: url(expupda.gif);
+	navbutton-up-hovered: url(expupha.gif);
+	navbutton-up-pushed: url(expupsa.gif);
+	navbutton-prev-normal: url(exppreda.gif);
+	navbutton-prev-hovered: url(exppreha.gif);
+	navbutton-prev-pushed: url(exppresa.gif);
+	navbutton-next-normal: url(expnexda.gif);
+	navbutton-next-hovered: url(expnexha.gif);
+	navbutton-next-pushed: url(expnexsa.gif);
+}
+.mstheme-bannertxt
+{
+	font-family: "Book Antiqua", "Times New Roman", Times;
+	font-size: 6;
+	color: rgb(255,255,204);
+}
+.mstheme-horiz-navtxt
+{
+	font-family: "Book Antiqua", "Times New Roman", Times;
+	font-size: 2;
+	font-weight: bold;
+	color: rgb(255,255,204);
+}
+.mstheme-vert-navtxt
+{
+	font-family: "Book Antiqua", "Times New Roman", Times;
+	font-size: 2;
+	font-weight: bold;
+	color: rgb(255,255,204);
+}
+.mstheme-navtxthome
+{
+	font-family: Arial, Helvetica;
+	font-size: 1;
+	color: rgb(255,255,204);
+}
+.mstheme-navtxtup
+{
+	font-family: Arial, Helvetica;
+	font-size: 1;
+	color: rgb(255,255,204);
+}
+.mstheme-navtxtprev
+{
+	font-family: Arial, Helvetica;
+	font-size: 1;
+	color: rgb(255,255,204);
+}
+.mstheme-navtxtnext
+{
+	font-family: Arial, Helvetica;
+	font-size: 1;
+	color: rgb(255,255,204);
+}
+UL
+{ 
+	list-style-image: url(expbul1a.gif);
+}
+UL UL
+{
+	list-style-image: url(expbul2a.gif);
+}
+UL UL UL
+{
+	list-style-image: url(expbul3a.gif);
+}

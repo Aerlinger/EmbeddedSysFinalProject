@@ -1,0 +1,5 @@
+when others=>
+next_state<=NEW_INSTRUCTION;
+end case;
+end process;
+end c6502_architecture;

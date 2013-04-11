@@ -1,0 +1,120 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Tools</title>
+<meta name="Microsoft Theme" content="expeditn 111, default">
+<meta name="Microsoft Border" content="b, default">
+</head>
+
+<body background="_themes/expeditn/exptextb.jpg" bgcolor="#FFFFCC" text="#000000" link="#666600" vlink="#993300" alink="#CC3300"><!--msnavigation--><table border="0" cellpadding="0" cellspacing="0" width="100%"><tr><!--msnavigation--><td valign="top"><!--mstheme--><font face="Book Antiqua, Times New Roman, Times">
+
+<h1 align="center"><!--mstheme--><font color="#660033"><!--webbot bot="Navigation" S-Type="banner"
+S-Rendering="graphics" S-Orientation B-Include-Home B-Include-Up U-Page S-Target startspan
+--><img src="_derived/tools.htm_cmp_expeditn110_bnr.gif" width="600" height="60" border="0" alt="Tools"><!--webbot bot="Navigation" endspan i-checksum="26861"
+--><!--mstheme--></font></h1>
+
+<p align="center"><!--webbot bot="Navigation" S-Type="children"
+S-Orientation="horizontal" S-Rendering="graphics" B-Include-Home="TRUE"
+B-Include-Up="TRUE" U-Page S-Target startspan --><script language="JavaScript"><!--
+MSFPhover = 
+  (((navigator.appName == "Netscape") && 
+  (parseInt(navigator.appVersion) >= 3 )) || 
+  ((navigator.appName == "Microsoft Internet Explorer") && 
+  (parseInt(navigator.appVersion) >= 4 ))); 
+function MSFPpreload(img) 
+{
+  var a=new Image(); a.src=img; return a; 
+}
+// --></script><script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav1n=MSFPpreload("_derived/home_cmp_expeditn110_hbtn.gif"); MSFPnav1h=MSFPpreload("_derived/home_cmp_expeditn110_hbtn_a.gif"); }
+// --></script><a href="index.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav1'].src=MSFPnav1h.src" onmouseout="if(MSFPhover) document['MSFPnav1'].src=MSFPnav1n.src"><img src="_derived/home_cmp_expeditn110_hbtn.gif" width="140" height="50" border="0" alt="Free-6502 Home" align="middle" name="MSFPnav1"></a><!--webbot bot="Navigation" endspan i-checksum="30764" -->
+</p>
+<p>The Free-6502 core comes with some development tools.&nbsp; These tools are:</p>
+<blockquote>
+  <!--mstheme--></font><!--msthemelist--><table border="0" cellpadding="0" cellspacing="0" width="100%">
+    <!--msthemelist--><tr><td valign="top" width="42"><img src="_themes/expeditn/expbul1a.gif" width="15" height="15" hspace="13"></td><td valign="top" width="100%"><!--mstheme--><font face="Book Antiqua, Times New Roman, Times"><b>MCGEN</b> -- Converts the microcode.csv file into VHDL and Verilog
+      source code.<!--mstheme--></font><!--msthemelist--></td></tr>
+    <!--msthemelist--><tr><td valign="baseline" width="42"><img src="_themes/expeditn/expbul1a.gif" width="15" height="15" hspace="13"></td><td valign="top" width="100%"><!--mstheme--><font face="Book Antiqua, Times New Roman, Times"><b>ROM2VHDL</b> -- Converts a raw binary file into a synthesizeable VHDL
+      ROM.<!--mstheme--></font><!--msthemelist--></td></tr>
+  <!--msthemelist--></table><!--mstheme--><font face="Book Antiqua, Times New Roman, Times">
+</blockquote>
+<p>These tools were compiled using GCC on a Windows NT machine.&nbsp; They
+should run on any current Windows platform, but if not (or if you're not running
+Windows) the C source code is provided in the distribution.&nbsp; The C is
+fairly generic and should be very easy to port to different compilers and
+platforms.&nbsp;&nbsp;</p>
+<p>For those who are very interested, we used the <a href="http://sourceware.cygnus.com/cygwin/">Cygwin</a>
+port of the GNU tools to Windows NT.&nbsp; These provide all of the UNIX tools,
+including GCC, make, etc.&nbsp; This will be the standard tool set used for all
+Free-IP Projects.</p>
+<h3><!--mstheme--><font color="#666600">MCGEN&nbsp;<!--mstheme--></font></h3>
+<p>The Free-6502 microcode was written using Microsoft Excel.&nbsp; It sounds
+strange, but it worked out very well and was a whole lot easier than writing it
+directly in VHDL.&nbsp; The main microcode is in the file <b>microcode.xls</b>.&nbsp;
+Before using MCGEN to make the VHDL source code, this must be converted to <b>microcode.csv</b>.&nbsp;
+Do this by selecting &quot;Save as&quot; from the Excel menus and changing the
+file type to *.csv.&nbsp;&nbsp;</p>
+<p>For those who are wondering, a CSV file is ASCII text and easily
+parsed.&nbsp; The XLS files are not ASCII, but are a complex format used by
+Excel.&nbsp; XLS files have lots of formatting information in them that makes
+them more human readable than CSV files.&nbsp; That's why we edit the XLS files,
+but require a CSV to generate the final microcode VHDL and Verilog source code.</p>
+<p>In the MCGEN directory, there is a makefile that will compile the mcgen.c
+file and also generate microcode.vhd.&nbsp; There are many ways to run the make
+file, but here are the ones that will be most useful.</p>
+<blockquote>
+  <p><b>make</b> -- Makes mcgen.exe and microcode.vhd</p>
+  <p><b>make all</b> -- Same as just &quot;make&quot;</p>
+  <p><b>make mcgen.exe</b> -- makes just, well, mcgen.exe</p>
+  <p><b>make microcode</b> -- makes just the microcode.vhd file</p>
+  <p><b>make clean</b> -- deletes the mcgen.exe and microcode.vhd files</p>
+</blockquote>
+<p>The Verilog version of this program works the same way, but make Verilog.</p>
+<p>&nbsp;</p>
+<h3><!--mstheme--><font color="#666600">ROM2VHDL<!--mstheme--></font></h3>
+<p>This utility takes a raw binary file and a template file as an input and
+generates VHDL source code.&nbsp; This is a complicated program to explain, but
+the operation is simple enough.&nbsp;&nbsp;</p>
+<p>The template file is basically VHDL source code with special commands
+embedded into it.&nbsp; These commands tell ROM2VHDL where to put the ROM and
+how to format the ROM.&nbsp; The commands are:</p>
+<blockquote>
+  <p><b>--addrbits &lt;# of bits&gt;<br>
+  </b>This command sets the number of bits to use for the address.&nbsp; The
+  valid range of bits is 2 to 32 bits.</p>
+  <p><b>--databits &lt;# of bits&gt;<br>
+  </b>Sets the number of data bits.&nbsp; Valid values are 8, 16, 24, and 32
+  bits.</p>
+  <p><b>--varname &lt;name&gt;<br>
+  </b>Sets the signal/variable name used for the &quot;data
+  bus&quot;.&nbsp;&nbsp;</p>
+  <p><b>--big-endian<br>
+  </b>Configures ROM2VHDL for big endian input files.</p>
+  <p><b>--little-endian<br>
+  </b>Configures ROM2VHDL for little endian input files.</p>
+  <p><b>--start_of_rom<br>
+  </b>Signals the start of ROM.&nbsp; ROM2VHDL will place the body of the case
+  statement after this command.</p>
+  <p><b>--end_of_rom<br>
+  </b>Signals the end of the ROM.&nbsp;&nbsp;</p>
+</blockquote>
+<p>One important thing about ROM2VHDL is that the input template is passed
+verbatim to the output file, with the exception of everything between
+--start_of_rom and --end_of_rom.&nbsp; Between those two markers, everything in
+the template file is ignored and removed.&nbsp; So, write your template file
+accordingly.&nbsp;&nbsp;</p>
+<p>A good example of how ROM2VHDL is used is in the /code/testsuite directory of
+the Free-6502 distribution.&nbsp;&nbsp;&nbsp;</p>
+<p>&nbsp;</p>
+<!--mstheme--></font><!--msnavigation--></td></tr><!--msnavigation--></table><!--msnavigation--><table border="0" cellpadding="0" cellspacing="0" width="100%"><tr><td><!--mstheme--><font face="Book Antiqua, Times New Roman, Times">
+<!--msthemeseparator--><p align="center"><img src="_themes/expeditn/exphorsa.gif" width="600" height="10"></p>
+
+<h6><!--mstheme--><font color="#666600">© 1999-2000, <a href="http://www.free-ip.com/"> The Free-IP Project</a>.&nbsp; This page was last updated on January 14, 2000 09:30 PM.<!--mstheme--></font></h6>
+
+<!--mstheme--></font></td></tr><!--msnavigation--></table></body>
+
+</html>

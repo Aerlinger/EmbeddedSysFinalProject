@@ -1,0 +1,1596 @@
+------- FILE test.asm
+    1  ????                                       
+    2  ????                                       
+    3  ????                                       
+    4  ????                                       
+    5  ????                             processor     6502
+    6  ????                                       
+    7  ????                                       
+    8  ????                                       
+    9 U????                               seg.u   data
+   10 U0000                               org     $00
+   11 U0000                                       
+   12 U0000                  TESTZ1       equ     $00
+   13 U0000                  TESTZ2       equ     $01
+   14 U0000                  TESTZ3       equ     $02
+   15 U0000                  TESTZ4       equ     $03
+   16 U0000                                       
+   17 U0000                  IRQ_ALLOW    equ     $04
+   18 U0000                  IRQ_COUNT    equ     $05
+   19 U0000                  NMI_ALLOW    equ     $06
+   20 U0000                  NMI_COUNT    equ     $07
+   21 U0000                  IRQ_STATUS   equ     $08
+   22 U0000                                       
+   23 U0000                                       
+   24 U0000                                       
+   25 U0100                               org     $0100
+   26 U0100                                       
+   27 U0100                  TESTABS1     equ     $0200
+   28 U0100                  TESTABS2     equ     $0201
+   29 U0100                  TESTABS3     equ     $0202
+   30 U0100                  TESTABS4     equ     $0203
+   31 U0100                  TESTABS5     equ     $0204
+   32 U0100                  TESTABS6     equ     $0205
+   33 U0100                  TESTABS7     equ     $0206
+   34 U0100                  TESTABS8     equ     $0207
+   35 U0100                                       
+   36 U0100                                       
+   37 U0100                                       
+   38 U0100                  RAMEND       equ     $8000
+   39 U0100                  HALT         equ     $8000
+   40 U0100                  POSTCODE     equ     $8001
+   41 U0100                  LOGFILE      equ     $8002
+   42 U0100                  IRQ_TIMER    equ     $8004
+   43 U0100                  IRQ_CLEAR    equ     $8005
+   44 U0100                  NMI_TIMER    equ     $8006
+   45 U0100                  NMI_CLEAR    equ     $8007
+   46 U0100                                       
+   47 U0100                                       
+   48 U0100                                       
+   49  ????                               seg     code
+   50  f000                               org     $F000
+   51  f000                  PROMBEG      equ     .
+   52  f000                                       
+   53  f000                  RESET      subroutine     
+   54  f000                                       
+   55  f000                                       
+   56  f000                                       
+   57  f000                                       
+   58  f000                                       
+   59  f000                                       
+   60  f000                                       
+   61  f000     ea                        nop     
+   62  f001     ea                        nop     
+   63  f002     ea                        nop     
+   64  f003     ea                        nop     
+   65  f004                                       
+   66  f004                                       
+   67  f004     a9 00                     lda     #$00
+   68  f006     85 04                     sta     IRQ_ALLOW
+   69  f008     85 05                     sta     IRQ_COUNT
+   70  f00a     85 06                     sta     NMI_ALLOW
+   71  f00c     85 07                     sta     NMI_COUNT
+   72  f00e                                       
+   73  f00e                                       
+   74  f00e                                       
+   75  f00e     a9 00                     lda     #$00
+   76  f010     8d 01 80                  sta     POSTCODE
+   77  f013     a9 01                     lda     #$01
+   78  f015     8d 01 80                  sta     POSTCODE
+   79  f018                                       
+   80  f018                                       
+   81  f018                  TEST_JMP             
+   82  f018     4c 20 f0                  jmp     TEST_JMP1
+   83  f01b     a9 00                     lda     #$00
+   84  f01d     4c 41 f9                  jmp     FAILURE
+   85  f020                  TEST_JMP1            
+   86  f020     a9 01                     lda     #$01
+   87  f022     8d 01 80                  sta     POSTCODE
+   88  f025                                       
+   89  f025                                       
+   90  f025                  TEST_BCC             
+   91  f025     a9 02                     lda     #$02
+   92  f027     8d 01 80                  sta     POSTCODE
+   93  f02a     18                        clc     
+   94  f02b     90 05                     bcc     TEST_BCC1
+   95  f02d     a9 01                     lda     #$01
+   96  f02f     4c 41 f9                  jmp     FAILURE
+   97  f032                  TEST_BCC1            
+   98  f032     a9 03                     lda     #$03
+   99  f034     8d 01 80                  sta     POSTCODE
+  100  f037     38                        sec     
+  101  f038     90 03                     bcc     TEST_BCC2
+  102  f03a     4c 42 f0                  jmp     TEST_BCC_DONE
+  103  f03d                  TEST_BCC2            
+  104  f03d     a9 02                     lda     #$02
+  105  f03f     4c 41 f9                  jmp     FAILURE
+  106  f042                  TEST_BCC_DONE           
+  107  f042                                       
+  108  f042                                       
+  109  f042                  TEST_BCS             
+  110  f042     a9 04                     lda     #$04
+  111  f044     8d 01 80                  sta     POSTCODE
+  112  f047     38                        sec     
+  113  f048     b0 05                     bcs     TEST_BCS1
+  114  f04a     a9 01                     lda     #$01
+  115  f04c     4c 41 f9                  jmp     FAILURE
+  116  f04f                  TEST_BCS1            
+  117  f04f     18                        clc     
+  118  f050     b0 03                     bcs     TEST_BCS2
+  119  f052     4c 5a f0                  jmp     TEST_BCS_DONE
+  120  f055                  TEST_BCS2            
+  121  f055     a9 02                     lda     #$02
+  122  f057     4c 41 f9                  jmp     FAILURE
+  123  f05a                  TEST_BCS_DONE           
+  124  f05a                                       
+  125  f05a                                       
+  126  f05a                  TEST_CMPIMM           
+  127  f05a     a9 05                     lda     #$05
+  128  f05c     8d 01 80                  sta     POSTCODE
+  129  f05f     a9 05                     lda     #$05
+  130  f061     c9 04                     cmp     #$04
+  131  f063     f0 04                     beq     TEST_CMPIMM1
+  132  f065     c9 05                     cmp     #$05
+  133  f067     f0 05                     beq     TEST_CMPIMM2
+  134  f069                  TEST_CMPIMM1           
+  135  f069     a9 03                     lda     #$03
+  136  f06b     4c 41 f9                  jmp     FAILURE
+  137  f06e                  TEST_CMPIMM2           
+  138  f06e                                       
+  139  f06e                                       
+  140  f06e                  TEST_BNE             
+  141  f06e     a9 06                     lda     #$06
+  142  f070     8d 01 80                  sta     POSTCODE
+  143  f073     a9 c4                     lda     #$C4
+  144  f075     c9 e4                     cmp     #$E4
+  145  f077     d0 05                     bne     TEST_BNE1
+  146  f079     a9 04                     lda     #$04
+  147  f07b     4c 41 f9                  jmp     FAILURE
+  148  f07e                  TEST_BNE1            
+  149  f07e     c9 c4                     cmp     #$C4
+  150  f080     d0 03                     bne     TEST_BNE2
+  151  f082     4c 8a f0                  jmp     TEST_BNE3
+  152  f085                  TEST_BNE2            
+  153  f085     a9 05                     lda     #$05
+  154  f087     4c 41 f9                  jmp     FAILURE
+  155  f08a                  TEST_BNE3            
+  156  f08a                                       
+  157  f08a                                       
+  158  f08a                                       
+  159  f08a                                       
+  160  f08a                                       
+  161  f08a                                       
+  162  f08a                  TEST_LDXIMM           
+  163  f08a     a9 07                     lda     #$07
+  164  f08c     8d 01 80                  sta     POSTCODE
+  165  f08f     a2 42                     ldx     #$42
+  166  f091     e0 32                     cpx     #$32
+  167  f093     f0 04                     beq     TEST_LDXIMM1
+  168  f095     e0 42                     cpx     #$42
+  169  f097     f0 05                     beq     TEST_LDXIMM2
+  170  f099                  TEST_LDXIMM1           
+  171  f099     a9 06                     lda     #$06
+  172  f09b     4c 41 f9                  jmp     FAILURE
+  173  f09e                  TEST_LDXIMM2           
+  174  f09e                                       
+  175  f09e                                       
+  176  f09e                  TEST_LDYIMM           
+  177  f09e     a9 08                     lda     #$08
+  178  f0a0     8d 01 80                  sta     POSTCODE
+  179  f0a3     a0 c3                     ldy     #$C3
+  180  f0a5     c0 d3                     cpy     #$D3
+  181  f0a7     f0 04                     beq     TEST_LDYIMM1
+  182  f0a9     c0 c3                     cpy     #$C3
+  183  f0ab     f0 05                     beq     TEST_LDYIMM2
+  184  f0ad                  TEST_LDYIMM1           
+  185  f0ad     a9 07                     lda     #$07
+  186  f0af     4c 41 f9                  jmp     FAILURE
+  187  f0b2                  TEST_LDYIMM2           
+  188  f0b2                                       
+  189  f0b2                                       
+  190  f0b2                  TEST_DEX             
+  191  f0b2     a9 09                     lda     #$09
+  192  f0b4     8d 01 80                  sta     POSTCODE
+  193  f0b7     a2 00                     ldx     #$00
+  194  f0b9     ca                        dex     
+  195  f0ba     e0 ff                     cpx     #$FF
+  196  f0bc     f0 05                     beq     TEST_DEX1
+  197  f0be     a9 08                     lda     #$08
+  198  f0c0     4c 41 f9                  jmp     FAILURE
+  199  f0c3                  TEST_DEX1            
+  200  f0c3                                       
+  201  f0c3                                       
+  202  f0c3                  TEST_DEY             
+  203  f0c3     a9 0a                     lda     #$0A
+  204  f0c5     8d 01 80                  sta     POSTCODE
+  205  f0c8     a0 00                     ldy     #$00
+  206  f0ca     88                        dey     
+  207  f0cb     c0 ff                     cpy     #$FF
+  208  f0cd     f0 05                     beq     TEST_DEY1
+  209  f0cf     a9 09                     lda     #$09
+  210  f0d1     4c 41 f9                  jmp     FAILURE
+  211  f0d4                  TEST_DEY1            
+  212  f0d4                                       
+  213  f0d4                                       
+  214  f0d4                  TEST_INX             
+  215  f0d4     a9 0b                     lda     #$0B
+  216  f0d6     8d 01 80                  sta     POSTCODE
+  217  f0d9     a2 0f                     ldx     #$0F
+  218  f0db     e8                        inx     
+  219  f0dc     e0 10                     cpx     #$10
+  220  f0de     f0 05                     beq     TEST_INX1
+  221  f0e0     a9 10                     lda     #$10
+  222  f0e2     4c 41 f9                  jmp     FAILURE
+  223  f0e5                  TEST_INX1            
+  224  f0e5                                       
+  225  f0e5                                       
+  226  f0e5                  TEST_INY             
+  227  f0e5     a9 0c                     lda     #$0C
+  228  f0e7     8d 01 80                  sta     POSTCODE
+  229  f0ea     a0 7f                     ldy     #$7F
+  230  f0ec     c8                        iny     
+  231  f0ed     c0 80                     cpy     #$80
+  232  f0ef     f0 05                     beq     TEST_INY1
+  233  f0f1     a9 11                     lda     #$11
+  234  f0f3     4c 41 f9                  jmp     FAILURE
+  235  f0f6                  TEST_INY1            
+  236  f0f6                                       
+  237  f0f6                                       
+  238  f0f6                  TEST_JSR             
+  239  f0f6     a9 0d                     lda     #$0D
+  240  f0f8     8d 01 80                  sta     POSTCODE
+  241  f0fb     a9 ed                     lda     #$ED
+  242  f0fd     20 09 f1                  jsr     TEST_JSR1
+  243  f100     c9 42                     cmp     #$42
+  244  f102     f0 08                     beq     TEST_JSR2
+  245  f104     a9 12                     lda     #$12
+  246  f106     4c 41 f9                  jmp     FAILURE
+  247  f109                  TEST_JSR1            
+  248  f109     a9 42                     lda     #$42
+  249  f10b     60                        rts     
+  250  f10c                  TEST_JSR2            
+  251  f10c                                       
+  252  f10c                                       
+  253  f10c                  TEST_TAX             
+  254  f10c     a9 0e                     lda     #$0E
+  255  f10e     8d 01 80                  sta     POSTCODE
+  256  f111     a9 35                     lda     #$35
+  257  f113     aa                        tax     
+  258  f114     e0 35                     cpx     #$35
+  259  f116     f0 05                     beq     TEST_TAX2
+  260  f118     a9 12                     lda     #$12
+  261  f11a     4c 41 f9                  jmp     FAILURE
+  262  f11d                  TEST_TAX2            
+  263  f11d                                       
+  264  f11d                                       
+  265  f11d                  TEST_TAY             
+  266  f11d     a9 0f                     lda     #$0F
+  267  f11f     8d 01 80                  sta     POSTCODE
+  268  f122     a9 76                     lda     #$76
+  269  f124     a8                        tay     
+  270  f125     c0 76                     cpy     #$76
+  271  f127     f0 05                     beq     TEST_TAY2
+  272  f129     a9 13                     lda     #$13
+  273  f12b     4c 41 f9                  jmp     FAILURE
+  274  f12e                  TEST_TAY2            
+  275  f12e                                       
+  276  f12e                                       
+  277  f12e                  TEST_TXA             
+  278  f12e     a9 10                     lda     #$10
+  279  f130     8d 01 80                  sta     POSTCODE
+  280  f133     a2 52                     ldx     #$52
+  281  f135     8a                        txa     
+  282  f136     c9 52                     cmp     #$52
+  283  f138     f0 05                     beq     TEST_TXA2
+  284  f13a     a9 14                     lda     #$14
+  285  f13c     4c 41 f9                  jmp     FAILURE
+  286  f13f                  TEST_TXA2            
+  287  f13f                                       
+  288  f13f                                       
+  289  f13f                  TEST_TYA             
+  290  f13f     a9 11                     lda     #$11
+  291  f141     8d 01 80                  sta     POSTCODE
+  292  f144     a0 52                     ldy     #$52
+  293  f146     98                        tya     
+  294  f147     c9 52                     cmp     #$52
+  295  f149     f0 05                     beq     TEST_TYA2
+  296  f14b     a9 15                     lda     #$15
+  297  f14d     4c 41 f9                  jmp     FAILURE
+  298  f150                  TEST_TYA2            
+  299  f150                                       
+  300  f150                                       
+  301  f150                                       
+  302  f150                                       
+  303  f150                                       
+  304  f150                  TEST_ADCIMM           
+  305  f150     a9 12                     lda     #$12
+  306  f152     8d 01 80                  sta     POSTCODE
+  307  f155     18                        clc     
+  308  f156     a9 23                     lda     #$23
+  309  f158     69 45                     adc     #$45
+  310  f15a     c9 68                     cmp     #$68
+  311  f15c     f0 05                     beq     TEST_ADCIMM2
+  312  f15e     a9 16                     lda     #$16
+  313  f160     4c 41 f9                  jmp     FAILURE
+  314  f163                  TEST_ADCIMM2           
+  315  f163     38                        sec     
+  316  f164     a9 42                     lda     #$42
+  317  f166     69 63                     adc     #$63
+  318  f168     c9 a6                     cmp     #$A6
+  319  f16a     f0 05                     beq     TEST_ADCIMM3
+  320  f16c     a9 17                     lda     #$17
+  321  f16e     4c 41 f9                  jmp     FAILURE
+  322  f171                  TEST_ADCIMM3           
+  323  f171                                       
+  324  f171                                       
+  325  f171                  TEST_ANDIMM           
+  326  f171     a9 13                     lda     #$13
+  327  f173     8d 01 80                  sta     POSTCODE
+  328  f176     a9 36                     lda     #$36
+  329  f178     29 f0                     and     #$F0
+  330  f17a     c9 30                     cmp     #$30
+  331  f17c     f0 05                     beq     TEST_ANDIMM2
+  332  f17e     a9 18                     lda     #$18
+  333  f180     4c 41 f9                  jmp     FAILURE
+  334  f183                  TEST_ANDIMM2           
+  335  f183                                       
+  336  f183                                       
+  337  f183                  TEST_ASLACC           
+  338  f183     a9 14                     lda     #$14
+  339  f185     8d 01 80                  sta     POSTCODE
+  340  f188     18                        clc     
+  341  f189     a9 36                     lda     #$36
+  342  f18b     0a                        asl     
+  343  f18c     c9 6c                     cmp     #$6C
+  344  f18e     f0 05                     beq     TEST_ASLACC2
+  345  f190     a9 19                     lda     #$19
+  346  f192     4c 41 f9                  jmp     FAILURE
+  347  f195                  TEST_ASLACC2           
+  348  f195                                       
+  349  f195                                       
+  350  f195                  TEST_EORIMM           
+  351  f195     a9 15                     lda     #$15
+  352  f197     8d 01 80                  sta     POSTCODE
+  353  f19a     a9 89                     lda     #$89
+  354  f19c     49 96                     eor     #$96
+  355  f19e     c9 1f                     cmp     #$1F
+  356  f1a0     f0 05                     beq     TEST_EORIMM2
+  357  f1a2     a9 20                     lda     #$20
+  358  f1a4     4c 41 f9                  jmp     FAILURE
+  359  f1a7                  TEST_EORIMM2           
+  360  f1a7                                       
+  361  f1a7                                       
+  362  f1a7                  TEST_LSRACC           
+  363  f1a7     a9 16                     lda     #$16
+  364  f1a9     8d 01 80                  sta     POSTCODE
+  365  f1ac     18                        clc     
+  366  f1ad     a9 52                     lda     #$52
+  367  f1af     4a                        lsr     
+  368  f1b0     c9 29                     cmp     #$29
+  369  f1b2     f0 05                     beq     TEST_LSRACC2
+  370  f1b4     a9 21                     lda     #$21
+  371  f1b6     4c 41 f9                  jmp     FAILURE
+  372  f1b9                  TEST_LSRACC2           
+  373  f1b9                                       
+  374  f1b9                                       
+  375  f1b9                  TEST_ORAIMM           
+  376  f1b9     a9 17                     lda     #$17
+  377  f1bb     8d 01 80                  sta     POSTCODE
+  378  f1be     a9 b6                     lda     #$B6
+  379  f1c0     09 4d                     ora     #$4D
+  380  f1c2     c9 ff                     cmp     #$FF
+  381  f1c4     f0 05                     beq     TEST_ORAIMM2
+  382  f1c6     a9 22                     lda     #$22
+  383  f1c8     4c 41 f9                  jmp     FAILURE
+  384  f1cb                  TEST_ORAIMM2           
+  385  f1cb                                       
+  386  f1cb                                       
+  387  f1cb                  TEST_ROLACC           
+  388  f1cb     a9 18                     lda     #$18
+  389  f1cd     8d 01 80                  sta     POSTCODE
+  390  f1d0     18                        clc     
+  391  f1d1     a9 23                     lda     #$23
+  392  f1d3     2a                        rol     
+  393  f1d4     c9 46                     cmp     #$46
+  394  f1d6     f0 05                     beq     TEST_ROLACC2
+  395  f1d8     a9 23                     lda     #$23
+  396  f1da     4c 41 f9                  jmp     FAILURE
+  397  f1dd                  TEST_ROLACC2           
+  398  f1dd     38                        sec     
+  399  f1de     a9 42                     lda     #$42
+  400  f1e0     2a                        rol     
+  401  f1e1     c9 85                     cmp     #$85
+  402  f1e3     f0 05                     beq     TEST_ROLACC3
+  403  f1e5     a9 24                     lda     #$24
+  404  f1e7     4c 41 f9                  jmp     FAILURE
+  405  f1ea                  TEST_ROLACC3           
+  406  f1ea                                       
+  407  f1ea                                       
+  408  f1ea                  TEST_RORACC           
+  409  f1ea     a9 19                     lda     #$19
+  410  f1ec     8d 01 80                  sta     POSTCODE
+  411  f1ef     18                        clc     
+  412  f1f0     a9 23                     lda     #$23
+  413  f1f2     6a                        ror     
+  414  f1f3     c9 11                     cmp     #$11
+  415  f1f5     f0 05                     beq     TEST_RORACC2
+  416  f1f7     a9 25                     lda     #$25
+  417  f1f9     4c 41 f9                  jmp     FAILURE
+  418  f1fc                  TEST_RORACC2           
+  419  f1fc     38                        sec     
+  420  f1fd     a9 42                     lda     #$42
+  421  f1ff     6a                        ror     
+  422  f200     c9 a1                     cmp     #$A1
+  423  f202     f0 05                     beq     TEST_RORACC3
+  424  f204     a9 26                     lda     #$26
+  425  f206     4c 41 f9                  jmp     FAILURE
+  426  f209                  TEST_RORACC3           
+  427  f209                                       
+  428  f209                                       
+  429  f209                  TEST_SBCIMM           
+  430  f209     a9 20                     lda     #$20
+  431  f20b     8d 01 80                  sta     POSTCODE
+  432  f20e     38                        sec     
+  433  f20f     a9 86                     lda     #$86
+  434  f211     e9 45                     sbc     #$45
+  435  f213     c9 41                     cmp     #$41
+  436  f215     f0 05                     beq     TEST_SBCIMM2
+  437  f217     a9 27                     lda     #$27
+  438  f219     4c 41 f9                  jmp     FAILURE
+  439  f21c                  TEST_SBCIMM2           
+  440  f21c     18                        clc     
+  441  f21d     a9 89                     lda     #$89
+  442  f21f     e9 23                     sbc     #$23
+  443  f221     c9 65                     cmp     #$65
+  444  f223     f0 05                     beq     TEST_SBCIMM3
+  445  f225     a9 28                     lda     #$28
+  446  f227     4c 41 f9                  jmp     FAILURE
+  447  f22a                  TEST_SBCIMM3           
+  448  f22a                                       
+  449  f22a                                       
+  450  f22a                                       
+  451  f22a                                       
+  452  f22a                                       
+  453  f22a                  TEST_LDAABS           
+  454  f22a     a9 21                     lda     #$21
+  455  f22c     8d 01 80                  sta     POSTCODE
+  456  f22f     a9 42                     lda     #$42
+  457  f231     8d 00 02                  sta     TESTABS1
+  458  f234     a9 9f                     lda     #$9F
+  459  f236     8d 01 02                  sta     TESTABS2
+  460  f239     ad 00 02                  lda     TESTABS1
+  461  f23c     c9 42                     cmp     #$42
+  462  f23e     f0 05                     beq     TEST_LDAABS2
+  463  f240     a9 29                     lda     #$29
+  464  f242     4c 41 f9                  jmp     FAILURE
+  465  f245                  TEST_LDAABS2           
+  466  f245     ad 01 02                  lda     TESTABS2
+  467  f248     c9 9f                     cmp     #$9F
+  468  f24a     f0 05                     beq     TEST_LDAABS3
+  469  f24c     a9 30                     lda     #$30
+  470  f24e     4c 41 f9                  jmp     FAILURE
+  471  f251                  TEST_LDAABS3           
+  472  f251                                       
+  473  f251                                       
+  474  f251                  TEST_ADCABS           
+  475  f251     a9 22                     lda     #$22
+  476  f253     8d 01 80                  sta     POSTCODE
+  477  f256     a9 94                     lda     #$94
+  478  f258     8d 01 02                  sta     TESTABS2
+  479  f25b     a9 41                     lda     #$41
+  480  f25d     8d 00 02                  sta     TESTABS1
+  481  f260     a9 53                     lda     #$53
+  482  f262     18                        clc     
+  483  f263     6d 00 02                  adc     TESTABS1
+  484  f266     cd 01 02                  cmp     TESTABS2
+  485  f269     f0 05                     beq     TEST_ADCABS2
+  486  f26b     a9 31                     lda     #$31
+  487  f26d     4c 41 f9                  jmp     FAILURE
+  488  f270                  TEST_ADCABS2           
+  489  f270     a9 8d                     lda     #$8D
+  490  f272     8d 01 02                  sta     TESTABS2
+  491  f275     a9 98                     lda     #$98
+  492  f277     8d 00 02                  sta     TESTABS1
+  493  f27a     a9 f4                     lda     #$F4
+  494  f27c     38                        sec     
+  495  f27d     6d 00 02                  adc     TESTABS1
+  496  f280     cd 01 02                  cmp     TESTABS2
+  497  f283     f0 05                     beq     TEST_ADCABS3
+  498  f285     a9 32                     lda     #$32
+  499  f287     4c 41 f9                  jmp     FAILURE
+  500  f28a                  TEST_ADCABS3           
+  501  f28a                                       
+  502  f28a                                       
+  503  f28a                  TEST_ANDABS           
+  504  f28a     a9 23                     lda     #$23
+  505  f28c     8d 01 80                  sta     POSTCODE
+  506  f28f     a0 84                     ldy     #$84
+  507  f291     8c 01 02                  sty     TESTABS2
+  508  f294     a2 b4                     ldx     #$B4
+  509  f296     8e 00 02                  stx     TESTABS1
+  510  f299     a9 86                     lda     #$86
+  511  f29b     2d 00 02                  and     TESTABS1
+  512  f29e     cd 01 02                  cmp     TESTABS2
+  513  f2a1     f0 05                     beq     TEST_ANDABS2
+  514  f2a3     a9 33                     lda     #$33
+  515  f2a5     4c 41 f9                  jmp     FAILURE
+  516  f2a8                  TEST_ANDABS2           
+  517  f2a8                                       
+  518  f2a8                                       
+  519  f2a8                  TEST_ASLABS           
+  520  f2a8     a9 24                     lda     #$24
+  521  f2aa     8d 01 80                  sta     POSTCODE
+  522  f2ad     a2 55                     ldx     #$55
+  523  f2af     8e 00 02                  stx     TESTABS1
+  524  f2b2     0e 00 02                  asl     TESTABS1
+  525  f2b5     ad 00 02                  lda     TESTABS1
+  526  f2b8     c9 aa                     cmp     #$AA
+  527  f2ba     f0 05                     beq     TEST_ASLABS2
+  528  f2bc     a9 34                     lda     #$34
+  529  f2be     4c 41 f9                  jmp     FAILURE
+  530  f2c1                  TEST_ASLABS2           
+  531  f2c1                                       
+  532  f2c1                                       
+  533  f2c1                  TEST_CPXABS           
+  534  f2c1     a9 25                     lda     #$25
+  535  f2c3     8d 01 80                  sta     POSTCODE
+  536  f2c6     a9 53                     lda     #$53
+  537  f2c8     8d 00 02                  sta     TESTABS1
+  538  f2cb     a9 00                     lda     #$00
+  539  f2cd     a2 53                     ldx     #$53
+  540  f2cf     ec 00 02                  cpx     TESTABS1
+  541  f2d2     f0 05                     beq     TEST_CPXABS2
+  542  f2d4     a9 35                     lda     #$35
+  543  f2d6     4c 41 f9                  jmp     FAILURE
+  544  f2d9                  TEST_CPXABS2           
+  545  f2d9                                       
+  546  f2d9                                       
+  547  f2d9                  TEST_CPYABS           
+  548  f2d9     a9 26                     lda     #$26
+  549  f2db     8d 01 80                  sta     POSTCODE
+  550  f2de     a9 45                     lda     #$45
+  551  f2e0     8d 00 02                  sta     TESTABS1
+  552  f2e3     a9 00                     lda     #$00
+  553  f2e5     a0 45                     ldy     #$45
+  554  f2e7     cc 00 02                  cpy     TESTABS1
+  555  f2ea     f0 05                     beq     TEST_CPYABS2
+  556  f2ec     a9 36                     lda     #$36
+  557  f2ee     4c 41 f9                  jmp     FAILURE
+  558  f2f1                  TEST_CPYABS2           
+  559  f2f1                                       
+  560  f2f1                                       
+  561  f2f1                  TEST_DECABS           
+  562  f2f1     a9 27                     lda     #$27
+  563  f2f3     8d 01 80                  sta     POSTCODE
+  564  f2f6     a9 ef                     lda     #$EF
+  565  f2f8     8d 00 02                  sta     TESTABS1
+  566  f2fb     ce 00 02                  dec     TESTABS1
+  567  f2fe     a9 ee                     lda     #$EE
+  568  f300     cd 00 02                  cmp     TESTABS1
+  569  f303     f0 05                     beq     TEST_DECABS2
+  570  f305     a9 37                     lda     #$37
+  571  f307     4c 41 f9                  jmp     FAILURE
+  572  f30a                  TEST_DECABS2           
+  573  f30a     a9 01                     lda     #$01
+  574  f30c     8d 00 02                  sta     TESTABS1
+  575  f30f     ce 00 02                  dec     TESTABS1
+  576  f312     f0 05                     beq     TEST_DECABS3
+  577  f314     a9 38                     lda     #$38
+  578  f316     4c 41 f9                  jmp     FAILURE
+  579  f319                  TEST_DECABS3           
+  580  f319                                       
+  581  f319                                       
+  582  f319                  TEST_INCABS           
+  583  f319     a9 28                     lda     #$28
+  584  f31b     8d 01 80                  sta     POSTCODE
+  585  f31e     a9 ef                     lda     #$EF
+  586  f320     8d 00 02                  sta     TESTABS1
+  587  f323     ee 00 02                  inc     TESTABS1
+  588  f326     a9 f0                     lda     #$F0
+  589  f328     cd 00 02                  cmp     TESTABS1
+  590  f32b     f0 05                     beq     TEST_INCABS2
+  591  f32d     a9 39                     lda     #$39
+  592  f32f     4c 41 f9                  jmp     FAILURE
+  593  f332                  TEST_INCABS2           
+  594  f332     a9 ff                     lda     #$FF
+  595  f334     8d 00 02                  sta     TESTABS1
+  596  f337     ee 00 02                  inc     TESTABS1
+  597  f33a     f0 05                     beq     TEST_INCABS3
+  598  f33c     a9 40                     lda     #$40
+  599  f33e     4c 41 f9                  jmp     FAILURE
+  600  f341                  TEST_INCABS3           
+  601  f341                                       
+  602  f341                                       
+  603  f341                  TEST_EORABS           
+  604  f341     a9 29                     lda     #$29
+  605  f343     8d 01 80                  sta     POSTCODE
+  606  f346     a0 32                     ldy     #$32
+  607  f348     8c 01 02                  sty     TESTABS2
+  608  f34b     a2 b4                     ldx     #$B4
+  609  f34d     8e 00 02                  stx     TESTABS1
+  610  f350     a9 86                     lda     #$86
+  611  f352     4d 00 02                  eor     TESTABS1
+  612  f355     cd 01 02                  cmp     TESTABS2
+  613  f358     f0 05                     beq     TEST_EORABS2
+  614  f35a     a9 41                     lda     #$41
+  615  f35c     4c 41 f9                  jmp     FAILURE
+  616  f35f                  TEST_EORABS2           
+  617  f35f                                       
+  618  f35f                                       
+  619  f35f                  TEST_ORAABS           
+  620  f35f     a9 2a                     lda     #$2A
+  621  f361     8d 01 80                  sta     POSTCODE
+  622  f364     a0 b6                     ldy     #$B6
+  623  f366     8c 01 02                  sty     TESTABS2
+  624  f369     a2 b4                     ldx     #$B4
+  625  f36b     8e 00 02                  stx     TESTABS1
+  626  f36e     a9 86                     lda     #$86
+  627  f370     0d 00 02                  ora     TESTABS1
+  628  f373     cd 01 02                  cmp     TESTABS2
+  629  f376     f0 05                     beq     TEST_ORAABS2
+  630  f378     a9 42                     lda     #$42
+  631  f37a     4c 41 f9                  jmp     FAILURE
+  632  f37d                  TEST_ORAABS2           
+  633  f37d                                       
+  634  f37d                                       
+  635  f37d                  TEST_ROLABS           
+  636  f37d     a9 2b                     lda     #$2B
+  637  f37f     8d 01 80                  sta     POSTCODE
+  638  f382     18                        clc     
+  639  f383     a2 aa                     ldx     #$AA
+  640  f385     8e 00 02                  stx     TESTABS1
+  641  f388     2e 00 02                  rol     TESTABS1
+  642  f38b     b0 05                     bcs     TEST_ROLABS2
+  643  f38d     a9 43                     lda     #$43
+  644  f38f     4c 41 f9                  jmp     FAILURE
+  645  f392                  TEST_ROLABS2           
+  646  f392     ad 00 02                  lda     TESTABS1
+  647  f395     c9 54                     cmp     #$54
+  648  f397     f0 05                     beq     TEST_ROLABS3
+  649  f399     a9 44                     lda     #$44
+  650  f39b     4c 41 f9                  jmp     FAILURE
+  651  f39e                  TEST_ROLABS3           
+  652  f39e                                       
+  653  f39e                                       
+  654  f39e                  TEST_RORABS           
+  655  f39e     a9 2c                     lda     #$2C
+  656  f3a0     8d 01 80                  sta     POSTCODE
+  657  f3a3     18                        clc     
+  658  f3a4     a2 55                     ldx     #$55
+  659  f3a6     8e 00 02                  stx     TESTABS1
+  660  f3a9     6e 00 02                  ror     TESTABS1
+  661  f3ac     b0 05                     bcs     TEST_RORABS2
+  662  f3ae     a9 45                     lda     #$45
+  663  f3b0     4c 41 f9                  jmp     FAILURE
+  664  f3b3                  TEST_RORABS2           
+  665  f3b3     ad 00 02                  lda     TESTABS1
+  666  f3b6     c9 2a                     cmp     #$2A
+  667  f3b8     f0 05                     beq     TEST_RORABS3
+  668  f3ba     a9 46                     lda     #$46
+  669  f3bc     4c 41 f9                  jmp     FAILURE
+  670  f3bf                  TEST_RORABS3           
+  671  f3bf                                       
+  672  f3bf                                       
+  673  f3bf                  TEST_LSRABS           
+  674  f3bf     a9 2d                     lda     #$2D
+  675  f3c1     8d 01 80                  sta     POSTCODE
+  676  f3c4     a2 96                     ldx     #$96
+  677  f3c6     8e 00 02                  stx     TESTABS1
+  678  f3c9     4e 00 02                  lsr     TESTABS1
+  679  f3cc     ad 00 02                  lda     TESTABS1
+  680  f3cf     c9 4b                     cmp     #$4B
+  681  f3d1     f0 05                     beq     TEST_LSRABS2
+  682  f3d3     a9 47                     lda     #$47
+  683  f3d5     4c 41 f9                  jmp     FAILURE
+  684  f3d8                  TEST_LSRABS2           
+  685  f3d8                                       
+  686  f3d8                                       
+  687  f3d8                  TEST_LDXABS           
+  688  f3d8     a9 2e                     lda     #$2E
+  689  f3da     8d 01 80                  sta     POSTCODE
+  690  f3dd     a2 42                     ldx     #$42
+  691  f3df     8e 00 02                  stx     TESTABS1
+  692  f3e2     a2 9f                     ldx     #$9F
+  693  f3e4     8e 01 02                  stx     TESTABS2
+  694  f3e7     ae 00 02                  ldx     TESTABS1
+  695  f3ea     e0 42                     cpx     #$42
+  696  f3ec     f0 05                     beq     TEST_LDXABS2
+  697  f3ee     a9 48                     lda     #$48
+  698  f3f0     4c 41 f9                  jmp     FAILURE
+  699  f3f3                  TEST_LDXABS2           
+  700  f3f3     ae 01 02                  ldx     TESTABS2
+  701  f3f6     e0 9f                     cpx     #$9F
+  702  f3f8     f0 05                     beq     TEST_LDXABS3
+  703  f3fa     a9 49                     lda     #$49
+  704  f3fc     4c 41 f9                  jmp     FAILURE
+  705  f3ff                  TEST_LDXABS3           
+  706  f3ff                                       
+  707  f3ff                                       
+  708  f3ff                  TEST_LDYABS           
+  709  f3ff     a9 2f                     lda     #$2F
+  710  f401     8d 01 80                  sta     POSTCODE
+  711  f404     a0 34                     ldy     #$34
+  712  f406     8c 00 02                  sty     TESTABS1
+  713  f409     a0 75                     ldy     #$75
+  714  f40b     8c 01 02                  sty     TESTABS2
+  715  f40e     ac 00 02                  ldy     TESTABS1
+  716  f411     c0 34                     cpy     #$34
+  717  f413     f0 05                     beq     TEST_LDYABS2
+  718  f415     a9 4a                     lda     #$4A
+  719  f417     4c 41 f9                  jmp     FAILURE
+  720  f41a                  TEST_LDYABS2           
+  721  f41a     ac 01 02                  ldy     TESTABS2
+  722  f41d     c0 75                     cpy     #$75
+  723  f41f     f0 05                     beq     TEST_LDYABS3
+  724  f421     a9 4b                     lda     #$4B
+  725  f423     4c 41 f9                  jmp     FAILURE
+  726  f426                  TEST_LDYABS3           
+  727  f426                                       
+  728  f426                                       
+  729  f426                  TEST_SBCABS           
+  730  f426     a9 30                     lda     #$30
+  731  f428     8d 01 80                  sta     POSTCODE
+  732  f42b     a9 12                     lda     #$12
+  733  f42d     8d 01 02                  sta     TESTABS2
+  734  f430     a9 41                     lda     #$41
+  735  f432     8d 00 02                  sta     TESTABS1
+  736  f435     a9 53                     lda     #$53
+  737  f437     38                        sec     
+  738  f438     ed 00 02                  sbc     TESTABS1
+  739  f43b     cd 01 02                  cmp     TESTABS2
+  740  f43e     f0 05                     beq     TEST_SBCABS2
+  741  f440     a9 4c                     lda     #$4C
+  742  f442     4c 41 f9                  jmp     FAILURE
+  743  f445                  TEST_SBCABS2           
+  744  f445     a9 5b                     lda     #$5B
+  745  f447     8d 01 02                  sta     TESTABS2
+  746  f44a     a9 98                     lda     #$98
+  747  f44c     8d 00 02                  sta     TESTABS1
+  748  f44f     a9 f4                     lda     #$F4
+  749  f451     18                        clc     
+  750  f452     ed 00 02                  sbc     TESTABS1
+  751  f455     cd 01 02                  cmp     TESTABS2
+  752  f458     f0 05                     beq     TEST_SBCABS3
+  753  f45a     a9 4d                     lda     #$4D
+  754  f45c     4c 41 f9                  jmp     FAILURE
+  755  f45f                  TEST_SBCABS3           
+  756  f45f                                       
+  757  f45f                                       
+  758  f45f                  TEST_PHP             
+  759  f45f     a9 31                     lda     #$31
+  760  f461     8d 01 80                  sta     POSTCODE
+  761  f464     a9 42                     lda     #$42
+  762  f466     48                        pha     
+  763  f467     a9 ed                     lda     #$ED
+  764  f469     48                        pha     
+  765  f46a     a9 be                     lda     #$BE
+  766  f46c     48                        pha     
+  767  f46d     a9 00                     lda     #$00
+  768  f46f     68                        pla     
+  769  f470     c9 be                     cmp     #$BE
+  770  f472     d0 0d                     bne     TEST_PHP2
+  771  f474     68                        pla     
+  772  f475     c9 ed                     cmp     #$ED
+  773  f477     d0 08                     bne     TEST_PHP2
+  774  f479     68                        pla     
+  775  f47a     c9 42                     cmp     #$42
+  776  f47c     d0 03                     bne     TEST_PHP2
+  777  f47e     4c 86 f4                  jmp     TEST_PHP3
+  778  f481                  TEST_PHP2            
+  779  f481     a9 4e                     lda     #$4E
+  780  f483     4c 41 f9                  jmp     FAILURE
+  781  f486                  TEST_PHP3            
+  782  f486                                       
+  783  f486                                       
+  784  f486                                       
+  785  f486                                       
+  786  f486                                       
+  787  f486                                       
+  788  f486                  TEST_LDAABSX           
+  789  f486     a9 32                     lda     #$32
+  790  f488     8d 01 80                  sta     POSTCODE
+  791  f48b     a2 00                     ldx     #$00
+  792  f48d     18                        clc     
+  793  f48e     a9 03                     lda     #$03
+  794  f490     9d 00 02                  sta     TESTABS1,x
+  795  f493     69 07                     adc     #$07
+  796  f495     e8                        inx     
+  797  f496     9d 00 02                  sta     TESTABS1,x
+  798  f499     69 07                     adc     #$07
+  799  f49b     e8                        inx     
+  800  f49c     9d 00 02                  sta     TESTABS1,x
+  801  f49f     69 07                     adc     #$07
+  802  f4a1     e8                        inx     
+  803  f4a2     9d 00 02                  sta     TESTABS1,x
+  804  f4a5     69 07                     adc     #$07
+  805  f4a7     e8                        inx     
+  806  f4a8     9d 00 02                  sta     TESTABS1,x
+  807  f4ab     69 07                     adc     #$07
+  808  f4ad     e8                        inx     
+  809  f4ae     9d 00 02                  sta     TESTABS1,x
+  810  f4b1     69 07                     adc     #$07
+  811  f4b3     e8                        inx     
+  812  f4b4     9d 00 02                  sta     TESTABS1,x
+  813  f4b7     a2 00                     ldx     #$00
+  814  f4b9     18                        clc     
+  815  f4ba     bd 00 02                  lda     TESTABS1,x
+  816  f4bd     c9 03                     cmp     #$03
+  817  f4bf     d0 33                     bne     TEST_LDAABSX2
+  818  f4c1     e8                        inx     
+  819  f4c2     bd 00 02                  lda     TESTABS1,x
+  820  f4c5     c9 0a                     cmp     #$0A
+  821  f4c7     d0 2b                     bne     TEST_LDAABSX2
+  822  f4c9     e8                        inx     
+  823  f4ca     bd 00 02                  lda     TESTABS1,x
+  824  f4cd     c9 11                     cmp     #$11
+  825  f4cf     d0 23                     bne     TEST_LDAABSX2
+  826  f4d1     e8                        inx     
+  827  f4d2     bd 00 02                  lda     TESTABS1,x
+  828  f4d5     c9 18                     cmp     #$18
+  829  f4d7     d0 1b                     bne     TEST_LDAABSX2
+  830  f4d9     e8                        inx     
+  831  f4da     bd 00 02                  lda     TESTABS1,x
+  832  f4dd     c9 1f                     cmp     #$1F
+  833  f4df     d0 13                     bne     TEST_LDAABSX2
+  834  f4e1     e8                        inx     
+  835  f4e2     bd 00 02                  lda     TESTABS1,x
+  836  f4e5     c9 26                     cmp     #$26
+  837  f4e7     d0 0b                     bne     TEST_LDAABSX2
+  838  f4e9     e8                        inx     
+  839  f4ea     bd 00 02                  lda     TESTABS1,x
+  840  f4ed     c9 2d                     cmp     #$2D
+  841  f4ef     d0 03                     bne     TEST_LDAABSX2
+  842  f4f1     4c f9 f4                  jmp     TEST_LDAABSX3
+  843  f4f4                  TEST_LDAABSX2           
+  844  f4f4     a9 4f                     lda     #$4F
+  845  f4f6     4c 41 f9                  jmp     FAILURE
+  846  f4f9                  TEST_LDAABSX3           
+  847  f4f9                                       
+  848  f4f9                                       
+  849  f4f9                  TEST_LDAABSY           
+  850  f4f9     a9 33                     lda     #$33
+  851  f4fb     8d 01 80                  sta     POSTCODE
+  852  f4fe     a0 00                     ldy     #$00
+  853  f500     18                        clc     
+  854  f501     a9 03                     lda     #$03
+  855  f503     99 00 02                  sta     TESTABS1,y
+  856  f506     69 07                     adc     #$07
+  857  f508     c8                        iny     
+  858  f509     99 00 02                  sta     TESTABS1,y
+  859  f50c     69 07                     adc     #$07
+  860  f50e     c8                        iny     
+  861  f50f     99 00 02                  sta     TESTABS1,y
+  862  f512     69 07                     adc     #$07
+  863  f514     c8                        iny     
+  864  f515     99 00 02                  sta     TESTABS1,y
+  865  f518     69 07                     adc     #$07
+  866  f51a     c8                        iny     
+  867  f51b     99 00 02                  sta     TESTABS1,y
+  868  f51e     69 07                     adc     #$07
+  869  f520     c8                        iny     
+  870  f521     99 00 02                  sta     TESTABS1,y
+  871  f524     69 07                     adc     #$07
+  872  f526     c8                        iny     
+  873  f527     99 00 02                  sta     TESTABS1,y
+  874  f52a     a0 00                     ldy     #$00
+  875  f52c     18                        clc     
+  876  f52d     b9 00 02                  lda     TESTABS1,y
+  877  f530     c9 03                     cmp     #$03
+  878  f532     d0 33                     bne     TEST_LDAABSY2
+  879  f534     c8                        iny     
+  880  f535     b9 00 02                  lda     TESTABS1,y
+  881  f538     c9 0a                     cmp     #$0A
+  882  f53a     d0 2b                     bne     TEST_LDAABSY2
+  883  f53c     c8                        iny     
+  884  f53d     b9 00 02                  lda     TESTABS1,y
+  885  f540     c9 11                     cmp     #$11
+  886  f542     d0 23                     bne     TEST_LDAABSY2
+  887  f544     c8                        iny     
+  888  f545     b9 00 02                  lda     TESTABS1,y
+  889  f548     c9 18                     cmp     #$18
+  890  f54a     d0 1b                     bne     TEST_LDAABSY2
+  891  f54c     c8                        iny     
+  892  f54d     b9 00 02                  lda     TESTABS1,y
+  893  f550     c9 1f                     cmp     #$1F
+  894  f552     d0 13                     bne     TEST_LDAABSY2
+  895  f554     c8                        iny     
+  896  f555     b9 00 02                  lda     TESTABS1,y
+  897  f558     c9 26                     cmp     #$26
+  898  f55a     d0 0b                     bne     TEST_LDAABSY2
+  899  f55c     c8                        iny     
+  900  f55d     b9 00 02                  lda     TESTABS1,y
+  901  f560     c9 2d                     cmp     #$2D
+  902  f562     d0 03                     bne     TEST_LDAABSY2
+  903  f564     4c 6c f5                  jmp     TEST_LDAABSY3
+  904  f567                  TEST_LDAABSY2           
+  905  f567     a9 50                     lda     #$50
+  906  f569     4c 41 f9                  jmp     FAILURE
+  907  f56c                  TEST_LDAABSY3           
+  908  f56c                                       
+  909  f56c                                       
+  910  f56c                  TEST_ADCABSX           
+  911  f56c     a9 34                     lda     #$34
+  912  f56e     8d 01 80                  sta     POSTCODE
+  913  f571     a9 52                     lda     #$52
+  914  f573     8d 00 02                  sta     TESTABS1
+  915  f576     a9 24                     lda     #$24
+  916  f578     8d 01 02                  sta     TESTABS2
+  917  f57b     a9 78                     lda     #$78
+  918  f57d     8d 02 02                  sta     TESTABS3
+  919  f580     a9 00                     lda     #$00
+  920  f582     a2 00                     ldx     #$00
+  921  f584     18                        clc     
+  922  f585     7d 00 02                  adc     TESTABS1,x
+  923  f588     18                        clc     
+  924  f589     e8                        inx     
+  925  f58a     7d 00 02                  adc     TESTABS1,x
+  926  f58d     18                        clc     
+  927  f58e     e8                        inx     
+  928  f58f     7d 00 02                  adc     TESTABS1,x
+  929  f592     c9 ee                     cmp     #$EE
+  930  f594     f0 05                     beq     TEST_ADCABSX2
+  931  f596     a9 51                     lda     #$51
+  932  f598     4c 41 f9                  jmp     FAILURE
+  933  f59b                  TEST_ADCABSX2           
+  934  f59b                                       
+  935  f59b                                       
+  936  f59b                  TEST_ADCABSY           
+  937  f59b     a9 35                     lda     #$35
+  938  f59d     8d 01 80                  sta     POSTCODE
+  939  f5a0     a9 68                     lda     #$68
+  940  f5a2     8d 00 02                  sta     TESTABS1
+  941  f5a5     a9 13                     lda     #$13
+  942  f5a7     8d 01 02                  sta     TESTABS2
+  943  f5aa     a9 95                     lda     #$95
+  944  f5ac     8d 02 02                  sta     TESTABS3
+  945  f5af     a9 00                     lda     #$00
+  946  f5b1     a0 00                     ldy     #$00
+  947  f5b3     18                        clc     
+  948  f5b4     79 00 02                  adc     TESTABS1,y
+  949  f5b7     18                        clc     
+  950  f5b8     c8                        iny     
+  951  f5b9     79 00 02                  adc     TESTABS1,y
+  952  f5bc     18                        clc     
+  953  f5bd     c8                        iny     
+  954  f5be     79 00 02                  adc     TESTABS1,y
+  955  f5c1     c9 10                     cmp     #$10
+  956  f5c3     f0 05                     beq     TEST_ADCABSY2
+  957  f5c5     a9 52                     lda     #$52
+  958  f5c7     4c 41 f9                  jmp     FAILURE
+  959  f5ca                  TEST_ADCABSY2           
+  960  f5ca                                       
+  961  f5ca                                       
+  962  f5ca                  TEST_ANDABSY           
+  963  f5ca     a9 36                     lda     #$36
+  964  f5cc     8d 01 80                  sta     POSTCODE
+  965  f5cf     a9 34                     lda     #$34
+  966  f5d1     8d 00 02                  sta     TESTABS1
+  967  f5d4     a9 54                     lda     #$54
+  968  f5d6     8d 01 02                  sta     TESTABS2
+  969  f5d9     a9 97                     lda     #$97
+  970  f5db     8d 02 02                  sta     TESTABS3
+  971  f5de     a9 ff                     lda     #$FF
+  972  f5e0     a0 00                     ldy     #$00
+  973  f5e2     39 00 02                  and     TESTABS1,y
+  974  f5e5     c8                        iny     
+  975  f5e6     39 00 02                  and     TESTABS1,y
+  976  f5e9     c8                        iny     
+  977  f5ea     39 00 02                  and     TESTABS1,y
+  978  f5ed     c9 14                     cmp     #$14
+  979  f5ef     f0 05                     beq     TEST_ANDABSY2
+  980  f5f1     a9 53                     lda     #$53
+  981  f5f3     4c 41 f9                  jmp     FAILURE
+  982  f5f6                  TEST_ANDABSY2           
+  983  f5f6                                       
+  984  f5f6                                       
+  985  f5f6                  TEST_ANDABSX           
+  986  f5f6     a9 37                     lda     #$37
+  987  f5f8     8d 01 80                  sta     POSTCODE
+  988  f5fb     a9 34                     lda     #$34
+  989  f5fd     8d 00 02                  sta     TESTABS1
+  990  f600     a9 54                     lda     #$54
+  991  f602     8d 01 02                  sta     TESTABS2
+  992  f605     a9 97                     lda     #$97
+  993  f607     8d 02 02                  sta     TESTABS3
+  994  f60a     a9 ff                     lda     #$FF
+  995  f60c     a2 00                     ldx     #$00
+  996  f60e     3d 00 02                  and     TESTABS1,x
+  997  f611     e8                        inx     
+  998  f612     3d 00 02                  and     TESTABS1,x
+  999  f615     e8                        inx     
+ 1000  f616     3d 00 02                  and     TESTABS1,x
+ 1001  f619     c9 14                     cmp     #$14
+ 1002  f61b     f0 05                     beq     TEST_ANDABSX2
+ 1003  f61d     a9 54                     lda     #$54
+ 1004  f61f     4c 41 f9                  jmp     FAILURE
+ 1005  f622                  TEST_ANDABSX2           
+ 1006  f622                                       
+ 1007  f622                                       
+ 1008  f622                  TEST_ADCZ            
+ 1009  f622     a9 38                     lda     #$38
+ 1010  f624     8d 01 80                  sta     POSTCODE
+ 1011  f627     a9 64                     lda     #$64
+ 1012  f629     85 00                     sta     TESTZ1
+ 1013  f62b     a9 39                     lda     #$39
+ 1014  f62d     18                        clc     
+ 1015  f62e     65 00                     adc     TESTZ1
+ 1016  f630     c9 9d                     cmp     #$9D
+ 1017  f632     f0 05                     beq     TEST_ADCZ2
+ 1018  f634     a9 55                     lda     #$55
+ 1019  f636     4c 41 f9                  jmp     FAILURE
+ 1020  f639                  TEST_ADCZ2           
+ 1021  f639                                       
+ 1022  f639                                       
+ 1023  f639                  TEST_ADCZX           
+ 1024  f639     a9 39                     lda     #$39
+ 1025  f63b     8d 01 80                  sta     POSTCODE
+ 1026  f63e     a9 95                     lda     #$95
+ 1027  f640     85 00                     sta     TESTZ1
+ 1028  f642     a9 76                     lda     #$76
+ 1029  f644     85 01                     sta     TESTZ2
+ 1030  f646     a9 45                     lda     #$45
+ 1031  f648     85 02                     sta     TESTZ3
+ 1032  f64a     a2 00                     ldx     #$00
+ 1033  f64c     a9 00                     lda     #$00
+ 1034  f64e     18                        clc     
+ 1035  f64f     75 00                     adc     TESTZ1,x
+ 1036  f651     e8                        inx     
+ 1037  f652     18                        clc     
+ 1038  f653     75 00                     adc     TESTZ1,x
+ 1039  f655     e8                        inx     
+ 1040  f656     18                        clc     
+ 1041  f657     75 00                     adc     TESTZ1,x
+ 1042  f659     c9 50                     cmp     #$50
+ 1043  f65b     f0 05                     beq     TEST_ADCZX2
+ 1044  f65d     a9 56                     lda     #$56
+ 1045  f65f     4c 41 f9                  jmp     FAILURE
+ 1046  f662                  TEST_ADCZX2           
+ 1047  f662                                       
+ 1048  f662                                       
+ 1049  f662                  TEST_ANDZ            
+ 1050  f662     a9 3a                     lda     #$3A
+ 1051  f664     8d 01 80                  sta     POSTCODE
+ 1052  f667     a9 64                     lda     #$64
+ 1053  f669     85 00                     sta     TESTZ1
+ 1054  f66b     a9 39                     lda     #$39
+ 1055  f66d     25 00                     and     TESTZ1
+ 1056  f66f     c9 20                     cmp     #$20
+ 1057  f671     f0 05                     beq     TEST_ANDZ2
+ 1058  f673     a9 57                     lda     #$57
+ 1059  f675     4c 41 f9                  jmp     FAILURE
+ 1060  f678                  TEST_ANDZ2           
+ 1061  f678                                       
+ 1062  f678                                       
+ 1063  f678                  TEST_ANDZX           
+ 1064  f678     a9 3b                     lda     #$3B
+ 1065  f67a     8d 01 80                  sta     POSTCODE
+ 1066  f67d     a9 95                     lda     #$95
+ 1067  f67f     85 00                     sta     TESTZ1
+ 1068  f681     a9 76                     lda     #$76
+ 1069  f683     85 01                     sta     TESTZ2
+ 1070  f685     a9 45                     lda     #$45
+ 1071  f687     85 02                     sta     TESTZ3
+ 1072  f689     a2 00                     ldx     #$00
+ 1073  f68b     a9 ff                     lda     #$FF
+ 1074  f68d     35 00                     and     TESTZ1,x
+ 1075  f68f     e8                        inx     
+ 1076  f690     35 00                     and     TESTZ1,x
+ 1077  f692     e8                        inx     
+ 1078  f693     35 00                     and     TESTZ1,x
+ 1079  f695     c9 04                     cmp     #$04
+ 1080  f697     f0 05                     beq     TEST_ANDZX2
+ 1081  f699     a9 58                     lda     #$58
+ 1082  f69b     4c 41 f9                  jmp     FAILURE
+ 1083  f69e                  TEST_ANDZX2           
+ 1084  f69e                                       
+ 1085  f69e                                       
+ 1086  f69e                  TEST_CMPABSX           
+ 1087  f69e     a9 3c                     lda     #$3C
+ 1088  f6a0     8d 01 80                  sta     POSTCODE
+ 1089  f6a3     a9 97                     lda     #$97
+ 1090  f6a5     8d 00 02                  sta     TESTABS1
+ 1091  f6a8     a9 78                     lda     #$78
+ 1092  f6aa     8d 01 02                  sta     TESTABS2
+ 1093  f6ad     a9 45                     lda     #$45
+ 1094  f6af     8d 02 02                  sta     TESTABS3
+ 1095  f6b2     a2 00                     ldx     #$00
+ 1096  f6b4     a9 97                     lda     #$97
+ 1097  f6b6     dd 00 02                  cmp     TESTABS1,x
+ 1098  f6b9     d0 13                     bne     TEST_CMPABSX2
+ 1099  f6bb     a9 78                     lda     #$78
+ 1100  f6bd     e8                        inx     
+ 1101  f6be     dd 00 02                  cmp     TESTABS1,x
+ 1102  f6c1     d0 0b                     bne     TEST_CMPABSX2
+ 1103  f6c3     a9 45                     lda     #$45
+ 1104  f6c5     e8                        inx     
+ 1105  f6c6     dd 00 02                  cmp     TESTABS1,x
+ 1106  f6c9     d0 03                     bne     TEST_CMPABSX2
+ 1107  f6cb     4c d3 f6                  jmp     TEST_CMPABSX3
+ 1108  f6ce                  TEST_CMPABSX2           
+ 1109  f6ce     a9 59                     lda     #$59
+ 1110  f6d0     4c 41 f9                  jmp     FAILURE
+ 1111  f6d3                  TEST_CMPABSX3           
+ 1112  f6d3                                       
+ 1113  f6d3                                       
+ 1114  f6d3                  TEST_CMPABSY           
+ 1115  f6d3     a9 3d                     lda     #$3D
+ 1116  f6d5     8d 01 80                  sta     POSTCODE
+ 1117  f6d8     a9 97                     lda     #$97
+ 1118  f6da     8d 00 02                  sta     TESTABS1
+ 1119  f6dd     a9 78                     lda     #$78
+ 1120  f6df     8d 01 02                  sta     TESTABS2
+ 1121  f6e2     a9 45                     lda     #$45
+ 1122  f6e4     8d 02 02                  sta     TESTABS3
+ 1123  f6e7     a0 00                     ldy     #$00
+ 1124  f6e9     a9 97                     lda     #$97
+ 1125  f6eb     d9 00 02                  cmp     TESTABS1,y
+ 1126  f6ee     d0 13                     bne     TEST_CMPABSY2
+ 1127  f6f0     a9 78                     lda     #$78
+ 1128  f6f2     c8                        iny     
+ 1129  f6f3     d9 00 02                  cmp     TESTABS1,y
+ 1130  f6f6     d0 0b                     bne     TEST_CMPABSY2
+ 1131  f6f8     a9 45                     lda     #$45
+ 1132  f6fa     c8                        iny     
+ 1133  f6fb     d9 00 02                  cmp     TESTABS1,y
+ 1134  f6fe     d0 03                     bne     TEST_CMPABSY2
+ 1135  f700     4c 08 f7                  jmp     TEST_CMPABSY3
+ 1136  f703                  TEST_CMPABSY2           
+ 1137  f703     a9 5a                     lda     #$5A
+ 1138  f705     4c 41 f9                  jmp     FAILURE
+ 1139  f708                  TEST_CMPABSY3           
+ 1140  f708                                       
+ 1141  f708                                       
+ 1142  f708                  TEST_CMPZX           
+ 1143  f708     a9 3e                     lda     #$3E
+ 1144  f70a     8d 01 80                  sta     POSTCODE
+ 1145  f70d     a9 97                     lda     #$97
+ 1146  f70f     8d 00 02                  sta     TESTABS1
+ 1147  f712     a9 78                     lda     #$78
+ 1148  f714     8d 01 02                  sta     TESTABS2
+ 1149  f717     a9 45                     lda     #$45
+ 1150  f719     8d 02 02                  sta     TESTABS3
+ 1151  f71c     a2 00                     ldx     #$00
+ 1152  f71e     a9 97                     lda     #$97
+ 1153  f720     dd 00 02                  cmp     TESTABS1,x
+ 1154  f723     d0 13                     bne     TEST_CMPZX2
+ 1155  f725     a9 78                     lda     #$78
+ 1156  f727     e8                        inx     
+ 1157  f728     dd 00 02                  cmp     TESTABS1,x
+ 1158  f72b     d0 0b                     bne     TEST_CMPZX2
+ 1159  f72d     a9 45                     lda     #$45
+ 1160  f72f     e8                        inx     
+ 1161  f730     dd 00 02                  cmp     TESTABS1,x
+ 1162  f733     d0 03                     bne     TEST_CMPZX2
+ 1163  f735     4c 3d f7                  jmp     TEST_CMPZX3
+ 1164  f738                  TEST_CMPZX2           
+ 1165  f738     a9 5b                     lda     #$5B
+ 1166  f73a     4c 41 f9                  jmp     FAILURE
+ 1167  f73d                  TEST_CMPZX3           
+ 1168  f73d                                       
+ 1169  f73d                                       
+ 1170  f73d                  TEST_CMPZ            
+ 1171  f73d     a9 3f                     lda     #$3F
+ 1172  f73f     8d 01 80                  sta     POSTCODE
+ 1173  f742     a9 95                     lda     #$95
+ 1174  f744     85 02                     sta     TESTZ3
+ 1175  f746     a9 00                     lda     #$00
+ 1176  f748     a9 95                     lda     #$95
+ 1177  f74a     c5 02                     cmp     TESTZ3
+ 1178  f74c     f0 05                     beq     TEST_CMPZ2
+ 1179  f74e     a9 5c                     lda     #$5C
+ 1180  f750     4c 41 f9                  jmp     FAILURE
+ 1181  f753                  TEST_CMPZ2           
+ 1182  f753     a9 75                     lda     #$75
+ 1183  f755     85 02                     sta     TESTZ3
+ 1184  f757     a9 67                     lda     #$67
+ 1185  f759     c5 02                     cmp     TESTZ3
+ 1186  f75b     d0 05                     bne     TEST_CMPZ3
+ 1187  f75d     a9 5d                     lda     #$5D
+ 1188  f75f     4c 41 f9                  jmp     FAILURE
+ 1189  f762                  TEST_CMPZ3           
+ 1190  f762                                       
+ 1191  f762                                       
+ 1192  f762                  TEST_CPXZ            
+ 1193  f762     a9 40                     lda     #$40
+ 1194  f764     8d 01 80                  sta     POSTCODE
+ 1195  f767     a9 36                     lda     #$36
+ 1196  f769     85 02                     sta     TESTZ3
+ 1197  f76b     a9 00                     lda     #$00
+ 1198  f76d     a2 36                     ldx     #$36
+ 1199  f76f     e4 02                     cpx     TESTZ3
+ 1200  f771     f0 05                     beq     TEST_CPXZ2
+ 1201  f773     a9 5e                     lda     #$5E
+ 1202  f775     4c 41 f9                  jmp     FAILURE
+ 1203  f778                  TEST_CPXZ2           
+ 1204  f778     a9 57                     lda     #$57
+ 1205  f77a     85 02                     sta     TESTZ3
+ 1206  f77c     a2 39                     ldx     #$39
+ 1207  f77e     e4 02                     cpx     TESTZ3
+ 1208  f780     d0 05                     bne     TEST_CPXZ3
+ 1209  f782     a9 5f                     lda     #$5F
+ 1210  f784     4c 41 f9                  jmp     FAILURE
+ 1211  f787                  TEST_CPXZ3           
+ 1212  f787                                       
+ 1213  f787                                       
+ 1214  f787                  TEST_CPYZ            
+ 1215  f787     a9 41                     lda     #$41
+ 1216  f789     8d 01 80                  sta     POSTCODE
+ 1217  f78c     a9 75                     lda     #$75
+ 1218  f78e     85 02                     sta     TESTZ3
+ 1219  f790     a9 00                     lda     #$00
+ 1220  f792     a0 75                     ldy     #$75
+ 1221  f794     c4 02                     cpy     TESTZ3
+ 1222  f796     f0 05                     beq     TEST_CPYZ2
+ 1223  f798     a9 60                     lda     #$60
+ 1224  f79a     4c 41 f9                  jmp     FAILURE
+ 1225  f79d                  TEST_CPYZ2           
+ 1226  f79d     a9 43                     lda     #$43
+ 1227  f79f     85 02                     sta     TESTZ3
+ 1228  f7a1     a0 24                     ldy     #$24
+ 1229  f7a3     c4 02                     cpy     TESTZ3
+ 1230  f7a5     d0 05                     bne     TEST_CPYZ3
+ 1231  f7a7     a9 61                     lda     #$61
+ 1232  f7a9     4c 41 f9                  jmp     FAILURE
+ 1233  f7ac                  TEST_CPYZ3           
+ 1234  f7ac                                       
+ 1235  f7ac                                       
+ 1236  f7ac                                       
+ 1237  f7ac                                       
+ 1238  f7ac                  TEST_IRQ             
+ 1239  f7ac     a9 42                     lda     #$42
+ 1240  f7ae     8d 01 80                  sta     POSTCODE
+ 1241  f7b1     58                        cli     
+ 1242  f7b2     a9 00                     lda     #$00
+ 1243  f7b4     85 05                     sta     IRQ_COUNT
+ 1244  f7b6     a9 01                     lda     #$01
+ 1245  f7b8     85 04                     sta     IRQ_ALLOW
+ 1246  f7ba     a9 10                     lda     #$10
+ 1247  f7bc     8d 05 80                  sta     IRQ_CLEAR
+ 1248  f7bf     8d 04 80                  sta     IRQ_TIMER
+ 1249  f7c2     a2 00                     ldx     #$00
+ 1250  f7c4     e8                        inx     
+ 1251  f7c5     e8                        inx     
+ 1252  f7c6     e8                        inx     
+ 1253  f7c7     e8                        inx     
+ 1254  f7c8     e8                        inx     
+ 1255  f7c9     e8                        inx     
+ 1256  f7ca     e8                        inx     
+ 1257  f7cb     e8                        inx     
+ 1258  f7cc     e8                        inx     
+ 1259  f7cd     e8                        inx     
+ 1260  f7ce     e8                        inx     
+ 1261  f7cf     e8                        inx     
+ 1262  f7d0     e8                        inx     
+ 1263  f7d1     e8                        inx     
+ 1264  f7d2     e8                        inx     
+ 1265  f7d3     e8                        inx     
+ 1266  f7d4     e0 10                     cpx     #$10
+ 1267  f7d6     f0 05                     beq     TEST_IRQ1
+ 1268  f7d8     a9 62                     lda     #$62
+ 1269  f7da     4c 41 f9                  jmp     FAILURE
+ 1270  f7dd                  TEST_IRQ1            
+ 1271  f7dd     a5 05                     lda     IRQ_COUNT
+ 1272  f7df     c9 01                     cmp     #$01
+ 1273  f7e1     f0 05                     beq     TEST_IRQ2
+ 1274  f7e3     a9 63                     lda     #$63
+ 1275  f7e5     4c 41 f9                  jmp     FAILURE
+ 1276  f7e8                  TEST_IRQ2            
+ 1277  f7e8     78                        sei     
+ 1278  f7e9     a9 00                     lda     #$00
+ 1279  f7eb     85 05                     sta     IRQ_COUNT
+ 1280  f7ed     a9 01                     lda     #$01
+ 1281  f7ef     85 04                     sta     IRQ_ALLOW
+ 1282  f7f1     a9 10                     lda     #$10
+ 1283  f7f3     8d 05 80                  sta     IRQ_CLEAR
+ 1284  f7f6     8d 04 80                  sta     IRQ_TIMER
+ 1285  f7f9     a2 00                     ldx     #$00
+ 1286  f7fb     e8                        inx     
+ 1287  f7fc     e8                        inx     
+ 1288  f7fd     e8                        inx     
+ 1289  f7fe     e8                        inx     
+ 1290  f7ff     e8                        inx     
+ 1291  f800     e8                        inx     
+ 1292  f801     e8                        inx     
+ 1293  f802     e8                        inx     
+ 1294  f803     e8                        inx     
+ 1295  f804     e8                        inx     
+ 1296  f805     e8                        inx     
+ 1297  f806     e8                        inx     
+ 1298  f807     e8                        inx     
+ 1299  f808     e8                        inx     
+ 1300  f809     e8                        inx     
+ 1301  f80a     e8                        inx     
+ 1302  f80b     e0 10                     cpx     #$10
+ 1303  f80d     f0 05                     beq     TEST_IRQ3
+ 1304  f80f     a9 62                     lda     #$62
+ 1305  f811     4c 41 f9                  jmp     FAILURE
+ 1306  f814                  TEST_IRQ3            
+ 1307  f814     a5 05                     lda     IRQ_COUNT
+ 1308  f816     c9 00                     cmp     #$00
+ 1309  f818     f0 05                     beq     TEST_IRQ4
+ 1310  f81a     a9 63                     lda     #$63
+ 1311  f81c     4c 41 f9                  jmp     FAILURE
+ 1312  f81f                  TEST_IRQ4            
+ 1313  f81f     a9 00                     lda     #$00
+ 1314  f821     85 04                     sta     IRQ_ALLOW
+ 1315  f823     8d 05 80                  sta     IRQ_CLEAR
+ 1316  f826                                       
+ 1317  f826                                       
+ 1318  f826                  TEST_NMI             
+ 1319  f826     a9 43                     lda     #$43
+ 1320  f828     8d 01 80                  sta     POSTCODE
+ 1321  f82b     a9 00                     lda     #$00
+ 1322  f82d     85 07                     sta     NMI_COUNT
+ 1323  f82f     a9 01                     lda     #$01
+ 1324  f831     85 06                     sta     NMI_ALLOW
+ 1325  f833     a9 10                     lda     #$10
+ 1326  f835     8d 07 80                  sta     NMI_CLEAR
+ 1327  f838     8d 06 80                  sta     NMI_TIMER
+ 1328  f83b     a2 00                     ldx     #$00
+ 1329  f83d     e8                        inx     
+ 1330  f83e     e8                        inx     
+ 1331  f83f     e8                        inx     
+ 1332  f840     e8                        inx     
+ 1333  f841     e8                        inx     
+ 1334  f842     e8                        inx     
+ 1335  f843     e8                        inx     
+ 1336  f844     e8                        inx     
+ 1337  f845     e8                        inx     
+ 1338  f846     e8                        inx     
+ 1339  f847     e8                        inx     
+ 1340  f848     e8                        inx     
+ 1341  f849     e8                        inx     
+ 1342  f84a     e8                        inx     
+ 1343  f84b     e8                        inx     
+ 1344  f84c     e8                        inx     
+ 1345  f84d     e0 10                     cpx     #$10
+ 1346  f84f     f0 05                     beq     TEST_NMI1
+ 1347  f851     a9 64                     lda     #$64
+ 1348  f853     4c 41 f9                  jmp     FAILURE
+ 1349  f856                  TEST_NMI1            
+ 1350  f856     a5 07                     lda     NMI_COUNT
+ 1351  f858     c9 01                     cmp     #$01
+ 1352  f85a     f0 05                     beq     TEST_NMI2
+ 1353  f85c     a9 65                     lda     #$65
+ 1354  f85e     4c 41 f9                  jmp     FAILURE
+ 1355  f861                  TEST_NMI2            
+ 1356  f861     a9 00                     lda     #$00
+ 1357  f863     85 06                     sta     NMI_ALLOW
+ 1358  f865     8d 07 80                  sta     NMI_CLEAR
+ 1359  f868                                       
+ 1360  f868                                       
+ 1361  f868                                       
+ 1362  f868                                       
+ 1363  f868                                       
+ 1364  f868                  TEST_BCCNEG           
+ 1365  f868     a9 44                     lda     #$44
+ 1366  f86a     8d 01 80                  sta     POSTCODE
+ 1367  f86d     4c 73 f8                  jmp     TEST_BCCNEG1
+ 1368  f870                  TEST_BCCNEG2           
+ 1369  f870     4c 7e f8                  jmp     TEST_BCCNEG3
+ 1370  f873                  TEST_BCCNEG1           
+ 1371  f873     38                        sec     
+ 1372  f874     b0 fa                     bcs     TEST_BCCNEG2
+ 1373  f876                                       
+ 1374  f876     ea                        nop     
+ 1375  f877     ea                        nop     
+ 1376  f878     ea                        nop     
+ 1377  f879     a9 66                     lda     #$66
+ 1378  f87b     4c 41 f9                  jmp     FAILURE
+ 1379  f87e                  TEST_BCCNEG3           
+ 1380  f87e                                       
+ 1381  f87e                                       
+ 1382  f87e                  TEST_SBCIMMFLAGS           
+ 1383  f87e     a9 45                     lda     #$45
+ 1384  f880     8d 01 80                  sta     POSTCODE
+ 1385  f883     38                        sec     
+ 1386  f884     a9 34                     lda     #$34
+ 1387  f886     e9 75                     sbc     #$75
+ 1388  f888     90 05                     bcc     TEST_SBCIMMFLAGS2
+ 1389  f88a     a9 67                     lda     #$67
+ 1390  f88c     4c 41 f9                  jmp     FAILURE
+ 1391  f88f                  TEST_SBCIMMFLAGS2           
+ 1392  f88f                                       
+ 1393  f88f                                       
+ 1394  f88f                  TEST_STACK           
+ 1395  f88f     a9 46                     lda     #$46
+ 1396  f891     8d 01 80                  sta     POSTCODE
+ 1397  f894     ba                        tsx     
+ 1398  f895     86 00                     stx     TESTZ1
+ 1399  f897     a9 42                     lda     #$42
+ 1400  f899     48                        pha     
+ 1401  f89a     a9 00                     lda     #$00
+ 1402  f89c     ba                        tsx     
+ 1403  f89d     e8                        inx     
+ 1404  f89e     bd 00 01                  lda     $0100,x
+ 1405  f8a1     c9 42                     cmp     #$42
+ 1406  f8a3     f0 05                     beq     TEST_STACK1
+ 1407  f8a5     a9 68                     lda     #$68
+ 1408  f8a7     4c 41 f9                  jmp     FAILURE
+ 1409  f8aa                  TEST_STACK1           
+ 1410  f8aa     a9 69                     lda     #$69
+ 1411  f8ac     8d 12 01                  sta     $0112
+ 1412  f8af     a9 00                     lda     #$00
+ 1413  f8b1     a2 11                     ldx     #$11
+ 1414  f8b3     9a                        txs     
+ 1415  f8b4     68                        pla     
+ 1416  f8b5     c9 69                     cmp     #$69
+ 1417  f8b7     f0 05                     beq     TEST_STACK2
+ 1418  f8b9     a9 69                     lda     #$69
+ 1419  f8bb     4c 41 f9                  jmp     FAILURE
+ 1420  f8be                  TEST_STACK2           
+ 1421  f8be     a6 00                     ldx     TESTZ1
+ 1422  f8c0     9a                        txs     
+ 1423  f8c1                  TEST_STACK3           
+ 1424  f8c1                                       
+ 1425  f8c1                                       
+ 1426  f8c1                                       
+ 1427  f8c1                  TEST_BRK             
+ 1428  f8c1     a9 47                     lda     #$47
+ 1429  f8c3     8d 01 80                  sta     POSTCODE
+ 1430  f8c6     a9 00                     lda     #$00
+ 1431  f8c8     48                        pha     
+ 1432  f8c9     28                        plp     
+ 1433  f8ca     86 08                     stx     IRQ_STATUS
+ 1434  f8cc     a9 00                     lda     #$00
+ 1435  f8ce     85 05                     sta     IRQ_COUNT
+ 1436  f8d0     a9 01                     lda     #$01
+ 1437  f8d2     85 04                     sta     IRQ_ALLOW
+ 1438  f8d4     a2 59                     ldx     #$59
+ 1439  f8d6     00                        brk     
+ 1440  f8d7     e8                        inx     
+ 1441  f8d8     a9 00                     lda     #$00
+ 1442  f8da     85 04                     sta     IRQ_ALLOW
+ 1443  f8dc     a5 05                     lda     IRQ_COUNT
+ 1444  f8de     c9 01                     cmp     #$01
+ 1445  f8e0     f0 05                     beq     TEST_BRK2
+ 1446  f8e2     a9 70                     lda     #$70
+ 1447  f8e4     4c 41 f9                  jmp     FAILURE
+ 1448  f8e7                  TEST_BRK2            
+ 1449  f8e7     a5 08                     lda     IRQ_STATUS
+ 1450  f8e9     29 10                     and     #$10
+ 1451  f8eb     d0 05                     bne     TEST_BRK3
+ 1452  f8ed     a9 71                     lda     #$71
+ 1453  f8ef     4c 41 f9                  jmp     FAILURE
+ 1454  f8f2                  TEST_BRK3            
+ 1455  f8f2     e0 59                     cpx     #$59
+ 1456  f8f4     f0 05                     beq     TEST_BRK4
+ 1457  f8f6     a9 72                     lda     #$72
+ 1458  f8f8     4c 41 f9                  jmp     FAILURE
+ 1459  f8fb                  TEST_BRK4            
+ 1460  f8fb                                       
+ 1461  f8fb                                       
+ 1462  f8fb                                       
+ 1463  f8fb                  TEST_ZPX             
+ 1464  f8fb     a9 48                     lda     #$48
+ 1465  f8fd     8d 01 80                  sta     POSTCODE
+ 1466  f900     a9 53                     lda     #$53
+ 1467  f902     85 30                     sta     $30
+ 1468  f904     a9 00                     lda     #$00
+ 1469  f906     a2 40                     ldx     #$40
+ 1470  f908     b5 f0                     lda     $F0,x
+ 1471  f90a     c9 53                     cmp     #$53
+ 1472  f90c     f0 05                     beq     TEST_ZPX2
+ 1473  f90e     a9 73                     lda     #$73
+ 1474  f910     4c 41 f9                  jmp     FAILURE
+ 1475  f913                  TEST_ZPX2            
+ 1476  f913                                       
+ 1477  f913                                       
+ 1478  f913                  TEST_CFLAG           
+ 1479  f913     a9 49                     lda     #$49
+ 1480  f915     8d 01 80                  sta     POSTCODE
+ 1481  f918     18                        clc     
+ 1482  f919     a9 ff                     lda     #$ff
+ 1483  f91b     69 01                     adc     #$01
+ 1484  f91d     b0 05                     bcs     TEST_CFLAG1
+ 1485  f91f     a9 74                     lda     #$74
+ 1486  f921     4c 41 f9                  jmp     FAILURE
+ 1487  f924                  TEST_CFLAG1           
+ 1488  f924                                       
+ 1489  f924                                       
+ 1490  f924                  TEST_VFLAG           
+ 1491  f924     a9 4a                     lda     #$4A
+ 1492  f926     8d 01 80                  sta     POSTCODE
+ 1493  f929     38                        sec     
+ 1494  f92a     a9 7f                     lda     #$7f
+ 1495  f92c     e9 7e                     sbc     #$7e
+ 1496  f92e     50 05                     bvc     TEST_VFLAG1
+ 1497  f930     a9 75                     lda     #$75
+ 1498  f932     4c 41 f9                  jmp     FAILURE
+ 1499  f935                  TEST_VFLAG1           
+ 1500  f935                                       
+ 1501  f935                                       
+ 1502  f935                                       
+ 1503  f935                                       
+ 1504  f935                  SUCCESS              
+ 1505  f935     78                        sei     
+ 1506  f936     a9 ff                     lda     #$FF
+ 1507  f938     8d 01 80                  sta     POSTCODE
+ 1508  f93b     8d 00 80                  sta     HALT
+ 1509  f93e     4c 35 f9                  jmp     SUCCESS
+ 1510  f941                                       
+ 1511  f941                  FAILURE              
+ 1512  f941     78                        sei     
+ 1513  f942     8d 00 80                  sta     HALT
+ 1514  f945     4c 41 f9                  jmp     FAILURE
+ 1515  f948                                       
+ 1516  f948                                       
+ 1517  f948                                       
+ 1518  f948                                       
+ 1519  f948                                       
+ 1520  f948                  IRQ_ISR              
+ 1521  f948     48                        pha     
+ 1522  f949     8a                        txa     
+ 1523  f94a     48                        pha     
+ 1524  f94b     98                        tya     
+ 1525  f94c     48                        pha     
+ 1526  f94d                                       
+ 1527  f94d     ba                        tsx     
+ 1528  f94e     e8                        inx     
+ 1529  f94f     e8                        inx     
+ 1530  f950     e8                        inx     
+ 1531  f951     e8                        inx     
+ 1532  f952     bd 00 01                  lda     $0100,x
+ 1533  f955     85 08                     sta     IRQ_STATUS
+ 1534  f957                                       
+ 1535  f957                                       
+ 1536  f957     a5 04                     lda     IRQ_ALLOW
+ 1537  f959     c9 00                     cmp     #$00
+ 1538  f95b     d0 05                     bne     IRQ_ALLOWED
+ 1539  f95d     a9 e0                     lda     #$E0
+ 1540  f95f     4c 41 f9                  jmp     FAILURE
+ 1541  f962                  IRQ_ALLOWED           
+ 1542  f962     8d 05 80                  sta     IRQ_CLEAR
+ 1543  f965     e6 05                     inc     IRQ_COUNT
+ 1544  f967                                       
+ 1545  f967     68                        pla     
+ 1546  f968     a8                        tay     
+ 1547  f969     68                        pla     
+ 1548  f96a     aa                        tax     
+ 1549  f96b     68                        pla     
+ 1550  f96c     40                        rti     
+ 1551  f96d                                       
+ 1552  f96d                                       
+ 1553  f96d                  NMI_ISR              
+ 1554  f96d     48                        pha     
+ 1555  f96e     8a                        txa     
+ 1556  f96f     48                        pha     
+ 1557  f970     98                        tya     
+ 1558  f971     48                        pha     
+ 1559  f972                                       
+ 1560  f972     a5 06                     lda     NMI_ALLOW
+ 1561  f974     c9 00                     cmp     #$00
+ 1562  f976     d0 05                     bne     NMI_ALLOWED
+ 1563  f978     a9 e0                     lda     #$E0
+ 1564  f97a     4c 41 f9                  jmp     FAILURE
+ 1565  f97d                  NMI_ALLOWED           
+ 1566  f97d     8d 07 80                  sta     NMI_CLEAR
+ 1567  f980     e6 07                     inc     NMI_COUNT
+ 1568  f982                                       
+ 1569  f982     68                        pla     
+ 1570  f983     a8                        tay     
+ 1571  f984     68                        pla     
+ 1572  f985     aa                        tax     
+ 1573  f986     68                        pla     
+ 1574  f987     40                        rti     
+ 1575  f988                                       
+ 1576  f988                                       
+ 1577  f988                                       
+ 1578  f988                                       
+ 1579  f988                                       
+ 1580  f988     4c 48 f9     IRQ          jmp     IRQ_ISR
+ 1581  f98b     4c 6d f9     NMI          jmp     NMI_ISR
+ 1582  f98e                                       
+ 1583  f98e                                       
+ 1584  f98e                                       
+ 1585  ????                               seg     vector
+ 1586  fffa                               org     $FFFA
+ 1587  fffa     8b f9                      dc.w   NMI
+ 1588  fffc     00 f0                      dc.w   RESET
+ 1589  fffe     88 f9                      dc.w   IRQ
+ 1590  1000                                       
+ 1591  1000                  PROMEND      equ     .
+ 1592  1000                                       
+ 1593  1000                                       
+ 1594  1000                                       
+ 1595  1000                                       

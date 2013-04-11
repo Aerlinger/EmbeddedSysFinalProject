@@ -1,0 +1,89 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Implementations</title>
+<meta name="Microsoft Theme" content="expeditn 111, default">
+<meta name="Microsoft Border" content="b, default">
+</head>
+
+<body background="_themes/expeditn/exptextb.jpg" bgcolor="#FFFFCC" text="#000000" link="#666600" vlink="#993300" alink="#CC3300"><!--msnavigation--><table border="0" cellpadding="0" cellspacing="0" width="100%"><tr><!--msnavigation--><td valign="top"><!--mstheme--><font face="Book Antiqua, Times New Roman, Times">
+<h1 align="center"><!--mstheme--><font color="#660033"><!--webbot bot="Navigation" S-Type="banner"
+S-Rendering="graphics" S-Orientation B-Include-Home B-Include-Up U-Page S-Target startspan
+--><img src="_derived/implementations.htm_cmp_expeditn110_bnr.gif" width="600" height="60" border="0" alt="Implementations"><!--webbot bot="Navigation" endspan i-checksum="57695"
+--><!--mstheme--></font></h1>
+<p align="center"><!--webbot bot="Navigation" S-Type="children"
+S-Orientation="horizontal" S-Rendering="graphics" B-Include-Home="TRUE"
+B-Include-Up="TRUE" U-Page S-Target startspan --><script language="JavaScript"><!--
+MSFPhover = 
+  (((navigator.appName == "Netscape") && 
+  (parseInt(navigator.appVersion) >= 3 )) || 
+  ((navigator.appName == "Microsoft Internet Explorer") && 
+  (parseInt(navigator.appVersion) >= 4 ))); 
+function MSFPpreload(img) 
+{
+  var a=new Image(); a.src=img; return a; 
+}
+// --></script><script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav1n=MSFPpreload("_derived/home_cmp_expeditn110_hbtn.gif"); MSFPnav1h=MSFPpreload("_derived/home_cmp_expeditn110_hbtn_a.gif"); }
+// --></script><a href="index.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav1'].src=MSFPnav1h.src" onmouseout="if(MSFPhover) document['MSFPnav1'].src=MSFPnav1n.src"><img src="_derived/home_cmp_expeditn110_hbtn.gif" width="140" height="50" border="0" alt="Free-6502 Home" align="middle" name="MSFPnav1"></a><!--webbot bot="Navigation" endspan i-checksum="30764" -->
+</p>
+<h2><!--mstheme--><font color="#996600"><a name="top">Table of Contents</a><!--mstheme--></font></h2>
+<ol>
+  <li><a href="#Apex"><strong>Altera Apex</strong></a></li>
+  <li><a href="#Virtex"><strong>Xilinx Virtex-E</strong></a></li>
+  <li><a href="#AMISemi"><strong>AMI Semiconductor ASIC</strong></a></li>
+  <li><strong><a href="#TIASIC">TI GS10 ASIC</a></strong></li>
+</ol>
+<p>&nbsp;</p>
+<!--msthemeseparator--><p align="center"><img src="_themes/expeditn/exphorsa.gif" width="600" height="10"></p>
+<h3><!--mstheme--><font color="#666600"><a name="Apex">Altera Apex</a><!--mstheme--></font></h3>
+<p>Using Quartus 1999.10 and targeting an EP20K100E-1, v0.5 of the Free-6502
+core took 2057 logic elements and ran at 28.16 MHz.&nbsp; This used a simple
+timing constraint of 25 MHz, so it is very likely that the design could be
+tweaked further to improve the speed.&nbsp;&nbsp;</p>
+<p>This is a huge improvement over version 1999.06 of Quartus, which used 2683
+logic elements and ran at 21.06 MHz-- with the same compiler settings.&nbsp; In
+addition, 1999.10 completed in roughly half the time that 1999.06
+took.&nbsp;&nbsp;</p>
+<h5><!--mstheme--><font color="#996600"><a href="#top">Back to Top</a><!--mstheme--></font></h5>
+<!--msthemeseparator--><p align="center"><img src="_themes/expeditn/exphorsa.gif" width="600" height="10"></p>
+<h3><!--mstheme--><font color="#666600"><a name="Virtex">Xilinx Virtex-E</a><!--mstheme--></font></h3>
+<p>Using Foundation 2.1i-sp3 and targeting an XCV100E-8, of the Free-6502 v0.5 core
+took 557 slices and ran at 39 MHz.&nbsp; This used a simple clock period
+timing constraint of 39 MHz.&nbsp;&nbsp;&nbsp;</p>
+<h5><!--mstheme--><font color="#996600"><a href="#top">Back to Top</a><!--mstheme--></font></h5>
+<!--msthemeseparator--><p align="center"><img src="_themes/expeditn/exphorsa.gif" width="600" height="10"></p>
+<h3><!--mstheme--><font color="#666600"><a name="AMISemi">AMI Semiconductor ASIC</a><!--mstheme--></font></h3>
+<p>Using Synopsis DC and targeting an AMI Semiconductor 0.6u gate array, the
+v0.3 of the Free-6502 core achieved:</p>
+<blockquote>
+  <blockquote>
+    <p>Optimized for area: 3800 gates, 25 MHz<br>
+    With timing constraints:&nbsp; 4200 gates, 50 MHz<br>
+    With other timing constraints:&nbsp; 4800 gates, 60 MHz</p>
+  </blockquote>
+</blockquote>
+<p>These are pre-layout numbers.&nbsp;&nbsp;</p>
+<p>The AMI Semiconductor numbers are courtesy of Ed Beers, Project Manager, <a href="http://www.doctordesign.com">Doctor Design Inc.</a>
+</p>
+<h5><!--mstheme--><font color="#996600"><a href="#top">Back to Top</a><!--mstheme--></font></h5>
+<!--msthemeseparator--><p align="center"><img src="_themes/expeditn/exphorsa.gif" width="600" height="10"></p>
+<h3><!--mstheme--><font color="#666600"><a name="TIASIC">TI GS20 ASIC</a><!--mstheme--></font></h3>
+<p>When targeted for TI's GS20 0.18 um process, v0.2 of the Free-6502 core took
+about 10k gates and ran at 166 MHz!&nbsp; This was using pre-layout numbers
+Synopsys DC Expert/Professional version 1999.05 and normal conditions (1.8v,
+95º C).&nbsp;&nbsp;</p>
+<h5><!--mstheme--><font color="#996600"><a href="#top">Back to Top</a><!--mstheme--></font></h5>
+<p>&nbsp;</p>
+<!--mstheme--></font><!--msnavigation--></td></tr><!--msnavigation--></table><!--msnavigation--><table border="0" cellpadding="0" cellspacing="0" width="100%"><tr><td><!--mstheme--><font face="Book Antiqua, Times New Roman, Times">
+<!--msthemeseparator--><p align="center"><img src="_themes/expeditn/exphorsa.gif" width="600" height="10"></p>
+
+<h6><!--mstheme--><font color="#666600">© 1999-2000, <a href="http://www.free-ip.com/"> The Free-IP Project</a>.&nbsp; This page was last updated on January 14, 2000 09:30 PM.<!--mstheme--></font></h6>
+
+<!--mstheme--></font></td></tr><!--msnavigation--></table></body>
+
+</html>

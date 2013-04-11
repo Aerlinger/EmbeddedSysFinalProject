@@ -1,0 +1,107 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+
+
+<title>Why 6502?</title>
+<meta name="Microsoft Theme" content="expeditn 111, default">
+<meta name="Microsoft Border" content="b, default">
+</head>
+
+<body background="_themes/expeditn/exptextb.jpg" bgcolor="#FFFFCC" text="#000000" link="#666600" vlink="#993300" alink="#CC3300"><!--msnavigation--><table border="0" cellpadding="0" cellspacing="0" width="100%"><tr><!--msnavigation--><td valign="top"><!--mstheme--><font face="Book Antiqua, Times New Roman, Times">
+
+<h1 align="center"><!--mstheme--><font color="#660033"><!--webbot bot="Navigation" S-Type="banner"
+S-Rendering="graphics" S-Orientation B-Include-Home B-Include-Up U-Page S-Target startspan
+--><img src="_derived/why6502.htm_cmp_expeditn110_bnr.gif" width="600" height="60" border="0" alt="Why 6502?"><!--webbot bot="Navigation" endspan i-checksum="53399"
+--><!--mstheme--></font></h1>
+
+<p align="center"><!--webbot bot="Navigation" S-Type="children"
+S-Orientation="horizontal" S-Rendering="graphics" B-Include-Home="TRUE"
+B-Include-Up="TRUE" U-Page S-Target startspan --><script language="JavaScript"><!--
+MSFPhover = 
+  (((navigator.appName == "Netscape") && 
+  (parseInt(navigator.appVersion) >= 3 )) || 
+  ((navigator.appName == "Microsoft Internet Explorer") && 
+  (parseInt(navigator.appVersion) >= 4 ))); 
+function MSFPpreload(img) 
+{
+  var a=new Image(); a.src=img; return a; 
+}
+// --></script><script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav1n=MSFPpreload("_derived/home_cmp_expeditn110_hbtn.gif"); MSFPnav1h=MSFPpreload("_derived/home_cmp_expeditn110_hbtn_a.gif"); }
+// --></script><a href="index.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav1'].src=MSFPnav1h.src" onmouseout="if(MSFPhover) document['MSFPnav1'].src=MSFPnav1n.src"><img src="_derived/home_cmp_expeditn110_hbtn.gif" width="140" height="50" border="0" alt="Free-6502 Home" align="middle" name="MSFPnav1"></a><!--webbot bot="Navigation" endspan i-checksum="30764" -->
+</p>
+
+<p>There are many reasons why we did a 6502 rather than another 8-Bit CPU.&nbsp;
+Before going into the exact reasons, here's list of alternative 8-bit cores we
+could have done:</p>
+<blockquote>
+  <!--mstheme--></font><!--msthemelist--><table border="0" cellpadding="0" cellspacing="0" width="100%">
+    <!--msthemelist--><tr><td valign="top" width="42"><img src="_themes/expeditn/expbul1a.gif" width="15" height="15" hspace="13"></td><td valign="top" width="100%"><!--mstheme--><font face="Book Antiqua, Times New Roman, Times">8031/8051<!--mstheme--></font><!--msthemelist--></td></tr>
+    <!--msthemelist--><tr><td valign="baseline" width="42"><img src="_themes/expeditn/expbul1a.gif" width="15" height="15" hspace="13"></td><td valign="top" width="100%"><!--mstheme--><font face="Book Antiqua, Times New Roman, Times">Z-80<!--mstheme--></font><!--msthemelist--></td></tr>
+    <!--msthemelist--><tr><td valign="baseline" width="42"><img src="_themes/expeditn/expbul1a.gif" width="15" height="15" hspace="13"></td><td valign="top" width="100%"><!--mstheme--><font face="Book Antiqua, Times New Roman, Times">6809<!--mstheme--></font><!--msthemelist--></td></tr>
+    <!--msthemelist--><tr><td valign="baseline" width="42"><img src="_themes/expeditn/expbul1a.gif" width="15" height="15" hspace="13"></td><td valign="top" width="100%"><!--mstheme--><font face="Book Antiqua, Times New Roman, Times">68HC11<!--mstheme--></font><!--msthemelist--></td></tr>
+    <!--msthemelist--><tr><td valign="baseline" width="42"><img src="_themes/expeditn/expbul1a.gif" width="15" height="15" hspace="13"></td><td valign="top" width="100%"><!--mstheme--><font face="Book Antiqua, Times New Roman, Times">PIC<!--mstheme--></font><!--msthemelist--></td></tr>
+    <!--msthemelist--><tr><td valign="baseline" width="42"><img src="_themes/expeditn/expbul1a.gif" width="15" height="15" hspace="13"></td><td valign="top" width="100%"><!--mstheme--><font face="Book Antiqua, Times New Roman, Times">Non-Standard RISC<!--mstheme--></font><!--msthemelist--></td></tr>
+  <!--msthemelist--></table><!--mstheme--><font face="Book Antiqua, Times New Roman, Times">
+</blockquote>
+<h3><!--mstheme--><font color="#666600">8031/8051<!--mstheme--></font></h3>
+<p>The 8031 CPU is a difficult CPU to design, since there are many peripherals
+that would need to be designed as well.&nbsp; The CPU itself is not very
+good.&nbsp; A more accurate description would be that the CPU itself is an
+abomination.&nbsp; Just because the 8031 is widely used doesn't mean that it's a
+good CPU.&nbsp; Also, 8031/8051 cores are widely available from many
+sources.&nbsp; We decided that it wasn't a good idea to make yet another clone
+of a bad design.</p>
+<p>&nbsp;</p>
+<h3><!--mstheme--><font color="#666600">Z-80<!--mstheme--></font></h3>
+<p>The Z-80 was a popular CPU in its day, it is simple and effective.&nbsp; We
+could have easily made a Z-80 core, but we just were not as familiar with the
+Z-80 as the 6502.</p>
+<p>&nbsp;</p>
+<h3><!--mstheme--><font color="#666600">6809<!--mstheme--></font></h3>
+<p>The 6809 is a little more complex than the 6502.&nbsp; It has some additional
+addressing modes and a few more instructions.&nbsp; But the 6809 wasn't as
+popular as the 6502 and has fewer free programming tools available for it.&nbsp;
+We felt that the added complexity of the 6809 wasn't justified by any added
+usefulness.</p>
+<p>&nbsp;</p>
+<h3><!--mstheme--><font color="#666600">68HC11<!--mstheme--></font></h3>
+<p>Like the 6809, the 68HC11 has more addressing modes and more instructions
+than the 6502.&nbsp; A lot more.&nbsp; The basic instruction set has about 4 or
+5 times more opcodes than the 6502.&nbsp; This makes testing and validation much
+more difficult, and it makes the amount of logic much larger.&nbsp;&nbsp; On the
+other hand, the 68HC11 is a very nice CPU and would be a very useful core to
+have.&nbsp; In the end, we decided against the 68HC11 due to its complexity and
+size.&nbsp; Although we fully realize that the framework for the 6502 core could
+be used to make a 68HC11 core.</p>
+<p>&nbsp;</p>
+<h3><!--mstheme--><font color="#666600">PIC<!--mstheme--></font></h3>
+<p>The PIC is a small, fast, and simple CPU-- the three things that makes it
+attractive for a core.&nbsp; This core would be easy to do.&nbsp; But, at the
+time we designed the 6502 core, the limited addressing space of the PIC would
+not have fit into our application.</p>
+<p>&nbsp;</p>
+<h3><!--mstheme--><font color="#666600">Non-Standard RISC<!--mstheme--></font></h3>
+<p>We have designed non-standard 8-bit RISC CPU's in the past, so designing a
+new one for the Free-IP project would have been almost trivial.&nbsp; But one of
+our design guidelines was that we needed reasonable software development tools,
+and writing our own assembler wasn't an option.&nbsp;&nbsp; Once the Free-IP
+project gets more resources, we might decide to do an 8-bit RISC core.&nbsp;
+Based on past experiences, such a core should be smaller than the 6502 core but
+run at 50 MIPS in a fast FPGA.&nbsp;</p>
+<p>&nbsp;</p>
+<h3><!--mstheme--><font color="#666600">6502<!--mstheme--></font></h3>
+<p>So we chose the 6502 because it was the processor that fit our ad-hoc
+requirements of complexity, size, ease of validation, address space, tools
+availability, and familiarity.&nbsp; We could have just as easily designed a
+Z-80, PIC, or non-standard RISC but the 6502 better met our goals.</p>
+<p>&nbsp;</p>
+<!--mstheme--></font><!--msnavigation--></td></tr><!--msnavigation--></table><!--msnavigation--><table border="0" cellpadding="0" cellspacing="0" width="100%"><tr><td><!--mstheme--><font face="Book Antiqua, Times New Roman, Times">
+<!--msthemeseparator--><p align="center"><img src="_themes/expeditn/exphorsa.gif" width="600" height="10"></p>
+
+<h6><!--mstheme--><font color="#666600">© 1999-2000, <a href="http://www.free-ip.com/"> The Free-IP Project</a>.&nbsp; This page was last updated on January 14, 2000 09:30 PM.<!--mstheme--></font></h6>
+
+<!--mstheme--></font></td></tr><!--msnavigation--></table></body>
+</html>

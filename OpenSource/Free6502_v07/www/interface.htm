@@ -1,0 +1,157 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+
+
+<title>Interface</title>
+<meta name="Microsoft Theme" content="expeditn 111, default">
+<meta name="Microsoft Border" content="b, default">
+</head>
+
+<body background="_themes/expeditn/exptextb.jpg" bgcolor="#FFFFCC" text="#000000" link="#666600" vlink="#993300" alink="#CC3300"><!--msnavigation--><table border="0" cellpadding="0" cellspacing="0" width="100%"><tr><!--msnavigation--><td valign="top"><!--mstheme--><font face="Book Antiqua, Times New Roman, Times">
+<h1 align="center"><!--mstheme--><font color="#660033"><!--webbot bot="Navigation" S-Type="banner"
+S-Rendering="graphics" S-Orientation B-Include-Home B-Include-Up U-Page S-Target startspan
+--><img src="_derived/interface.htm_cmp_expeditn110_bnr.gif" width="600" height="60" border="0" alt="Interface"><!--webbot bot="Navigation" endspan i-checksum="53351"
+--><!--mstheme--></font></h1>
+<p align="center"><!--webbot bot="Navigation" S-Type="children"
+S-Orientation="horizontal" S-Rendering="graphics" B-Include-Home="TRUE"
+B-Include-Up="TRUE" U-Page S-Target startspan --><script language="JavaScript"><!--
+MSFPhover = 
+  (((navigator.appName == "Netscape") && 
+  (parseInt(navigator.appVersion) >= 3 )) || 
+  ((navigator.appName == "Microsoft Internet Explorer") && 
+  (parseInt(navigator.appVersion) >= 4 ))); 
+function MSFPpreload(img) 
+{
+  var a=new Image(); a.src=img; return a; 
+}
+// --></script><script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav1n=MSFPpreload("_derived/home_cmp_expeditn110_hbtn.gif"); MSFPnav1h=MSFPpreload("_derived/home_cmp_expeditn110_hbtn_a.gif"); }
+// --></script><a href="index.html" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav1'].src=MSFPnav1h.src" onmouseout="if(MSFPhover) document['MSFPnav1'].src=MSFPnav1n.src"><img src="_derived/home_cmp_expeditn110_hbtn.gif" width="140" height="50" border="0" alt="Free-6502 Home" align="middle" name="MSFPnav1"></a><!--webbot bot="Navigation" endspan i-checksum="30764" -->
+</p>
+<p>The VHDL component declaration for the Free-6502 core looks like this:</p>
+<!--mstheme--></font><pre>  component core_6502
+    port (clk	 	:in std_logic;
+          reset	 	:in std_logic;
+          irq		:in std_logic;
+          nmi		:in std_logic;
+          addr	 	:out std_logic_vector (15 downto 0);
+          din	 	:in  std_logic_vector (7 downto 0);
+          dout	 	:out std_logic_vector (7 downto 0);
+          dout_oe  	:out std_logic;
+          wr		:out std_logic;
+          rd		:out std_logic;
+          sync	 	:out std_logic
+         );
+  end component;</pre><!--mstheme--><font face="Book Antiqua, Times New Roman, Times">
+<h3><!--mstheme--><font color="#666600">&nbsp;<!--mstheme--></font></h3>
+<h3><!--mstheme--><font color="#666600">Signal Descriptions<!--mstheme--></font></h3>
+<!--mstheme--></font><table border="1" width="554" bordercolordark="#663300" bordercolorlight="#993300">
+  <tr>
+    <td width="79"><!--mstheme--><font face="Book Antiqua, Times New Roman, Times"><b>Signal</b><!--mstheme--></font></td>
+    <td width="92"><!--mstheme--><font face="Book Antiqua, Times New Roman, Times"><b>Direction</b><!--mstheme--></font></td>
+    <td width="826"><!--mstheme--><font face="Book Antiqua, Times New Roman, Times"><b>Description</b><!--mstheme--></font></td>
+  </tr>
+  <tr>
+    <td width="79"><!--mstheme--><font face="Book Antiqua, Times New Roman, Times">clk&nbsp;&nbsp;&nbsp;<!--mstheme--></font></td>
+    <td width="92"><!--mstheme--><font face="Book Antiqua, Times New Roman, Times">Input<!--mstheme--></font></td>
+    <td width="826"><!--mstheme--><font face="Book Antiqua, Times New Roman, Times">The main system clock.&nbsp; All synchronous signals are
+      clocked off the rising edge of clk.<!--mstheme--></font></td>
+  </tr>
+  <tr>
+    <td width="79"><!--mstheme--><font face="Book Antiqua, Times New Roman, Times">reset&nbsp;&nbsp;&nbsp;<!--mstheme--></font></td>
+    <td width="92"><!--mstheme--><font face="Book Antiqua, Times New Roman, Times">Input<!--mstheme--></font></td>
+    <td width="826"><!--mstheme--><font face="Book Antiqua, Times New Roman, Times">An active high reset signal, asynchronous to clk.<!--mstheme--></font></td>
+  </tr>
+  <tr>
+    <td width="79"><!--mstheme--><font face="Book Antiqua, Times New Roman, Times">irq&nbsp;&nbsp;&nbsp;<!--mstheme--></font></td>
+    <td width="92"><!--mstheme--><font face="Book Antiqua, Times New Roman, Times">Input<!--mstheme--></font></td>
+    <td width="826"><!--mstheme--><font face="Book Antiqua, Times New Roman, Times">An active high, level triggered, asynchronous, interrupt
+      input.<!--mstheme--></font></td>
+  </tr>
+  <tr>
+    <td width="79"><!--mstheme--><font face="Book Antiqua, Times New Roman, Times">nmi&nbsp;&nbsp;&nbsp;<!--mstheme--></font></td>
+    <td width="92"><!--mstheme--><font face="Book Antiqua, Times New Roman, Times">Input<!--mstheme--></font></td>
+    <td width="826"><!--mstheme--><font face="Book Antiqua, Times New Roman, Times">A rising edge triggered non-maskable interrupt input.<!--mstheme--></font></td>
+  </tr>
+  <tr>
+    <td width="79"><!--mstheme--><font face="Book Antiqua, Times New Roman, Times">addr&nbsp;&nbsp;&nbsp;<!--mstheme--></font></td>
+    <td width="92"><!--mstheme--><font face="Book Antiqua, Times New Roman, Times">Output<!--mstheme--></font></td>
+    <td width="826"><!--mstheme--><font face="Book Antiqua, Times New Roman, Times">The address bus output.<!--mstheme--></font></td>
+  </tr>
+  <tr>
+    <td width="79"><!--mstheme--><font face="Book Antiqua, Times New Roman, Times">din&nbsp;&nbsp;&nbsp;<!--mstheme--></font></td>
+    <td width="92"><!--mstheme--><font face="Book Antiqua, Times New Roman, Times">Input<!--mstheme--></font></td>
+    <td width="826"><!--mstheme--><font face="Book Antiqua, Times New Roman, Times">Data bus input<!--mstheme--></font></td>
+  </tr>
+  <tr>
+    <td width="79"><!--mstheme--><font face="Book Antiqua, Times New Roman, Times">dout&nbsp;&nbsp;&nbsp;<!--mstheme--></font></td>
+    <td width="92"><!--mstheme--><font face="Book Antiqua, Times New Roman, Times">Output<!--mstheme--></font></td>
+    <td width="826"><!--mstheme--><font face="Book Antiqua, Times New Roman, Times">Data bus output<!--mstheme--></font></td>
+  </tr>
+  <tr>
+    <td width="79"><!--mstheme--><font face="Book Antiqua, Times New Roman, Times">dout_oe&nbsp;&nbsp;&nbsp;<!--mstheme--></font></td>
+    <td width="92"><!--mstheme--><font face="Book Antiqua, Times New Roman, Times">Output<!--mstheme--></font></td>
+    <td width="826"><!--mstheme--><font face="Book Antiqua, Times New Roman, Times">Data bus output enable, used to control external tri-state
+      buffers.&nbsp; Active high.<!--mstheme--></font></td>
+  </tr>
+  <tr>
+    <td width="79"><!--mstheme--><font face="Book Antiqua, Times New Roman, Times">wr&nbsp;&nbsp;&nbsp;<!--mstheme--></font></td>
+    <td width="92"><!--mstheme--><font face="Book Antiqua, Times New Roman, Times">Output<!--mstheme--></font></td>
+    <td width="826"><!--mstheme--><font face="Book Antiqua, Times New Roman, Times">An active high write signal<!--mstheme--></font></td>
+  </tr>
+  <tr>
+    <td width="79"><!--mstheme--><font face="Book Antiqua, Times New Roman, Times">rd&nbsp;&nbsp;&nbsp;<!--mstheme--></font></td>
+    <td width="92"><!--mstheme--><font face="Book Antiqua, Times New Roman, Times">Output<!--mstheme--></font></td>
+    <td width="826"><!--mstheme--><font face="Book Antiqua, Times New Roman, Times">An active high read signal.<!--mstheme--></font></td>
+  </tr>
+  <tr>
+    <td width="79"><!--mstheme--><font face="Book Antiqua, Times New Roman, Times">sync&nbsp;&nbsp;&nbsp;<!--mstheme--></font></td>
+    <td width="92"><!--mstheme--><font face="Book Antiqua, Times New Roman, Times">Output<!--mstheme--></font></td>
+    <td width="826"><!--mstheme--><font face="Book Antiqua, Times New Roman, Times">High during the first byte of an instruction fetch.<!--mstheme--></font></td>
+  </tr>
+</table><!--mstheme--><font face="Book Antiqua, Times New Roman, Times">
+<p>&nbsp;</p>
+<h3><!--mstheme--><font color="#666600">Differences from the original 6502<!--mstheme--></font></h3>
+<p>The most important difference is that the Free-6502 core has a synchronous
+bus, not asynchronous as the original 6502 had.&nbsp; This is better suited for
+high-speed ASIC and FPGA implementations.&nbsp;&nbsp;</p>
+<p>The data bus is not bi-directional.&nbsp; Instead there are separate input
+and output &quot;pins&quot; and an output enable.&nbsp; This is to give more flexibility
+in implementation.&nbsp; If a bi-directional bus is desired, external tri-state
+buffers can be easily added using the dout_oe signal.</p>
+<p>Most/all signals are active high rather than active low.&nbsp; This is a
+Free-IP Project convention.</p>
+<p>&nbsp;</p>
+<h3><!--mstheme--><font color="#666600">Read Cycle<!--mstheme--></font></h3>
+<p>The diagram below shows a basic Free-6502 read cycle:</p>
+<p><img border="0" src="interf1.gif" width="639" height="125"></p>
+<p>The grayed out areas indicate accesses before or after the read we're
+interested in.&nbsp;&nbsp;</p>
+<p>After the rising edge of the clk the signals rd, dout_oe, and addr become
+valid.&nbsp; The value of din is latched at the following rising edge of clk.</p>
+<p>&nbsp;</p>
+<h3><!--mstheme--><font color="#666600">Write Cycle<!--mstheme--></font></h3>
+<p>This is a basic Free-6502 write cycle:</p>
+<p><img border="0" src="interf2.gif" width="639" height="125"></p>
+<p>All signals become valid following the rising edge of clk.&nbsp;&nbsp;</p>
+<p>&nbsp;</p>
+<p>It is possible for there to be back to back reads or writes.&nbsp; There can
+be no idle clock cycles between bus accesses.</p>
+<p>&nbsp;</p>
+<h3><!--mstheme--><font color="#666600">Interrupts<!--mstheme--></font></h3>
+<p>The irq input is an active high, level sensitive interrupt.&nbsp; The input
+is asynchronous with respect to clk, and is synchronized internally.&nbsp;&nbsp;</p>
+<p>The nmi input is a rising edge sensitive interrupt.&nbsp; This input is also
+asynchronous with respect to clk, and is synchronized internally.&nbsp; Due to
+this synchronization, the minimum pulse width of the nmi input is 4 clock
+cycles.&nbsp;&nbsp;</p>
+<p>&nbsp;</p>
+<!--mstheme--></font><!--msnavigation--></td></tr><!--msnavigation--></table><!--msnavigation--><table border="0" cellpadding="0" cellspacing="0" width="100%"><tr><td><!--mstheme--><font face="Book Antiqua, Times New Roman, Times">
+<!--msthemeseparator--><p align="center"><img src="_themes/expeditn/exphorsa.gif" width="600" height="10"></p>
+
+<h6><!--mstheme--><font color="#666600">© 1999-2000, <a href="http://www.free-ip.com/"> The Free-IP Project</a>.&nbsp; This page was last updated on February 15, 2000 10:36 PM.<!--mstheme--></font></h6>
+
+<!--mstheme--></font></td></tr><!--msnavigation--></table></body>
+</html>

@@ -1,0 +1,6 @@
+run
+-ifn c6502.prj
+-ifmt vhdl
+-ofn o.ngc
+-ofmt ngc
+-p 2s50tq144-5
