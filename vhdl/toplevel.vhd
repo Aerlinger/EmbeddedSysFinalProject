@@ -28,3 +28,4 @@ package mos_6502 is
     sync : out std_logic;
   );
   end component
+end package;
