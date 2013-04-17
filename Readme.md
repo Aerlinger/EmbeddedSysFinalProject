@@ -62,6 +62,36 @@ code from NIOS
 1. C code compilation  
 2. Implementing fully functional 6502 ISA  
 3. Stability and synchronization/clocking  
+ 
+
+### 6502 Components:
+
+  * 17 registers (Yu Chen and Anthony):
+    Data Latch, (DL) (Start with data latch)
+    Accumulator, (AC) 
+    X, Y registers
+    A, B (ALU inputs)
+    ALU Hold Register (ADD)
+    Timing generation Logic
+    Stack Register (S)
+    Address Register (ABL, ABH)
+    PCL & PCH
+    Predecode Register (PD)
+    Instruction Reg. (IR)
+    Processor Status (P)
+    Data Output (DOR)
+
+  * Combinational Components (Jaebin and Arthy):
+    Random Control Logic 
+    Predecode Logic 
+    Program Counter Logic 
+    Decode Rom
+    ALU
+
+  * Ancillary components:
+    Interrupt and Reset Control
+    Ready Control
+    Clock generator
 
 ### Getting started:
 Read and understand the first two references listed below. It's also a
