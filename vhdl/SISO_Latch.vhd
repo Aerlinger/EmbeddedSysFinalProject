@@ -20,20 +20,20 @@ begin
 	process (clk, Din, Load, Bus_Enable,q)
 	begin
 		if (Load='1') then
-		data<=Din;
-		else data<=q;
+		data <= Din;
+		else data <= q;
 		end if;
 		
 		if rising_edge(clk) then
-		q<=data;
+		q <= data;
 		end if;
 		
 		if (Bus_Enable='1') then
-		Dbus<=q;
-		else Dbus<=(others => 'Z');
+		Dbus <= q;
+		else Dbus <= (others => 'Z');
 		end if;
 	end process;
 	
---	Dout<=q;
+--	Dout <= q;
 
 end rtl;

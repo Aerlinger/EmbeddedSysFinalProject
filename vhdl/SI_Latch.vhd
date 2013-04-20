@@ -18,15 +18,14 @@ begin
 	process (clk, Din, Load)
 	begin
 		if (Load='1') then
-		data<=Din;
-		else data<=q;
+		data <= Din;
+		else data <= q;
 		end if;
 		
 		if rising_edge(clk) then
-		q<=data;
+		q <= data;
 		end if;
 	end process;
 	
-	Dout<=q;
-
+	Dout <= q;
 end rtl;

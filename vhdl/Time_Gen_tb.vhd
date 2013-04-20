@@ -48,9 +48,7 @@ architecture tb of time_gen_tb is
 --			end loop;
 --		end process;
 		
-								  
 TimeGen: 
 		entity work.Timing_Generator
 		port map (clk=>clk,Cycle_num=> Cycle_num, clk_mask=>clk_mask);
-										
 end tb;

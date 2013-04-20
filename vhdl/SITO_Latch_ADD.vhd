@@ -3,7 +3,7 @@ use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
 entity SITO_Latch_ADD is
-port (
+  port (
 		Din  : in  std_logic_vector(7 downto 0);
 		Dout : out std_logic_vector(7 downto 0);
 		Dbus_A : out std_logic_vector(7 downto 0);
@@ -23,7 +23,8 @@ begin
 	begin
 		if (Load='1') then
       data<=Din;
-		else data<=q;
+		else 
+      data<=q;
 		end if;
 		
 		if rising_edge(clk) then

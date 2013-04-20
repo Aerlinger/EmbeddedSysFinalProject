@@ -3,7 +3,7 @@ use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
 entity SIThreeO_Latch is
-port (
+  port (
 		Din  : in  std_logic_vector(7 downto 0);
 		Dout : out std_logic_vector(7 downto 0);
 		Dbus_A : out std_logic_vector(7 downto 0);
@@ -17,40 +17,39 @@ port (
 end SIThreeO_Latch;
 
 architecture rtl of SIThreeO_Latch is
-signal data : std_logic_vector(7 downto 0) := x"00";
-signal q		: std_logic_vector(7 downto 0) := x"00";
-
+  signal data : std_logic_vector(7 downto 0) := x"00";
+  signal q		: std_logic_vector(7 downto 0) := x"00";
 begin
 	process (clk, Din, Load, Bus_Enable_A,Bus_Enable_B, Bus_Enable_C,q)
 	begin
 		if (Load='1') then
-		data<=Din;
-		else data<=q;
+      data <= Din;
+		else 
+      data <= q;
 		end if;
 		
 		if rising_edge(clk) then
-		q<=data;
+      q <= data;
 		end if;
 		
 		if (Bus_Enable_A='1') then
-		Dbus_A<=q; 
-		Dbus_B<=(others => 'Z');
-		Dbus_C<=(others => 'Z');
+      Dbus_A <= q; 
+      Dbus_B <= (others => 'Z');
+      Dbus_C <= (others => 'Z');
 		elsif (Bus_Enable_B='1') then
-		Dbus_B<=q; 
-		Dbus_A<=(others => 'Z');
-		Dbus_C<=(others => 'Z');
+      Dbus_B <= q; 
+      Dbus_A <= (others => 'Z');
+      Dbus_C <= (others => 'Z');
 		elsif (Bus_Enable_C='1') then
-		Dbus_C<=q; 
-		Dbus_A<=(others => 'Z');
-		Dbus_B<=(others => 'Z');
+      Dbus_C <= q; 
+      Dbus_A <= (others => 'Z');
+      Dbus_B <= (others => 'Z');
 		else 
-		Dbus_A<=(others => 'Z');
-		Dbus_B<=(others => 'Z');
-		Dbus_C<=(others => 'Z');
+      Dbus_A <= (others => 'Z');
+      Dbus_B <= (others => 'Z');
+      Dbus_C <= (others => 'Z');
 		end if;
 	end process;
 	
-   Dout<=q;
-
+   Dout <= q;
 end rtl;

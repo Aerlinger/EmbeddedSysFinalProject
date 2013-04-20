@@ -13,24 +13,22 @@ port (
 end TI_Latch;
 
 architecture rtl of TI_Latch is
-signal data : std_logic_vector(7 downto 0) := x"00";
-signal q		: std_logic_vector(7 downto 0) := x"00";
-
+  signal data : std_logic_vector(7 downto 0) := x"00";
+  signal q		: std_logic_vector(7 downto 0) := x"00";
 begin
 	process (clk, Din_A, Din_B, Load_A, Load_B, q)
 	begin
 		if (Load_A='1') then
-		data<=Din_A;
+      data <= Din_A;
 		elsif (Load_B='1') then
-		data<=Din_B;
-		else data<=q;
+      data <= Din_B;
+		else data <= q;
 		end if;
 		
 		if rising_edge(clk) then
-		q<=data;
+      q <= data;
 		end if;
 	end process;
 	
-	Dout<=q;
-
+	Dout <= q;
 end rtl;
