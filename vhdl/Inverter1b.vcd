@@ -1,0 +1,15 @@
+$date
+  Sat Apr 20 21:37:28 2013
+$end
+$version
+  GHDL v0
+$end
+$timescale
+  1 fs
+$end
+$var reg 1 ! a $end
+$var reg 1 " a_bar $end
+$enddefinitions $end
+#0
+U!
+U"

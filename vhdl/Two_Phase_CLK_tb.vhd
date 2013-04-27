@@ -13,13 +13,11 @@ begin
 		process
 		begin
 			loop
-			   clk <= '0'; wait for 20ns;
-			   clk <= '1'; wait for 20ns;
+			   clk <= '0'; wait for 20 ns;
+			   clk <= '1'; wait for 20 ns;
 			end loop;
 		end process;
-		
-	
-								  
+
 TowPhaseCLK: 
 		entity work.Two_Phase_CLK
 		port map (clk=>clk);

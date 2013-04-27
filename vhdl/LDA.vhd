@@ -14,7 +14,7 @@ architecture imp of LDA is
   signal DB, SB, ADL, ADH : std_logic_vector(7 downto 0);
   signal Pre_decoder_in, Pre_decoder_out : std_logic_vector(7 downto 0);
   signal Cycle_num : std_logic_vector(3 downto 0);
-  signal Clk_mask, Clk_mask_bar : std_logic;
+  signal clk_mask, Clk_mask_bar : std_logic;
   signal tcstate  : std_logic_vector(5 downto 0) :=b"011111";
   signal opcode   : std_logic_vector(7 downto 0);
   signal PCL, PCH, PCLS, PCHS, PCL_Inc, PCH_Inc	: std_logic_vector(7 downto 0);

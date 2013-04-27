@@ -15,33 +15,33 @@ begin
 		process
 		begin
 			loop
-			   clk <= '0'; wait for 20ns;
-			   clk <= '1'; wait for 20ns;
+			   clk <= '0'; wait for 20 ns;
+			   clk <= '1'; wait for 20 ns;
 			end loop;
 		end process;
 		
 		process
 		begin
-			wait for 21ns;
+			wait for 21 ns;
 			loop
-			   load <= '0'; wait for 40ns;
-			   load <= '1'; wait for 40ns;
+			   load <= '0'; wait for 40 ns;
+			   load <= '1'; wait for 40 ns;
 			end loop;
 		end process;
 		
 		process
 		begin
 			loop
-			   Enable_A <= '0'; wait for 100ns;
-			   Enable_A <= '1'; wait for 80ns;
+			   Enable_A <= '0'; wait for 100 ns;
+			   Enable_A <= '1'; wait for 80 ns;
 			end loop;
 		end process;
 			
 		
 --		process
 --		  begin
---		    Data <= x"0a"; wait for 30ns;
---			 Data <= x"cd"; wait for 60ns;
+--		    Data <= x"0a"; wait for 30 ns;
+--			 Data <= x"cd"; wait for 60 ns;
 --			 Data <= x"ab";
 --		end process;
 		

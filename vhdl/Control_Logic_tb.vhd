@@ -15,8 +15,8 @@ architecture tb of Control_Logic_tb is
     	
 		process
 		begin
-			wait for 20ns; timing     <= b"011111";
-			wait for 80ns; timing     <= b"101111";
+			wait for 20 ns; timing     <= b"011111";
+			wait for 80 ns; timing     <= b"101111";
 			wait;
 		end process;
 		
@@ -24,24 +24,24 @@ architecture tb of Control_Logic_tb is
 		process
 		begin
 			loop
-			   clk <= '0'; wait for 20ns;
-			   clk <= '1'; wait for 20ns;
+			   clk <= '0'; wait for 20 ns;
+			   clk <= '1'; wait for 20 ns;
 			end loop;
 		end process;
 		
 		process
 		begin
-			wait for 60ns;
+			wait for 60 ns;
 			loop
-			   clk_mask <= '1'; wait for 40ns;
-			   clk_mask <= '0'; wait for 40ns;
+			   clk_mask <= '1'; wait for 40 ns;
+			   clk_mask <= '0'; wait for 40 ns;
 			end loop;
 		end process;
 		
 --		process
 --		begin
 --			loop
---			   c      <= '1'after 18ns;
+--			   c      <= '1'after 18 ns;
 --			   c      <= '1'; 
 --			end loop;
 --		end process;

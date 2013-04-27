@@ -14,11 +14,11 @@ architecture tb of time_gen_tb is
     	
 		process
 		begin
-			wait for 18ns; Cycle_num     <= x"2";
-			wait for 100ns; Cycle_num    <= x"3";
-			wait for 200ns; Cycle_num    <= x"4";
-			wait for 200ns; Cycle_num    <= x"5";
-			wait for 200ns; Cycle_num    <= x"6";
+			wait for 18 ns; Cycle_num     <= x"2";
+			wait for 100 ns; Cycle_num    <= x"3";
+			wait for 200 ns; Cycle_num    <= x"4";
+			wait for 200 ns; Cycle_num    <= x"5";
+			wait for 200 ns; Cycle_num    <= x"6";
 			wait;
 		end process;
 		
@@ -26,29 +26,31 @@ architecture tb of time_gen_tb is
 		process
 		begin
 			loop
-			   clk <= '0'; wait for 20ns;
-			   clk <= '1'; wait for 20ns;
+			   clk <= '0'; wait for 20 ns;
+			   clk <= '1'; wait for 20 ns;
 			end loop;
 		end process;
 		
 		
 		process
 		begin
-			wait for 61ns;
+			wait for 61 ns;
 			loop
-			   clk_mask <= '1'; wait for 40ns;
-			   clk_mask <= '0'; wait for 40ns;
+			   clk_mask <= '1'; wait for 40 ns;
+			   clk_mask <= '0'; wait for 40 ns;
 			end loop;
 		end process;
 --		process
 --		begin
 --			loop
---			   c      <= '1'after 18ns;
+--			   c      <= '1'after 18 ns;
 --			   c      <= '1'; 
 --			end loop;
 --		end process;
 		
 TimeGen: 
 		entity work.Timing_Generator
-		port map (clk=>clk,Cycle_num=> Cycle_num, clk_mask=>clk_mask);
+		port map (clk=>clk, 
+              Cycle_num=> Cycle_num,
+              iclk_mask=>clk_mask);
 end tb;

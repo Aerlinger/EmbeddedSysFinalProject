@@ -1,0 +1,96 @@
+v 3
+file "/Users/Aerlinger/Dropbox/EmbeddedSystemsFinalProj/FinalProject/vhdl/" "toplevel.vhd" "20130420203523.000" "20130420172915.181":
+  package mos_6502 at 9( 120) + 0 on 4;
+file "/Users/Aerlinger/Dropbox/EmbeddedSystemsFinalProj/FinalProject/vhdl/" "Two_Phase_CLK_tb.vhd" "20130420203500.000" "20130420172915.181":
+  entity two_phase_clk_tb at 1( 0) + 0 on 4;
+  architecture tb of two_phase_clk_tb at 8( 120) + 0 on 4;
+file "/Users/Aerlinger/Dropbox/EmbeddedSystemsFinalProj/FinalProject/vhdl/" "Two_Phase_CLK.vhd" "20130420001032.000" "20130420172917.527":
+  entity two_phase_clk at 1( 0) + 0 on 19;
+  architecture rtl of two_phase_clk at 11( 173) + 0 on 20;
+file "/Users/Aerlinger/Dropbox/EmbeddedSystemsFinalProj/FinalProject/vhdl/" "Timing_Generator_V2.vhd" "20130420211111.000" "20130420172917.527":
+  entity timing_generator at 1( 0) + 0 on 29;
+  architecture rtl of timing_generator at 14( 310) + 0 on 30;
+file "/Users/Aerlinger/Dropbox/EmbeddedSystemsFinalProj/FinalProject/vhdl/" "Time_Gen_tb.vhd" "20130420203215.000" "20130420172915.181":
+  entity time_gen_tb at 1( 0) + 0 on 4;
+  architecture tb of time_gen_tb at 8( 110) + 0 on 4;
+file "/Users/Aerlinger/Dropbox/EmbeddedSystemsFinalProj/FinalProject/vhdl/" "ThreeI_Latch.vhd" "20130420000824.000" "20130420172917.527":
+  entity threei_latch at 1( 0) + 0 on 41;
+  architecture rtl of threei_latch at 17( 398) + 0 on 42;
+file "/Users/Aerlinger/Dropbox/EmbeddedSystemsFinalProj/FinalProject/vhdl/" "TI_Latch.vhd" "20130420000904.000" "20130420172917.527":
+  entity ti_latch at 1( 0) + 0 on 33;
+  architecture rtl of ti_latch at 15( 327) + 0 on 34;
+file "/Users/Aerlinger/Dropbox/EmbeddedSystemsFinalProj/FinalProject/vhdl/" "Switch.vhd" "20130419235736.000" "20130420172915.180":
+  entity switch at 1( 0) + 0 on 4;
+  architecture rtl of switch at 12( 219) + 0 on 4;
+file "/Users/Aerlinger/Dropbox/EmbeddedSystemsFinalProj/FinalProject/vhdl/" "SI_Latch.vhd" "20130420000443.000" "20130420172917.527":
+  entity si_latch at 1( 0) + 0 on 21;
+  architecture rtl of si_latch at 13( 246) + 0 on 22;
+file "/Users/Aerlinger/Dropbox/EmbeddedSystemsFinalProj/FinalProject/vhdl/" "SIThreeO_Latch_tb.vhd" "20130420203127.000" "20130420172915.180":
+  entity sithreeo_latch_tb at 1( 0) + 0 on 4;
+  architecture tb of sithreeo_latch_tb at 8( 122) + 0 on 4;
+file "/Users/Aerlinger/Dropbox/EmbeddedSystemsFinalProj/FinalProject/vhdl/" "SIThreeO_Latch.vhd" "20130420000551.000" "20130420172917.527":
+  entity sithreeo_latch at 1( 0) + 0 on 31;
+  architecture rtl of sithreeo_latch at 19( 486) + 0 on 32;
+file "/Users/Aerlinger/Dropbox/EmbeddedSystemsFinalProj/FinalProject/vhdl/" "SITO_Latch_ADD.vhd" "20130420212909.000" "20130420172917.527":
+  entity sito_latch_add at 1( 0) + 0 on 47;
+  architecture rtl of sito_latch_add at 18( 449) + 0 on 48;
+file "/Users/Aerlinger/Dropbox/EmbeddedSystemsFinalProj/FinalProject/vhdl/" "SITO_Latch.vhd" "20130420000655.000" "20130420172917.527":
+  entity sito_latch at 1( 0) + 0 on 37;
+  architecture rtl of sito_latch at 17( 419) + 0 on 38;
+file "/Users/Aerlinger/Dropbox/EmbeddedSystemsFinalProj/FinalProject/vhdl/" "SISO_Latch.vhd" "20130420000432.000" "20130420172917.527":
+  entity siso_latch at 1( 0) + 0 on 49;
+  architecture rtl of siso_latch at 15( 322) + 0 on 50;
+file "/Users/Aerlinger/Dropbox/EmbeddedSystemsFinalProj/FinalProject/vhdl/" "RAM.vhd" "20130419235736.000" "20130420172915.180":
+  entity raminfr at 4( 15) + 0 on 4;
+  architecture rtl of raminfr at 18( 289) + 0 on 4;
+file "/Users/Aerlinger/Dropbox/EmbeddedSystemsFinalProj/FinalProject/vhdl/" "Predecode.vhd" "20130420000350.000" "20130420172917.527":
+  entity predecode at 1( 0) + 0 on 23;
+  architecture rtl of predecode at 13( 254) + 0 on 24;
+file "/Users/Aerlinger/Dropbox/EmbeddedSystemsFinalProj/FinalProject/vhdl/" "PASS_Gate_SBtoDB.vhd" "20130420203840.000" "20130420172917.527":
+  entity pass_gate_sbtodb at 1( 0) + 0 on 17;
+  architecture rtl of pass_gate_sbtodb at 13( 281) + 0 on 18;
+file "/Users/Aerlinger/Dropbox/EmbeddedSystemsFinalProj/FinalProject/vhdl/" "PASS_Gate_DBtoSB.vhd" "20130420210530.000" "20130420172917.527":
+  entity pass_gate_dbtosb at 1( 0) + 0 on 15;
+  architecture rtl of pass_gate_dbtosb at 11( 272) + 0 on 16;
+file "/Users/Aerlinger/Dropbox/EmbeddedSystemsFinalProj/FinalProject/vhdl/" "Open_Drain.vhd" "20130420000135.000" "20130420172917.527":
+  entity open_drain at 1( 0) + 0 on 39;
+  architecture rtl of open_drain at 13( 209) + 0 on 40;
+file "/Users/Aerlinger/Dropbox/EmbeddedSystemsFinalProj/FinalProject/vhdl/" "Latch_tb.vhd" "20130420202932.000" "20130420172915.179":
+  entity latch_tb at 1( 0) + 0 on 4;
+  architecture tb of latch_tb at 8( 104) + 0 on 4;
+file "/Users/Aerlinger/Dropbox/EmbeddedSystemsFinalProj/FinalProject/vhdl/" "LDA_tb.vhd" "20130420211736.000" "20130420172917.527":
+  entity lda_tb at 1( 0) + 0 on 13;
+  architecture tb of lda_tb at 8( 100) + 0 on 14;
+file "/Users/Aerlinger/Dropbox/EmbeddedSystemsFinalProj/FinalProject/vhdl/" "LDA_steptest.vhd" "20130419235736.000" "20130420172915.179":
+  entity lda_steptest at 1( 0) + 0 on 4;
+  architecture imp of lda_steptest at 12( 239) + 0 on 4;
+file "/Users/Aerlinger/Dropbox/EmbeddedSystemsFinalProj/FinalProject/vhdl/" "LDA.vhd" "20130420212911.000" "20130420172917.526":
+  entity lda at 1( 0) + 0 on 11;
+  architecture imp of lda at 13( 245) + 0 on 12;
+file "/Users/Aerlinger/Dropbox/EmbeddedSystemsFinalProj/FinalProject/vhdl/" "Inverter8b.vhd" "20130420000106.000" "20130420172917.527":
+  entity inverter8b at 1( 0) + 0 on 43;
+  architecture rtl of inverter8b at 11( 184) + 0 on 44;
+file "/Users/Aerlinger/Dropbox/EmbeddedSystemsFinalProj/FinalProject/vhdl/" "Inverter1b.vhd" "20130420000108.000" "20130420172917.527":
+  entity inverter1b at 1( 0) + 0 on 25;
+  architecture rtl of inverter1b at 11( 144) + 0 on 26;
+file "/Users/Aerlinger/Dropbox/EmbeddedSystemsFinalProj/FinalProject/vhdl/" "Increase_Logic_tb.vhd" "20130420202858.000" "20130420172915.178":
+  entity inc_logic_tb at 1( 0) + 0 on 4;
+  architecture tb of inc_logic_tb at 8( 112) + 0 on 4;
+file "/Users/Aerlinger/Dropbox/EmbeddedSystemsFinalProj/FinalProject/vhdl/" "Increase_Logic.vhd" "20130420000020.000" "20130420172917.527":
+  entity increase_logic at 1( 0) + 0 on 35;
+  architecture rtl of increase_logic at 14( 275) + 0 on 36;
+file "/Users/Aerlinger/Dropbox/EmbeddedSystemsFinalProj/FinalProject/vhdl/" "Control_Logic_tb.vhd" "20130420202832.000" "20130420172915.178":
+  entity control_logic_tb at 1( 0) + 0 on 4;
+  architecture tb of control_logic_tb at 8( 120) + 0 on 4;
+file "/Users/Aerlinger/Dropbox/EmbeddedSystemsFinalProj/FinalProject/vhdl/" "Control_Logic.vhd" "20130419235736.000" "20130420172917.527":
+  entity control_logic at 1( 0) + 0 on 51;
+  architecture rtl of control_logic at 61( 746) + 1 on 52;
+file "/Users/Aerlinger/Dropbox/EmbeddedSystemsFinalProj/FinalProject/vhdl/" "ANDGate.vhd" "20130419235736.000" "20130420172917.527":
+  entity andgate at 1( 0) + 0 on 27;
+  architecture rtl of andgate at 11( 150) + 0 on 28;
+file "/Users/Aerlinger/Dropbox/EmbeddedSystemsFinalProj/FinalProject/vhdl/" "ALU_tb.vhd" "20130420202807.000" "20130420172915.177":
+  entity alu_tb at 1( 0) + 0 on 4;
+  architecture tb of alu_tb at 8( 100) + 0 on 4;
+file "/Users/Aerlinger/Dropbox/EmbeddedSystemsFinalProj/FinalProject/vhdl/" "ALU.vhd" "20130419235736.000" "20130420172917.527":
+  entity alu at 1( 0) + 0 on 45;
+  architecture rtl of alu at 16( 332) + 0 on 46;

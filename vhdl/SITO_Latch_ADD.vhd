@@ -5,7 +5,7 @@ use ieee.numeric_std.all;
 entity SITO_Latch_ADD is
   port (
 		Din  : in  std_logic_vector(7 downto 0);
-		Dout : out std_logic_vector(7 downto 0);
+		--Dout : out std_logic_vector(7 downto 0);
 		Dbus_A : out std_logic_vector(7 downto 0);
 		Dbus_B : out std_logic_vector(7 downto 0);
 		Load : in std_logic;
@@ -51,5 +51,5 @@ begin
 		end if;
 	end process;
 	
-	Dout<=q;
+	--Dout<=q;
 end rtl;

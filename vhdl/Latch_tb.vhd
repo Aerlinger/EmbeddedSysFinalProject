@@ -10,37 +10,36 @@ architecture tb of latch_tb is
 	signal load   : std_logic  := '0';
 	signal enable : std_logic  := '0';
 	signal Data   : std_logic_vector(7 downto 0) := x"0a";
-
 begin
 		process
 		begin
 			loop
-			   clk <= '0'; wait for 20ns;
-			   clk <= '1'; wait for 20ns;
+			   clk <= '0'; wait for 20 ns;
+			   clk <= '1'; wait for 20 ns;
 			end loop;
 		end process;
 		
 		process
 		begin
 			loop
-			   load <= '0'; wait for 19ns;
-			   load <= '1'; wait for 20ns;
+			   load <= '0'; wait for 19 ns;
+			   load <= '1'; wait for 20 ns;
 			end loop;
 		end process;
 		
 		process
 		begin
 			loop
-			   Enable <= '0'; wait for 18ns;
-			   Enable <= '1'; wait for 20ns;
+			   Enable <= '0'; wait for 18 ns;
+			   Enable <= '1'; wait for 20 ns;
 			end loop;
 		end process;
 			
 		
 		process
 		  begin
-		    Data <= x"0a"; wait for 30ns;
-			 Data <= x"cd"; wait for 60ns;
+		   Data <= x"0a"; wait for 30 ns;
+			 Data <= x"cd"; wait for 60 ns;
 			 Data <= x"ab";
 		end process;
 		

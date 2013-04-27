@@ -6,7 +6,7 @@ entity PASS_Gate_SBtoDB is
   port(
 		Din : in std_logic_vector(7 downto 0);
 		Dout : out std_logic_vector(7 downto 0);
-		SB_DB, S_SB, ADD_SB06, ADD_SB7, X_SB, Y_SB, AC_SB	: in std_logic;
+		SB_DB, S_SB, ADD_SB06, ADD_SB7, X_SB, Y_SB, AC_SB	: in std_logic
   );
 end PasS_Gate_SBtoDB; 
 

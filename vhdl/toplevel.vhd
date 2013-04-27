@@ -25,7 +25,7 @@ package mos_6502 is
     data_out_oe : out std_logic;
     we_pin : out std_logic;
     rd_pin : out std_logic;
-    sync : out std_logic;
+    sync : out std_logic
   );
-  end component
+  end component;
 end package;

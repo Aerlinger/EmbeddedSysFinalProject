@@ -1,0 +1,117 @@
+v 3
+file "/Users/Aerlinger/Dropbox/EmbeddedSystemsFinalProj/FinalProject/vhdl/ghdl/test/dlx/" "alu-behaviour.vhdl" "19931102224520.000" "20130420105229.529":
+  architecture behaviour of alu at 32( 1223) + 0 on 4;
+file "/Users/Aerlinger/Dropbox/EmbeddedSystemsFinalProj/FinalProject/vhdl/ghdl/test/dlx/" "alu.vhdl" "19931102224515.000" "20130420105229.530":
+  entity alu at 32( 1208) + 0 on 4;
+file "/Users/Aerlinger/Dropbox/EmbeddedSystemsFinalProj/FinalProject/vhdl/ghdl/test/dlx/" "alu_types.vhdl" "19931102224513.000" "20130420105229.530":
+  package alu_types at 32( 1218) + 0 on 4;
+file "/Users/Aerlinger/Dropbox/EmbeddedSystemsFinalProj/FinalProject/vhdl/ghdl/test/dlx/" "bv_arithmetic-body.vhdl" "19931102225055.000" "20130420105503.879":
+  package body bv_arithmetic at 39( 1723) + 0 on 20;
+file "/Users/Aerlinger/Dropbox/EmbeddedSystemsFinalProj/FinalProject/vhdl/ghdl/test/dlx/" "bv_arithmetic.vhdl" "19931102224443.000" "20130420105503.879":
+  package bv_arithmetic at 39( 1727) + 0 on 19 body;
+file "/Users/Aerlinger/Dropbox/EmbeddedSystemsFinalProj/FinalProject/vhdl/ghdl/test/dlx/" "bv_test-bench.vhdl" "19931102224445.000" "20130420105229.539":
+  architecture bench of bv_test at 32( 1253) + 0 on 4;
+file "/Users/Aerlinger/Dropbox/EmbeddedSystemsFinalProj/FinalProject/vhdl/ghdl/test/dlx/" "bv_test.vhdl" "19931102224444.000" "20130420105229.539":
+  entity bv_test at 32( 1253) + 0 on 4;
+file "/Users/Aerlinger/Dropbox/EmbeddedSystemsFinalProj/FinalProject/vhdl/ghdl/test/dlx/" "cache-behaviour.vhdl" "19931102224558.000" "20130420105229.540":
+  architecture behaviour of cache at 32( 1228) + 0 on 4;
+file "/Users/Aerlinger/Dropbox/EmbeddedSystemsFinalProj/FinalProject/vhdl/ghdl/test/dlx/" "cache.vhdl" "19931102224557.000" "20130420105229.540":
+  entity cache at 32( 1212) + 0 on 4;
+file "/Users/Aerlinger/Dropbox/EmbeddedSystemsFinalProj/FinalProject/vhdl/ghdl/test/dlx/" "cache_types.vhdl" "19931102224557.000" "20130420105229.540":
+  package cache_types at 32( 1227) + 0 on 4;
+file "/Users/Aerlinger/Dropbox/EmbeddedSystemsFinalProj/FinalProject/vhdl/ghdl/test/dlx/" "clock_gen-behaviour.vhdl" "19931102224451.000" "20130420105503.879":
+  architecture behaviour of clock_gen at 32( 1246) + 0 on 17;
+file "/Users/Aerlinger/Dropbox/EmbeddedSystemsFinalProj/FinalProject/vhdl/ghdl/test/dlx/" "clock_gen.vhdl" "19931102224450.000" "20130420105503.879":
+  entity clock_gen at 32( 1225) + 0 on 16;
+file "/Users/Aerlinger/Dropbox/EmbeddedSystemsFinalProj/FinalProject/vhdl/ghdl/test/dlx/" "clock_gen_test-bench.vhdl" "19931102224452.000" "20130420105229.540":
+  architecture bench of clock_gen_test at 32( 1245) + 0 on 4;
+file "/Users/Aerlinger/Dropbox/EmbeddedSystemsFinalProj/FinalProject/vhdl/ghdl/test/dlx/" "clock_gen_test.vhdl" "19931102224451.000" "20130420105229.540":
+  entity clock_gen_test at 32( 1245) + 0 on 4;
+file "/Users/Aerlinger/Dropbox/EmbeddedSystemsFinalProj/FinalProject/vhdl/ghdl/test/dlx/" "controller-behaviour.vhdl" "19931102224555.000" "20130420105229.542":
+  architecture behaviour of controller at 32( 1246) + 0 on 4;
+file "/Users/Aerlinger/Dropbox/EmbeddedSystemsFinalProj/FinalProject/vhdl/ghdl/test/dlx/" "controller.vhdl" "19931102224554.000" "20130420105229.542":
+  entity controller at 32( 1231) + 0 on 4;
+file "/Users/Aerlinger/Dropbox/EmbeddedSystemsFinalProj/FinalProject/vhdl/ghdl/test/dlx/" "dlx-behaviour.vhdl" "19931102224507.000" "20130420105503.879":
+  architecture behaviour of dlx at 32( 1255) + 0 on 29;
+file "/Users/Aerlinger/Dropbox/EmbeddedSystemsFinalProj/FinalProject/vhdl/ghdl/test/dlx/" "dlx-instrumented.vhdl" "19931102224509.000" "20130420105229.546":
+  architecture instrumented of dlx at 33( 1341) + 0 on 4;
+file "/Users/Aerlinger/Dropbox/EmbeddedSystemsFinalProj/FinalProject/vhdl/ghdl/test/dlx/" "dlx-rtl.vhdl" "19931102224555.000" "20130420105229.546":
+  architecture rtl of dlx at 32( 1239) + 0 on 4;
+file "/Users/Aerlinger/Dropbox/EmbeddedSystemsFinalProj/FinalProject/vhdl/ghdl/test/dlx/" "dlx.vhdl" "19931102224502.000" "20130420105503.879":
+  entity dlx at 32( 1219) + 0 on 28;
+file "/Users/Aerlinger/Dropbox/EmbeddedSystemsFinalProj/FinalProject/vhdl/ghdl/test/dlx/" "dlx_bus_monitor-behaviour.vhdl" "19931102224500.000" "20130420105503.879":
+  architecture behaviour of dlx_bus_monitor at 32( 1268) + 0 on 27;
+file "/Users/Aerlinger/Dropbox/EmbeddedSystemsFinalProj/FinalProject/vhdl/ghdl/test/dlx/" "dlx_bus_monitor.vhdl" "19931102224459.000" "20130420105503.879":
+  entity dlx_bus_monitor at 32( 1230) + 0 on 24;
+file "/Users/Aerlinger/Dropbox/EmbeddedSystemsFinalProj/FinalProject/vhdl/ghdl/test/dlx/" "dlx_instr-body.vhdl" "19931102224458.000" "20130420105503.879":
+  package body dlx_instr at 32( 1247) + 0 on 26;
+file "/Users/Aerlinger/Dropbox/EmbeddedSystemsFinalProj/FinalProject/vhdl/ghdl/test/dlx/" "dlx_instr.vhdl" "19931102224458.000" "20130420105503.879":
+  package dlx_instr at 32( 1229) + 0 on 25 body;
+file "/Users/Aerlinger/Dropbox/EmbeddedSystemsFinalProj/FinalProject/vhdl/ghdl/test/dlx/" "dlx_test-bench.vhdl" "19931102224501.000" "20130420105503.879":
+  architecture bench of dlx_test at 33( 1286) + 0 on 15;
+file "/Users/Aerlinger/Dropbox/EmbeddedSystemsFinalProj/FinalProject/vhdl/ghdl/test/dlx/" "dlx_test-bench_cache.vhdl" "19931102224558.000" "20130420105229.549":
+  architecture bench_cache of dlx_test at 33( 1342) + 0 on 4;
+file "/Users/Aerlinger/Dropbox/EmbeddedSystemsFinalProj/FinalProject/vhdl/ghdl/test/dlx/" "dlx_test.vhdl" "19931102224501.000" "20130420105503.879":
+  entity dlx_test at 32( 1227) + 0 on 11;
+file "/Users/Aerlinger/Dropbox/EmbeddedSystemsFinalProj/FinalProject/vhdl/ghdl/test/dlx/" "dlx_test_behaviour.vhdl" "19931102224508.000" "20130420105503.879":
+  configuration dlx_test_behaviour at 32( 1261) + 0 on 30;
+file "/Users/Aerlinger/Dropbox/EmbeddedSystemsFinalProj/FinalProject/vhdl/ghdl/test/dlx/" "dlx_test_cache.vhdl" "19931102224559.000" "20130420105229.549":
+  configuration dlx_test_cache at 33( 1275) + 0 on 4;
+file "/Users/Aerlinger/Dropbox/EmbeddedSystemsFinalProj/FinalProject/vhdl/ghdl/test/dlx/" "dlx_test_instrumented.vhdl" "19931102224510.000" "20130420105229.550":
+  configuration dlx_test_instrumented at 33( 1317) + 0 on 4;
+file "/Users/Aerlinger/Dropbox/EmbeddedSystemsFinalProj/FinalProject/vhdl/ghdl/test/dlx/" "dlx_test_rtl.vhdl" "19931102224556.000" "20130420105229.550":
+  configuration dlx_test_rtl at 33( 1286) + 0 on 4;
+file "/Users/Aerlinger/Dropbox/EmbeddedSystemsFinalProj/FinalProject/vhdl/ghdl/test/dlx/" "dlx_types-body.vhdl" "19931102224453.000" "20130420105503.879":
+  package body dlx_types at 32( 1232) + 0 on 13;
+file "/Users/Aerlinger/Dropbox/EmbeddedSystemsFinalProj/FinalProject/vhdl/ghdl/test/dlx/" "dlx_types.vhdl" "19931102224453.000" "20130420105503.879":
+  package dlx_types at 32( 1236) + 0 on 12 body;
+file "/Users/Aerlinger/Dropbox/EmbeddedSystemsFinalProj/FinalProject/vhdl/ghdl/test/dlx/" "images-body.vhdl" "19931102224440.000" "20130420105503.879":
+  package body images at 36( 1424) + 0 on 22;
+file "/Users/Aerlinger/Dropbox/EmbeddedSystemsFinalProj/FinalProject/vhdl/ghdl/test/dlx/" "images.vhdl" "19931102224439.000" "20130420105503.879":
+  package images at 36( 1428) + 0 on 21 body;
+file "/Users/Aerlinger/Dropbox/EmbeddedSystemsFinalProj/FinalProject/vhdl/ghdl/test/dlx/" "images_test-bench.vhdl" "19931102224441.000" "20130420105229.551":
+  architecture bench of images_test at 31( 1252) + 0 on 4;
+file "/Users/Aerlinger/Dropbox/EmbeddedSystemsFinalProj/FinalProject/vhdl/ghdl/test/dlx/" "images_test.vhdl" "19931102224440.000" "20130420105229.551":
+  entity images_test at 31( 1240) + 0 on 4;
+file "/Users/Aerlinger/Dropbox/EmbeddedSystemsFinalProj/FinalProject/vhdl/ghdl/test/dlx/" "ir-behaviour.vhdl" "19931102224525.000" "20130420105229.551":
+  architecture behaviour of ir at 32( 1239) + 0 on 4;
+file "/Users/Aerlinger/Dropbox/EmbeddedSystemsFinalProj/FinalProject/vhdl/ghdl/test/dlx/" "ir.vhdl" "19931102224522.000" "20130420105229.551":
+  entity ir at 32( 1224) + 0 on 4;
+file "/Users/Aerlinger/Dropbox/EmbeddedSystemsFinalProj/FinalProject/vhdl/ghdl/test/dlx/" "latch-behaviour.vhdl" "19931102224533.000" "20130420105229.551":
+  architecture behaviour of latch at 32( 1239) + 0 on 4;
+file "/Users/Aerlinger/Dropbox/EmbeddedSystemsFinalProj/FinalProject/vhdl/ghdl/test/dlx/" "latch.vhdl" "19931102224528.000" "20130420105229.551":
+  entity latch at 32( 1224) + 0 on 4;
+file "/Users/Aerlinger/Dropbox/EmbeddedSystemsFinalProj/FinalProject/vhdl/ghdl/test/dlx/" "mem_types.vhdl" "19931102224454.000" "20130420105503.879":
+  package mem_types at 32( 1217) + 0 on 14;
+file "/Users/Aerlinger/Dropbox/EmbeddedSystemsFinalProj/FinalProject/vhdl/ghdl/test/dlx/" "memory-behaviour.vhdl" "19931102224456.000" "20130420105503.879":
+  architecture behaviour of memory at 32( 1235) + 0 on 23;
+file "/Users/Aerlinger/Dropbox/EmbeddedSystemsFinalProj/FinalProject/vhdl/ghdl/test/dlx/" "memory.vhdl" "19931102224456.000" "20130420105503.879":
+  entity memory at 32( 1219) + 0 on 18;
+file "/Users/Aerlinger/Dropbox/EmbeddedSystemsFinalProj/FinalProject/vhdl/ghdl/test/dlx/" "memory_test-bench.vhdl" "19931102224457.000" "20130420105229.553":
+  architecture bench of memory_test at 32( 1261) + 0 on 4;
+file "/Users/Aerlinger/Dropbox/EmbeddedSystemsFinalProj/FinalProject/vhdl/ghdl/test/dlx/" "memory_test.vhdl" "19931102224456.000" "20130420105229.553":
+  entity memory_test at 32( 1235) + 0 on 4;
+file "/Users/Aerlinger/Dropbox/EmbeddedSystemsFinalProj/FinalProject/vhdl/ghdl/test/dlx/" "mux2-behaviour.vhdl" "19931102224540.000" "20130420105229.553":
+  architecture behaviour of mux2 at 32( 1242) + 0 on 4;
+file "/Users/Aerlinger/Dropbox/EmbeddedSystemsFinalProj/FinalProject/vhdl/ghdl/test/dlx/" "mux2.vhdl" "19931102224536.000" "20130420105229.553":
+  entity mux2 at 32( 1227) + 0 on 4;
+file "/Users/Aerlinger/Dropbox/EmbeddedSystemsFinalProj/FinalProject/vhdl/ghdl/test/dlx/" "reg_1_out-behaviour.vhdl" "19931102224545.000" "20130420105229.553":
+  architecture behaviour of reg_1_out at 32( 1260) + 0 on 4;
+file "/Users/Aerlinger/Dropbox/EmbeddedSystemsFinalProj/FinalProject/vhdl/ghdl/test/dlx/" "reg_1_out.vhdl" "19931102224543.000" "20130420105229.553":
+  entity reg_1_out at 32( 1245) + 0 on 4;
+file "/Users/Aerlinger/Dropbox/EmbeddedSystemsFinalProj/FinalProject/vhdl/ghdl/test/dlx/" "reg_2_1_out-behaviour.vhdl" "19931102224548.000" "20130420105229.553":
+  architecture behaviour of reg_2_1_out at 33( 1291) + 0 on 4;
+file "/Users/Aerlinger/Dropbox/EmbeddedSystemsFinalProj/FinalProject/vhdl/ghdl/test/dlx/" "reg_2_1_out.vhdl" "19931102224547.000" "20130420105229.554":
+  entity reg_2_1_out at 33( 1276) + 0 on 4;
+file "/Users/Aerlinger/Dropbox/EmbeddedSystemsFinalProj/FinalProject/vhdl/ghdl/test/dlx/" "reg_2_out-behaviour.vhdl" "19931102224551.000" "20130420105229.554":
+  architecture behaviour of reg_2_out at 32( 1261) + 0 on 4;
+file "/Users/Aerlinger/Dropbox/EmbeddedSystemsFinalProj/FinalProject/vhdl/ghdl/test/dlx/" "reg_2_out.vhdl" "19931102224549.000" "20130420105229.554":
+  entity reg_2_out at 32( 1246) + 0 on 4;
+file "/Users/Aerlinger/Dropbox/EmbeddedSystemsFinalProj/FinalProject/vhdl/ghdl/test/dlx/" "reg_3_out-behaviour.vhdl" "19931102224553.000" "20130420105229.554":
+  architecture behaviour of reg_3_out at 32( 1263) + 0 on 4;
+file "/Users/Aerlinger/Dropbox/EmbeddedSystemsFinalProj/FinalProject/vhdl/ghdl/test/dlx/" "reg_3_out.vhdl" "19931102224552.000" "20130420105229.554":
+  entity reg_3_out at 32( 1248) + 0 on 4;
+file "/Users/Aerlinger/Dropbox/EmbeddedSystemsFinalProj/FinalProject/vhdl/ghdl/test/dlx/" "reg_file-behaviour.vhdl" "19931102224553.000" "20130420105229.554":
+  architecture behaviour of reg_file at 32( 1238) + 0 on 4;
+file "/Users/Aerlinger/Dropbox/EmbeddedSystemsFinalProj/FinalProject/vhdl/ghdl/test/dlx/" "reg_file.vhdl" "19931102224553.000" "20130420105229.554":
+  entity reg_file at 32( 1223) + 0 on 4;
