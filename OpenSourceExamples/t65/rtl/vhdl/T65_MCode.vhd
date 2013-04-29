@@ -281,7 +281,7 @@ begin
 			when "00001000" | "01001000" | "01011010" | "11011010" =>
 				-- PHP, PHA, PHY*, PHX*
 				LCycle <= "010";
-				if Mode = "00" and IR(1) = '1' then
+				if IR(1) = '1' then -- if Mode = "00" and IR(1) = '1' then
 					LCycle <= "001";
 				end if;
 				case to_integer(unsigned(MCycle)) is
@@ -306,7 +306,7 @@ begin
 			when "00101000" | "01101000" | "01111010" | "11111010" =>
 				-- PLP, PLA, PLY*, PLX*
 				LCycle <= "011";
-				if Mode = "00" and IR(1) = '1' then
+				if IR(1) = '1' then --if Mode = "00" and IR(1) = '1' then
 					LCycle <= "001";
 				end if;
 				case IR(7 downto 4) is
@@ -314,14 +314,14 @@ begin
 					LDP <= '1';
 				when "0110" =>
 					LDA <= '1';
-				when "0111" =>
-					if Mode /= "00" then
-						LDY <= '1';
-					end if;
-				when "1111" =>
-					if Mode /= "00" then
-						LDX <= '1';
-					end if;
+				--when "0111" =>
+				--	if Mode /= "00" then
+				--		LDY <= '1';
+				--	end if;
+				--when "1111" =>
+				--	if Mode /= "00" then
+				--		LDX <= '1';
+				--	end if;
 				when others =>
 				end case;
 				case to_integer(unsigned(MCycle)) is
@@ -365,9 +365,9 @@ begin
 				end case;
 			when "00011010" | "00111010" =>
 				-- INC*, DEC*
-				if Mode /= "00" then
-					LDA <= '1'; -- A
-				end if;
+				--if Mode /= "00" then
+				--	LDA <= '1'; -- A
+				--end if;
 				case to_integer(unsigned(MCycle)) is
 				when 0 =>
 				when 1 =>
@@ -567,20 +567,20 @@ begin
 						LDBAL <= '1';
 					when 3 =>
 						LDBAH <= '1';
-						if Mode /= "00" then
-							Jump <= "10"; -- DIDL
-						end if;
-						if Mode = "00" then
+						--if Mode /= "00" then
+						--	Jump <= "10"; -- DIDL
+						--end if;
+						--if Mode = "00" then
 							Set_Addr_To <= "11"; -- BA
-						end if;
+						--end if;
 					when 4 =>
 						LDDI <= '1';
-						if Mode = "00" then
+						--if Mode = "00" then
 							Set_Addr_To <= "11"; -- BA
 							BAAdd <= "01";	-- DB Inc
-						else
-							Jump <= "01";
-						end if;
+						--else
+						--	Jump <= "01";
+						--end if;
 					when 5 =>
 						Jump <= "10"; -- DIDL
 					when others =>

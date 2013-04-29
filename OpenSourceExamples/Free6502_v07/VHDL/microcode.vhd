@@ -62,7 +62,7 @@ package microcode is
 
   component mc_rom
     port (opcode     :in std_logic_vector (7 downto 0);
-          step       :in std_logic_vector (2 downto 0);
+          step       :in std_logic_vector (2 downto 0);  -- Timing state?
           DONE       :out MCT_DONE;
           ADDR_OP    :out MCT_ADDR_OP;
           DIN_LE     :out MCT_DIN_LE;

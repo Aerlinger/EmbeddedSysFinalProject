@@ -1,12 +1,12 @@
 library ieee;
 use ieee.std_logic_1164.all;
-use ieee.std_logic_unsigned.all;
+--use ieee.std_logic_unsigned.all;
 
 entity reg is
   port(
     data_in: in std_logic_vector(7 downto 0);
     data_out: out std_logic_vector(7 downto 0);
-    clk: in std_logic;
+    clk: in std_logic
   );
 end reg;
 
@@ -17,7 +17,7 @@ begin
 
   process(data_in, clk)
   begin
-    if (clock='1' and clock'event) then
+    if (clk='1' and clk'event) then
       value <= data_in;
     end if;
   end process;
@@ -25,4 +25,4 @@ begin
   -- Concurrent statement:
   data_out <= value;
 
-end behav;
+end rtl;
