@@ -1,0 +1,652 @@
+Analysis & Synthesis report for Int_Test
+Mon Apr 29 16:55:34 2013
+Quartus II 32-bit Version 12.1 Build 177 11/07/2012 SJ Full Version
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Analysis & Synthesis Summary
+  3. Analysis & Synthesis Settings
+  4. Parallel Compilation
+  5. Analysis & Synthesis Source Files Read
+  6. Analysis & Synthesis Resource Usage Summary
+  7. Analysis & Synthesis Resource Utilization by Entity
+  8. State Machine - |Int_Test|TG:Timing|state
+  9. Registers Removed During Synthesis
+ 10. Removed Registers Triggering Further Register Optimizations
+ 11. General Register Statistics
+ 12. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 13. Port Connectivity Checks: "mux4:ADHBus"
+ 14. Port Connectivity Checks: "mux5:ADLBus"
+ 15. Port Connectivity Checks: "mux5:DBBus"
+ 16. Port Connectivity Checks: "mux2:YIn"
+ 17. Port Connectivity Checks: "mux2:XIn"
+ 18. Port Connectivity Checks: "mux2:ACCIn"
+ 19. Port Connectivity Checks: "mux2:SInput"
+ 20. Port Connectivity Checks: "reg:BIReg"
+ 21. Port Connectivity Checks: "reg:AIReg"
+ 22. Port Connectivity Checks: "mux2:AIInput"
+ 23. Port Connectivity Checks: "mux2:PCHInput"
+ 24. Port Connectivity Checks: "Increase_Logic:PLHCarryin"
+ 25. Port Connectivity Checks: "Increase_Logic:PCLCarryin"
+ 26. Port Connectivity Checks: "TG:Timing"
+ 27. Port Connectivity Checks: "mux2:IRInput"
+ 28. Elapsed Time Per Partition
+ 29. Analysis & Synthesis Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 1991-2012 Altera Corporation
+Your use of Altera Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Altera Program License 
+Subscription Agreement, Altera MegaCore Function License 
+Agreement, or other applicable license agreement, including, 
+without limitation, that your use is for the sole purpose of 
+programming logic devices manufactured by Altera and sold by 
+Altera or its authorized distributors.  Please refer to the 
+applicable agreement for further details.
+
+
+
++--------------------------------------------------------------------------------+
+; Analysis & Synthesis Summary                                                   ;
++------------------------------------+-------------------------------------------+
+; Analysis & Synthesis Status        ; Successful - Mon Apr 29 16:55:34 2013     ;
+; Quartus II 32-bit Version          ; 12.1 Build 177 11/07/2012 SJ Full Version ;
+; Revision Name                      ; Int_Test                                  ;
+; Top-level Entity Name              ; Int_Test                                  ;
+; Family                             ; Cyclone II                                ;
+; Total logic elements               ; 0                                         ;
+;     Total combinational functions  ; 0                                         ;
+;     Dedicated logic registers      ; 0                                         ;
+; Total registers                    ; 0                                         ;
+; Total pins                         ; 26                                        ;
+; Total virtual pins                 ; 0                                         ;
+; Total memory bits                  ; 0                                         ;
+; Embedded Multiplier 9-bit elements ; 0                                         ;
+; Total PLLs                         ; 0                                         ;
++------------------------------------+-------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Settings                                                                                        ;
++----------------------------------------------------------------------------+--------------------+--------------------+
+; Option                                                                     ; Setting            ; Default Value      ;
++----------------------------------------------------------------------------+--------------------+--------------------+
+; Device                                                                     ; EP2C35F672C6       ;                    ;
+; Top-level entity name                                                      ; Int_Test           ; Int_Test           ;
+; Family name                                                                ; Cyclone II         ; Cyclone IV GX      ;
+; Use smart compilation                                                      ; Off                ; Off                ;
+; Enable parallel Assembler and TimeQuest Timing Analyzer during compilation ; On                 ; On                 ;
+; Enable compact report table                                                ; Off                ; Off                ;
+; Restructure Multiplexers                                                   ; Auto               ; Auto               ;
+; Create Debugging Nodes for IP Cores                                        ; Off                ; Off                ;
+; Preserve fewer node names                                                  ; On                 ; On                 ;
+; Disable OpenCore Plus hardware evaluation                                  ; Off                ; Off                ;
+; Verilog Version                                                            ; Verilog_2001       ; Verilog_2001       ;
+; VHDL Version                                                               ; VHDL_1993          ; VHDL_1993          ;
+; State Machine Processing                                                   ; Auto               ; Auto               ;
+; Safe State Machine                                                         ; Off                ; Off                ;
+; Extract Verilog State Machines                                             ; On                 ; On                 ;
+; Extract VHDL State Machines                                                ; On                 ; On                 ;
+; Ignore Verilog initial constructs                                          ; Off                ; Off                ;
+; Iteration limit for constant Verilog loops                                 ; 5000               ; 5000               ;
+; Iteration limit for non-constant Verilog loops                             ; 250                ; 250                ;
+; Add Pass-Through Logic to Inferred RAMs                                    ; On                 ; On                 ;
+; Infer RAMs from Raw Logic                                                  ; On                 ; On                 ;
+; Parallel Synthesis                                                         ; On                 ; On                 ;
+; DSP Block Balancing                                                        ; Auto               ; Auto               ;
+; NOT Gate Push-Back                                                         ; On                 ; On                 ;
+; Power-Up Don't Care                                                        ; On                 ; On                 ;
+; Remove Redundant Logic Cells                                               ; Off                ; Off                ;
+; Remove Duplicate Registers                                                 ; On                 ; On                 ;
+; Ignore CARRY Buffers                                                       ; Off                ; Off                ;
+; Ignore CASCADE Buffers                                                     ; Off                ; Off                ;
+; Ignore GLOBAL Buffers                                                      ; Off                ; Off                ;
+; Ignore ROW GLOBAL Buffers                                                  ; Off                ; Off                ;
+; Ignore LCELL Buffers                                                       ; Off                ; Off                ;
+; Ignore SOFT Buffers                                                        ; On                 ; On                 ;
+; Limit AHDL Integers to 32 Bits                                             ; Off                ; Off                ;
+; Optimization Technique                                                     ; Balanced           ; Balanced           ;
+; Carry Chain Length                                                         ; 70                 ; 70                 ;
+; Auto Carry Chains                                                          ; On                 ; On                 ;
+; Auto Open-Drain Pins                                                       ; On                 ; On                 ;
+; Perform WYSIWYG Primitive Resynthesis                                      ; Off                ; Off                ;
+; Auto ROM Replacement                                                       ; On                 ; On                 ;
+; Auto RAM Replacement                                                       ; On                 ; On                 ;
+; Auto Shift Register Replacement                                            ; Auto               ; Auto               ;
+; Allow Shift Register Merging across Hierarchies                            ; Auto               ; Auto               ;
+; Auto Clock Enable Replacement                                              ; On                 ; On                 ;
+; Strict RAM Replacement                                                     ; Off                ; Off                ;
+; Allow Synchronous Control Signals                                          ; On                 ; On                 ;
+; Force Use of Synchronous Clear Signals                                     ; Off                ; Off                ;
+; Auto RAM to Logic Cell Conversion                                          ; Off                ; Off                ;
+; Auto Resource Sharing                                                      ; Off                ; Off                ;
+; Allow Any RAM Size For Recognition                                         ; Off                ; Off                ;
+; Allow Any ROM Size For Recognition                                         ; Off                ; Off                ;
+; Allow Any Shift Register Size For Recognition                              ; Off                ; Off                ;
+; Use LogicLock Constraints during Resource Balancing                        ; On                 ; On                 ;
+; Ignore translate_off and synthesis_off directives                          ; Off                ; Off                ;
+; Timing-Driven Synthesis                                                    ; Off                ; Off                ;
+; Report Parameter Settings                                                  ; On                 ; On                 ;
+; Report Source Assignments                                                  ; On                 ; On                 ;
+; Report Connectivity Checks                                                 ; On                 ; On                 ;
+; Ignore Maximum Fan-Out Assignments                                         ; Off                ; Off                ;
+; Synchronization Register Chain Length                                      ; 2                  ; 2                  ;
+; PowerPlay Power Optimization                                               ; Normal compilation ; Normal compilation ;
+; HDL message level                                                          ; Level2             ; Level2             ;
+; Suppress Register Optimization Related Messages                            ; Off                ; Off                ;
+; Number of Removed Registers Reported in Synthesis Report                   ; 5000               ; 5000               ;
+; Number of Swept Nodes Reported in Synthesis Report                         ; 5000               ; 5000               ;
+; Number of Inverted Registers Reported in Synthesis Report                  ; 100                ; 100                ;
+; Clock MUX Protection                                                       ; On                 ; On                 ;
+; Auto Gated Clock Conversion                                                ; Off                ; Off                ;
+; Block Design Naming                                                        ; Auto               ; Auto               ;
+; SDC constraint protection                                                  ; Off                ; Off                ;
+; Synthesis Effort                                                           ; Auto               ; Auto               ;
+; Shift Register Replacement - Allow Asynchronous Clear Signal               ; On                 ; On                 ;
+; Pre-Mapping Resynthesis Optimization                                       ; Off                ; Off                ;
+; Analysis & Synthesis Message Level                                         ; Medium             ; Medium             ;
+; Disable Register Merging Across Hierarchies                                ; Auto               ; Auto               ;
+; Resource Aware Inference For Block RAM                                     ; On                 ; On                 ;
+; Synthesis Seed                                                             ; 1                  ; 1                  ;
++----------------------------------------------------------------------------+--------------------+--------------------+
+
+
++------------------------------------------+
+; Parallel Compilation                     ;
++----------------------------+-------------+
+; Processors                 ; Number      ;
++----------------------------+-------------+
+; Number detected on machine ; 2           ;
+; Maximum allowed            ; 2           ;
+;                            ;             ;
+; Average used               ; 1.00        ;
+; Maximum used               ; 1           ;
+;                            ;             ;
+; Usage by Processor         ; % Time Used ;
+;     1 processor            ; 100.0%      ;
+;     2 processors           ;   0.0%      ;
++----------------------------+-------------+
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                                   ;
++----------------------------------+-----------------+-----------------+-----------------------------------------------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type       ; File Name with Absolute Path                                                            ; Library ;
++----------------------------------+-----------------+-----------------+-----------------------------------------------------------------------------------------+---------+
+; Inc_Logic.vhd                    ; yes             ; User VHDL File  ; /home/user6/spring13/yc2615/Embedded_System_Design/6502/Integration_Test/Inc_Logic.vhd  ;         ;
+; TG.vhd                           ; yes             ; User VHDL File  ; /home/user6/spring13/yc2615/Embedded_System_Design/6502/Integration_Test/TG.vhd         ;         ;
+; reg.vhd                          ; yes             ; User VHDL File  ; /home/user6/spring13/yc2615/Embedded_System_Design/6502/Integration_Test/reg.vhd        ;         ;
+; mux4.vhd                         ; yes             ; User VHDL File  ; /home/user6/spring13/yc2615/Embedded_System_Design/6502/Integration_Test/mux4.vhd       ;         ;
+; mux2.vhd                         ; yes             ; User VHDL File  ; /home/user6/spring13/yc2615/Embedded_System_Design/6502/Integration_Test/mux2.vhd       ;         ;
+; Int_Test.vhd                     ; yes             ; User VHDL File  ; /home/user6/spring13/yc2615/Embedded_System_Design/6502/Integration_Test/Int_Test.vhd   ;         ;
+; PreDecoder.vhd                   ; yes             ; User VHDL File  ; /home/user6/spring13/yc2615/Embedded_System_Design/6502/Integration_Test/PreDecoder.vhd ;         ;
+; Inv8b.vhd                        ; yes             ; User VHDL File  ; /home/user6/spring13/yc2615/Embedded_System_Design/6502/Integration_Test/Inv8b.vhd      ;         ;
+; mux3.vhd                         ; yes             ; User VHDL File  ; /home/user6/spring13/yc2615/Embedded_System_Design/6502/Integration_Test/mux3.vhd       ;         ;
+; mux5.vhd                         ; yes             ; User VHDL File  ; /home/user6/spring13/yc2615/Embedded_System_Design/6502/Integration_Test/mux5.vhd       ;         ;
+; Star1.vhd                        ; yes             ; User VHDL File  ; /home/user6/spring13/yc2615/Embedded_System_Design/6502/Integration_Test/Star1.vhd      ;         ;
+; Star2.vhd                        ; yes             ; User VHDL File  ; /home/user6/spring13/yc2615/Embedded_System_Design/6502/Integration_Test/Star2.vhd      ;         ;
+; Star3.vhd                        ; yes             ; User VHDL File  ; /home/user6/spring13/yc2615/Embedded_System_Design/6502/Integration_Test/Star3.vhd      ;         ;
+; mux7.vhd                         ; yes             ; User VHDL File  ; /home/user6/spring13/yc2615/Embedded_System_Design/6502/Integration_Test/mux7.vhd       ;         ;
+; star4.vhd                        ; yes             ; User VHDL File  ; /home/user6/spring13/yc2615/Embedded_System_Design/6502/Integration_Test/star4.vhd      ;         ;
++----------------------------------+-----------------+-----------------+-----------------------------------------------------------------------------------------+---------+
+
+
++-----------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary         ;
++---------------------------------------------+-------+
+; Resource                                    ; Usage ;
++---------------------------------------------+-------+
+;                                             ;       ;
+; Total combinational functions               ; 0     ;
+; Logic element usage by number of LUT inputs ;       ;
+;     -- 4 input functions                    ; 0     ;
+;     -- 3 input functions                    ; 0     ;
+;     -- <=2 input functions                  ; 0     ;
+;                                             ;       ;
+; Logic elements by mode                      ;       ;
+;     -- normal mode                          ; 0     ;
+;     -- arithmetic mode                      ; 0     ;
+;                                             ;       ;
+; Total registers                             ; 0     ;
+;     -- Dedicated logic registers            ; 0     ;
+;     -- I/O registers                        ; 0     ;
+;                                             ;       ;
+; I/O pins                                    ; 26    ;
+; Embedded Multiplier 9-bit elements          ; 0     ;
++---------------------------------------------+-------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                         ;
++----------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+---------------------+--------------+
+; Compilation Hierarchy Node ; LC Combinationals ; LC Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name ; Library Name ;
++----------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+---------------------+--------------+
+; |Int_Test                  ; 0 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 26   ; 0            ; |Int_Test           ;              ;
++----------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+---------------------+--------------+
+Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
+
+
+Encoding Type:  One-Hot
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; State Machine - |Int_Test|TG:Timing|state                                                                                                                                                                                                                                                     ;
++--------------+-----------+------------+------------+------------+------------+------------+------------+------------+------------+------------+------------+------------+------------+------------+------------+------------+------------+------------+-------------+--------------+----------+
+; Name         ; state.T1F ; state.T3_B ; state.T2_B ; state.T6_7 ; state.T5_7 ; state.T4_7 ; state.T3_7 ; state.T2_7 ; state.T5_6 ; state.T4_6 ; state.T3_6 ; state.T2_6 ; state.T4_5 ; state.T3_5 ; state.T2_5 ; state.T3_4 ; state.T2_4 ; state.T2_3 ; state.T2_T0 ; state.T1F_T1 ; state.T0 ;
++--------------+-----------+------------+------------+------------+------------+------------+------------+------------+------------+------------+------------+------------+------------+------------+------------+------------+------------+------------+-------------+--------------+----------+
+; state.T0     ; 0         ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0           ; 0            ; 0        ;
+; state.T1F_T1 ; 0         ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0           ; 1            ; 1        ;
+; state.T2_T0  ; 0         ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 1           ; 0            ; 1        ;
+; state.T2_3   ; 0         ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 1          ; 0           ; 0            ; 1        ;
+; state.T2_4   ; 0         ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 1          ; 0          ; 0           ; 0            ; 1        ;
+; state.T3_4   ; 0         ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 1          ; 0          ; 0          ; 0           ; 0            ; 1        ;
+; state.T2_5   ; 0         ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 1          ; 0          ; 0          ; 0          ; 0           ; 0            ; 1        ;
+; state.T3_5   ; 0         ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 1          ; 0          ; 0          ; 0          ; 0          ; 0           ; 0            ; 1        ;
+; state.T4_5   ; 0         ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 1          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0           ; 0            ; 1        ;
+; state.T2_6   ; 0         ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 1          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0           ; 0            ; 1        ;
+; state.T3_6   ; 0         ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 1          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0           ; 0            ; 1        ;
+; state.T4_6   ; 0         ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 1          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0           ; 0            ; 1        ;
+; state.T5_6   ; 0         ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 1          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0           ; 0            ; 1        ;
+; state.T2_7   ; 0         ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 1          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0           ; 0            ; 1        ;
+; state.T3_7   ; 0         ; 0          ; 0          ; 0          ; 0          ; 0          ; 1          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0           ; 0            ; 1        ;
+; state.T4_7   ; 0         ; 0          ; 0          ; 0          ; 0          ; 1          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0           ; 0            ; 1        ;
+; state.T5_7   ; 0         ; 0          ; 0          ; 0          ; 1          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0           ; 0            ; 1        ;
+; state.T6_7   ; 0         ; 0          ; 0          ; 1          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0           ; 0            ; 1        ;
+; state.T2_B   ; 0         ; 0          ; 1          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0           ; 0            ; 1        ;
+; state.T3_B   ; 0         ; 1          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0           ; 0            ; 1        ;
+; state.T1F    ; 1         ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0          ; 0           ; 0            ; 1        ;
++--------------+-----------+------------+------------+------------+------------+------------+------------+------------+------------+------------+------------+------------+------------+------------+------------+------------+------------+------------+-------------+--------------+----------+
+
+
++-------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                            ;
++----------------------------------------+--------------------------------------+
+; Register name                          ; Reason for Removal                   ;
++----------------------------------------+--------------------------------------+
+; TG:Timing|state.T3_5                   ; Lost fanout                          ;
+; TG:Timing|state.T4_6                   ; Lost fanout                          ;
+; TG:Timing|state.T3_B                   ; Lost fanout                          ;
+; TG:Timing|state.T1F                    ; Lost fanout                          ;
+; TG:Timing|state.T2_5                   ; Lost fanout                          ;
+; TG:Timing|state.T2_6                   ; Lost fanout                          ;
+; TG:Timing|state.T3_6                   ; Lost fanout                          ;
+; TG:Timing|state.T2_7                   ; Lost fanout                          ;
+; TG:Timing|state.T3_7                   ; Lost fanout                          ;
+; TG:Timing|state.T4_7                   ; Lost fanout                          ;
+; TG:Timing|state.T5_7                   ; Lost fanout                          ;
+; TG:Timing|state.T2_B                   ; Lost fanout                          ;
+; TG:Timing|state.T0                     ; Stuck at GND due to stuck port clock ;
+; TG:Timing|state.T2_3                   ; Lost fanout                          ;
+; TG:Timing|state.T3_4                   ; Lost fanout                          ;
+; TG:Timing|state.T2_4                   ; Lost fanout                          ;
+; TG:Timing|state.T4_5                   ; Lost fanout                          ;
+; TG:Timing|state.T5_6                   ; Lost fanout                          ;
+; TG:Timing|state.T6_7                   ; Lost fanout                          ;
+; TG:Timing|state.T1F_T1                 ; Stuck at GND due to stuck port clock ;
+; TG:Timing|state.T2_T0                  ; Lost fanout                          ;
+; Total Number of Removed Registers = 21 ;                                      ;
++----------------------------------------+--------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------------------------------+
+; Removed Registers Triggering Further Register Optimizations                                                                            ;
++--------------------+-------------------------+-----------------------------------------------------------------------------------------+
+; Register name      ; Reason for Removal      ; Registers Removed due to This Register                                                  ;
++--------------------+-------------------------+-----------------------------------------------------------------------------------------+
+; TG:Timing|state.T0 ; Stuck at GND            ; TG:Timing|state.T2_3, TG:Timing|state.T3_4, TG:Timing|state.T2_4, TG:Timing|state.T4_5, ;
+;                    ; due to stuck port clock ; TG:Timing|state.T5_6, TG:Timing|state.T6_7, TG:Timing|state.T1F_T1,                     ;
+;                    ;                         ; TG:Timing|state.T2_T0                                                                   ;
++--------------------+-------------------------+-----------------------------------------------------------------------------------------+
+
+
++------------------------------------------------------+
+; General Register Statistics                          ;
++----------------------------------------------+-------+
+; Statistic                                    ; Value ;
++----------------------------------------------+-------+
+; Total registers                              ; 0     ;
+; Number of registers using Synchronous Clear  ; 0     ;
+; Number of registers using Synchronous Load   ; 0     ;
+; Number of registers using Asynchronous Clear ; 0     ;
+; Number of registers using Asynchronous Load  ; 0     ;
+; Number of registers using Clock Enable       ; 0     ;
+; Number of registers using Preset             ; 0     ;
++----------------------------------------------+-------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                           ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------+
+; 8:1                ; 7 bits    ; 35 LEs        ; 35 LEs               ; 0 LEs                  ; No         ; |Int_Test|TG:Timing|state  ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "mux4:ADHBus"                                                                        ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+; Port ; Type   ; Severity ; Details                                                                             ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+; b    ; Input  ; Info     ; Stuck at GND                                                                        ;
+; y    ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++-----------------------------------------+
+; Port Connectivity Checks: "mux5:ADLBus" ;
++------+-------+----------+---------------+
+; Port ; Type  ; Severity ; Details       ;
++------+-------+----------+---------------+
+; c    ; Input ; Info     ; Stuck at GND  ;
++------+-------+----------+---------------+
+
+
++----------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "mux5:DBBus"                                                                         ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+; Port ; Type   ; Severity ; Details                                                                             ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+; y    ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++------------------------------------------+
+; Port Connectivity Checks: "mux2:YIn"     ;
++--------+-------+----------+--------------+
+; Port   ; Type  ; Severity ; Details      ;
++--------+-------+----------+--------------+
+; sel[1] ; Input ; Info     ; Stuck at GND ;
++--------+-------+----------+--------------+
+
+
++------------------------------------------+
+; Port Connectivity Checks: "mux2:XIn"     ;
++--------+-------+----------+--------------+
+; Port   ; Type  ; Severity ; Details      ;
++--------+-------+----------+--------------+
+; sel[1] ; Input ; Info     ; Stuck at GND ;
++--------+-------+----------+--------------+
+
+
++------------------------------------------+
+; Port Connectivity Checks: "mux2:ACCIn"   ;
++--------+-------+----------+--------------+
+; Port   ; Type  ; Severity ; Details      ;
++--------+-------+----------+--------------+
+; sel[1] ; Input ; Info     ; Stuck at GND ;
++--------+-------+----------+--------------+
+
+
++------------------------------------------+
+; Port Connectivity Checks: "mux2:SInput"  ;
++--------+-------+----------+--------------+
+; Port   ; Type  ; Severity ; Details      ;
++--------+-------+----------+--------------+
+; sel[1] ; Input ; Info     ; Stuck at GND ;
++--------+-------+----------+--------------+
+
+
++--------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "reg:BIReg"                                                                              ;
++----------+--------+----------+-------------------------------------------------------------------------------------+
+; Port     ; Type   ; Severity ; Details                                                                             ;
++----------+--------+----------+-------------------------------------------------------------------------------------+
+; data_out ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++----------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++--------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "reg:AIReg"                                                                              ;
++----------+--------+----------+-------------------------------------------------------------------------------------+
+; Port     ; Type   ; Severity ; Details                                                                             ;
++----------+--------+----------+-------------------------------------------------------------------------------------+
+; data_out ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++----------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++------------------------------------------+
+; Port Connectivity Checks: "mux2:AIInput" ;
++------+-------+----------+----------------+
+; Port ; Type  ; Severity ; Details        ;
++------+-------+----------+----------------+
+; b    ; Input ; Info     ; Stuck at GND   ;
++------+-------+----------+----------------+
+
+
++-------------------------------------------+
+; Port Connectivity Checks: "mux2:PCHInput" ;
++--------+-------+----------+---------------+
+; Port   ; Type  ; Severity ; Details       ;
++--------+-------+----------+---------------+
+; sel[1] ; Input ; Info     ; Stuck at GND  ;
++--------+-------+----------+---------------+
+
+
++---------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "Increase_Logic:PLHCarryin"                                                               ;
++-----------+--------+----------+-------------------------------------------------------------------------------------+
+; Port      ; Type   ; Severity ; Details                                                                             ;
++-----------+--------+----------+-------------------------------------------------------------------------------------+
+; carry_in  ; Input  ; Info     ; Stuck at VCC                                                                        ;
+; carry_out ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++-----------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++-------------------------------------------------------+
+; Port Connectivity Checks: "Increase_Logic:PCLCarryin" ;
++----------+-------+----------+-------------------------+
+; Port     ; Type  ; Severity ; Details                 ;
++----------+-------+----------+-------------------------+
+; carry_in ; Input ; Info     ; Stuck at VCC            ;
++----------+-------+----------+-------------------------+
+
+
++-------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "TG:Timing"                                                                             ;
++---------+--------+----------+-------------------------------------------------------------------------------------+
+; Port    ; Type   ; Severity ; Details                                                                             ;
++---------+--------+----------+-------------------------------------------------------------------------------------+
+; tcstate ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; vec1    ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++---------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++------------------------------------------+
+; Port Connectivity Checks: "mux2:IRInput" ;
++--------+-------+----------+--------------+
+; Port   ; Type  ; Severity ; Details      ;
++--------+-------+----------+--------------+
+; sel[1] ; Input ; Info     ; Stuck at VCC ;
++--------+-------+----------+--------------+
+
+
++-------------------------------+
+; Elapsed Time Per Partition    ;
++----------------+--------------+
+; Partition Name ; Elapsed Time ;
++----------------+--------------+
+; Top            ; 00:00:00     ;
++----------------+--------------+
+
+
++-------------------------------+
+; Analysis & Synthesis Messages ;
++-------------------------------+
+Info: *******************************************************************
+Info: Running Quartus II 32-bit Analysis & Synthesis
+    Info: Version 12.1 Build 177 11/07/2012 SJ Full Version
+    Info: Processing started: Mon Apr 29 16:55:30 2013
+Info: Command: quartus_map --read_settings_files=on --write_settings_files=off Int_Test -c Int_Test
+Info (20030): Parallel compilation is enabled and will use 2 of the 2 processors detected
+Info (12021): Found 2 design units, including 1 entities, in source file Inc_Logic.vhd
+    Info (12022): Found design unit 1: Increase_Logic-rtl
+    Info (12023): Found entity 1: Increase_Logic
+Info (12021): Found 3 design units, including 1 entities, in source file FlipFlop_tb.vhd
+    Info (12022): Found design unit 1: dff_TB-TB
+    Info (12022): Found design unit 2: CFG_TB
+    Info (12023): Found entity 1: dff_TB
+Info (12021): Found 2 design units, including 1 entities, in source file TG_tb.vhd
+    Info (12022): Found design unit 1: TG_tb-tb
+    Info (12023): Found entity 1: TG_tb
+Info (12021): Found 2 design units, including 1 entities, in source file TG.vhd
+    Info (12022): Found design unit 1: TG-rtl
+    Info (12023): Found entity 1: TG
+Info (12021): Found 2 design units, including 1 entities, in source file reg.vhd
+    Info (12022): Found design unit 1: reg-rtl
+    Info (12023): Found entity 1: reg
+Info (12021): Found 2 design units, including 1 entities, in source file mux8.vhd
+    Info (12022): Found design unit 1: mux8-rtl
+    Info (12023): Found entity 1: mux8
+Info (12021): Found 2 design units, including 1 entities, in source file mux4.vhd
+    Info (12022): Found design unit 1: mux4-rtl
+    Info (12023): Found entity 1: mux4
+Info (12021): Found 2 design units, including 1 entities, in source file mux2.vhd
+    Info (12022): Found design unit 1: mux2-rtl
+    Info (12023): Found entity 1: mux2
+Info (12021): Found 2 design units, including 1 entities, in source file FlipFlop.vhd
+    Info (12022): Found design unit 1: FlipFlop-behav
+    Info (12023): Found entity 1: FlipFlop
+Info (12021): Found 2 design units, including 1 entities, in source file Int_Test.vhd
+    Info (12022): Found design unit 1: Int_Test-imp
+    Info (12023): Found entity 1: Int_Test
+Info (12021): Found 2 design units, including 1 entities, in source file PreDecoder.vhd
+    Info (12022): Found design unit 1: predecode-rtl
+    Info (12023): Found entity 1: predecode
+Info (12021): Found 2 design units, including 1 entities, in source file RCL.vhd
+    Info (12022): Found design unit 1: Control_Logic-rtl
+    Info (12023): Found entity 1: Control_Logic
+Info (12021): Found 2 design units, including 1 entities, in source file Inv8b.vhd
+    Info (12022): Found design unit 1: Inverter8b-rtl
+    Info (12023): Found entity 1: Inverter8b
+Info (12021): Found 2 design units, including 1 entities, in source file mux3.vhd
+    Info (12022): Found design unit 1: mux3-rtl
+    Info (12023): Found entity 1: mux3
+Info (12021): Found 2 design units, including 1 entities, in source file mux5.vhd
+    Info (12022): Found design unit 1: mux5-rtl
+    Info (12023): Found entity 1: mux5
+Info (12021): Found 2 design units, including 1 entities, in source file Star1.vhd
+    Info (12022): Found design unit 1: star1-rtl
+    Info (12023): Found entity 1: star1
+Info (12021): Found 2 design units, including 1 entities, in source file Star2.vhd
+    Info (12022): Found design unit 1: star2-rtl
+    Info (12023): Found entity 1: star2
+Info (12021): Found 2 design units, including 1 entities, in source file Star3.vhd
+    Info (12022): Found design unit 1: star3-rtl
+    Info (12023): Found entity 1: star3
+Info (12021): Found 2 design units, including 1 entities, in source file mux7.vhd
+    Info (12022): Found design unit 1: mux7-rtl
+    Info (12023): Found entity 1: mux7
+Info (12021): Found 2 design units, including 1 entities, in source file star4.vhd
+    Info (12022): Found design unit 1: star4-rtl
+    Info (12023): Found entity 1: star4
+Info (12127): Elaborating entity "Int_Test" for the top level hierarchy
+Warning (10541): VHDL Signal Declaration warning at Int_Test.vhd(8): used implicit default value for signal "Addrbus" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
+Warning (10541): VHDL Signal Declaration warning at Int_Test.vhd(13): used implicit default value for signal "Clk" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
+Warning (10541): VHDL Signal Declaration warning at Int_Test.vhd(14): used implicit default value for signal "BRC" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
+Warning (10036): Verilog HDL or VHDL warning at Int_Test.vhd(14): object "VEC1" assigned a value but never read
+Warning (10541): VHDL Signal Declaration warning at Int_Test.vhd(15): used implicit default value for signal "DB" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
+Warning (10541): VHDL Signal Declaration warning at Int_Test.vhd(15): used implicit default value for signal "ADH" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
+Warning (10036): Verilog HDL or VHDL warning at Int_Test.vhd(18): object "tcstate" assigned a value but never read
+Warning (10541): VHDL Signal Declaration warning at Int_Test.vhd(20): used implicit default value for signal "PCH_Pre_In" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
+Warning (10036): Verilog HDL or VHDL warning at Int_Test.vhd(21): object "AI" assigned a value but never read
+Warning (10036): Verilog HDL or VHDL warning at Int_Test.vhd(21): object "BI" assigned a value but never read
+Warning (10541): VHDL Signal Declaration warning at Int_Test.vhd(21): used implicit default value for signal "ADD" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
+Warning (10541): VHDL Signal Declaration warning at Int_Test.vhd(22): used implicit default value for signal "DL_DB" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
+Warning (10541): VHDL Signal Declaration warning at Int_Test.vhd(22): used implicit default value for signal "DL_ADL" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
+Warning (10541): VHDL Signal Declaration warning at Int_Test.vhd(22): used implicit default value for signal "DL_ADH" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
+Warning (10541): VHDL Signal Declaration warning at Int_Test.vhd(22): used implicit default value for signal "PCL_PCL" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
+Warning (10541): VHDL Signal Declaration warning at Int_Test.vhd(22): used implicit default value for signal "ADL_PCL" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
+Warning (10541): VHDL Signal Declaration warning at Int_Test.vhd(22): used implicit default value for signal "PCL_DB" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
+Warning (10541): VHDL Signal Declaration warning at Int_Test.vhd(22): used implicit default value for signal "PCL_ADL" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
+Warning (10541): VHDL Signal Declaration warning at Int_Test.vhd(23): used implicit default value for signal "PCH_PCH" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
+Warning (10541): VHDL Signal Declaration warning at Int_Test.vhd(23): used implicit default value for signal "ADH_PCH" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
+Warning (10541): VHDL Signal Declaration warning at Int_Test.vhd(23): used implicit default value for signal "PCH_DB" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
+Warning (10541): VHDL Signal Declaration warning at Int_Test.vhd(23): used implicit default value for signal "PCH_ADH" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
+Warning (10541): VHDL Signal Declaration warning at Int_Test.vhd(23): used implicit default value for signal "DB_BAR_ADD" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
+Warning (10541): VHDL Signal Declaration warning at Int_Test.vhd(23): used implicit default value for signal "DB_ADD" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
+Warning (10541): VHDL Signal Declaration warning at Int_Test.vhd(23): used implicit default value for signal "ADL_ADD" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
+Warning (10541): VHDL Signal Declaration warning at Int_Test.vhd(24): used implicit default value for signal "O_ADD" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
+Warning (10541): VHDL Signal Declaration warning at Int_Test.vhd(24): used implicit default value for signal "SB_ADD" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
+Warning (10541): VHDL Signal Declaration warning at Int_Test.vhd(24): used implicit default value for signal "ACR" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
+Warning (10541): VHDL Signal Declaration warning at Int_Test.vhd(24): used implicit default value for signal "ADD_ADL" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
+Warning (10541): VHDL Signal Declaration warning at Int_Test.vhd(24): used implicit default value for signal "ADD_SB" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
+Warning (10541): VHDL Signal Declaration warning at Int_Test.vhd(24): used implicit default value for signal "SB_S" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
+Warning (10541): VHDL Signal Declaration warning at Int_Test.vhd(25): used implicit default value for signal "SB_X" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
+Warning (10541): VHDL Signal Declaration warning at Int_Test.vhd(25): used implicit default value for signal "X_SB" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
+Warning (10541): VHDL Signal Declaration warning at Int_Test.vhd(25): used implicit default value for signal "SB_Y" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
+Warning (10541): VHDL Signal Declaration warning at Int_Test.vhd(25): used implicit default value for signal "Y_SB" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
+Warning (10541): VHDL Signal Declaration warning at Int_Test.vhd(25): used implicit default value for signal "SB_AC" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
+Warning (10541): VHDL Signal Declaration warning at Int_Test.vhd(25): used implicit default value for signal "AC_DB" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
+Warning (10541): VHDL Signal Declaration warning at Int_Test.vhd(25): used implicit default value for signal "AC_SB" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
+Warning (10541): VHDL Signal Declaration warning at Int_Test.vhd(25): used implicit default value for signal "S_SB" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
+Warning (10541): VHDL Signal Declaration warning at Int_Test.vhd(25): used implicit default value for signal "S_ADL" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
+Warning (10541): VHDL Signal Declaration warning at Int_Test.vhd(26): used implicit default value for signal "SB_ADH" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
+Warning (10541): VHDL Signal Declaration warning at Int_Test.vhd(26): used implicit default value for signal "SB_DB" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
+Warning (10541): VHDL Signal Declaration warning at Int_Test.vhd(27): used implicit default value for signal "O_ADH" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
+Warning (10541): VHDL Signal Declaration warning at Int_Test.vhd(27): used implicit default value for signal "O_ADL" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
+Warning (10036): Verilog HDL or VHDL warning at Int_Test.vhd(30): object "PC_Co" assigned a value but never read
+Info (12128): Elaborating entity "predecode" for hierarchy "predecode:PreDecodeLogic"
+Info (12128): Elaborating entity "mux2" for hierarchy "mux2:IRInput"
+Info (12128): Elaborating entity "reg" for hierarchy "reg:IR"
+Info (12128): Elaborating entity "TG" for hierarchy "TG:Timing"
+Info (12128): Elaborating entity "Increase_Logic" for hierarchy "Increase_Logic:PCLCarryin"
+Info (12128): Elaborating entity "Inverter8b" for hierarchy "Inverter8b:DBBar"
+Info (12128): Elaborating entity "mux3" for hierarchy "mux3:BIInput"
+Info (12128): Elaborating entity "star1" for hierarchy "star1:Star1Logic"
+Info (12128): Elaborating entity "mux5" for hierarchy "mux5:DBBus"
+Info (12128): Elaborating entity "star2" for hierarchy "star2:Star2Logic"
+Info (12128): Elaborating entity "star3" for hierarchy "star3:Star3Logic"
+Info (12128): Elaborating entity "mux7" for hierarchy "mux7:SBBus"
+Info (12128): Elaborating entity "star4" for hierarchy "star4:Star4Logic"
+Info (12128): Elaborating entity "mux4" for hierarchy "mux4:ADHBus"
+Warning (13024): Output pins are stuck at VCC or GND
+    Warning (13410): Pin "Addrbus[0]" is stuck at GND
+    Warning (13410): Pin "Addrbus[1]" is stuck at GND
+    Warning (13410): Pin "Addrbus[2]" is stuck at GND
+    Warning (13410): Pin "Addrbus[3]" is stuck at GND
+    Warning (13410): Pin "Addrbus[4]" is stuck at GND
+    Warning (13410): Pin "Addrbus[5]" is stuck at GND
+    Warning (13410): Pin "Addrbus[6]" is stuck at GND
+    Warning (13410): Pin "Addrbus[7]" is stuck at GND
+    Warning (13410): Pin "Addrbus[8]" is stuck at GND
+    Warning (13410): Pin "Addrbus[9]" is stuck at GND
+    Warning (13410): Pin "Addrbus[10]" is stuck at GND
+    Warning (13410): Pin "Addrbus[11]" is stuck at GND
+    Warning (13410): Pin "Addrbus[12]" is stuck at GND
+    Warning (13410): Pin "Addrbus[13]" is stuck at GND
+    Warning (13410): Pin "Addrbus[14]" is stuck at GND
+    Warning (13410): Pin "Addrbus[15]" is stuck at GND
+Info (17049): 19 registers lost all their fanouts during netlist optimizations.
+Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
+    Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
+Warning (21074): Design contains 10 input pin(s) that do not drive logic
+    Warning (15610): No output dependent on input pin "clock"
+    Warning (15610): No output dependent on input pin "Databus[0]"
+    Warning (15610): No output dependent on input pin "Databus[1]"
+    Warning (15610): No output dependent on input pin "Databus[2]"
+    Warning (15610): No output dependent on input pin "Databus[3]"
+    Warning (15610): No output dependent on input pin "Databus[4]"
+    Warning (15610): No output dependent on input pin "Databus[5]"
+    Warning (15610): No output dependent on input pin "Databus[6]"
+    Warning (15610): No output dependent on input pin "Databus[7]"
+    Warning (15610): No output dependent on input pin "reset"
+Info (21057): Implemented 26 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 10 input pins
+    Info (21059): Implemented 16 output pins
+Info: Quartus II 32-bit Analysis & Synthesis was successful. 0 errors, 73 warnings
+    Info: Peak virtual memory: 352 megabytes
+    Info: Processing ended: Mon Apr 29 16:55:34 2013
+    Info: Elapsed time: 00:00:04
+    Info: Total CPU time (on all processors): 00:00:03
+
+

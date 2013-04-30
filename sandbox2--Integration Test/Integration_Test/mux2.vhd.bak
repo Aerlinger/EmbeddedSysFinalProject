@@ -1,0 +1,25 @@
+library IEEE;
+use IEEE.std_logic_1164.all;
+
+
+entity mux2 is
+
+	port(
+		sel : in std_logic;
+		
+		a 	: out	std_logic_vector(7 downto 0);
+		b 	: out	std_logic_vector(7 downto 0);
+		
+		y	: out	std_logic_vector(7 downto 0)
+	);
+
+end mux8;
+
+
+architecture rtl of mux2 is
+begin
+	case sel is 
+		when '1' => 	y <= a;
+		when others => 	y <= b;
+	end case;
+end rtl;

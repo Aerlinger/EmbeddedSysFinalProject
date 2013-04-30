@@ -1,0 +1,30 @@
+library IEEE;
+use IEEE.std_logic_1164.all;
+
+
+entity mux4 is 
+
+	port(
+		sel : in std_logic_vector(1 downto 0);
+		
+		a 	: out	std_logic_vector(7 downto 0);
+		b 	: out	std_logic_vector(7 downto 0);
+		c 	: out	std_logic_vector(7 downto 0);
+		d 	: out	std_logic_vector(7 downto 0);
+		
+		y	: out	std_logic_vector(7 downto 0)
+	);
+
+end mux8;
+
+
+architecture rtl of mux4 is
+begin
+	case sel is 
+		when "0001" => 	y <= a;
+		when "0010" => 	y <= b;
+		when "0100" => 	y <= c;
+		when "1000" => 	y <= d;
+		when others
+	end case;
+end rtl;

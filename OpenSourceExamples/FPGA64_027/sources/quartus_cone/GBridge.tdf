@@ -1,0 +1,186 @@
+-- C-One reconfigurable computer
+-- http://c64upgra.de/c-one/
+-- Subdesign C-One 
+-- Part of 1K100
+--
+-- Copyright (c) 2004-2005 Tobias Gubener
+--
+-- All rights reserved
+--
+-- Redistribution and use in source and synthezised forms, with or without
+-- modification, are permitted provided that the following conditions are met:
+--
+-- Redistributions of source code must retain the above copyright notice,
+-- this list of conditions and the following disclaimer.
+--
+-- Redistributions in synthesized form must reproduce the above copyright
+-- notice, this list of conditions and the following disclaimer in the
+-- documentation and/or other materials provided with the distribution.
+--
+-- Neither the name of the author nor the names of other contributors may
+-- be used to endorse or promote products derived from this software without
+-- specific prior written permission.
+--
+-- THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+-- AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
+-- THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+-- PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE AUTHOR OR CONTRIBUTORS BE
+-- LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+-- CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+-- SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+-- INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+-- CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+-- ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+-- POSSIBILITY OF SUCH DAMAGE.
+--
+ 
+SUBDESIGN gbridge
+(
+	GBmode			:INPUT=vcc;		--0=>pixelclock = 25,4MHZ 65536 colors
+									--1=>pixelclock = 33,86MHZ 4096 colors
+	sysclk			:INPUT;			--sysclk
+	vid[15..0]		:INPUT=GND;		--vga data
+	vsync			:INPUT=GND;
+	hsync			:INPUT=GND;
+	pixclkena		:OUTPUT;		--clock for VGA Controller 
+									--either clock with falling edge or use as enable (active-high) for clock of video controller
+	gb[6..0]		:OUTPUT;		--sent data
+	gbi[7]			:INPUT;			--received data(gbi[7]=2MHZ,sync,streamB,streamA) 
+	right[15..0]	:INPUT=GND;
+	left[15..0]		:INPUT=GND;
+	SID1MHz			:INPUT=GND;		--1MHz für SID on the 1K30
+	ioselects[3..0]	:INPUT=VCC;		--
+	ioshift			:INPUT=GND;
+	ioshiftclk		:INPUT=GND;		--wird normalerweise mit 2MHZ verbunden 
+	adr[19..0]		:OUTPUT;		--mirrored address bus
+	data[7..0]		:OUTPUT;		--mirrored Data bus
+	iowr			:OUTPUT;		--IOWR => active-low
+	memwr			:OUTPUT;		--MEMWR => active-low, pulse length see below
+	wrshift[14..0]	:OUTPUT;		--on write access a '1' bit is shifted from [0] to [14]
+									--suitable for process control [Ablaufsteuerung: state control??? -mc], every stage approx. 40ns,
+									--e.g. [1] take over bus, [2] write data, [3] release bus	
+	lpt_bsy			:OUTPUT;
+	JoyA[5..0]		:OUTPUT;
+	JoyB[5..0]		:OUTPUT;
+	2MHz			:OUTPUT;		--for Audioshifter and Joysticks
+)
+
+VARIABLE
+	ring[4..0]		:DFF;
+	gshift[15..0]	:DFF;
+	ldekt[5..0]		:DFF;
+	adekt[3..0]		:DFF;
+	selshift[3..0]	:DFF;
+	inshift[3..0]	:DFF;
+	dshifta[14..0]	:DFFE;
+	dshiftb[14..0]	:DFFE;
+	wrshift[14..0]	:DFFE;
+	dataA[15..0]	:DFFE;
+	dataB[15..0]	:DFFE;
+	2MHz			:DFFE;
+	dummy[1..0]		:NODE;
+	shift[16..0]	:DFFE;
+	count[4..0] 	:DFF;
+	lrclk			:DFFE;
+	iauda			:NODE;
+	
+	jshift[14..0]	:DFF;
+	lpt_bsy			:DFFE;
+	JoyA[5..0]		:DFFE;
+	JoyB[5..0]		:DFFE;
+	ringin			:NODE;
+	pixclkena		:DFF;
+
+BEGIN
+DEFAULTS
+	lrclk.ena=GND;
+END	DEFAULTS;
+
+	(ring[], pixclkena).clk=sysclk;
+	pixclkena=ringin OR (ring[2] AND GBmode);
+	ring[4..1]=ring[3..0];
+	ring[0]=ringin;
+	ringin=NOT (ring[0] OR ring[1] OR ring[2] OR ((ring[3] OR ring[4])AND GBmode));
+
+--Sender
+--	(gshift[], ldekt[], adekt[]).clk=NOT sysclk; --supply with sysclk
+	(gshift[], ldekt[], adekt[], selshift[]).clk=sysclk; --supply with sysclk
+	IF ring[0]  OR (ring [3] AND GBmode) THEN
+		IF GBmode THEN
+			(gshift[11], gshift[6..5], gshift[0])=vid[15..12];--blau
+			(gshift[10..7])=vid[10..7];--grün
+			(gshift[4..1])=vid[4..1];--rot
+		ELSE
+			gshift[]=vid[];					
+		END IF;	
+	ELSE
+		gshift[15..4]=gshift[11..0];
+	END IF;
+	IF ring[0] THEN
+		ldekt[]=(GND, GND, lrclk, vsync, hsync, vcc);
+	ELSE
+		ldekt[5..1]=ldekt[4..0];
+	END IF;
+	IF (ring[2] AND GBmode) OR (ring[0] AND NOT GBmode) THEN
+		adekt[]=(iauda, ioshift, VCC, SID1MHz);
+		selshift[]=ioselects[];
+	ELSE
+		adekt[3..1]=adekt[2..0];
+		selshift[3..1]=selshift[2..0];
+	END IF;
+	IF GBmode THEN 
+		gb[6..0]=(selshift[3], adekt[3],ldekt[5],gshift[11..8]);
+	ELSE
+		gb[6..0]=(selshift[3], adekt[3],ldekt[3],gshift[15..12]);
+	END IF;	
+-----------------------------------------------------
+--receiver (deshifter)
+	(inshift[], dshifta[], dshiftb[], wrshift[], dataA[], dataB[], 2MHz).clk=sysclk;
+	IF GBmode THEN
+		(dshifta[], dshiftb[], wrshift[], 2MHz).ena=ringin;--ring[1];
+		(dataA[], dataB[]).ena=inshift[2] AND ringin;--ring[3];
+	ELSE
+		(dshifta[], dshiftb[], wrshift[], 2MHz).ena=ring[1];
+		(dataA[], dataB[]).ena=ring[1] AND inshift[2];
+	END IF;
+	(adr[], data[], iowr, memwr, dummy[1], dummy[0])=(dataA[], dataB[]);
+	(dataB[3]).prn=NOT wrshift[1];    --IOWR=H, index in brackets determins length of IO write pulse => pulse length =index/25MHz
+	(dataB[2]).prn=NOT wrshift[3];    --MEMWR=H, index in brackets determins length of MEM write pulse => pulse length =index/25MHz
+	dshifta[]=(dshifta[13..0], inshift[0]);
+	dshiftb[]=(dshiftb[13..0], inshift[1]);
+	wrshift[]=(wrshift[13..0], inshift[2]);
+	2MHz=inshift[3];
+	dataA[]=(dshifta[], inshift[0]);
+	dataB[]=(dshiftb[], inshift[1]);
+	inshift[]=(inshift[2..0],gbi[7]);
+--Audioshifter
+	(shift[], count[], lrclk).clk=NOT 2mhz;
+	lrclk = NOT lrclk;				
+	iauda=shift[16];
+	shift[].ena=(count[]<17);
+	IF count[] == 0 then		
+		lrclk.ena=VCC;				
+		count[] = 23;
+    	IF lrclk THEN						
+			shift[] = (GND, left[]);				
+		ELSE
+			shift[]	= (GND, right[]);			
+	   	END IF;
+	ELSE
+		shift[16..0] = (shift[15..0], GND);
+		count[]	= count[] - 1;	
+	END IF;
+--Joystick
+	IF jshift[14] THEN
+		jshift[]=B"000000000000000";
+	ELSE
+		jshift[]=(jshift[13..0],NOT ioshift);
+	END IF;
+	(jshift[], lpt_bsy, JoyA[], JoyB[]).clk=ioshiftclk;
+	(lpt_bsy, JoyA[], JoyB[]).ena= jshift[14];
+	lpt_bsy=NOT jshift[13];
+	JoyA[]=(GND, jshift[7], jshift[10..8], jshift[6]);
+	JoyB[]=(GND, jshift[4], jshift[1], jshift[2], jshift[3], jshift[5]);
+	
+	
+END;

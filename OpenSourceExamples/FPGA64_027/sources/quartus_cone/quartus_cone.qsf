@@ -1,0 +1,225 @@
+set_global_assignment -name TOP_LEVEL_ENTITY fpga64_top
+# Copyright (C) 1991-2005 Altera Corporation
+# Your use of Altera Corporation's design tools, logic functions 
+# and other software and tools, and its AMPP partner logic 
+# functions, and any output files any of the foregoing 
+# (including device programming or simulation files), and any 
+# associated documentation or information are expressly subject 
+# to the terms and conditions of the Altera Program License 
+# Subscription Agreement, Altera MegaCore Function License 
+# Agreement, or other applicable license agreement, including, 
+# without limitation, that your use is for the sole purpose of 
+# programming logic devices manufactured by Altera and sold by 
+# Altera or its authorized distributors.  Please refer to the 
+# applicable agreement for further details.
+
+
+# The default values for assignments are stored in the file
+#		quartus_cone_assignment_defaults.qdf
+# If this file doesn't exist, and for assignments not listed, see file
+#		assignment_defaults.qdf
+
+# Altera recommends that you do not modify this file. This
+# file is updated automatically by the Quartus II software
+# and any changes you make may be lost or overwritten.
+
+
+set_global_assignment -name ORIGINAL_QUARTUS_VERSION 5.1
+set_global_assignment -name PROJECT_CREATION_TIME_DATE "22:49:11  JANUARY 31, 2006"
+set_global_assignment -name LAST_QUARTUS_VERSION 7.2
+
+
+# Pin & Location Assignments
+# ==========================
+set_global_assignment -name RESERVE_PIN "AS INPUT TRI-STATED"
+set_location_assignment PIN_168 -to 2MHz
+set_location_assignment PIN_198 -to a[0]
+set_location_assignment PIN_186 -to a[10]
+set_location_assignment PIN_180 -to a[11]
+set_location_assignment PIN_179 -to a[12]
+set_location_assignment PIN_177 -to a[13]
+set_location_assignment PIN_176 -to a[14]
+set_location_assignment PIN_175 -to a[15]
+set_location_assignment PIN_202 -to a[16]
+set_location_assignment PIN_197 -to a[1]
+set_location_assignment PIN_196 -to a[2]
+set_location_assignment PIN_195 -to a[3]
+set_location_assignment PIN_193 -to a[4]
+set_location_assignment PIN_192 -to a[5]
+set_location_assignment PIN_191 -to a[6]
+set_location_assignment PIN_190 -to a[7]
+set_location_assignment PIN_189 -to a[8]
+set_location_assignment PIN_187 -to a[9]
+set_location_assignment PIN_207 -to abort
+set_location_assignment PIN_208 -to be
+set_location_assignment PIN_163 -to cpuclk
+set_location_assignment PIN_80 -to dma
+set_location_assignment PIN_87 -to gb[0]
+set_location_assignment PIN_86 -to gb[1]
+set_location_assignment PIN_85 -to gb[2]
+set_location_assignment PIN_83 -to gb[3]
+set_location_assignment PIN_75 -to gb[4]
+set_location_assignment PIN_74 -to gb[5]
+set_location_assignment PIN_71 -to gbi[7]
+set_location_assignment PIN_174 -to ioshift
+set_location_assignment PIN_70 -to kb_clk
+set_location_assignment PIN_69 -to kb_data
+set_location_assignment PIN_160 -to mdb[0]
+set_location_assignment PIN_157 -to mdb[1]
+set_location_assignment PIN_158 -to mdb[2]
+set_location_assignment PIN_159 -to mdb[3]
+set_location_assignment PIN_161 -to mdb[4]
+set_location_assignment PIN_162 -to mdb[5]
+set_location_assignment PIN_164 -to mdb[6]
+set_location_assignment PIN_166 -to mdb[7]
+set_location_assignment PIN_182 -to ml
+set_location_assignment PIN_184 -to mx
+set_location_assignment PIN_199 -to ramcs
+set_location_assignment PIN_205 -to ready
+set_location_assignment PIN_79 -to sysclk
+set_location_assignment PIN_200 -to vp
+set_location_assignment PIN_206 -to wr
+set_location_assignment PIN_73 -to gb[6]
+set_location_assignment PIN_169 -to Csel[0]
+set_location_assignment PIN_170 -to Csel[1]
+set_location_assignment PIN_172 -to Csel[2]
+set_location_assignment PIN_173 -to Csel[3]
+set_location_assignment PIN_7 -to sdata[0]
+set_location_assignment PIN_8 -to sdata[1]
+set_location_assignment PIN_9 -to sdata[2]
+set_location_assignment PIN_10 -to sdata[3]
+set_location_assignment PIN_11 -to sdata[4]
+set_location_assignment PIN_12 -to sdata[5]
+set_location_assignment PIN_13 -to sdata[6]
+set_location_assignment PIN_14 -to sdata[7]
+set_location_assignment PIN_57 -to sdata[8]
+set_location_assignment PIN_58 -to sdata[9]
+set_location_assignment PIN_60 -to sdata[10]
+set_location_assignment PIN_61 -to sdata[11]
+set_location_assignment PIN_62 -to sdata[12]
+set_location_assignment PIN_63 -to sdata[13]
+set_location_assignment PIN_64 -to sdata[14]
+set_location_assignment PIN_65 -to sdata[15]
+set_location_assignment PIN_53 -to sd_cs[0]
+set_location_assignment PIN_54 -to sd_cs[1]
+set_location_assignment PIN_55 -to sd_cs[2]
+set_location_assignment PIN_56 -to sd_cs[3]
+set_location_assignment PIN_41 -to sd_we
+set_location_assignment PIN_44 -to sd_ras
+set_location_assignment PIN_45 -to sd_cas
+set_location_assignment PIN_46 -to sd_ba[0]
+set_location_assignment PIN_47 -to sd_ba[1]
+set_location_assignment PIN_37 -to dqm[0]
+set_location_assignment PIN_38 -to dqm[1]
+set_location_assignment PIN_39 -to dqm[2]
+set_location_assignment PIN_40 -to dqm[3]
+set_location_assignment PIN_15 -to sd_addr[0]
+set_location_assignment PIN_17 -to sd_addr[1]
+set_location_assignment PIN_18 -to sd_addr[2]
+set_location_assignment PIN_19 -to sd_addr[3]
+set_location_assignment PIN_24 -to sd_addr[4]
+set_location_assignment PIN_25 -to sd_addr[5]
+set_location_assignment PIN_26 -to sd_addr[6]
+set_location_assignment PIN_27 -to sd_addr[7]
+set_location_assignment PIN_28 -to sd_addr[8]
+set_location_assignment PIN_29 -to sd_addr[9]
+set_location_assignment PIN_30 -to sd_addr[10]
+set_location_assignment PIN_31 -to sd_addr[11]
+set_location_assignment PIN_36 -to sd_addr[12]
+set_location_assignment PIN_78 -to nreset
+set_location_assignment PIN_78 -to reset_n
+
+# Timing Assignments
+# ==================
+set_global_assignment -name IGNORE_CLOCK_SETTINGS ON
+set_global_assignment -name TPD_REQUIREMENT "5 ns"
+set_global_assignment -name TSU_REQUIREMENT "5 ns"
+set_global_assignment -name TCO_REQUIREMENT "5 ns"
+set_global_assignment -name TH_REQUIREMENT "5 ns"
+set_global_assignment -name FMAX_REQUIREMENT "101.58 MHz"
+
+# Analysis & Synthesis Assignments
+# ================================
+set_global_assignment -name DEVICE_FILTER_PIN_COUNT 208
+set_global_assignment -name DEVICE_FILTER_SPEED_GRADE 3
+set_global_assignment -name FAMILY ACEX1K
+set_global_assignment -name REMOVE_REDUNDANT_LOGIC_CELLS ON
+set_global_assignment -name AUTO_IMPLEMENT_IN_ROM ON
+set_global_assignment -name FLEX10K_OPTIMIZATION_TECHNIQUE AREA
+set_global_assignment -name AUTO_RESOURCE_SHARING OFF
+
+# Fitter Assignments
+# ==================
+set_global_assignment -name DEVICE "EP1K100QC208-3"
+set_global_assignment -name RESERVE_ALL_UNUSED_PINS "AS INPUT TRI-STATED"
+set_global_assignment -name ERROR_CHECK_FREQUENCY_DIVISOR 0
+set_global_assignment -name FLEX10K_DEVICE_IO_STANDARD LVTTL/LVCMOS
+
+# Assembler Assignments
+# =====================
+set_global_assignment -name ON_CHIP_BITSTREAM_DECOMPRESSION OFF
+set_global_assignment -name GENERATE_RBF_FILE ON
+set_global_assignment -name RESERVE_ALL_UNUSED_PINS_NO_OUTPUT_GND "AS INPUT TRI-STATED"
+
+# ------------------------
+# start ENTITY(top_fpga64)
+
+	# Timing Assignments
+	# ==================
+
+# end ENTITY(top_fpga64)
+# ----------------------
+
+set_global_assignment -name SMART_RECOMPILE ON
+set_global_assignment -name ENABLE_DRC_SETTINGS ON
+set_global_assignment -name ENABLE_CLOCK_LATENCY ON
+set_global_assignment -name ENABLE_RECOVERY_REMOVAL_ANALYSIS ON
+set_global_assignment -name IGNORE_LCELL_BUFFERS ON
+set_global_assignment -name ROUTER_TIMING_OPTIMIZATION_LEVEL MAXIMUM
+set_global_assignment -name OPTIMIZE_HOLD_TIMING OFF
+set_global_assignment -name FITTER_EFFORT "STANDARD FIT"
+set_global_assignment -name PLACEMENT_EFFORT_MULTIPLIER 4.0
+set_global_assignment -name ROUTER_EFFORT_MULTIPLIER 2.0
+set_global_assignment -name OPTIMIZE_TIMING "EXTRA EFFORT"
+set_global_assignment -name FINAL_PLACEMENT_OPTIMIZATION ALWAYS
+set_global_assignment -name AUTO_GLOBAL_MEMORY_CONTROLS ON
+set_global_assignment -name AUTO_PACKED_REGISTERS "MINIMIZE AREA"
+set_global_assignment -name ALLOW_ANY_RAM_SIZE_FOR_RECOGNITION ON
+set_global_assignment -name ALLOW_ANY_ROM_SIZE_FOR_RECOGNITION ON
+set_global_assignment -name ADD_PASS_THROUGH_LOGIC_TO_INFERRED_RAMS OFF
+set_global_assignment -name IGNORE_CARRY_BUFFERS ON
+set_global_assignment -name IGNORE_CASCADE_BUFFERS ON
+set_global_assignment -name AUTO_GLOBAL_CLOCK ON
+set_global_assignment -name AUTO_RAM_RECOGNITION ON
+set_global_assignment -name AUTO_SHIFT_REGISTER_RECOGNITION AUTO
+set_global_assignment -name STATE_MACHINE_PROCESSING AUTO
+set_global_assignment -name FMAX_REQUIREMENT "34 MHz" -section_id clk32
+set_location_assignment PIN_183 -to game
+set_location_assignment PIN_167 -to exrom
+set_location_assignment PIN_16 -to dot_clk
+set_location_assignment PIN_163 -to cpu_clk
+set_location_assignment PIN_149 -to ba
+set_location_assignment PIN_204 -to irq_n
+set_location_assignment PIN_203 -to nmi_n
+set_global_assignment -name BLOCK_RAM_AND_MLAB_EQUIVALENT_PAUSED_READ_CAPABILITIES "DONT CARE"
+set_global_assignment -name VHDL_FILE ../rtl/fpga64_cone_scanconverter.vhd
+set_global_assignment -name VHDL_FILE ../rtl/video_vicII_656x_e.vhd
+set_global_assignment -name VHDL_FILE ../rtl/video_vicII_656x_a.vhd
+set_global_assignment -name VHDL_FILE ../rtl/gen_ram.vhd
+set_global_assignment -name VHDL_FILE ../rtl/gen_rwram.vhd
+set_global_assignment -name VHDL_FILE ../rtl/fpga64_keyboard_matrix_joyemu.vhd
+set_global_assignment -name VHDL_FILE ../rtl/cpu65xx_e.vhd
+set_global_assignment -name VHDL_FILE ../rtl/cpu65xx_fast.vhd
+set_global_assignment -name VHDL_FILE ../rtl/cpu_6510.vhd
+set_global_assignment -name VHDL_FILE ../rtl/fpga64_hexy.vhd
+set_global_assignment -name VHDL_FILE ../rtl/fpga64_hexy_vmode.vhd
+set_global_assignment -name AHDL_FILE GBridge.tdf
+set_global_assignment -name VHDL_FILE ../rtl/io_ps2_keyboard.vhd
+set_global_assignment -name VHDL_FILE ../rtl/cia6526.vhd
+set_global_assignment -name VHDL_FILE ../rtl/fpga64_buslogic_nommu.vhd
+set_global_assignment -name VHDL_FILE ../rtl/fpga64_cone.vhd
+set_global_assignment -name VHDL_FILE ../rtl/fpga64_rgbcolor.vhd
+set_global_assignment -name BSF_FILE fpga64_cone.bsf
+set_global_assignment -name BSF_FILE gbridge.bsf
+set_global_assignment -name BDF_FILE fpga64_top.bdf
+set_instance_assignment -name CLOCK_SETTINGS clk32 -to "gbridge:inst4|pixclkena"
