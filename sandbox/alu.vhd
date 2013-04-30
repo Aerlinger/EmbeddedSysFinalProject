@@ -1,23 +1,21 @@
 library IEEE;
 use IEEE.std_logic_1164.all;
 use IEEE.numeric_std.all;
-use work.T65_Pack.all;
 
-entity T65_ALU is
+entity alu is
   port(
-    Mode  : in std_logic_vector(1 downto 0);  -- "00" => 6502, "01" => 65C02, "10" => 65816
-    Op    : in std_logic_vector(3 downto 0);
-    BusA  : in std_logic_vector(7 downto 0);
-    BusB  : in std_logic_vector(7 downto 0);
-    P_In  : in std_logic_vector(7 downto 0);
-    P_Out : out std_logic_vector(7 downto 0);
-    Q   : out std_logic_vector(7 downto 0)
+    Op    : in std_logic_vector(3 downto 0);  -- ALU operation can be defined within a 4 bit "opcode" which is the subset of current opcode 123XXX4X
+    BusA  : in std_logic_vector(7 downto 0);  -- 8 Bit A Input
+    BusB  : in std_logic_vector(7 downto 0);  -- 8 Bit B Input
+    P_In  : in std_logic_vector(7 downto 0);  -- Processor status input
+    P_Out : out std_logic_vector(7 downto 0); -- Processor status output
+    Q   : out std_logic_vector(7 downto 0)    -- ALU output (result of operation)
   );
-end T65_ALU;
+end alu;
 
-architecture rtl of T65_ALU is
+architecture rtl of alu is
 
-  -- AddSub variables (temporary signals)
+  -- AddSub variables (temporary signals for PS)
   signal  ADC_Z   : std_logic;
   signal  ADC_C   : std_logic;
   signal  ADC_V   : std_logic;
@@ -36,13 +34,15 @@ begin
     variable AH : unsigned(6 downto 0);
     variable C : std_logic;
   begin
+
+    -- Resize for Carry:
     AL := resize(unsigned(BusA(3 downto 0) & P_In(Flag_C)), 7) + resize(unsigned(BusB(3 downto 0) & "1"), 7);
     AH := resize(unsigned(BusA(7 downto 4) & AL(5)), 7) + resize(unsigned(BusB(7 downto 4) & "1"), 7);
 
--- pragma translate_off
+-- 
       if is_x(std_logic_vector(AL)) then AL := "0000000"; end if;
       if is_x(std_logic_vector(AH)) then AH := "0000000"; end if;
--- pragma translate_on
+-- 
 
     if AL(4 downto 1) = 0 and AH(4 downto 1) = 0 then
       ADC_Z <= '1';
@@ -60,9 +60,9 @@ begin
     ADC_N <= AH(4);
     ADC_V <= (AH(4) xor BusA(7)) and not (BusA(7) xor BusB(7));
 
--- pragma translate_off
+-- 
       if is_x(std_logic_vector(AH)) then AH := "0000000"; end if;
--- pragma translate_on
+-- 
 
     if AH(5 downto 1) > 9 and P_In(Flag_D) = '1' then
       AH(6 downto 1) := AH(6 downto 1) + 6;
@@ -82,10 +82,10 @@ begin
     AL := resize(unsigned(BusA(3 downto 0) & C), 7) - resize(unsigned(BusB(3 downto 0) & "1"), 6);
     AH := resize(unsigned(BusA(7 downto 4) & "0"), 6) - resize(unsigned(BusB(7 downto 4) & AL(5)), 6);
 
--- pragma translate_off
+-- 
       if is_x(std_logic_vector(AL)) then AL := "0000000"; end if;
       if is_x(std_logic_vector(AH)) then AH := "000000"; end if;
--- pragma translate_on
+-- 
 
     if AL(4 downto 1) = 0 and AH(4 downto 1) = 0 then
       SBC_Z <= '1';
@@ -176,10 +176,12 @@ begin
     when "0011" =>
       P_Out(Flag_N) <= ADC_N;
       P_Out(Flag_Z) <= ADC_Z;
-    when "0110" | "0111" =>
+
+    when "0110" | "0111" =>  -- CMP and SBC
       P_Out(Flag_N) <= SBC_N;
       P_Out(Flag_Z) <= SBC_Z;
-    when "0100" =>
+    
+    when "0100" =>  -- BIT and ?
     when "1100" =>
       P_Out(Flag_N) <= BusB(7);
       if (BusA and BusB) = "00000000" then
