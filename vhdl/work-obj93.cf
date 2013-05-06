@@ -1,96 +1,14 @@
 v 3
-file . "toplevel.vhd" "20130420203523.000" "20130420213728.269":
-  package mos_6502 at 9( 120) + 0 on 4;
-file . "Two_Phase_CLK_tb.vhd" "20130420203500.000" "20130420213728.269":
-  entity two_phase_clk_tb at 1( 0) + 0 on 4;
-  architecture tb of two_phase_clk_tb at 8( 120) + 0 on 4;
-file . "Two_Phase_CLK.vhd" "20130420001032.000" "20130420213728.268":
-  entity two_phase_clk at 1( 0) + 0 on 4;
-  architecture rtl of two_phase_clk at 11( 173) + 0 on 4;
-file . "Timing_Generator_V2.vhd" "20130420211111.000" "20130420213728.268":
-  entity timing_generator at 1( 0) + 0 on 4;
-  architecture rtl of timing_generator at 14( 310) + 0 on 4;
-file . "Time_Gen_tb.vhd" "20130420203215.000" "20130420213728.268":
-  entity time_gen_tb at 1( 0) + 0 on 4;
-  architecture tb of time_gen_tb at 8( 110) + 0 on 4;
-file . "ThreeI_Latch.vhd" "20130420000824.000" "20130420213728.268":
-  entity threei_latch at 1( 0) + 0 on 4;
-  architecture rtl of threei_latch at 17( 398) + 0 on 4;
-file . "TI_Latch.vhd" "20130420000904.000" "20130420213728.268":
-  entity ti_latch at 1( 0) + 0 on 4;
-  architecture rtl of ti_latch at 15( 327) + 0 on 4;
-file . "Switch.vhd" "20130419235736.000" "20130420213728.268":
-  entity switch at 1( 0) + 0 on 4;
-  architecture rtl of switch at 12( 219) + 0 on 4;
-file . "SI_Latch.vhd" "20130420000443.000" "20130420213728.268":
-  entity si_latch at 1( 0) + 0 on 4;
-  architecture rtl of si_latch at 13( 246) + 0 on 4;
-file . "SIThreeO_Latch_tb.vhd" "20130420203127.000" "20130420213728.268":
-  entity sithreeo_latch_tb at 1( 0) + 0 on 4;
-  architecture tb of sithreeo_latch_tb at 8( 122) + 0 on 4;
-file . "SIThreeO_Latch.vhd" "20130420000551.000" "20130420213728.267":
-  entity sithreeo_latch at 1( 0) + 0 on 4;
-  architecture rtl of sithreeo_latch at 19( 486) + 0 on 4;
-file . "SITO_Latch_ADD.vhd" "20130420212909.000" "20130420213728.267":
-  entity sito_latch_add at 1( 0) + 0 on 4;
-  architecture rtl of sito_latch_add at 18( 449) + 0 on 4;
-file . "SITO_Latch.vhd" "20130420000655.000" "20130420213728.267":
-  entity sito_latch at 1( 0) + 0 on 4;
-  architecture rtl of sito_latch at 17( 419) + 0 on 4;
-file . "SISO_Latch.vhd" "20130420000432.000" "20130420213728.267":
-  entity siso_latch at 1( 0) + 0 on 4;
-  architecture rtl of siso_latch at 15( 322) + 0 on 4;
-file . "RAM.vhd" "20130419235736.000" "20130420213728.267":
-  entity raminfr at 4( 15) + 0 on 4;
-  architecture rtl of raminfr at 18( 289) + 0 on 4;
-file . "Predecode.vhd" "20130420000350.000" "20130420213728.267":
-  entity predecode at 1( 0) + 0 on 4;
-  architecture rtl of predecode at 13( 254) + 0 on 4;
-file . "PASS_Gate_SBtoDB.vhd" "20130420203840.000" "20130420213728.267":
-  entity pass_gate_sbtodb at 1( 0) + 0 on 4;
-  architecture rtl of pass_gate_sbtodb at 13( 281) + 0 on 4;
-file . "PASS_Gate_DBtoSB.vhd" "20130420210530.000" "20130420213728.267":
-  entity pass_gate_dbtosb at 1( 0) + 0 on 4;
-  architecture rtl of pass_gate_dbtosb at 11( 272) + 0 on 4;
-file . "Open_Drain.vhd" "20130420000135.000" "20130420213728.267":
-  entity open_drain at 1( 0) + 0 on 4;
-  architecture rtl of open_drain at 13( 209) + 0 on 4;
-file . "Latch_tb.vhd" "20130421012918.000" "20130420213728.267":
-  entity latch_tb at 1( 0) + 0 on 4;
-  architecture tb of latch_tb at 8( 104) + 0 on 4;
-file . "LDA_tb.vhd" "20130420211736.000" "20130420213728.266":
-  entity lda_tb at 1( 0) + 0 on 4;
-  architecture tb of lda_tb at 8( 100) + 0 on 4;
-file . "LDA_steptest.vhd" "20130419235736.000" "20130420213728.266":
-  entity lda_steptest at 1( 0) + 0 on 4;
-  architecture imp of lda_steptest at 12( 239) + 0 on 4;
-file . "LDA.vhd" "20130420212911.000" "20130420213728.266":
-  entity lda at 1( 0) + 0 on 4;
-  architecture imp of lda at 13( 245) + 0 on 4;
-file . "Inverter8b.vhd" "20130420000106.000" "20130420213728.265":
-  entity inverter8b at 1( 0) + 0 on 4;
-  architecture rtl of inverter8b at 11( 184) + 0 on 4;
-file . "Inverter1b.vhd" "20130420000108.000" "20130420213728.276":
-  entity inverter1b at 1( 0) + 0 on 11;
-  architecture rtl of inverter1b at 11( 144) + 0 on 12;
-file . "Increase_Logic_tb.vhd" "20130420202858.000" "20130420213728.265":
-  entity inc_logic_tb at 1( 0) + 0 on 4;
-  architecture tb of inc_logic_tb at 8( 112) + 0 on 4;
-file . "Increase_Logic.vhd" "20130420000020.000" "20130420213728.265":
-  entity increase_logic at 1( 0) + 0 on 4;
-  architecture rtl of increase_logic at 14( 275) + 0 on 4;
-file . "Control_Logic_tb.vhd" "20130420202832.000" "20130420213728.265":
-  entity control_logic_tb at 1( 0) + 0 on 4;
-  architecture tb of control_logic_tb at 8( 120) + 0 on 4;
-file . "Control_Logic.vhd" "20130419235736.000" "20130420213728.265":
-  entity control_logic at 1( 0) + 0 on 4;
-  architecture rtl of control_logic at 61( 746) + 1 on 4;
-file . "ANDGate.vhd" "20130419235736.000" "20130420213728.265":
-  entity andgate at 1( 0) + 0 on 4;
-  architecture rtl of andgate at 11( 150) + 0 on 4;
-file . "ALU_t.vhd" "20130420202807.000" "20130420213728.264":
-  entity alu_tb at 1( 0) + 0 on 4;
-  architecture tb of alu_tb at 8( 100) + 0 on 4;
-file . "ALU.vhd" "20130419235736.000" "20130420213728.264":
-  entity alu at 1( 0) + 0 on 4;
-  architecture rtl of alu at 16( 332) + 0 on 4;
+file . "FlipFlop_tb.vhd" "20130427233018.000" "20130427194207.665":
+  entity dff_tb at 4( 166) + 0 on 4;
+  architecture tb of dff_tb at 12( 331) + 0 on 4;
+file . "FlipFlop.vhd" "20130427230749.000" "20130427194207.665":
+  entity dff at 1( 0) + 0 on 4;
+  architecture behav of dff at 12( 172) + 0 on 4;
+file . "reg.vhd" "20130427234938.000" "20130427195035.303":
+  entity reg at 1( 0) + 0 on 24;
+  architecture rtl of reg at 14( 233) + 0 on 25;
+file . "reg_tb.vhd" "20130427235028.000" "20130427195052.558":
+  entity reg_tb at 1( 0) + 0 on 26;
+  architecture tb of reg_tb at 7( 74) + 0 on 27;
+  configuration cfg_tb at 59( 1078) + 0 on 28;
