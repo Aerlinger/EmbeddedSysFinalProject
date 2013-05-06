@@ -9,6 +9,11 @@ architecture rtl of alu_tb is
   signal Op: std_logic_vector(7 downto 0);
   signal A: std_logic_vector(7 downto 0);
   signal B: std_logic_vector(7 downto 0);
+  signal carry_in std_logic;
+  signal carry_in std_logic;
+  signal carry_in std_logic;
+  signal carry_in std_logic;
+  signal carry_in std_logic;
   signal P_In: std_logic_vector(7 downto 0);
   signal P_Out: std_logic_vector(7 downto 0);
   signal Q: std_logic_vector(7 downto 0);
@@ -52,7 +57,6 @@ begin
 
       assert(Q="11111111")
       report "Error ADC FF + F0 doesn't equal FF.";
-
       
       -- Zero? --
       A <= "00000000";
@@ -124,7 +128,6 @@ begin
       -- PS Register State
       Op <= "0011"
 
-
-
+    end process;
 
 end rtl;
