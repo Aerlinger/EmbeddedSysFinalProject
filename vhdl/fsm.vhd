@@ -7,7 +7,7 @@ entity seq_design is
     a: in std_logic;
     clk: in std_logic;
     reset: in std_logic;
-    x: out std_logic;
+    x: out std_logic
   );
 end seq_design;
 
@@ -30,4 +30,5 @@ begin
     end if;
 
     -- TODO: Unfinished: Anthony
-
+  end process;
+end fsm;

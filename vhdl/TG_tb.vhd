@@ -18,31 +18,31 @@ architecture tb of TG_tb is
 		process
 		begin
 			loop
-			   clk <= '0'; wait for 20ns;
-			   clk <= '1'; wait for 20ns;
+			   clk <= '0'; wait for 20 ns;
+			   clk <= '1'; wait for 20 ns;
 			end loop;
 		end process;
 		
 		process
 		begin
-			wait for 40ns;
+			wait for 40 ns;
 			reset <= '0';
 			wait;
 		end process;
 		
 		process
 		begin
-			wait for 300ns;
+			wait for 300 ns;
 			cycle_number<= "0010";
-			wait for 100ns;
+			wait for 100 ns;
 			cycle_number<= "0100";
-			wait for 200ns;
+			wait for 200 ns;
 			cycle_number<= "0101";
-			wait for 200ns;
+			wait for 200 ns;
 			cycle_number<= "0110";
-			wait for 300ns;
+			wait for 300 ns;
 			cycle_number<= "0111";
-			wait for 300ns;
+			wait for 300 ns;
 			cycle_number<= "0000";
 			wait;
 		end process;

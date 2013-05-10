@@ -1,130 +1,237 @@
 library ieee;
-use ieee.std_logic_1165.all;
-use ieee.numeric_std.all;
+use ieee.std_logic_1164.all;
+use ieee.std_logic_unsigned.all;
+use ieee.std_logic_arith.all;
 
-entity alu_tb is
-end alu_tb;
+-- define constant, signal and procedure within package for ALU
+package ALU_package is
+  constant INTERVAL: TIME := 8 ns;
 
-architecture rtl of alu_tb is
-  signal Op: std_logic_vector(7 downto 0);
-  signal A: std_logic_vector(7 downto 0);
-  signal B: std_logic_vector(7 downto 0);
-  signal P_In: std_logic_vector(7 downto 0);
-  signal P_Out: std_logic_vector(7 downto 0);
-  signal Q: std_logic_vector(7 downto 0);
-begin
+  signal sig_A: std_logic_vector(7 downto 0);
+  signal sig_B: std_logic_vector(7 downto 0);
+  signal sig_ANDS: std_logic;
+  signal sig_SUMS: std_logic;
+  signal sig_ORS: std_logic;
+  signal sig_EORS: std_logic;
+  signal sig_SRS: std_logic;
+  signal sig_Res: std_logic_vector(7 downto 0);
+
+  procedure load_data(
+    signal A, B: out std_logic_vector(7 downto 0);
+
+    signal ANDS: out std_logic;
+    signal SUMS: out std_logic;
+    signal ORS:  out std_logic;
+    signal EORS: out std_logic;
+    signal SRS:  out std_logic
+  );
+
+  procedure check_data(
+    signal ANDS: out std_logic;
+    signal SUMS: out std_logic;
+    signal ORS:  out std_logic;
+    signal EORS: out std_logic;
+    signal SRS:  out std_logic
+  );
+
+end ALU_package;
+
+-- put all the procedure descriptions within package body
+package body ALU_package is
   
+  procedure load_data ( 
+    signal A, B: out std_logic_vector(7 downto 0);
+    signal ANDS: out std_logic;
+    signal SUMS: out std_logic;
+    signal ORS:  out std_logic;
+    signal EORS: out std_logic;
+    signal SRS:  out std_logic
+  ) is
+  begin
+    A <= sig_A;
+    B <= sig_B;
+    ANDS <= sig_ANDS;
+    SUMS <= sig_SUMS;
+    ORS  <= sig_ORS;
+    EORS <= sig_EORS;
+    SRS  <= sig_SRS;
+  end load_data;
+  
+  procedure check_data (
+    signal ANDS: out std_logic;
+    signal SUMS: out std_logic;
+    signal ORS:  out std_logic;
+    signal EORS: out std_logic;
+    signal SRS:  out std_logic
+  ) is
+  begin
 
-  U_ALU: alu port_map(Op, A, B, P_In, P_Out, Q)
-  -- 15 possible ALU operations:
+    ANDS <= sig_ANDS;
+    SUMS <= sig_SUMS;
+    ORS  <= sig_ORS;
+    EORS <= sig_EORS;
+    SRS  <= sig_SRS;
+
+    if (sig_ANDS='1') then
+      assert(sig_Res = (sig_B and sig_A))
+      report "Error in A and B"
+      severity error;
+    elsif (sig_SUMS='1') then
+      assert(sig_Res = (sig_A + sig_B))
+      report "Error in Addition!"
+      severity warning;
+    elsif (sig_ORS='1') then
+      assert(sig_Res = (sig_A or sig_B))
+      report "Error detected in or operation!"  
+      severity warning;
+    elsif (sig_EORS='1') then
+      assert(sig_Res = (sig_A xor sig_B))
+      report "Error detected in XOR!"
+      severity warning;
+    elsif (sig_SRS='1') then  
+      -- TODO: srl operator not working
+      assert(sig_Res = (sig_A))
+      report "Error in SRL!"
+      severity warning;
+    else
+      assert(sig_Res = "XXXXXXXX") 
+      report "Output of ALU is not XXXXXXXX when no mode is selected!"
+      severity warning;
+    end if;
+  end check_data;
+
+end ALU_package;
+
+
+--------------------------------------------------------------------------
+-- Test Bench code for ALU
+--------------------------------------------------------------------------
+library IEEE;
+use IEEE.std_logic_1164. all; 
+use work.ALU_package.all;
+
+entity ALU_TB is      -- entity declaration
+end ALU_TB;
+
+architecture TB of ALU_TB is
+
+  component ALU
+    port( 
+      A:  in std_logic_vector(7 downto 0);
+      B:  in std_logic_vector(7 downto 0);
+      ANDS: in std_logic;
+      SUMS: in std_logic;
+      ORS:  in std_logic;
+      EORS: in std_logic;
+      SRS:  in std_logic;
+      Res:  out std_logic_vector(7 downto 0)
+    );
+  end component;
+
+  signal A: std_logic_vector(7 downto 0) := "00000000";
+  signal B: std_logic_vector(7 downto 0) := "00000000";
+  signal Res: std_logic_vector(7 downto 0) := "00000000";
+
+  signal ANDS: std_logic;
+  signal SUMS: std_logic;
+  signal ORS:  std_logic;
+  signal EORS: std_logic;
+  signal SRS:  std_logic;
+begin
+
+  U_ALU: ALU port map (
+    A,
+    B, 
+    ANDS,
+    SUMS,
+    ORS,
+    EORS,
+    SRS,
+    Res
+  );
 
   process
-    begin
-      -- ORA ----------------------------------------------
-      Op <= "0000";  
-      A <= "01010101";
-      B <= "00110000";
+  begin
 
-      assert(Q="01110101")
-      report "ERROR: ORA" severity error;
+    sig_A <= "11001100";
+    sig_B <= "10101010";
+    sig_Res <= "00000000";
 
-      -- AND ----------------------------------------------
-      Op <= "0001"
-      A <= "01010101";      
-      B <= "00111111";
-
-      assert(Q="00010101")
-      report "ERROR: ORA" severity error;
-
-      -- EOR ----------------------------------------------
-      Op <= "0010"  -- EOR 
-      A <= "01010101";      
-      B <= "00110000";
-
-      assert(Q="01100101")
-      report "ERROR: EOR" severity error;
-
-      -- ADC ----------------------------------------------
-      Op <= "0011"  -- ADC  (Flags ADC_N ADC_V, or ADC_Z)
-
-      A <= "11110000";
-      B <= "00001111";
-
-      assert(Q="11111111")
-      report "Error ADC FF + F0 doesn't equal FF.";
-
-      
-      -- Zero? --
-      A <= "00000000";
-      B <= "00000000";
-
-      assert(Q="00000000")
-      report "Error ADC 0 + 0 doesn't equal 0.";
-
-      A <= "11111111";
-      B <= "11000000";
-
-      assert(Q="00000000")
-      report "Error ADC FF + F0 doesn't equal FF.";
-
-      -- Overflow? -- 
-      assert(P_Out)
-      report "Error ADC FF + F0 doesn't set overflow flag";
-      
-
-      -- Unused? ----------------------------------------------      
-      Op <= "0100"  -- Unused? (Flags Z=1 if A and B are all 0)
-      A <= "01010101";
-      B <= "00110000";
-
-      assert(Q="01110101")
-      report "ERROR: ORA" severity error;
-
-      -- LDA ---------------------------------------------- 
-      Op <= "0101"  -- LDA 
-      A <= "01010101";
-      B <= "00110000";
-
-      assert(Q="01110101")
-      report "ERROR: ORA" severity error;
-
-      -- CMP ---------------------------------------------- 
-      Op <= "0110"  -- CMP (Flags SBC_N or SBC_Z)
-      A <= "01010101";
-      B <= "00110000";
-
-      assert(Q="01110101")
-      report "ERROR: ORA" severity error;
-
-      -- SBC ---------------------------------------------- 
-      Op <= "0111"  -- SBC (Flags SBC_N or SBC_Z)
-
-      -- ASL ----------------------------------------------
-      Op <= "1000"  -- ASL
-
-      -- ROL ----------------------------------------------
-      Op <= "1001"  -- ROL
-
-      -- LSR ----------------------------------------------
-      Op <= "1010"  -- LSR 
-
-      -- ROR ----------------------------------------------
-      Op <= "1011"  -- ROR Q := P_In(Flag_C) & BusA(7 downto 1);
-
-      -- BIT ----------------------------------------------
-      Op <= "1100"  -- BIT (Flags Z=1 if A and B are all 0)
-
-      -- DEC ----------------------------------------------
-      Op <= "1110"  -- DEC (A-1)
-
-      -- INC ----------------------------------------------
-      Op <= "1111"  -- INC (A+1)
+    sig_ANDS <= '0';
+    sig_SUMS <= '0';
+    sig_ORS  <= '0';
+    sig_EORS <= '0';
+    sig_SRS  <= '0';
 
 
-      -- PS Register State
-      Op <= "0011"
+    -- case 1: AND
+    ----------------------------------------------------------------
+    sig_ANDS <= '1';
+    wait for 1 ns;
+    load_data(A, B, ANDS, SUMS, ORS, EORS, SRS);
+    wait for 1 ns;
+    sig_Res <= Res;
+    wait for INTERVAL;
+    check_data(ANDS, SUMS, ORS, EORS, SRS);
+    sig_ANDS <= '0';
 
 
+    -- case 2: Addition
+    ----------------------------------------------------------------
+    sig_SUMS <= '1';
+    wait for 1 ns;
+    load_data(A, B, ANDS, SUMS, ORS, EORS, SRS);
+    wait for 1 ns;
+    sig_Res <= Res;
+    wait for INTERVAL;
+    check_data(ANDS, SUMS, ORS, EORS, SRS);
+    sig_SUMS <= '0';
 
 
-end rtl;
+    -- case 3: OR operation
+    ----------------------------------------------------------------
+    sig_ORS <= '1';
+    wait for 1 ns;
+    load_data(A, B, ANDS, SUMS, ORS, EORS, SRS);
+    wait for 1 ns;
+    sig_Res <= Res;
+    wait for INTERVAL;
+    check_data(ANDS, SUMS, ORS, EORS, SRS);
+    sig_ORS <= '0';
+
+
+    -- case 4: Addition
+    ----------------------------------------------------------------
+    sig_EORS <= '1';
+    wait for 1 ns;
+    load_data(A, B, ANDS, SUMS, ORS, EORS, SRS);
+    wait for 1 ns;
+    sig_Res <= Res;
+    wait for INTERVAL;
+    check_data(ANDS, SUMS, ORS, EORS, SRS);
+    sig_EORS <= '0';
+
+
+    -- case 5: Shift logical right
+    ----------------------------------------------------------------
+    sig_SRS <= '1';
+    wait for 1 ns;
+    load_data(A, B, ANDS, SUMS, ORS, EORS, SRS);
+    wait for 1 ns;
+    sig_Res <= Res;
+    wait for INTERVAL;
+    check_data(ANDS, SUMS, ORS, EORS, SRS);
+    sig_SRS <= '0';
+
+    wait;
+
+  end process;
+
+end TB;
+
+-------------------------------------------------------------------------
+configuration CFG_TB of ALU_TB is
+  for TB
+  end for;
+end CFG_TB;
+-------------------------------------------------------------------------
