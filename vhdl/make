@@ -9,5 +9,5 @@ Dir.glob("*_tb.vhd*").shuffle.each do |filename|
 
   `ghdl -a --ieee=synopsys -fexplicit #{filename}`
   `ghdl -e --ieee=synopsys -fexplicit #{filename_no_extension}`
-  `ghdl -r --ieee=synopsys -fexplicit #{filename_no_extension} --vcd=#{filename_no_extension}.vcd`
+  `ghdl -r --ieee=synopsys -fexplicit #{filename_no_extension}`#--vcd=#{filename_no_extension}.vcd`
 end

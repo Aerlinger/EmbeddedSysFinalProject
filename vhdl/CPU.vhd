@@ -30,7 +30,7 @@ port(
 		databus : in std_logic_vector(7 downto 0);
 		ACR_out, W_R     : out std_logic;
 		ABL_out, ABH_out, DOR, X_out, Y_out, ACC_out : out std_logic_vector(7 downto 0)
-		);
+  );
 end CPU;
 
 
@@ -47,6 +47,17 @@ architecture rtl of CPU is
 begin
 
   -- ALU Combinational Logic -------------------------------------------------
+  --ArithmeticLogicUnit: ALU port map(
+  --  A => A,
+  --  B => B,
+  --  ADD => ADD,
+  --  SUMS => SUMS,
+  --  ANDS => ANDS,
+  --  EORS => EORS,
+  --  ORS => ORS,
+  --  SRS => SRS
+  --);
+
 	process(SUMS, ORS, ANDS, EORS, SRS, AI, BI, I_ADDC, temp)
 	begin
     if SUMS='1' then

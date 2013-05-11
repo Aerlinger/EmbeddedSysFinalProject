@@ -11,29 +11,24 @@ architecture tb of Predecode_tb is
 	signal databus : std_logic_vector(7 downto 0) :=x"A9";
 	 
  begin
-    	
 
 --		process
 --		begin
 --			loop
---			   clk <= '0'; wait for 20ns;
---			   clk <= '1'; wait for 20ns;
+--			   clk <= '0'; wait for 20 ns;
+--			   clk <= '1'; wait for 20 ns;
 --			end loop;
 --		end process;
 		
-		
-		process
-		begin
-			wait for 101ns;
-			reset <= '0';
-			wait;
-		end process;
+  process
+  begin
+    wait for 101 ns;
+    reset <= '0';
+    wait;
+  end process;
 
-		
-		
-								  
 PredecodeLogic: 
-		entity work.Predecode
-		port map (reset=>reset, databus=>databus);
+  entity work.Predecode
+  port map (reset=>reset, databus=>databus);
 										
 end tb;

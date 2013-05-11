@@ -12,39 +12,34 @@ architecture tb of DFF_tb is
 	signal input : std_logic_vector(7 downto 0) :=x"ab";
 	 
  begin
-    	
 
 		process
 		begin
 			loop
-			   clk <= '0'; wait for 20ns;
-			   clk <= '1'; wait for 20ns;
+			   clk <= '0'; wait for 20 ns;
+			   clk <= '1'; wait for 20 ns;
 			end loop;
 		end process;
 		
-		
 		process
 		begin
-			wait for 33ns;
+			wait for 33 ns;
 			enable <= '1';
-			wait for 300ns;
+			wait for 300 ns;
 			enable<= '0';
 			wait;
 		end process;
 
-		
 		process
 		begin
-			wait for 100ns;
+			wait for 100 ns;
 			input<= x"00";
-			wait for 300ns;
+			wait for 300 ns;
 			input<= x"11";
 			wait;
 		end process;
 
-		
-								  
-DFF: 
+DFF:
 		entity work.DFlipFlop
 		port map (clk=> clk, input=>input, enable=>enable, reset=>reset);
 										

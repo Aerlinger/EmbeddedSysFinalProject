@@ -1,0 +1,34 @@
+$date
+  Sat May 11 16:21:25 2013
+$end
+$version
+  GHDL v0
+$end
+$timescale
+  1 fs
+$end
+$var reg 1 ! reset $end
+$var reg 8 " databus[7:0] $end
+$scope module predecodelogic $end
+$var reg 8 # databus[7:0] $end
+$var reg 1 $ reset $end
+$var reg 4 % cycle_number[3:0] $end
+$var reg 8 & instruction[7:0] $end
+$var reg 1 ' brc $end
+$var reg 1 ( rmw $end
+$upscope $end
+$enddefinitions $end
+#0
+1!
+b10101001 "
+b10101001 #
+1$
+b0000 %
+b00000000 &
+0'
+0(
+#101000000
+0!
+0$
+b0010 %
+b10101001 &
