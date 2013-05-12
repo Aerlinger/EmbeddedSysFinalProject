@@ -175,21 +175,41 @@ end DE2_TOP;
 architecture datapath of DE2_TOP is
 
 begin
+
+	U_6502: entity work.lab1 port map (
+		clk => CLOCK_50,
+		key => KEY,
+		hex0 => HEX0,
+		hex1 => HEX1,
+		hex2 => HEX2,
+		hex3 => HEX3,
+		hex4 => HEX4,
+		hex5 => HEX5,
+		hex6 => HEX6,
+		hex7 => HEX7,
+		sw => SW,
+		ledg => LEDG,
+		ledr => LEDR
+	);
   
-  HEX7     <= "0001001"; -- Leftmost
-  HEX6     <= "0000110";
-  HEX5     <= "1000111";
-  HEX4     <= "1000111";
-  HEX3     <= "1000000";
-  HEX2     <= (others => '1');
-  HEX1     <= (others => '1');
-  HEX0     <= (others => '1');          -- Rightmost
-  LEDG     <= (others => '0');
-  LEDR     <= (others => '0');
+	--  HEX7     <= "0001001"; -- Leftmost
+	--  HEX6     <= "0000110";
+	--  HEX5     <= "1000111";
+	--  HEX4     <= "1000111";
+	--  HEX3     <= "1000000";
+	--  HEX2     <= (others => '1');
+	--  HEX1     <= (others => '1');
+	--  HEX0     <= (others => '1');          -- Rightmost
+	
+  -- LEDG     <= (others => '0');
+  -- LEDR     <= (others => '0');
+	
+	-- These are outputs only:
+	
   LCD_ON   <= '1';
   LCD_BLON <= '1';
   LCD_RW <= '1';
-  LCD_EN <= '0';
+  LCD_EN <= '1';
   LCD_RS <= '0';
 
 

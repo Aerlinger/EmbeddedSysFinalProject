@@ -185,7 +185,7 @@ begin
 	);
 --
 --	
-  HEX7     <= (others => '1'); -- Leftmost
+  HEX7     <= (others => '1'); -- Leftmost (Active low)
 --  HEX6     <= "0000110";
 --  HEX5     <= "1000111";
 --  HEX4     <= "1000111";
@@ -196,7 +196,7 @@ begin
   LEDG     <= (others => '0');
   LEDR     <= (others => '0');
   LCD_ON   <= '1';
-  LCD_BLON <= '1';
+  LCD_BLON <= '0';
   LCD_RW <= '1';
   LCD_EN <= '0';
   LCD_RS <= '0';

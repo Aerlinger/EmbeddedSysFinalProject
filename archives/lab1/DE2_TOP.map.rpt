@@ -1,5 +1,5 @@
 Analysis & Synthesis report for DE2_TOP
-Fri Feb  8 01:34:05 2013
+Sun May 12 16:54:20 2013
 Quartus II 32-bit Version 12.1 Build 177 11/07/2012 SJ Full Version
 
 
@@ -48,7 +48,7 @@ applicable agreement for further details.
 +--------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                   ;
 +------------------------------------+-------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Fri Feb  8 01:34:05 2013     ;
+; Analysis & Synthesis Status        ; Successful - Sun May 12 16:54:20 2013     ;
 ; Quartus II 32-bit Version          ; 12.1 Build 177 11/07/2012 SJ Full Version ;
 ; Revision Name                      ; DE2_TOP                                   ;
 ; Top-level Entity Name              ; DE2_TOP                                   ;
@@ -167,25 +167,25 @@ applicable agreement for further details.
 +----------------------------+-------------+
 
 
-+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Source Files Read                                                                                                                                                                                  ;
-+-----------------------------------------+-----------------+-------------------------------------------------------+-------------------------------------------------------------------------------------------+---------+
-; File Name with User-Entered Path        ; Used in Netlist ; File Type                                             ; File Name with Absolute Path                                                              ; Library ;
-+-----------------------------------------+-----------------+-------------------------------------------------------+-------------------------------------------------------------------------------------------+---------+
-; DE2_TOP.vhd                             ; yes             ; User VHDL File                                        ; /home/user2/spring13/afe2104/EmbeddedSystems/lab1/DE2_TOP.vhd                             ;         ;
-; lab1.vhd                                ; yes             ; User VHDL File                                        ; /home/user2/spring13/afe2104/EmbeddedSystems/lab1/lab1.vhd                                ;         ;
-; altsyncram.tdf                          ; yes             ; Megafunction                                          ; /opt/altera/altera12.1/quartus/libraries/megafunctions/altsyncram.tdf                     ;         ;
-; stratix_ram_block.inc                   ; yes             ; Megafunction                                          ; /opt/altera/altera12.1/quartus/libraries/megafunctions/stratix_ram_block.inc              ;         ;
-; lpm_mux.inc                             ; yes             ; Megafunction                                          ; /opt/altera/altera12.1/quartus/libraries/megafunctions/lpm_mux.inc                        ;         ;
-; lpm_decode.inc                          ; yes             ; Megafunction                                          ; /opt/altera/altera12.1/quartus/libraries/megafunctions/lpm_decode.inc                     ;         ;
-; aglobal121.inc                          ; yes             ; Megafunction                                          ; /opt/altera/altera12.1/quartus/libraries/megafunctions/aglobal121.inc                     ;         ;
-; a_rdenreg.inc                           ; yes             ; Megafunction                                          ; /opt/altera/altera12.1/quartus/libraries/megafunctions/a_rdenreg.inc                      ;         ;
-; altrom.inc                              ; yes             ; Megafunction                                          ; /opt/altera/altera12.1/quartus/libraries/megafunctions/altrom.inc                         ;         ;
-; altram.inc                              ; yes             ; Megafunction                                          ; /opt/altera/altera12.1/quartus/libraries/megafunctions/altram.inc                         ;         ;
-; altdpram.inc                            ; yes             ; Megafunction                                          ; /opt/altera/altera12.1/quartus/libraries/megafunctions/altdpram.inc                       ;         ;
-; db/altsyncram_8o81.tdf                  ; yes             ; Auto-Generated Megafunction                           ; /home/user2/spring13/afe2104/EmbeddedSystems/lab1/db/altsyncram_8o81.tdf                  ;         ;
-; db/DE2_TOP.ram0_raminfr_80fe29f.hdl.mif ; yes             ; Auto-Generated Auto-Found Memory Initialization File  ; /home/user2/spring13/afe2104/EmbeddedSystems/lab1/db/DE2_TOP.ram0_raminfr_80fe29f.hdl.mif ;         ;
-+-----------------------------------------+-----------------+-------------------------------------------------------+-------------------------------------------------------------------------------------------+---------+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                                                                                                                   ;
++-----------------------------------------+-----------------+-------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------+---------+
+; File Name with User-Entered Path        ; Used in Netlist ; File Type                                             ; File Name with Absolute Path                                                                                               ; Library ;
++-----------------------------------------+-----------------+-------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------+---------+
+; DE2_TOP.vhd                             ; yes             ; User VHDL File                                        ; /home/user2/spring13/afe2104/EmbeddedSystems/EmbeddedSysFinalProject/archives/lab1/DE2_TOP.vhd                             ;         ;
+; lab1.vhd                                ; yes             ; User VHDL File                                        ; /home/user2/spring13/afe2104/EmbeddedSystems/EmbeddedSysFinalProject/archives/lab1/lab1.vhd                                ;         ;
+; altsyncram.tdf                          ; yes             ; Megafunction                                          ; /opt/altera/altera12.1/quartus/libraries/megafunctions/altsyncram.tdf                                                      ;         ;
+; stratix_ram_block.inc                   ; yes             ; Megafunction                                          ; /opt/altera/altera12.1/quartus/libraries/megafunctions/stratix_ram_block.inc                                               ;         ;
+; lpm_mux.inc                             ; yes             ; Megafunction                                          ; /opt/altera/altera12.1/quartus/libraries/megafunctions/lpm_mux.inc                                                         ;         ;
+; lpm_decode.inc                          ; yes             ; Megafunction                                          ; /opt/altera/altera12.1/quartus/libraries/megafunctions/lpm_decode.inc                                                      ;         ;
+; aglobal121.inc                          ; yes             ; Megafunction                                          ; /opt/altera/altera12.1/quartus/libraries/megafunctions/aglobal121.inc                                                      ;         ;
+; a_rdenreg.inc                           ; yes             ; Megafunction                                          ; /opt/altera/altera12.1/quartus/libraries/megafunctions/a_rdenreg.inc                                                       ;         ;
+; altrom.inc                              ; yes             ; Megafunction                                          ; /opt/altera/altera12.1/quartus/libraries/megafunctions/altrom.inc                                                          ;         ;
+; altram.inc                              ; yes             ; Megafunction                                          ; /opt/altera/altera12.1/quartus/libraries/megafunctions/altram.inc                                                          ;         ;
+; altdpram.inc                            ; yes             ; Megafunction                                          ; /opt/altera/altera12.1/quartus/libraries/megafunctions/altdpram.inc                                                        ;         ;
+; db/altsyncram_8o81.tdf                  ; yes             ; Auto-Generated Megafunction                           ; /home/user2/spring13/afe2104/EmbeddedSystems/EmbeddedSysFinalProject/archives/lab1/db/altsyncram_8o81.tdf                  ;         ;
+; db/DE2_TOP.ram0_raminfr_80fe29f.hdl.mif ; yes             ; Auto-Generated Auto-Found Memory Initialization File  ; /home/user2/spring13/afe2104/EmbeddedSystems/EmbeddedSysFinalProject/archives/lab1/db/DE2_TOP.ram0_raminfr_80fe29f.hdl.mif ;         ;
++-----------------------------------------+-----------------+-------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------+---------+
 
 
 +-----------------------------------------------------+
@@ -393,7 +393,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 +----------------+--------------+
 ; Partition Name ; Elapsed Time ;
 +----------------+--------------+
-; Top            ; 00:00:01     ;
+; Top            ; 00:00:03     ;
 +----------------+--------------+
 
 
@@ -403,7 +403,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus II 32-bit Analysis & Synthesis
     Info: Version 12.1 Build 177 11/07/2012 SJ Full Version
-    Info: Processing started: Fri Feb  8 01:34:00 2013
+    Info: Processing started: Sun May 12 16:54:12 2013
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off DE2_TOP -c DE2_TOP
 Info (20030): Parallel compilation is enabled and will use 2 of the 2 processors detected
 Info (12021): Found 2 design units, including 1 entities, in source file DE2_TOP.vhd
@@ -596,7 +596,7 @@ Warning (13024): Output pins are stuck at VCC or GND
     Warning (13410): Pin "OTG_DACK0_N" is stuck at VCC
     Warning (13410): Pin "OTG_DACK1_N" is stuck at VCC
     Warning (13410): Pin "LCD_ON" is stuck at VCC
-    Warning (13410): Pin "LCD_BLON" is stuck at VCC
+    Warning (13410): Pin "LCD_BLON" is stuck at GND
     Warning (13410): Pin "LCD_RW" is stuck at VCC
     Warning (13410): Pin "LCD_EN" is stuck at GND
     Warning (13410): Pin "LCD_RS" is stuck at GND
@@ -704,8 +704,8 @@ Info (21057): Implemented 530 device resources after synthesis - the final resou
     Info (21064): Implemented 8 RAM segments
 Info: Quartus II 32-bit Analysis & Synthesis was successful. 0 errors, 245 warnings
     Info: Peak virtual memory: 374 megabytes
-    Info: Processing ended: Fri Feb  8 01:34:05 2013
-    Info: Elapsed time: 00:00:05
-    Info: Total CPU time (on all processors): 00:00:04
+    Info: Processing ended: Sun May 12 16:54:20 2013
+    Info: Elapsed time: 00:00:08
+    Info: Total CPU time (on all processors): 00:00:08
 
 

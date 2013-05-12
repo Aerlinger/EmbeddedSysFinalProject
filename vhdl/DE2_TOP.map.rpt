@@ -1,5 +1,5 @@
 Analysis & Synthesis report for DE2_TOP
-Sun May 12 16:30:08 2013
+Sun May 12 17:47:23 2013
 Quartus II 32-bit Version 12.1 Build 177 11/07/2012 SJ Full Version
 
 
@@ -13,9 +13,17 @@ Quartus II 32-bit Version 12.1 Build 177 11/07/2012 SJ Full Version
   5. Analysis & Synthesis Source Files Read
   6. Analysis & Synthesis Resource Usage Summary
   7. Analysis & Synthesis Resource Utilization by Entity
-  8. General Register Statistics
-  9. Elapsed Time Per Partition
- 10. Analysis & Synthesis Messages
+  8. Registers Removed During Synthesis
+  9. General Register Statistics
+ 10. Port Connectivity Checks: "lab1:U_6502|hex7seg:h0"
+ 11. Port Connectivity Checks: "lab1:U_6502|hex7seg:h1"
+ 12. Port Connectivity Checks: "lab1:U_6502|hex7seg:h4"
+ 13. Port Connectivity Checks: "lab1:U_6502|hex7seg:h5"
+ 14. Port Connectivity Checks: "lab1:U_6502|hex7seg:h6"
+ 15. Port Connectivity Checks: "lab1:U_6502|hex7seg:h7"
+ 16. Port Connectivity Checks: "lab1:U_6502|raminfr:ram"
+ 17. Elapsed Time Per Partition
+ 18. Analysis & Synthesis Messages
 
 
 
@@ -41,7 +49,7 @@ applicable agreement for further details.
 +--------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                   ;
 +------------------------------------+-------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Sun May 12 16:30:08 2013     ;
+; Analysis & Synthesis Status        ; Successful - Sun May 12 17:47:22 2013     ;
 ; Quartus II 32-bit Version          ; 12.1 Build 177 11/07/2012 SJ Full Version ;
 ; Revision Name                      ; DE2_TOP                                   ;
 ; Top-level Entity Name              ; DE2_TOP                                   ;
@@ -160,13 +168,15 @@ applicable agreement for further details.
 +----------------------------+-------------+
 
 
-+------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Source Files Read                                                                                                                                 ;
-+----------------------------------+-----------------+-----------------+---------------------------------------------------------------------------------------+---------+
-; File Name with User-Entered Path ; Used in Netlist ; File Type       ; File Name with Absolute Path                                                          ; Library ;
-+----------------------------------+-----------------+-----------------+---------------------------------------------------------------------------------------+---------+
-; DE2_TOP.vhd                      ; yes             ; User VHDL File  ; /home/user2/spring13/afe2104/EmbeddedSystems/EmbeddedSysFinalProject/vhdl/DE2_TOP.vhd ;         ;
-+----------------------------------+-----------------+-----------------+---------------------------------------------------------------------------------------+---------+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                                  ;
++----------------------------------+-----------------+-----------------+----------------------------------------------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type       ; File Name with Absolute Path                                                           ; Library ;
++----------------------------------+-----------------+-----------------+----------------------------------------------------------------------------------------+---------+
+; DE2_IO.vhd                       ; yes             ; User VHDL File  ; /home/user2/spring13/afe2104/EmbeddedSystems/EmbeddedSysFinalProject/vhdl/DE2_IO.vhd   ;         ;
+; hextoseg.vhd                     ; yes             ; User VHDL File  ; /home/user2/spring13/afe2104/EmbeddedSystems/EmbeddedSysFinalProject/vhdl/hextoseg.vhd ;         ;
+; DE2_TOP.vhd                      ; yes             ; User VHDL File  ; /home/user2/spring13/afe2104/EmbeddedSystems/EmbeddedSysFinalProject/vhdl/DE2_TOP.vhd  ;         ;
++----------------------------------+-----------------+-----------------+----------------------------------------------------------------------------------------+---------+
 
 
 +-----------------------------------------------------+
@@ -191,6 +201,9 @@ applicable agreement for further details.
 ;                                             ;       ;
 ; I/O pins                                    ; 425   ;
 ; Embedded Multiplier 9-bit elements          ; 0     ;
+; Maximum fan-out                             ; 1     ;
+; Total fan-out                               ; 18    ;
+; Average fan-out                             ; 0.04  ;
 +---------------------------------------------+-------+
 
 
@@ -202,6 +215,16 @@ applicable agreement for further details.
 ; |DE2_TOP                   ; 0 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 425  ; 0            ; |DE2_TOP            ;              ;
 +----------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+---------------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
+
+
++---------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                              ;
++----------------------------------------+----------------------------------------+
+; Register name                          ; Reason for Removal                     ;
++----------------------------------------+----------------------------------------+
+; lab1:U_6502|raminfr:ram|read_a[0..15]  ; Stuck at GND due to stuck port data_in ;
+; Total Number of Removed Registers = 16 ;                                        ;
++----------------------------------------+----------------------------------------+
 
 
 +------------------------------------------------------+
@@ -219,12 +242,77 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +----------------------------------------------+-------+
 
 
++----------------------------------------------------+
+; Port Connectivity Checks: "lab1:U_6502|hex7seg:h0" ;
++-------+-------+----------+-------------------------+
+; Port  ; Type  ; Severity ; Details                 ;
++-------+-------+----------+-------------------------+
+; input ; Input ; Info     ; Stuck at GND            ;
++-------+-------+----------+-------------------------+
+
+
++----------------------------------------------------+
+; Port Connectivity Checks: "lab1:U_6502|hex7seg:h1" ;
++-------+-------+----------+-------------------------+
+; Port  ; Type  ; Severity ; Details                 ;
++-------+-------+----------+-------------------------+
+; input ; Input ; Info     ; Stuck at GND            ;
++-------+-------+----------+-------------------------+
+
+
++----------------------------------------------------+
+; Port Connectivity Checks: "lab1:U_6502|hex7seg:h4" ;
++-------+-------+----------+-------------------------+
+; Port  ; Type  ; Severity ; Details                 ;
++-------+-------+----------+-------------------------+
+; input ; Input ; Info     ; Stuck at GND            ;
++-------+-------+----------+-------------------------+
+
+
++----------------------------------------------------+
+; Port Connectivity Checks: "lab1:U_6502|hex7seg:h5" ;
++-------+-------+----------+-------------------------+
+; Port  ; Type  ; Severity ; Details                 ;
++-------+-------+----------+-------------------------+
+; input ; Input ; Info     ; Stuck at GND            ;
++-------+-------+----------+-------------------------+
+
+
++----------------------------------------------------+
+; Port Connectivity Checks: "lab1:U_6502|hex7seg:h6" ;
++-------+-------+----------+-------------------------+
+; Port  ; Type  ; Severity ; Details                 ;
++-------+-------+----------+-------------------------+
+; input ; Input ; Info     ; Stuck at GND            ;
++-------+-------+----------+-------------------------+
+
+
++----------------------------------------------------+
+; Port Connectivity Checks: "lab1:U_6502|hex7seg:h7" ;
++-------+-------+----------+-------------------------+
+; Port  ; Type  ; Severity ; Details                 ;
++-------+-------+----------+-------------------------+
+; input ; Input ; Info     ; Stuck at GND            ;
++-------+-------+----------+-------------------------+
+
+
++---------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "lab1:U_6502|raminfr:ram"                                                                 ;
++------------+-------+----------+-------------------------------------------------------------------------------------+
+; Port       ; Type  ; Severity ; Details                                                                             ;
++------------+-------+----------+-------------------------------------------------------------------------------------+
+; r_w        ; Input ; Info     ; Stuck at VCC                                                                        ;
+; addr       ; Input ; Info     ; Stuck at GND                                                                        ;
+; data[7..4] ; Bidir ; Warning  ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++------------+-------+----------+-------------------------------------------------------------------------------------+
+
+
 +-------------------------------+
 ; Elapsed Time Per Partition    ;
 +----------------+--------------+
 ; Partition Name ; Elapsed Time ;
 +----------------+--------------+
-; Top            ; 00:00:02     ;
+; Top            ; 00:00:04     ;
 +----------------+--------------+
 
 
@@ -234,16 +322,14 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 Info: *******************************************************************
 Info: Running Quartus II 32-bit Analysis & Synthesis
     Info: Version 12.1 Build 177 11/07/2012 SJ Full Version
-    Info: Processing started: Sun May 12 16:30:01 2013
+    Info: Processing started: Sun May 12 17:47:13 2013
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off DE2_TOP -c DE2_TOP
 Info (20030): Parallel compilation is enabled and will use 2 of the 2 processors detected
-Info (12021): Found 6 design units, including 3 entities, in source file DE2_IO.vhd
+Info (12021): Found 4 design units, including 2 entities, in source file DE2_IO.vhd
     Info (12022): Found design unit 1: raminfr-rtl
-    Info (12022): Found design unit 2: ctrl-selector
-    Info (12022): Found design unit 3: lab1-rtl
+    Info (12022): Found design unit 2: lab1-rtl
     Info (12023): Found entity 1: raminfr
-    Info (12023): Found entity 2: ctrl
-    Info (12023): Found entity 3: lab1
+    Info (12023): Found entity 2: lab1
 Info (12021): Found 2 design units, including 1 entities, in source file memory_async.vhd
     Info (12022): Found design unit 1: memory_async-rtl
     Info (12023): Found entity 1: memory_async
@@ -303,27 +389,36 @@ Info (12021): Found 2 design units, including 1 entities, in source file DE2_TOP
     Info (12022): Found design unit 1: DE2_TOP-datapath
     Info (12023): Found entity 1: DE2_TOP
 Info (12127): Elaborating entity "DE2_TOP" for the top level hierarchy
+Info (12128): Elaborating entity "lab1" for hierarchy "lab1:U_6502"
+Warning (10540): VHDL Signal Declaration warning at DE2_IO.vhd(188): used explicit default value for signal "r_w" because signal was never assigned a value
+Warning (10540): VHDL Signal Declaration warning at DE2_IO.vhd(189): used explicit default value for signal "Addrbus" because signal was never assigned a value
+Warning (10540): VHDL Signal Declaration warning at DE2_IO.vhd(191): used explicit default value for signal "clock_cycles" because signal was never assigned a value
+Info (12128): Elaborating entity "raminfr" for hierarchy "lab1:U_6502|raminfr:ram"
+Info (12128): Elaborating entity "hex7seg" for hierarchy "lab1:U_6502|hex7seg:h7"
+Info (276014): Found 1 instances of uninferred RAM logic
+    Info (276007): RAM logic "lab1:U_6502|raminfr:ram|RAM" is uninferred due to asynchronous read logic
+Warning (12241): 1 hierarchies have connectivity warnings - see the Connectivity Checks report folder
 Warning (13024): Output pins are stuck at VCC or GND
-    Warning (13410): Pin "HEX0[0]" is stuck at VCC
-    Warning (13410): Pin "HEX0[1]" is stuck at VCC
-    Warning (13410): Pin "HEX0[2]" is stuck at VCC
-    Warning (13410): Pin "HEX0[3]" is stuck at VCC
-    Warning (13410): Pin "HEX0[4]" is stuck at VCC
-    Warning (13410): Pin "HEX0[5]" is stuck at VCC
+    Warning (13410): Pin "HEX0[0]" is stuck at GND
+    Warning (13410): Pin "HEX0[1]" is stuck at GND
+    Warning (13410): Pin "HEX0[2]" is stuck at GND
+    Warning (13410): Pin "HEX0[3]" is stuck at GND
+    Warning (13410): Pin "HEX0[4]" is stuck at GND
+    Warning (13410): Pin "HEX0[5]" is stuck at GND
     Warning (13410): Pin "HEX0[6]" is stuck at VCC
-    Warning (13410): Pin "HEX1[0]" is stuck at VCC
-    Warning (13410): Pin "HEX1[1]" is stuck at VCC
-    Warning (13410): Pin "HEX1[2]" is stuck at VCC
-    Warning (13410): Pin "HEX1[3]" is stuck at VCC
-    Warning (13410): Pin "HEX1[4]" is stuck at VCC
-    Warning (13410): Pin "HEX1[5]" is stuck at VCC
+    Warning (13410): Pin "HEX1[0]" is stuck at GND
+    Warning (13410): Pin "HEX1[1]" is stuck at GND
+    Warning (13410): Pin "HEX1[2]" is stuck at GND
+    Warning (13410): Pin "HEX1[3]" is stuck at GND
+    Warning (13410): Pin "HEX1[4]" is stuck at GND
+    Warning (13410): Pin "HEX1[5]" is stuck at GND
     Warning (13410): Pin "HEX1[6]" is stuck at VCC
-    Warning (13410): Pin "HEX2[0]" is stuck at VCC
-    Warning (13410): Pin "HEX2[1]" is stuck at VCC
-    Warning (13410): Pin "HEX2[2]" is stuck at VCC
-    Warning (13410): Pin "HEX2[3]" is stuck at VCC
-    Warning (13410): Pin "HEX2[4]" is stuck at VCC
-    Warning (13410): Pin "HEX2[5]" is stuck at VCC
+    Warning (13410): Pin "HEX2[0]" is stuck at GND
+    Warning (13410): Pin "HEX2[1]" is stuck at GND
+    Warning (13410): Pin "HEX2[2]" is stuck at GND
+    Warning (13410): Pin "HEX2[3]" is stuck at GND
+    Warning (13410): Pin "HEX2[4]" is stuck at GND
+    Warning (13410): Pin "HEX2[5]" is stuck at GND
     Warning (13410): Pin "HEX2[6]" is stuck at VCC
     Warning (13410): Pin "HEX3[0]" is stuck at GND
     Warning (13410): Pin "HEX3[1]" is stuck at GND
@@ -332,61 +427,43 @@ Warning (13024): Output pins are stuck at VCC or GND
     Warning (13410): Pin "HEX3[4]" is stuck at GND
     Warning (13410): Pin "HEX3[5]" is stuck at GND
     Warning (13410): Pin "HEX3[6]" is stuck at VCC
-    Warning (13410): Pin "HEX4[0]" is stuck at VCC
-    Warning (13410): Pin "HEX4[1]" is stuck at VCC
-    Warning (13410): Pin "HEX4[2]" is stuck at VCC
+    Warning (13410): Pin "HEX4[0]" is stuck at GND
+    Warning (13410): Pin "HEX4[1]" is stuck at GND
+    Warning (13410): Pin "HEX4[2]" is stuck at GND
     Warning (13410): Pin "HEX4[3]" is stuck at GND
     Warning (13410): Pin "HEX4[4]" is stuck at GND
     Warning (13410): Pin "HEX4[5]" is stuck at GND
     Warning (13410): Pin "HEX4[6]" is stuck at VCC
-    Warning (13410): Pin "HEX5[0]" is stuck at VCC
-    Warning (13410): Pin "HEX5[1]" is stuck at VCC
-    Warning (13410): Pin "HEX5[2]" is stuck at VCC
+    Warning (13410): Pin "HEX5[0]" is stuck at GND
+    Warning (13410): Pin "HEX5[1]" is stuck at GND
+    Warning (13410): Pin "HEX5[2]" is stuck at GND
     Warning (13410): Pin "HEX5[3]" is stuck at GND
     Warning (13410): Pin "HEX5[4]" is stuck at GND
     Warning (13410): Pin "HEX5[5]" is stuck at GND
     Warning (13410): Pin "HEX5[6]" is stuck at VCC
     Warning (13410): Pin "HEX6[0]" is stuck at GND
-    Warning (13410): Pin "HEX6[1]" is stuck at VCC
-    Warning (13410): Pin "HEX6[2]" is stuck at VCC
+    Warning (13410): Pin "HEX6[1]" is stuck at GND
+    Warning (13410): Pin "HEX6[2]" is stuck at GND
     Warning (13410): Pin "HEX6[3]" is stuck at GND
     Warning (13410): Pin "HEX6[4]" is stuck at GND
     Warning (13410): Pin "HEX6[5]" is stuck at GND
-    Warning (13410): Pin "HEX6[6]" is stuck at GND
-    Warning (13410): Pin "HEX7[0]" is stuck at VCC
+    Warning (13410): Pin "HEX6[6]" is stuck at VCC
+    Warning (13410): Pin "HEX7[0]" is stuck at GND
     Warning (13410): Pin "HEX7[1]" is stuck at GND
     Warning (13410): Pin "HEX7[2]" is stuck at GND
-    Warning (13410): Pin "HEX7[3]" is stuck at VCC
+    Warning (13410): Pin "HEX7[3]" is stuck at GND
     Warning (13410): Pin "HEX7[4]" is stuck at GND
     Warning (13410): Pin "HEX7[5]" is stuck at GND
-    Warning (13410): Pin "HEX7[6]" is stuck at GND
-    Warning (13410): Pin "LEDG[0]" is stuck at GND
+    Warning (13410): Pin "HEX7[6]" is stuck at VCC
+    Warning (13410): Pin "LEDG[0]" is stuck at VCC
     Warning (13410): Pin "LEDG[1]" is stuck at GND
-    Warning (13410): Pin "LEDG[2]" is stuck at GND
+    Warning (13410): Pin "LEDG[2]" is stuck at VCC
     Warning (13410): Pin "LEDG[3]" is stuck at GND
-    Warning (13410): Pin "LEDG[4]" is stuck at GND
+    Warning (13410): Pin "LEDG[4]" is stuck at VCC
     Warning (13410): Pin "LEDG[5]" is stuck at GND
-    Warning (13410): Pin "LEDG[6]" is stuck at GND
+    Warning (13410): Pin "LEDG[6]" is stuck at VCC
     Warning (13410): Pin "LEDG[7]" is stuck at GND
-    Warning (13410): Pin "LEDG[8]" is stuck at GND
-    Warning (13410): Pin "LEDR[0]" is stuck at GND
-    Warning (13410): Pin "LEDR[1]" is stuck at GND
-    Warning (13410): Pin "LEDR[2]" is stuck at GND
-    Warning (13410): Pin "LEDR[3]" is stuck at GND
-    Warning (13410): Pin "LEDR[4]" is stuck at GND
-    Warning (13410): Pin "LEDR[5]" is stuck at GND
-    Warning (13410): Pin "LEDR[6]" is stuck at GND
-    Warning (13410): Pin "LEDR[7]" is stuck at GND
-    Warning (13410): Pin "LEDR[8]" is stuck at GND
-    Warning (13410): Pin "LEDR[9]" is stuck at GND
-    Warning (13410): Pin "LEDR[10]" is stuck at GND
-    Warning (13410): Pin "LEDR[11]" is stuck at GND
-    Warning (13410): Pin "LEDR[12]" is stuck at GND
-    Warning (13410): Pin "LEDR[13]" is stuck at GND
-    Warning (13410): Pin "LEDR[14]" is stuck at GND
-    Warning (13410): Pin "LEDR[15]" is stuck at GND
-    Warning (13410): Pin "LEDR[16]" is stuck at GND
-    Warning (13410): Pin "LEDR[17]" is stuck at GND
+    Warning (13410): Pin "LEDG[8]" is stuck at VCC
     Warning (13410): Pin "UART_TXD" is stuck at GND
     Warning (13410): Pin "IRDA_TXD" is stuck at GND
     Warning (13410): Pin "DRAM_ADDR[0]" is stuck at GND
@@ -473,7 +550,7 @@ Warning (13024): Output pins are stuck at VCC or GND
     Warning (13410): Pin "LCD_ON" is stuck at VCC
     Warning (13410): Pin "LCD_BLON" is stuck at VCC
     Warning (13410): Pin "LCD_RW" is stuck at VCC
-    Warning (13410): Pin "LCD_EN" is stuck at GND
+    Warning (13410): Pin "LCD_EN" is stuck at VCC
     Warning (13410): Pin "LCD_RS" is stuck at GND
     Warning (13410): Pin "SD_DAT3" is stuck at VCC
     Warning (13410): Pin "SD_CMD" is stuck at VCC
@@ -526,32 +603,13 @@ Warning (13024): Output pins are stuck at VCC or GND
     Warning (13410): Pin "TD_RESET" is stuck at GND
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
-Warning (21074): Design contains 49 input pin(s) that do not drive logic
+Warning (21074): Design contains 31 input pin(s) that do not drive logic
     Warning (15610): No output dependent on input pin "CLOCK_27"
-    Warning (15610): No output dependent on input pin "CLOCK_50"
     Warning (15610): No output dependent on input pin "EXT_CLOCK"
     Warning (15610): No output dependent on input pin "KEY[0]"
     Warning (15610): No output dependent on input pin "KEY[1]"
     Warning (15610): No output dependent on input pin "KEY[2]"
     Warning (15610): No output dependent on input pin "KEY[3]"
-    Warning (15610): No output dependent on input pin "SW[0]"
-    Warning (15610): No output dependent on input pin "SW[1]"
-    Warning (15610): No output dependent on input pin "SW[2]"
-    Warning (15610): No output dependent on input pin "SW[3]"
-    Warning (15610): No output dependent on input pin "SW[4]"
-    Warning (15610): No output dependent on input pin "SW[5]"
-    Warning (15610): No output dependent on input pin "SW[6]"
-    Warning (15610): No output dependent on input pin "SW[7]"
-    Warning (15610): No output dependent on input pin "SW[8]"
-    Warning (15610): No output dependent on input pin "SW[9]"
-    Warning (15610): No output dependent on input pin "SW[10]"
-    Warning (15610): No output dependent on input pin "SW[11]"
-    Warning (15610): No output dependent on input pin "SW[12]"
-    Warning (15610): No output dependent on input pin "SW[13]"
-    Warning (15610): No output dependent on input pin "SW[14]"
-    Warning (15610): No output dependent on input pin "SW[15]"
-    Warning (15610): No output dependent on input pin "SW[16]"
-    Warning (15610): No output dependent on input pin "SW[17]"
     Warning (15610): No output dependent on input pin "UART_RXD"
     Warning (15610): No output dependent on input pin "IRDA_RXD"
     Warning (15610): No output dependent on input pin "OTG_INT0"
@@ -576,14 +634,15 @@ Warning (21074): Design contains 49 input pin(s) that do not drive logic
     Warning (15610): No output dependent on input pin "TD_DATA[7]"
     Warning (15610): No output dependent on input pin "TD_HS"
     Warning (15610): No output dependent on input pin "TD_VS"
+    Warning (15610): No output dependent on input pin "CLOCK_50"
 Info (21057): Implemented 425 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 49 input pins
     Info (21059): Implemented 220 output pins
     Info (21060): Implemented 156 bidirectional pins
-Info: Quartus II 32-bit Analysis & Synthesis was successful. 0 errors, 271 warnings
-    Info: Peak virtual memory: 366 megabytes
-    Info: Processing ended: Sun May 12 16:30:08 2013
-    Info: Elapsed time: 00:00:07
-    Info: Total CPU time (on all processors): 00:00:06
+Info: Quartus II 32-bit Analysis & Synthesis was successful. 0 errors, 239 warnings
+    Info: Peak virtual memory: 385 megabytes
+    Info: Processing ended: Sun May 12 17:47:23 2013
+    Info: Elapsed time: 00:00:10
+    Info: Total CPU time (on all processors): 00:00:09
 
 

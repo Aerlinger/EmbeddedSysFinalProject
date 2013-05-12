@@ -16,7 +16,7 @@
 -- PROGRAM "Quartus II 32-bit"
 -- VERSION "Version 12.1 Build 177 11/07/2012 SJ Full Version"
 
--- DATE "02/08/2013 01:34:35"
+-- DATE "05/12/2013 16:55:02"
 
 -- 
 -- Device: Altera EP2C35F672C6 Package FBGA672
@@ -12448,7 +12448,7 @@ GENERIC MAP (
 	output_sync_reset => "none")
 -- pragma translate_on
 PORT MAP (
-	datain => VCC,
+	datain => GND,
 	devclrn => ww_devclrn,
 	devpor => ww_devpor,
 	devoe => ww_devoe,

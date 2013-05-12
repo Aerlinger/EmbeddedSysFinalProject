@@ -24,13 +24,175 @@
 (DELAYFILE
   (SDFVERSION "2.1")
   (DESIGN "DE2_TOP")
-  (DATE "05/12/2013 16:30:46")
+  (DATE "05/12/2013 17:48:04")
   (VENDOR "Altera")
   (PROGRAM "Quartus II 32-bit")
   (VERSION "Version 12.1 Build 177 11/07/2012 SJ Full Version")
   (DIVIDER .)
   (TIMESCALE 1 ps)
 
+  (CELL
+    (CELLTYPE "cycloneii_asynch_io")
+    (INSTANCE \\SW\[0\]\~I\\.asynch_inst)
+    (DELAY
+      (ABSOLUTE
+        (IOPATH padio combout (999:999:999) (999:999:999))
+      )
+    )
+  )
+  (CELL
+    (CELLTYPE "cycloneii_asynch_io")
+    (INSTANCE \\SW\[1\]\~I\\.asynch_inst)
+    (DELAY
+      (ABSOLUTE
+        (IOPATH padio combout (999:999:999) (999:999:999))
+      )
+    )
+  )
+  (CELL
+    (CELLTYPE "cycloneii_asynch_io")
+    (INSTANCE \\SW\[2\]\~I\\.asynch_inst)
+    (DELAY
+      (ABSOLUTE
+        (IOPATH padio combout (999:999:999) (999:999:999))
+      )
+    )
+  )
+  (CELL
+    (CELLTYPE "cycloneii_asynch_io")
+    (INSTANCE \\SW\[3\]\~I\\.asynch_inst)
+    (DELAY
+      (ABSOLUTE
+        (IOPATH padio combout (999:999:999) (999:999:999))
+      )
+    )
+  )
+  (CELL
+    (CELLTYPE "cycloneii_asynch_io")
+    (INSTANCE \\SW\[4\]\~I\\.asynch_inst)
+    (DELAY
+      (ABSOLUTE
+        (IOPATH padio combout (999:999:999) (999:999:999))
+      )
+    )
+  )
+  (CELL
+    (CELLTYPE "cycloneii_asynch_io")
+    (INSTANCE \\SW\[5\]\~I\\.asynch_inst)
+    (DELAY
+      (ABSOLUTE
+        (IOPATH padio combout (989:989:989) (989:989:989))
+      )
+    )
+  )
+  (CELL
+    (CELLTYPE "cycloneii_asynch_io")
+    (INSTANCE \\SW\[6\]\~I\\.asynch_inst)
+    (DELAY
+      (ABSOLUTE
+        (IOPATH padio combout (989:989:989) (989:989:989))
+      )
+    )
+  )
+  (CELL
+    (CELLTYPE "cycloneii_asynch_io")
+    (INSTANCE \\SW\[7\]\~I\\.asynch_inst)
+    (DELAY
+      (ABSOLUTE
+        (IOPATH padio combout (979:979:979) (979:979:979))
+      )
+    )
+  )
+  (CELL
+    (CELLTYPE "cycloneii_asynch_io")
+    (INSTANCE \\SW\[8\]\~I\\.asynch_inst)
+    (DELAY
+      (ABSOLUTE
+        (IOPATH padio combout (999:999:999) (999:999:999))
+      )
+    )
+  )
+  (CELL
+    (CELLTYPE "cycloneii_asynch_io")
+    (INSTANCE \\SW\[9\]\~I\\.asynch_inst)
+    (DELAY
+      (ABSOLUTE
+        (IOPATH padio combout (999:999:999) (999:999:999))
+      )
+    )
+  )
+  (CELL
+    (CELLTYPE "cycloneii_asynch_io")
+    (INSTANCE \\SW\[10\]\~I\\.asynch_inst)
+    (DELAY
+      (ABSOLUTE
+        (IOPATH padio combout (999:999:999) (999:999:999))
+      )
+    )
+  )
+  (CELL
+    (CELLTYPE "cycloneii_asynch_io")
+    (INSTANCE \\SW\[11\]\~I\\.asynch_inst)
+    (DELAY
+      (ABSOLUTE
+        (IOPATH padio combout (999:999:999) (999:999:999))
+      )
+    )
+  )
+  (CELL
+    (CELLTYPE "cycloneii_asynch_io")
+    (INSTANCE \\SW\[12\]\~I\\.asynch_inst)
+    (DELAY
+      (ABSOLUTE
+        (IOPATH padio combout (999:999:999) (999:999:999))
+      )
+    )
+  )
+  (CELL
+    (CELLTYPE "cycloneii_asynch_io")
+    (INSTANCE \\SW\[13\]\~I\\.asynch_inst)
+    (DELAY
+      (ABSOLUTE
+        (IOPATH padio combout (832:832:832) (832:832:832))
+      )
+    )
+  )
+  (CELL
+    (CELLTYPE "cycloneii_asynch_io")
+    (INSTANCE \\SW\[14\]\~I\\.asynch_inst)
+    (DELAY
+      (ABSOLUTE
+        (IOPATH padio combout (842:842:842) (842:842:842))
+      )
+    )
+  )
+  (CELL
+    (CELLTYPE "cycloneii_asynch_io")
+    (INSTANCE \\SW\[15\]\~I\\.asynch_inst)
+    (DELAY
+      (ABSOLUTE
+        (IOPATH padio combout (832:832:832) (832:832:832))
+      )
+    )
+  )
+  (CELL
+    (CELLTYPE "cycloneii_asynch_io")
+    (INSTANCE \\SW\[16\]\~I\\.asynch_inst)
+    (DELAY
+      (ABSOLUTE
+        (IOPATH padio combout (852:852:852) (852:852:852))
+      )
+    )
+  )
+  (CELL
+    (CELLTYPE "cycloneii_asynch_io")
+    (INSTANCE \\SW\[17\]\~I\\.asynch_inst)
+    (DELAY
+      (ABSOLUTE
+        (IOPATH padio combout (852:852:852) (852:852:852))
+      )
+    )
+  )
   (CELL
     (CELLTYPE "cycloneii_asynch_io")
     (INSTANCE \\DRAM_DQ\[0\]\~I\\.asynch_inst)
@@ -2025,6 +2187,7 @@
     (INSTANCE \\LEDR\[0\]\~I\\.asynch_inst)
     (DELAY
       (ABSOLUTE
+        (PORT datain (1794:1794:1794) (1794:1794:1794))
         (IOPATH datain padio (2818:2818:2818) (2818:2818:2818))
       )
     )
@@ -2034,6 +2197,7 @@
     (INSTANCE \\LEDR\[1\]\~I\\.asynch_inst)
     (DELAY
       (ABSOLUTE
+        (PORT datain (1856:1856:1856) (1856:1856:1856))
         (IOPATH datain padio (2818:2818:2818) (2818:2818:2818))
       )
     )
@@ -2043,6 +2207,7 @@
     (INSTANCE \\LEDR\[2\]\~I\\.asynch_inst)
     (DELAY
       (ABSOLUTE
+        (PORT datain (1348:1348:1348) (1348:1348:1348))
         (IOPATH datain padio (2788:2788:2788) (2788:2788:2788))
       )
     )
@@ -2052,6 +2217,7 @@
     (INSTANCE \\LEDR\[3\]\~I\\.asynch_inst)
     (DELAY
       (ABSOLUTE
+        (PORT datain (1996:1996:1996) (1996:1996:1996))
         (IOPATH datain padio (2788:2788:2788) (2788:2788:2788))
       )
     )
@@ -2061,6 +2227,7 @@
     (INSTANCE \\LEDR\[4\]\~I\\.asynch_inst)
     (DELAY
       (ABSOLUTE
+        (PORT datain (1473:1473:1473) (1473:1473:1473))
         (IOPATH datain padio (2808:2808:2808) (2808:2808:2808))
       )
     )
@@ -2070,6 +2237,7 @@
     (INSTANCE \\LEDR\[5\]\~I\\.asynch_inst)
     (DELAY
       (ABSOLUTE
+        (PORT datain (1905:1905:1905) (1905:1905:1905))
         (IOPATH datain padio (2808:2808:2808) (2808:2808:2808))
       )
     )
@@ -2079,6 +2247,7 @@
     (INSTANCE \\LEDR\[6\]\~I\\.asynch_inst)
     (DELAY
       (ABSOLUTE
+        (PORT datain (1551:1551:1551) (1551:1551:1551))
         (IOPATH datain padio (2798:2798:2798) (2798:2798:2798))
       )
     )
@@ -2088,6 +2257,7 @@
     (INSTANCE \\LEDR\[7\]\~I\\.asynch_inst)
     (DELAY
       (ABSOLUTE
+        (PORT datain (2502:2502:2502) (2502:2502:2502))
         (IOPATH datain padio (2798:2798:2798) (2798:2798:2798))
       )
     )
@@ -2097,6 +2267,7 @@
     (INSTANCE \\LEDR\[8\]\~I\\.asynch_inst)
     (DELAY
       (ABSOLUTE
+        (PORT datain (2101:2101:2101) (2101:2101:2101))
         (IOPATH datain padio (2768:2768:2768) (2768:2768:2768))
       )
     )
@@ -2106,6 +2277,7 @@
     (INSTANCE \\LEDR\[9\]\~I\\.asynch_inst)
     (DELAY
       (ABSOLUTE
+        (PORT datain (2433:2433:2433) (2433:2433:2433))
         (IOPATH datain padio (2778:2778:2778) (2778:2778:2778))
       )
     )
@@ -2115,6 +2287,7 @@
     (INSTANCE \\LEDR\[10\]\~I\\.asynch_inst)
     (DELAY
       (ABSOLUTE
+        (PORT datain (1903:1903:1903) (1903:1903:1903))
         (IOPATH datain padio (2778:2778:2778) (2778:2778:2778))
       )
     )
@@ -2124,6 +2297,7 @@
     (INSTANCE \\LEDR\[11\]\~I\\.asynch_inst)
     (DELAY
       (ABSOLUTE
+        (PORT datain (1861:1861:1861) (1861:1861:1861))
         (IOPATH datain padio (2778:2778:2778) (2778:2778:2778))
       )
     )
@@ -2133,6 +2307,7 @@
     (INSTANCE \\LEDR\[12\]\~I\\.asynch_inst)
     (DELAY
       (ABSOLUTE
+        (PORT datain (1909:1909:1909) (1909:1909:1909))
         (IOPATH datain padio (2788:2788:2788) (2788:2788:2788))
       )
     )
@@ -2142,6 +2317,7 @@
     (INSTANCE \\LEDR\[13\]\~I\\.asynch_inst)
     (DELAY
       (ABSOLUTE
+        (PORT datain (5978:5978:5978) (5978:5978:5978))
         (IOPATH datain padio (2788:2788:2788) (2788:2788:2788))
       )
     )
@@ -2151,6 +2327,7 @@
     (INSTANCE \\LEDR\[14\]\~I\\.asynch_inst)
     (DELAY
       (ABSOLUTE
+        (PORT datain (5994:5994:5994) (5994:5994:5994))
         (IOPATH datain padio (2798:2798:2798) (2798:2798:2798))
       )
     )
@@ -2160,6 +2337,7 @@
     (INSTANCE \\LEDR\[15\]\~I\\.asynch_inst)
     (DELAY
       (ABSOLUTE
+        (PORT datain (5774:5774:5774) (5774:5774:5774))
         (IOPATH datain padio (2798:2798:2798) (2798:2798:2798))
       )
     )
@@ -2169,6 +2347,7 @@
     (INSTANCE \\LEDR\[16\]\~I\\.asynch_inst)
     (DELAY
       (ABSOLUTE
+        (PORT datain (6115:6115:6115) (6115:6115:6115))
         (IOPATH datain padio (2798:2798:2798) (2798:2798:2798))
       )
     )
@@ -2178,6 +2357,7 @@
     (INSTANCE \\LEDR\[17\]\~I\\.asynch_inst)
     (DELAY
       (ABSOLUTE
+        (PORT datain (5943:5943:5943) (5943:5943:5943))
         (IOPATH datain padio (2798:2798:2798) (2798:2798:2798))
       )
     )
