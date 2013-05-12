@@ -4,11 +4,12 @@ use ieee.numeric_std.all;
 
 entity SixFiveO2 is
 port(
-		Databus :in std_logic_vector(7 downto 0);
-		Addrbus :out std_logic_vector(15 downto 0);
-		DOR     : out std_logic_vector(7 downto 0);
-      reset, clk   :in std_logic;
-		XL, XH, YL, YH, ACCL, ACCH : out std_logic_vector(6 downto 0));
+	Databus : in std_logic_vector(7 downto 0);
+	Addrbus : out std_logic_vector(15 downto 0);
+	DOR     : out std_logic_vector(7 downto 0);
+  reset, clk: in std_logic;
+	XL, XH, YL, YH, ACCL, ACCH : out std_logic_vector(6 downto 0)
+);
 end SixFiveO2;
 
 architecture imp of SixFiveO2 is
@@ -81,23 +82,87 @@ architecture imp of SixFiveO2 is
 
 
 begin
-  PredecodeLogic: Predecode port map(databus=>databus, reset=>reset, cycle_number=>cycle_number, Instruction=>Instruction, BRC=>BRC, RMW=>RMW);
+  PredecodeLogic: Predecode port map(
+    databus=>databus, 
+    reset=>reset, 
+    cycle_number=>cycle_number, 
+    Instruction=>Instruction, 
+    BRC=>BRC, 
+    RMW=>RMW
+  );
 
-  IR: DFlipFlop port map(input=>instruction, enable=>SYNC, clk=>clk, reset=>reset, output=>opcode);
+  IR: DFlipFlop port map(input=>instruction, 
+    enable=>SYNC, 
+    clk=>clk, 
+    reset=>reset, 
+    output=>opcode
+  );
 
-  Timing: TG port map(clk=>clk, cycle_number=>cycle_number, RMW=>RMW, ACR=>ACR, BRC=>BRC, reset=>reset, tcstate=>tcstate, SYNC=>SYNC, SD1=>SD1, SD2=>SD2, VEC1=>VEC1);
+  Timing: TG port map(clk=>clk, 
+    cycle_number=>cycle_number, 
+    RMW=>RMW, 
+    ACR=>ACR, 
+    BRC=>BRC, 
+    reset=>reset, 
+    tcstate=>tcstate, 
+    SYNC=>SYNC, 
+    SD1=>SD1, 
+    SD2=>SD2, 
+    VEC1=>VEC1
+  );
 
-  Core: CPU port map(clk=>clk, SD1=>SD1, SD2=>SD2, VEC1=>VEC1, reset=>reset, opcode=>opcode, tcstate=>tcstate, databus=>databus, ABL_out=>Addrbus(7 downto 0), ABH_out=>Addrbus(15 downto 8), DOR=>DOR, ACR_out=>ACR, W_R=>W_R, X_out=>X_Reg, Y_out=>Y_Reg, ACC_out=>ACC_Reg);
+  Core: CPU port map(
+    clk=>clk, 
+    SD1=>SD1, 
+    SD2=>SD2, 
+    VEC1=>VEC1, 
+    reset=>reset, 
+    opcode=>opcode, 
+    tcstate=>tcstate, 
+    databus=>databus, 
+    ABL_out=>Addrbus(7 downto 0), 
+    ABH_out=>Addrbus(15 downto 8), 
+    DOR=>DOR, 
+    ACR_out=>ACR, 
+    W_R=>W_R, 
+    X_out=>X_Reg, 
+    Y_out=>Y_Reg, 
+    ACC_out=>ACC_Reg
+  );
 
-  --Mem: Memory port map(clk=>clk, reset=>reset, we=>W_R, address=>Addrbus, di=>DOR, do=>databus);
+  --Mem: Memory port map(clk=>clk, 
+  --reset=>reset, 
+  --we=>W_R, 
+  --address=>Addrbus, 
+  --di=>DOR, 
+  --do=>databus);
 
-  XHDis: hex7seg port map(input=>X_Reg(7 downto 4), output=>XH);
-  XLDis: hex7seg port map(input=>X_Reg(3 downto 0), output=>XL);
+  XHDis: hex7seg port map(
+    input=>X_Reg(7 downto 4), 
+    output=>XH
+  );
 
-  YHDis: hex7seg port map(input=>Y_Reg(7 downto 4), output=>YH);
-  YLDis: hex7seg port map(input=>Y_Reg(3 downto 0), output=>YL);
+  XLDis: hex7seg port map(
+    input=>X_Reg(3 downto 0), 
+    output=>XL
+  );
 
-  ACCHDis: hex7seg port map(input=>ACC_Reg(7 downto 4), output=>ACCH);
-  ACCLDis: hex7seg port map(input=>ACC_Reg(3 downto 0), output=>ACCL);
+  YHDis: hex7seg port map(
+    input=>Y_Reg(7 downto 4), 
+     output=>YH);
+     
+  YLDis: hex7seg port map(
+    input=>Y_Reg(3 downto 0), 
+    output=>YL
+  );
+
+  ACCHDis: hex7seg port map(
+    input=>ACC_Reg(7 downto 4), 
+    output=>ACCH);
+
+  ACCLDis: hex7seg port map(
+    input=>ACC_Reg(3 downto 0),
+    output=>ACCL
+  );
 
 end imp;
