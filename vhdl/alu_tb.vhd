@@ -17,7 +17,7 @@ package ALU_package is
   signal sig_ADD: std_logic_vector(7 downto 0);
 
   procedure load_data(
-    signal A, B: out std_logic_vector(7 downto 0);
+    signal AI, B: out std_logic_vector(7 downto 0);
 
     signal ANDS: out std_logic;
     signal SUMS: out std_logic;
@@ -40,7 +40,7 @@ end ALU_package;
 package body ALU_package is
   
   procedure load_data ( 
-    signal A, B: out std_logic_vector(7 downto 0);
+    signal AI, BI: out std_logic_vector(7 downto 0);
     signal ANDS: out std_logic;
     signal SUMS: out std_logic;
     signal ORS:  out std_logic;
@@ -48,8 +48,8 @@ package body ALU_package is
     signal SRS:  out std_logic
   ) is
   begin
-    A <= sig_A;
-    B <= sig_B;
+    AI <= sig_A;
+    BI <= sig_B;
     ANDS <= sig_ANDS;
     SUMS <= sig_SUMS;
     ORS  <= sig_ORS;
@@ -117,8 +117,8 @@ architecture TB of ALU_TB is
 
   component ALU
     port(
-      A:  in std_logic_vector(7 downto 0);
-      B:  in std_logic_vector(7 downto 0);
+      AI:  in std_logic_vector(7 downto 0);
+      BI:  in std_logic_vector(7 downto 0);
       ANDS: in std_logic;
       SUMS: in std_logic;
       ORS:  in std_logic;
@@ -128,8 +128,8 @@ architecture TB of ALU_TB is
     );
   end component;
 
-  signal A: std_logic_vector(7 downto 0) := "00000000";
-  signal B: std_logic_vector(7 downto 0) := "00000000";
+  signal AI: std_logic_vector(7 downto 0) := "00000000";
+  signal BI: std_logic_vector(7 downto 0) := "00000000";
   signal ADD: std_logic_vector(7 downto 0) := "00000000";
 
   signal ANDS: std_logic;
@@ -137,11 +137,12 @@ architecture TB of ALU_TB is
   signal ORS:  std_logic;
   signal EORS: std_logic;
   signal SRS:  std_logic;
+
 begin
 
   U_ALU: ALU port map (
-    A,
-    B, 
+    AI,
+    BI, 
     ANDS,
     SUMS,
     ORS,
@@ -168,7 +169,7 @@ begin
     ----------------------------------------------------------------
     sig_ANDS <= '1';
     wait for 1 ns;
-    load_data(A, B, ANDS, SUMS, ORS, EORS, SRS);
+    load_data(AI, BI, ANDS, SUMS, ORS, EORS, SRS);
     wait for 1 ns;
     sig_ADD <= ADD;
     wait for INTERVAL;
@@ -180,7 +181,7 @@ begin
     ----------------------------------------------------------------
     sig_SUMS <= '1';
     wait for 1 ns;
-    load_data(A, B, ANDS, SUMS, ORS, EORS, SRS);
+    load_data(AI, BI, ANDS, SUMS, ORS, EORS, SRS);
     wait for 1 ns;
     sig_ADD <= ADD;
     wait for INTERVAL;
@@ -192,7 +193,7 @@ begin
     ----------------------------------------------------------------
     sig_ORS <= '1';
     wait for 1 ns;
-    load_data(A, B, ANDS, SUMS, ORS, EORS, SRS);
+    load_data(AI, BI, ANDS, SUMS, ORS, EORS, SRS);
     wait for 1 ns;
     sig_ADD <= ADD;
     wait for INTERVAL;
@@ -204,7 +205,7 @@ begin
     ----------------------------------------------------------------
     sig_EORS <= '1';
     wait for 1 ns;
-    load_data(A, B, ANDS, SUMS, ORS, EORS, SRS);
+    load_data(AI, BI, ANDS, SUMS, ORS, EORS, SRS);
     wait for 1 ns;
     sig_ADD <= ADD;
     wait for INTERVAL;
@@ -216,7 +217,7 @@ begin
     ----------------------------------------------------------------
     sig_SRS <= '1';
     wait for 1 ns;
-    load_data(A, B, ANDS, SUMS, ORS, EORS, SRS);
+    load_data(AI, BI, ANDS, SUMS, ORS, EORS, SRS);
     wait for 1 ns;
     sig_ADD <= ADD;
     wait for INTERVAL;

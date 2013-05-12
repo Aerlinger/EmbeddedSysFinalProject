@@ -25,26 +25,26 @@ use ieee.std_logic_arith.all;
 
 entity ALU is
 
-port(
-  AI:  in std_logic_vector(7 downto 0);
-  BI:  in std_logic_vector(7 downto 0);
-  ADD:  out std_logic_vector(7 downto 0);
-  P: in std_logic_vector(7 downto 0);
-  opcode: in std_logic_vector(7 downto 0);
+  port(
+    AI:  in std_logic_vector(7 downto 0);
+    BI:  in std_logic_vector(7 downto 0);
+    ADD:  out std_logic_vector(7 downto 0);
+    P: in std_logic_vector(7 downto 0);
+    opcode: in std_logic_vector(7 downto 0);
 
-  ANDS: in std_logic;
-  SUMS: in std_logic;
-  ORS: in std_logic;
-  EORS: in std_logic;
-  SRS: in std_logic;
+    ANDS: in std_logic;
+    SUMS: in std_logic;
+    ORS: in std_logic;
+    EORS: in std_logic;
+    SRS: in std_logic;
 
-  I_ADDC: in std_logic;
-  Mask_shortcut: in std_logic;
-  AVR: out std_logic;
-  ACR: out std_logic
+    I_ADDC: in std_logic;
+    Mask_shortcut: in std_logic;
+    AVR: out std_logic;
+    ACR: out std_logic
 
-  -- DECIMAL MODE NOT YET IMPLEMENTED:
-);
+    -- DECIMAL MODE NOT YET IMPLEMENTED:
+  );
 
 end ALU;
 
@@ -52,7 +52,6 @@ end ALU;
 
 architecture rtl of ALU is
   signal temp : unsigned(8 downto 0);
-
 begin
 
     process(AI, BI, ANDS, SUMS, ORS, EORS, SRS, I_ADDC)

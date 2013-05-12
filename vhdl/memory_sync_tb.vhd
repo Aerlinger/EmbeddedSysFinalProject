@@ -8,22 +8,27 @@ end memory_sync_tb;
 
 architecture TB of memory_sync_tb is
   component memory_sync is
-  port(
-    clk: in std_logic;
-    enable: in std_logic;
-    read: in std_logic;
-    write: in std_logic;
-    read_addr: in std_logic_vector(7 downto 0);
-    write_addr: in std_logic_vector(7 downto 0);
-    data_in: in std_logic_vector(7 downto 0);
-    data_out: out std_logic_vector(7 downto 0)
-  );
+    port(
+      clk: in std_logic;
+      enable: in std_logic;
+      read: in std_logic;
+      write: in std_logic;
+      read_addr: in std_logic_vector(7 downto 0);
+      write_addr: in std_logic_vector(7 downto 0);
+      data_in: in std_logic_vector(7 downto 0);
+      data_out: out std_logic_vector(7 downto 0)
+    );
   end component;
 
-  signal tb_clk, tb_enable, tb_read, tb_write: std_logic;
-  signal tb_data_in, tb_data_out: std_logic_vector(7 downto 0);
+  signal tb_clk : std_logic;
+  signal tb_enable: std_logic;
+  signal tb_read: std_logic;
+  signal tb_write: std_logic;
+
   signal tb_read_addr: std_logic_vector(7 downto 0);
   signal tb_write_addr: std_logic_vector(7 downto 0);
+  signal tb_data_in: std_logic_vector(7 downto 0);
+  signal tb_data_out: std_logic_vector(7 downto 0);
 
 begin
 

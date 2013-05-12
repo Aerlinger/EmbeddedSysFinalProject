@@ -1,8 +1,8 @@
 #!/usr/bin/env ruby
 
-`ghdl -i *.vhd*`
+`ghdl -i *.vhd`
 
-Dir.glob("*_tb.vhd*").shuffle.each do |filename|
+Dir.glob("*.vhd*").shuffle.each do |filename|
   filename_no_extension = filename.gsub(/\.vhd.?$/, "")
 
   puts "Writing VHDL unit: #{filename} to #{filename_no_extension}"

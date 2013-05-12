@@ -26,7 +26,6 @@ package CPU_package is
 
   signal ABL_out: std_logic_vector(7 downto 0);
   signal ABH_out: std_logic_vector(7 downto 0);
-  signal DOR: std_logic_vector(7 downto 0);
   signal X_out: std_logic_vector(7 downto 0);
   signal Y_out: std_logic_vector(7 downto 0);
   signal ACC_out: std_logic_vector(7 downto 0);
@@ -54,8 +53,8 @@ package body CPU_package is
     signal opcode: out std_logic_vector(7 downto 0)
   ) is
   begin
-    Databus <= opcode;
-    reset <= 0;
+    --Databus <= opcode;
+    --reset <= '0';
   end load_opcode;
 
   procedure validate_output (
@@ -97,7 +96,7 @@ architecture tb of CPU_tb is
   --end component;
 
 	signal Databus : std_logic_vector(7 downto 0) := x"A9";
-  signal Addrbus : std_logic_vector(7 downto 0);
+  signal Addrbus : std_logic_vector(15 downto 0);
 	signal DOR : std_logic_vector(7 downto 0);
 
 	signal reset  : std_logic  := '1';

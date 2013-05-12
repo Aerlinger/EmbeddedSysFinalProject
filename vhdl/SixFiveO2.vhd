@@ -33,12 +33,11 @@ entity SixFiveO2 is
     Addrbus : out std_logic_vector(15 downto 0);
     clk: in std_logic;
     rdy: in std_logic;
-    res: in std_logic;   -- Active low
+    reset: in std_logic;   -- Active low
     irq: in std_logic;   -- Active low
     nmi: in std_logic;   -- Active low
 
     r_w: out std_logic;   -- Write is Active low
-
 
     -- Unused in this implementation
     -- sync: out std_logic;
@@ -52,7 +51,6 @@ entity SixFiveO2 is
 
     ABL_out: out std_logic_vector(7 downto 0);
     ABH_out: out std_logic_vector(7 downto 0);
-    DOR: out std_logic_vector(7 downto 0);
     X_out: out std_logic_vector(7 downto 0);
     Y_out: out std_logic_vector(7 downto 0);
     ACC_out: out std_logic_vector(7 downto 0);
@@ -70,9 +68,17 @@ end SixFiveO2;
 architecture imp of SixFiveO2 is
 
   signal instruction, opcode : std_logic_vector(7 downto 0);
-  signal tcstate : std_logic_vector(5 downto 0);
+
+  --signal tcstate : std_logic_vector(5 downto 0);
   signal cycle_number : unsigned(3 downto 0);
-  signal BRC, ACR, RMW, SYNC, SD1, SD2, VEC1, W_R : std_logic;
+  signal BRC: std_logic;
+  signal ACR: std_logic;
+  signal RMW: std_logic;
+  signal SYNC: std_logic;
+  --signal SD1: std_logic;
+  --signal SD2: std_logic;
+  --signal VEC1: std_logic;
+  signal W_R : std_logic;
   --signal DOR, databus  : std_logic_vector(7 downto 0);
   --signal Addrbus: std_logic_vector(15 downto 0);
   signal X_Reg, Y_Reg, ACC_Reg  : std_logic_vector(7 downto 0);
@@ -139,86 +145,86 @@ architecture imp of SixFiveO2 is
 begin
 
   PredecodeLogic: Predecode port map(
-    databus=>databus,
-    reset=>reset,
-    cycle_number=>cycle_number,
-    Instruction=>Instruction,
-    BRC=>BRC,
-    RMW=>RMW
+    databus => databus,
+    reset => reset,
+    cycle_number => cycle_number,
+    Instruction => Instruction,
+    BRC => BRC,
+    RMW => RMW
   );
 
-  IR: DFlipFlop port map(input=>instruction,
-    enable=>SYNC,
-    clk=>clk,
-    reset=>reset,
-    output=>opcode
+  IR: DFlipFlop port map(input => instruction,
+    enable => SYNC,
+    clk => clk,
+    reset => reset,
+    output => opcode
   );
 
-  Timing: TG port map(clk=>clk,
-    cycle_number=>cycle_number,
-    RMW=>RMW,
-    ACR=>ACR,
-    BRC=>BRC,
-    reset=>reset,
-    tcstate=>tcstate,
-    SYNC=>SYNC,
-    SD1=>SD1,
-    SD2=>SD2,
-    VEC1=>VEC1
+  Timing: TG port map(clk => clk,
+    cycle_number => cycle_number,
+    RMW => RMW,
+    ACR => ACR,
+    BRC => BRC,
+    reset => reset,
+    tcstate => tcstate,
+    SYNC => SYNC,
+    SD1 => SD1,
+    SD2 => SD2,
+    VEC1 => VEC1
   );
 
   Core: CPU port map(
-    clk=>clk,
-    SD1=>SD1,
-    SD2=>SD2,
-    VEC1=>VEC1,
-    reset=>reset,
-    opcode=>opcode,
-    tcstate=>tcstate,
-    databus=>databus,
-    ABL_out=>Addrbus(7 downto 0),
-    ABH_out=>Addrbus(15 downto 8),
-    DOR=>DOR,
-    ACR_out=>ACR,
-    W_R=>W_R,
-    X_out=>X_Reg,
-    Y_out=>Y_Reg,
-    ACC_out=>ACC_Reg
+    clk => clk,
+    SD1 => SD1,
+    SD2 => SD2,
+    VEC1 => VEC1,
+    reset => reset,
+    opcode => opcode,
+    tcstate => tcstate,
+    databus => databus,
+    ABL_out => Addrbus(7 downto 0),
+    ABH_out => Addrbus(15 downto 8),
+    DOR => DOR,
+    ACR_out => ACR,
+    W_R => W_R,
+    X_out => X_Reg,
+    Y_out => Y_Reg,
+    ACC_out => ACC_Reg
   );
 
-  --Mem: Memory port map(clk=>clk,
-  --reset=>reset,
-  --we=>W_R,
-  --address=>Addrbus,
-  --di=>DOR,
-  --do=>databus);
+  --Mem: Memory port map(clk => clk,
+  --reset => reset,
+  --we => W_R,
+  --address => Addrbus,
+  --di => DOR,
+  --do => databus);
 
   XHDis: hex7seg port map(
-    input=>X_Reg(7 downto 4),
-    output=>XH
+    input => X_Reg(7 downto 4),
+    output => XH
   );
 
   XLDis: hex7seg port map(
-    input=>X_Reg(3 downto 0),
-    output=>XL
+    input => X_Reg(3 downto 0),
+    output => XL
   );
 
   YHDis: hex7seg port map(
-    input=>Y_Reg(7 downto 4),
-     output=>YH);
+    input => Y_Reg(7 downto 4),
+     output => YH);
 
   YLDis: hex7seg port map(
-    input=>Y_Reg(3 downto 0),
-    output=>YL
+    input => Y_Reg(3 downto 0),
+    output => YL
   );
 
   ACCHDis: hex7seg port map(
-    input=>ACC_Reg(7 downto 4),
-    output=>ACCH);
+    input => ACC_Reg(7 downto 4),
+    output => ACCH);
 
   ACCLDis: hex7seg port map(
-    input=>ACC_Reg(3 downto 0),
-    output=>ACCL
+    input => ACC_Reg(3 downto 0),
+    output => ACCL
   );
 
 end imp;

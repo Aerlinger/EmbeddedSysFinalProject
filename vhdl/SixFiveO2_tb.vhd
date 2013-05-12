@@ -25,7 +25,6 @@ package CPU_package is
 
   signal ABL_out: std_logic_vector(7 downto 0);
   signal ABH_out: std_logic_vector(7 downto 0);
-  signal DOR: std_logic_vector(7 downto 0);
   signal X_out: std_logic_vector(7 downto 0);
   signal Y_out: std_logic_vector(7 downto 0);
   signal ACC_out: std_logic_vector(7 downto 0);
@@ -53,8 +52,8 @@ package body CPU_package is
     signal opcode: out std_logic_vector(7 downto 0)
   ) is
   begin
-    Databus <= opcode;
-    reset <= 0;
+    --Databus <= opcode;
+    --reset <= '0';
   end load_opcode;
 
   procedure validate_output (
@@ -65,6 +64,15 @@ package body CPU_package is
   end validate_output;
 
 end CPU_package;
+
+
+--------------------------------------------------------------------------
+--- SixFiveO2  Test Bench ------------------------------------------------
+--------------------------------------------------------------------------
+
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
 
 entity SixFiveO2_tb is
 end SixFiveO2_tb;
@@ -86,7 +94,7 @@ architecture tb of SixFiveO2_tb is
   --end memory_asyncronous;
 
 	signal Databus : std_logic_vector(7 downto 0) := x"A9";
-  signal Addrbus : std_logic_vector(7 downto 0);
+  signal Addrbus : std_logic_vector(15 downto 0);
 	signal DOR : std_logic_vector(7 downto 0);
 
 	signal reset  : std_logic  := '1';
@@ -94,7 +102,7 @@ architecture tb of SixFiveO2_tb is
 
 begin
 
-  U_SixFive02: SixFive02 port map(
+  U_SixFiveO2: SixFiveO2 port map(
     Databus => Databus,
     Addrbus => Addrbus,
     DOR => DOR,
