@@ -37,8 +37,8 @@ entity SixFiveO2 is
     r_w: out std_logic;   -- Write is Active low
 
     -- Unused in this implementation
-    sync: out std_logic;
-    sv: in std_logic;   -- Set Overflow (Unused)
+    -- sync: out std_logic;
+    -- sv: in std_logic;   -- Set Overflow (Unused)
 
     ------------------------------------------------------------------------------
     -- Internal variables exposed for debugging purposes:
