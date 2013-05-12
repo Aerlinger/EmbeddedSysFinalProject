@@ -8,24 +8,43 @@ end SixFiveO2_tb;
 package CPU_package is
 
   -- 1 / 50 MHz clock:
-  constant CLOCK_PERIOD: TIME := 20ns;
+  constant CLOCK_PERIOD: TIME := 20 ns;
+
+  --------------------------------------------------------------------------
+  --- INTERNAL AND EXTERMAL VARIABLES  -------------------------------------
+  --------------------------------------------------------------------------
 
   -- The 6502's external interface:
   signal Databus: std_logic_vector(7 downto 0);
   signal Addrbus: std_logic_vector(15 downto 0);
+  signal clk: std_logic;
+  signal reset: std_logic;
+  signal W_R: std_logic;
+
+  -- Exposed 'internals' of the 6402  used for debugging:
+  signal tc_state: std_logic_vector(5 downto 0);
   signal DOR: std_logic_vector(7 downto 0);
-  signal reset : std_logic;
-  signal clk : std_logic;
+  signal ACR_out:  std_logic;
 
-  signal XL, XH, YL, YH, ACCL, ACCH, : std_logic_vector(6 downto 0);
+  signal ABL_out: out std_logic_vector(7 downto 0);
+  signal ABH_out: out std_logic_vector(7 downto 0);
+  signal DOR: out std_logic_vector(7 downto 0);
+  signal X_out: out std_logic_vector(7 downto 0);
+  signal Y_out: out std_logic_vector(7 downto 0);
+  signal ACC_out: out std_logic_vector(7 downto 0);
 
-  -- Loads an opcode:
+  --signal XL, XH, YL, YH, ACCL, ACCH, : std_logic_vector(6 downto 0);
+
+  --------------------------------------------------------------------------
+  --- PROCEDURES  ----------------------------------------------------------
+  --------------------------------------------------------------------------
+
+  -- Loads an opcode onto the databus:
   procedure load_opcode (
     signal opcode: out std_logic_vector(7 downto 0);
   );
 
-  procedure validate_output
-  (
+  procedure validate_output (
     signal Databus: out std_logic_vector(7 downto 0);
   );
 
@@ -33,10 +52,12 @@ end
 
 package body CPU_package is
 
-  procedure load_loadopcode (
+  procedure load_opcode (
+    signal opcode: out std_logic_vector(7 downto 0)
   ) is
   begin
-
+    Databus <= opcode;
+    reset <= 0;
   end load_data;
 
   procedure validate_output (
@@ -142,117 +163,6 @@ begin
     wait;
   end process;
 
---		process  --test the 2nd section cc=10
---		begin
---			wait for 200 ns;
---			databus<= x"11";  --(LDA) #=11
---			wait for 40 ns;
---			databus<= x"0A";	--ASL ACC
---			wait for 80 ns;
---			databus<= x"2A";  --ROL ACC
---			wait for 80 ns;
---			databus<= x"4A";  --LSR ACC
---			wait for 80 ns;
---			databus<=x"6A";	--ROR ACC
---			
---			wait for 80 ns;
---			databus<=x"86";  	 --STX, zero page
---			wait for 40 ns;
---			databus<=x"20";    --zeor page value
---			wait for 40 ns;
---			databus<=x"22";    --content in 0020
---			wait for 40 ns;
---			databus<=x"A2"; 	 --LDX, #
---			wait for 40 ns;
---			databus<=x"33";	 --#
---			wait for 40 ns;
---			databus<=x"CE";	 --DEC absolute
---			wait for 40 ns;		
---			databus<=x"34";	 --ABL
---			wait for 40 ns;
---			databus<=x"12";	 --ABH
---			wait for 40 ns;
---			databus<=x"05";	 --content in ABH+ABL
---			wait for 120 ns;
---			databus<=x"EE";	 --INC absolute
---			wait for 40 ns;
---			databus<=x"34";	 --ABL
---			wait for 40 ns;
---			databus<=x"12";	 --ABH
---			wait for 40 ns;
---			databus<=x"05";	 --content in ABH+ABL
---			wait; 
---		end process;
-
---		process  --test the address mode with LDA in cc=01
---		begin
---			wait for 200 ns;
---			databus<= x"11";  --(LDA) #=11
---			wait for 40 ns;
---			databus<= x"A1";	--LDA (zp, X)
---			wait for 40 ns;
---			databus<= x"22";	--zp=22 BAL
---			wait for 40 ns;
---			databus<= x"29";  --content in 00+zp(BAL), discarded
---			wait for 40 ns;
---			databus<= x"34";  --ADL (stored in 00+BAL+X)
---			wait for 40 ns;
---			databus<= x"12";  --ADH (stored in 00+BAL+X+1)
---			wait for 40 ns;
---			databus<= x"77";  --content in ADH+ADL
---			wait for 40 ns;
---			databus<=x"A5";	--LDA zp
---			wait for 40 ns;
---			databus<=x"22";	--zp=22
---			wait for 40 ns;
---			databus<=x"E9";	--content in 00+ADL
---			wait for 40 ns;
---			databus<=x"AD";   --LDA Absolute
---			wait for 40 ns;
---			databus<=x"45";   --ADL
---			wait for 40 ns;
---			databus<=x"12";	--ADH
---			wait for 40 ns;		
---			databus<=x"05";	--content in ADH+ADL
---			wait for 40 ns;
---			databus<=x"B1";	--LDA (zp),Y
---			wait for 40 ns;
---			databus<=x"43"; 	--zp=43==>IAL
---			wait for 40 ns;
---			databus<=x"78";	--BAL (stored in 00+zp)
---			wait for 40 ns;
---			databus<=x"56"; 	--BAH (stored in 00+zp+1)
---			wait for 40 ns;
---			databus<=x"54"; 	--Data stored in the BAH+C & BAL+Y
---			wait for 40 ns;
---			databus<=x"B5";   --LDA zp,X
---			wait for 40 ns;
---			databus<=x"20";		--zp=20, BAL
---			wait for 40 ns;
---			databus<=x"23";		--content in 00,BAL discarded
---			wait for 40 ns;
---			databus<=x"12";		--content in 00,BAL+X
---			wait for 40 ns;		
---			databus<=x"B9";		--LDA abs,Y
---			wait for 40 ns;
---			databus<=x"34";		--BAL
---			wait for 40 ns;
---			databus<=x"12";		--BAH
---			wait for 40 ns;
---			databus<=x"44";		--content in BAH, BAL+Y
---			wait for 40 ns;		
---			databus<=x"BD";		--LDA zp,X
---			wait for 40 ns;
---			databus<=x"34";	 --BAL
---			wait for 40 ns;
---			databus<=x"12";		--BAH
---			wait for 40 ns;
---			databus<=x"55";		--content in BAH, BAL+X
---			wait;
---		end process;
-
-		
-								  
 --SixFiveOTwo: 
 --		entity work.SixFiveO2
 --		port map (clk=> clk, reset=>reset, databus=>databus);

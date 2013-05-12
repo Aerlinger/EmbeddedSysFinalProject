@@ -1,15 +1,66 @@
+------------------------------------------------------------------------------
+------------------------------------------------------------------------------
+--
+--  COMS W480 Final Project
+--    Sprint 2013
+--    A 6502 CPU reconstructed in VHDL and synthesized on the Altera DE2
+--
+--
+-- Team Double O Four is:
+--     Yu Chen
+--     Jaebin Choi
+--     Anthony Erlinger
+--     Arthy Padma Anandhi Sundaram
+--
+------------------------------------------------------------------------------
+------------------------------------------------------------------------------
+
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
 entity SixFiveO2 is
-port(
-	Databus : in std_logic_vector(7 downto 0);
-	Addrbus : out std_logic_vector(15 downto 0);
-	DOR     : out std_logic_vector(7 downto 0);
-  reset, clk: in std_logic;
-	XL, XH, YL, YH, ACCL, ACCH : out std_logic_vector(6 downto 0)
-);
+  port(
+
+    ------------------------------------------------------------------------------
+    -- Default external interface (37 active pins)
+    ------------------------------------------------------------------------------
+    Databus : in std_logic_vector(7 downto 0);
+    Addrbus : out std_logic_vector(15 downto 0);
+    reset: in std_logic;
+    rdy: in std_logic;
+    res: in std_logic;   -- Active low
+    irq: in std_logic;   -- Active low
+    nmi: in std_logic;   -- Active low
+    clk: in std_logic;
+
+    r_w: out std_logic;   -- Write is Active low
+
+    -- Unused in this implementation
+    sync: out std_logic;
+    sv: in std_logic;   -- Set Overflow (Unused)
+
+    ------------------------------------------------------------------------------
+    -- Internal variables exposed for debugging purposes:
+    ------------------------------------------------------------------------------
+    DOR     : out std_logic_vector(7 downto 0);
+    tcstate : out std_logic_vector(5 downto 0);  -- 6 bit mask for timing state (taken as input to decode ROM)
+
+    ABL_out: out std_logic_vector(7 downto 0);
+    ABH_out: out std_logic_vector(7 downto 0);
+    DOR: out std_logic_vector(7 downto 0);
+    X_out: out std_logic_vector(7 downto 0);
+    Y_out: out std_logic_vector(7 downto 0);
+    ACC_out: out std_logic_vector(7 downto 0);
+
+    SD1: out std_logic
+    SD2: out std_logic;
+    VEC1: out std_logic;
+    ACR_out: out std_logic;
+
+    -- Outputs for 7seg debugging
+    XL, XH, YL, YH, ACCL, ACCH : out std_logic_vector(6 downto 0)
+  );
 end SixFiveO2;
 
 architecture imp of SixFiveO2 is
@@ -28,7 +79,8 @@ architecture imp of SixFiveO2 is
       reset    : in  std_logic;
       cycle_number : out	unsigned(3 downto 0);
       Instruction  : out 	std_logic_vector(7 downto 0);
-      BRC, RMW 	 : out std_logic);
+      BRC, RMW 	 : out std_logic
+    );
   end component;
 
   component DFlipFlop
@@ -76,88 +128,88 @@ architecture imp of SixFiveO2 is
 
   component hex7seg
   port
-      ( input : in std_logic_vector(3 downto 0); -- A number 
-         output : out std_logic_vector(6 downto 0)); -- Just bits
+    ( input  : in std_logic_vector(3 downto 0); -- A number 
+      output : out std_logic_vector(6 downto 0)); -- Just bits
   end component;
 
-
 begin
+
   PredecodeLogic: Predecode port map(
-    databus=>databus, 
-    reset=>reset, 
-    cycle_number=>cycle_number, 
-    Instruction=>Instruction, 
-    BRC=>BRC, 
+    databus=>databus,
+    reset=>reset,
+    cycle_number=>cycle_number,
+    Instruction=>Instruction,
+    BRC=>BRC,
     RMW=>RMW
   );
 
-  IR: DFlipFlop port map(input=>instruction, 
-    enable=>SYNC, 
-    clk=>clk, 
-    reset=>reset, 
+  IR: DFlipFlop port map(input=>instruction,
+    enable=>SYNC,
+    clk=>clk,
+    reset=>reset,
     output=>opcode
   );
 
-  Timing: TG port map(clk=>clk, 
-    cycle_number=>cycle_number, 
-    RMW=>RMW, 
-    ACR=>ACR, 
-    BRC=>BRC, 
-    reset=>reset, 
-    tcstate=>tcstate, 
-    SYNC=>SYNC, 
-    SD1=>SD1, 
-    SD2=>SD2, 
+  Timing: TG port map(clk=>clk,
+    cycle_number=>cycle_number,
+    RMW=>RMW,
+    ACR=>ACR,
+    BRC=>BRC,
+    reset=>reset,
+    tcstate=>tcstate,
+    SYNC=>SYNC,
+    SD1=>SD1,
+    SD2=>SD2,
     VEC1=>VEC1
   );
 
   Core: CPU port map(
-    clk=>clk, 
-    SD1=>SD1, 
-    SD2=>SD2, 
-    VEC1=>VEC1, 
-    reset=>reset, 
-    opcode=>opcode, 
-    tcstate=>tcstate, 
-    databus=>databus, 
-    ABL_out=>Addrbus(7 downto 0), 
-    ABH_out=>Addrbus(15 downto 8), 
-    DOR=>DOR, 
-    ACR_out=>ACR, 
-    W_R=>W_R, 
-    X_out=>X_Reg, 
-    Y_out=>Y_Reg, 
+    clk=>clk,
+    SD1=>SD1,
+    SD2=>SD2,
+    VEC1=>VEC1,
+    reset=>reset,
+    opcode=>opcode,
+    tcstate=>tcstate,
+    databus=>databus,
+    ABL_out=>Addrbus(7 downto 0),
+    ABH_out=>Addrbus(15 downto 8),
+    DOR=>DOR,
+    ACR_out=>ACR,
+    W_R=>W_R,
+    X_out=>X_Reg,
+    Y_out=>Y_Reg,
     ACC_out=>ACC_Reg
   );
 
-  --Mem: Memory port map(clk=>clk, 
-  --reset=>reset, 
-  --we=>W_R, 
-  --address=>Addrbus, 
-  --di=>DOR, 
+  --Mem: Memory port map(clk=>clk,
+  --reset=>reset,
+  --we=>W_R,
+  --address=>Addrbus,
+  --di=>DOR,
   --do=>databus);
 
   XHDis: hex7seg port map(
-    input=>X_Reg(7 downto 4), 
+    input=>X_Reg(7 downto 4),
     output=>XH
   );
 
   XLDis: hex7seg port map(
-    input=>X_Reg(3 downto 0), 
+    input=>X_Reg(3 downto 0),
     output=>XL
   );
 
   YHDis: hex7seg port map(
-    input=>Y_Reg(7 downto 4), 
+    input=>Y_Reg(7 downto 4),
      output=>YH);
-     
+
   YLDis: hex7seg port map(
-    input=>Y_Reg(3 downto 0), 
+    input=>Y_Reg(3 downto 0),
     output=>YL
   );
 
   ACCHDis: hex7seg port map(
-    input=>ACC_Reg(7 downto 4), 
+    input=>ACC_Reg(7 downto 4),
     output=>ACCH);
 
   ACCLDis: hex7seg port map(

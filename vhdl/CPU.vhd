@@ -1,6 +1,8 @@
 ------------------------------------------------------------------------------
 ------------------------------------------------------------------------------
 --
+--  CPU.vhd: 6502 Core Architecture
+--
 --  COMS W480 Final Project
 --    Sprint 2013
 --    A 6502 CPU reconstructed in VHDL and synthesized on the Altera DE2
