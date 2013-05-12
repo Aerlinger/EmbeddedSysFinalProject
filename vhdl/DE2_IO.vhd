@@ -33,6 +33,7 @@
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
+use ieee.std_logic_unsigned.all;
 
 -- Define pin structure:
 entity raminfr is
@@ -155,44 +156,6 @@ end selector;
 
 
 ----------------------------------------------
--- Hex To 7 Segment Decoder
-----------------------------------------------
-
-library ieee;
-use ieee.std_logic_1164.all;
-use ieee.numeric_std.all;
-
-entity hex7seg is
-	port (input: in unsigned(3 downto 0);	-- Input is a 4 bit number
-			output: out std_logic_vector(6 downto 0));	-- 7 bit output to light each of 7 segments
-end hex7seg;
-
-architecture combinational of hex7seg is
-begin
-	-- Mappings are basically just a lookup table
-	with input select output <=
-		"1000000" when x"0", 
-		"1111001" when x"1",
-		"0100100" when x"2", 
-		"0110000" when x"3",
-		"0011001" when x"4", 
-		"0010010" when x"5",
-		"0000010" when x"6", 
-		"1111000" when x"7",
-		"0000000" when x"8", 
-		"0010000" when x"9",
-		"0001000" when x"A", 
-		"0000011" when x"B",
-		"1000110" when x"C", 
-		"0100001" when x"D",
-		"0000110" when x"E", 
-		"0001110" when x"F",
-		"XXXXXXX" when others;
-
-end combinational;
-
-
-----------------------------------------------
 -- Top-Level Lab1 Module:
 ----------------------------------------------
 
@@ -207,31 +170,47 @@ entity lab1 is
 	port (
 		clock: in std_logic;
 		key: in std_logic_vector(3 downto 0);
-		hex4, hex5, hex6 : out std_logic_vector(6 downto 0)
+		hex0, hex1, hex2, hex3, hex4, hex5, hex6, hex7 : out std_logic_vector(6 downto 0)
 	);
 	
 	-- internal variables
 	signal we : std_logic := '0';
-	signal a : unsigned(15 downto 0) := x"0000";
+	signal Addrbus : std_logic_vector(15 downto 0) := x"0000";
+	signal Databus : std_logic_vector(15 downto 0) := x"0000";
 	signal clock_cycles : unsigned(7 downto 0) := x"00";
 	signal di : unsigned(7 downto 0);
 	signal do : unsigned(7 downto 0);
 
 end lab1;
 
-architecture datapath of lab1 is
+architecture rtl of lab1 is
+--	component SixFiveO2
+--	port (
+--	    Databus : in std_logic_vector(7 downto 0);
+--      Addrbus : out std_logic_vector(15 downto 0);
+--      DOR     : out std_logic_vector(7 downto 0);
+--      reset, clk: in std_logic;
+--
+--      XL, XH, YL, YH, ACCL, ACCH : out std_logic_vector(6 downto 0)
+--	)
+--	end component;
+--	
+--	signal databus : std_logic_vector(7 downto 0);
+--	signal addrbus : std_logic_vector(7 downto 0);
+--	signal databus : std_logic_vector(7 downto 0);
+--	
 begin
 
   ----------------------------------------------
   -- 6502 Module
   ----------------------------------------------
-  control: entity SixFiveO2 port map (
-    Databus => do,
-    Addrbus => a,
-    clk => key(0),
-    reset => key(1),
-    rdy => '1'
-	);
+--  control: entity SixFiveO2 port map (
+--    Databus => do,
+--    Addrbus => a,
+--    clk => key(0),
+--    reset => key(1),
+--    rdy => '1'
+--	);
 
 	-- Input control module
 	-- An important note: the output from the control module is 
@@ -242,7 +221,7 @@ begin
 		key 	    => key,
 		data_in  	=> do,			-- Data in
     we 	      => we,
-    addr 	    => a,
+    std_logic_vector(addr) 	    => Addrbus,
 		data_out	=> di				-- Data out
 	);
 
@@ -250,7 +229,7 @@ begin
 	ram: entity work.raminfr port map (
 		clock => clock,
 		we 	=> we,
-		a		=> a,
+		a		=> unsigned(Addrbus),
 		di 	=> di,
 		do 	=> do
 	);
@@ -291,20 +270,20 @@ begin
 	
 	-- The ADDR_LOW 7Seg display
 	h2: entity work.hex7seg port map (
-		input => cycles(3 downto 0),	-- do(4:7)
+		input => std_logic_vector(clock_cycles(3 downto 0)),	-- do(4:7)
 		output => hex2
 	);
 	
 	-- The ADDR_HIGH 7Seg display
 	h1: entity work.hex7seg port map (
-		input => cycles(3 downto 0),	-- do(4:7)
+		input => std_logic_vector(clock_cycles(3 downto 0)),	-- do(4:7)
 		output => hex1
 	);
 
 	-- The ADDR_HIGH 7Seg display
 	h0: entity work.hex7seg port map (
-		input => do(3 downto 0),	-- do(4:7)
+		input => std_logic_vector(do(3 downto 0)),	-- do(4:7)
 		output => hex0
 	);
 
-end datapath;
+end rtl;

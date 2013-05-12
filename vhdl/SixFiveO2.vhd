@@ -47,7 +47,7 @@ entity SixFiveO2 is
     -- Internal variables exposed for debugging purposes:
     ------------------------------------------------------------------------------
     DOR     : out std_logic_vector(7 downto 0);
-    tcstate : out std_logic_vector(5 downto 0);  -- 6 bit mask for timing state (taken as input to decode ROM)
+    tcstate : buffer std_logic_vector(5 downto 0);  -- 6 bit mask for timing state (taken as input to decode ROM)
 
     ABL_out: out std_logic_vector(7 downto 0);
     ABH_out: out std_logic_vector(7 downto 0);
@@ -55,9 +55,9 @@ entity SixFiveO2 is
     Y_out: out std_logic_vector(7 downto 0);
     ACC_out: out std_logic_vector(7 downto 0);
 
-    SD1: out std_logic;
-    SD2: out std_logic;
-    VEC1: out std_logic;
+    SD1: buffer std_logic;
+    SD2: buffer std_logic;
+    VEC1: buffer std_logic;
     ACR_out: out std_logic;
 
     -- Outputs for 7seg debugging

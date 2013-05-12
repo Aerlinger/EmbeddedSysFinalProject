@@ -231,8 +231,8 @@ begin
 end TB;
 
 -------------------------------------------------------------------------
-configuration CFG_TB of ALU_TB is
+configuration CFG_ALU_TB of ALU_TB is
   for TB
   end for;
-end CFG_TB;
+end CFG_ALU_TB;
 -------------------------------------------------------------------------

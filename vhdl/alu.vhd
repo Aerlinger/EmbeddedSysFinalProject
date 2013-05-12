@@ -58,9 +58,9 @@ begin
     begin
 
       if (SUMS='1') then
-        temp <= ('0'&AI) + ('0'&BI) + ("0"&I_ADDC);
-        ADD <= temp(7 downto 0);
-        ACR <= temp(8) or Mask_shortcut;
+        temp <= x"00"; --('0'&AI) + ('0'&BI) + ("0"&I_ADDC); -- stubbed for now...
+        ADD <= std_logic_vector(temp(7 downto 0));
+        ACR <= std_logic(temp(8) or Mask_shortcut);
       elsif (ANDS='1') then
         ADD <= AI and BI;
       elsif (ORS='1') then 
@@ -70,13 +70,13 @@ begin
 
       -- TOOD: Verify this is how shifting works in the 6502
       elsif (SRS='1') then
-        ADD(6 downto 0) <= BI(7 downto 1);
-        ACR <= BI(0);
-        if opcode(7 downto 5)="010" then
-          ADD(7) <= '0';
-        elsif opcode(7 downto 5)="011" then
-          ADD(7) <= P(0);
-        end if;
+--        ADD(6 downto 0) <= BI(7 downto 1);
+--        ACR <= BI(0);
+--        if opcode(7 downto 5)="010" then
+--          ADD(7) <= '0';
+--        elsif opcode(7 downto 5)="011" then
+--          ADD(7) <= P(0);
+--        end if;
       else
         ADD <= "XXXXXXXX";
       end if;

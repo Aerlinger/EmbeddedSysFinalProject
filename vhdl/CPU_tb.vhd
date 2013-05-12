@@ -1,72 +1,3 @@
-library ieee;
-use ieee.std_logic_1164.all;
-use ieee.numeric_std.all;
-
-
-package CPU_package is
-
-  -- 1 / 50 MHz clock:
-  constant CLOCK_PERIOD: TIME := 20 ns;
-
-  --------------------------------------------------------------------------
-  --- INTERNAL AND EXTERMAL VARIABLES  -------------------------------------
-  --------------------------------------------------------------------------
-
-  -- The 6502's external interface:
-  signal Databus: std_logic_vector(7 downto 0);
-  signal Addrbus: std_logic_vector(15 downto 0);
-  signal clk: std_logic;
-  signal reset: std_logic;
-  signal W_R: std_logic;
-
-  -- Exposed 'internals' of the 6402  used for debugging:
-  signal tc_state: std_logic_vector(5 downto 0);
-  signal DOR: std_logic_vector(7 downto 0);
-  signal ACR_out:  std_logic;
-
-  signal ABL_out: std_logic_vector(7 downto 0);
-  signal ABH_out: std_logic_vector(7 downto 0);
-  signal X_out: std_logic_vector(7 downto 0);
-  signal Y_out: std_logic_vector(7 downto 0);
-  signal ACC_out: std_logic_vector(7 downto 0);
-
-  --signal XL, XH, YL, YH, ACCL, ACCH, : std_logic_vector(6 downto 0);
-
-  --------------------------------------------------------------------------
-  --- PROCEDURES  ----------------------------------------------------------
-  --------------------------------------------------------------------------
-
-  -- Loads an opcode onto the databus:
-  procedure load_opcode (
-    signal opcode: out std_logic_vector(7 downto 0)
-  );
-
-  procedure validate_output (
-    signal Databus: out std_logic_vector(7 downto 0)
-  );
-
-end CPU_package;
-
-package body CPU_package is
-
-  procedure load_opcode (
-    signal opcode: out std_logic_vector(7 downto 0)
-  ) is
-  begin
-    --Databus <= opcode;
-    --reset <= '0';
-  end load_opcode;
-
-  procedure validate_output (
-    signal Databus: out std_logic_vector(7 downto 0)
-  ) is
-  begin
-
-  end validate_output;
-
-end CPU_package;
-
-
 --------------------------------------------------------------------------
 --- Core test bench  -----------------------------------------------------
 --------------------------------------------------------------------------
@@ -81,17 +12,6 @@ end CPU_tb;
 
 architecture tb of CPU_tb is
 
-  component SixFiveO2
-    port(
-      Databus : in std_logic_vector(7 downto 0);
-      Addrbus : out std_logic_vector(15 downto 0);
-      DOR     : out std_logic_vector(7 downto 0);
-      reset, clk: in std_logic;
-
-      XL, XH, YL, YH, ACCL, ACCH : out std_logic_vector(6 downto 0)
-    );
-  end component;
-
   --component memory_asynchronous
   --end component;
 
@@ -103,14 +23,6 @@ architecture tb of CPU_tb is
 	signal clk    : std_logic  := '0';
 
 begin
-
-  U_SixFiveO2: SixFiveO2 port map(
-    Databus => Databus,
-    Addrbus => Addrbus,
-    DOR => DOR,
-    reset => reset,
-    clk => clk
-  );
 
   process
   begin
