@@ -27,7 +27,7 @@ architecture TB of memory_sync_tb is
 
 begin
 
-  U_CKT: memory_sync port map
+  U_MEMORY_SYNC: memory_sync port map
   (
     tb_clk,
     tb_enable,

@@ -11,11 +11,11 @@ entity memory_async is
   );
 
   port (
-    address : in std_logic_vector(7 downto 0);
-    data : in std_logic_vector(7 downto 0);
+    address : in std_logic_vector(ADDR_WIDTH-1 downto 0);
+    data : inout std_logic_vector(DATA_WIDTH-1 downto 0);
     cs : in std_logic;
     we : in std_logic;
-    oe : in std_logic;
+    oe : in std_logic
   );
 
 end entity;
@@ -27,11 +27,11 @@ architecture rtl of memory_async is
   signal data_out: std_logic_vector (DATA_WIDTH-1 downto 0);
 
   type RAM is array (integer range <>) of std_logic_vector (DATA_WIDTH-1 downto 0);
-  signal mem: RAM (0 to RAM_DEPTH - 1):
+  signal mem: RAM (0 to RAM_DEPTH - 1);
 begin
 
   --- Tri-state Buffer control
-  data <= data_out when (cs = '1' and oe = '1' and we = '0') else (others('Z'));
+  data <= data_out when (cs = '1' and oe = '1' and we = '0') else (others => 'Z');
 
   -- Memory Write Block:
   MEM_WRITE:
@@ -45,7 +45,7 @@ begin
   MEM_READ:
   process (address, cs, we, oe, mem) begin
     if (cs='1' and we='0' and oe='1') then
-      data_out <= mem(conv_integer(address)):
+      data_out <= mem(conv_integer(address));
     end if;
   end process;
 

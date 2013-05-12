@@ -1,43 +1,59 @@
 v 3
-file . "memory_sync.vhd" "20130512005635.000" "20130511205649.133":
-  entity memory_sync at 1( 0) + 0 on 132;
-  architecture behav of memory_sync at 20( 450) + 0 on 133;
-file . "alu_tb.vhd" "20130511212915.000" "20130511203022.510":
-  package alu_package at 1( 0) + 0 on 53 body;
-  package body alu_package at 40( 1024) + 0 on 54;
-  entity alu_tb at 109( 2825) + 0 on 55;
-  architecture tb of alu_tb at 116( 2954) + 0 on 56;
-file . "CPU.vhd" "20130511201638.000" "20130511162301.866":
-  entity cpu at 19( 587) + 0 on 4;
-  architecture rtl of cpu at 37( 1169) + 0 on 4;
-file . "DE2_TOP.vhd" "20130511175247.000" "20130511162301.867":
-  entity de2_top at 10( 221) + 0 on 4;
-  architecture datapath of de2_top at 175( 7177) + 0 on 4;
-file . "DFF_tb.vhd" "20130511201743.000" "20130511162301.867":
-  entity dff_tb at 1( 0) + 0 on 4;
-  architecture tb of dff_tb at 8( 100) + 0 on 4;
-file . "Predecode.vhd" "20130511175247.000" "20130511162301.867":
-  entity predecode at 1( 0) + 0 on 4;
-  architecture rtl of predecode at 14( 317) + 0 on 4;
-file . "Predecode_tb.vhd" "20130511201802.000" "20130511162301.868":
-  entity predecode_tb at 1( 0) + 0 on 4;
-  architecture tb of predecode_tb at 8( 112) + 0 on 4;
-file . "SixFiveO2.vhd" "20130511201106.000" "20130511162301.868":
-  entity sixfiveo2 at 1( 0) + 0 on 6;
-  architecture imp of sixfiveo2 at 14( 348) + 0 on 4;
-file . "SixFiveO2_tb.vhd" "20130511201917.000" "20130511162301.925":
-  entity sixfiveo2_tb at 1( 0) + 0 on 11;
-  architecture tb of sixfiveo2_tb at 8( 112) + 0 on 12;
-file . "TG.vhd" "20130511181312.000" "20130511162301.870":
-  entity tg at 1( 0) + 0 on 4;
-  architecture rtl of tg at 21( 444) + 0 on 4;
-file . "alu.vhd" "20130511202041.000" "20130511162301.870":
-  entity alu at 18( 568) + 0 on 4;
-  architecture rtl of alu at 51( 1206) + 0 on 4;
-file . "hextoseg.vhd" "20130511193152.000" "20130511162301.870":
+file . "program.vhd" "20130512130642.000" "20130512095050.454":
+  entity rom at 28( 778) + 0 on 4;
+  architecture rtl of rom at 48( 1199) + 0 on 4;
+  package sixfiveo2_package at 114( 2713) + 0 on 4;
+  entity program at 127( 2952) + 0 on 4;
+  architecture tb of program at 134( 3054) + 0 on 4;
+file . "memory_sync_tb.vhd" "20130512133710.000" "20130512095050.453":
+  entity memory_sync_tb at 1( 0) + 0 on 4;
+  architecture tb of memory_sync_tb at 9( 153) + 0 on 4;
+file . "hextoseg.vhd" "20130511193152.000" "20130512095050.453":
   entity hex7seg at 1( 0) + 0 on 4;
   architecture combinational of hex7seg at 12( 262) + 0 on 4;
-file . "memory_sync_tb.vhd" "20130512005252.000" "20130511205649.256":
-  entity memory_sync_tb at 1( 0) + 0 on 134;
-  architecture tb of memory_sync_tb at 9( 153) + 0 on 135;
-  configuration cfg_tb at 107( 2504) + 0 on 136;
+file . "alu.vhd" "20130512135049.000" "20130512095050.452":
+  entity alu at 18( 568) + 0 on 4;
+  architecture rtl of alu at 53( 1289) + 0 on 4;
+file . "TG.vhd" "20130511181312.000" "20130512095050.452":
+  entity tg at 1( 0) + 0 on 4;
+  architecture rtl of tg at 21( 444) + 0 on 4;
+file . "SixFiveO2_tb.vhd" "20130512132644.000" "20130512095050.451":
+  package cpu_package at 1( 0) + 0 on 4;
+  package body cpu_package at 50( 1598) + 0 on 4;
+  entity sixfiveo2_tb at 69( 1920) + 0 on 4;
+  architecture tb of sixfiveo2_tb at 72( 1962) + 0 on 4;
+file . "SixFiveO2.vhd" "20130512130931.000" "20130512095050.451":
+  entity sixfiveo2 at 22( 595) + 0 on 4;
+  architecture imp of sixfiveo2 at 70( 2262) + 0 on 4;
+file . "Predecode_tb.vhd" "20130511203626.000" "20130512095050.451":
+  entity predecode_tb at 1( 0) + 0 on 4;
+  architecture tb of predecode_tb at 8( 112) + 0 on 4;
+file . "Predecode.vhd" "20130511175247.000" "20130512095050.450":
+  entity predecode at 1( 0) + 0 on 4;
+  architecture rtl of predecode at 14( 317) + 0 on 4;
+file . "DFF_tb.vhd" "20130512133806.000" "20130512095050.450":
+  entity dff_tb at 1( 0) + 0 on 4;
+  architecture tb of dff_tb at 8( 100) + 0 on 4;
+file . "DE2_TOP.vhd" "20130511175247.000" "20130512095050.450":
+  entity de2_top at 10( 221) + 0 on 4;
+  architecture datapath of de2_top at 175( 7177) + 0 on 4;
+file . "CPU.vhd" "20130512014721.000" "20130512095050.449":
+  entity cpu at 21( 628) + 0 on 4;
+  architecture rtl of cpu at 39( 1210) + 0 on 4;
+file . "alu_tb.vhd" "20130512134254.000" "20130512095050.512":
+  package alu_package at 1( 0) + 0 on 11 body;
+  package body alu_package at 40( 1024) + 0 on 12;
+  entity alu_tb at 109( 2825) + 0 on 13;
+  architecture tb of alu_tb at 116( 2954) + 0 on 14;
+  configuration cfg_tb at 233( 5579) + 0 on 15;
+file . "memory_sync.vhd" "20130512005635.000" "20130512095050.453":
+  entity memory_sync at 1( 0) + 0 on 4;
+  architecture behav of memory_sync at 20( 450) + 0 on 4;
+file . "CPU_tb.vhd" "20130512133628.000" "20130512095050.449":
+  entity cpu_tb at 75( 2148) + 0 on 4;
+  architecture tb of cpu_tb at 83( 2249) + 0 on 4;
+file . "memory_async.vhd" "20130512133110.000" "20130512095050.453":
+  entity memory_async at 1( 0) + 0 on 4;
+  architecture rtl of memory_async at 24( 447) + 0 on 4;
+file . "program_tb.vhd" "20130512133326.000" "20130512095050.454":
+  entity program_tb at 1( 0) + 0 on 4;

@@ -2,8 +2,6 @@ library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
-entity SixFiveO2_tb is
-end SixFiveO2_tb;
 
 package CPU_package is
 
@@ -26,12 +24,12 @@ package CPU_package is
   signal DOR: std_logic_vector(7 downto 0);
   signal ACR_out:  std_logic;
 
-  signal ABL_out: out std_logic_vector(7 downto 0);
-  signal ABH_out: out std_logic_vector(7 downto 0);
-  signal DOR: out std_logic_vector(7 downto 0);
-  signal X_out: out std_logic_vector(7 downto 0);
-  signal Y_out: out std_logic_vector(7 downto 0);
-  signal ACC_out: out std_logic_vector(7 downto 0);
+  signal ABL_out: std_logic_vector(7 downto 0);
+  signal ABH_out: std_logic_vector(7 downto 0);
+  signal DOR: std_logic_vector(7 downto 0);
+  signal X_out: std_logic_vector(7 downto 0);
+  signal Y_out: std_logic_vector(7 downto 0);
+  signal ACC_out: std_logic_vector(7 downto 0);
 
   --signal XL, XH, YL, YH, ACCL, ACCH, : std_logic_vector(6 downto 0);
 
@@ -41,14 +39,14 @@ package CPU_package is
 
   -- Loads an opcode onto the databus:
   procedure load_opcode (
-    signal opcode: out std_logic_vector(7 downto 0);
+    signal opcode: out std_logic_vector(7 downto 0)
   );
 
   procedure validate_output (
-    signal Databus: out std_logic_vector(7 downto 0);
+    signal Databus: out std_logic_vector(7 downto 0)
   );
 
-end
+end CPU_package;
 
 package body CPU_package is
 
@@ -58,9 +56,10 @@ package body CPU_package is
   begin
     Databus <= opcode;
     reset <= 0;
-  end load_data;
+  end load_opcode;
 
   procedure validate_output (
+    signal Databus: out std_logic_vector(7 downto 0)
   ) is
   begin
 
@@ -69,19 +68,33 @@ package body CPU_package is
 end CPU_package;
 
 
-architecture tb of SixFiveO2_tb is
+--------------------------------------------------------------------------
+--- Core test bench  -----------------------------------------------------
+--------------------------------------------------------------------------
 
-  component SixFive02 is
-    Databus : in std_logic_vector(7 downto 0);
-    Addrbus : out std_logic_vector(15 downto 0);
-    DOR     : out std_logic_vector(7 downto 0);
-    reset, clk: in std_logic;
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
 
-    XL, XH, YL, YH, ACCL, ACCH : out std_logic_vector(6 downto 0));
-  end SixFive02;
 
-  component memory_asynchronous
-  end memory_asyncronous;
+entity CPU_tb is
+end CPU_tb;
+
+architecture tb of CPU_tb is
+
+  component SixFiveO2
+    port(
+      Databus : in std_logic_vector(7 downto 0);
+      Addrbus : out std_logic_vector(15 downto 0);
+      DOR     : out std_logic_vector(7 downto 0);
+      reset, clk: in std_logic;
+
+      XL, XH, YL, YH, ACCL, ACCH : out std_logic_vector(6 downto 0)
+    );
+  end component;
+
+  --component memory_asynchronous
+  --end component;
 
 	signal Databus : std_logic_vector(7 downto 0) := x"A9";
   signal Addrbus : std_logic_vector(7 downto 0);
@@ -92,7 +105,7 @@ architecture tb of SixFiveO2_tb is
 
 begin
 
-  U_SixFive02: SixFive02 port map(
+  U_SixFiveO2: SixFiveO2 port map(
     Databus => Databus,
     Addrbus => Addrbus,
     DOR => DOR,

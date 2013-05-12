@@ -26,9 +26,11 @@ use ieee.std_logic_arith.all;
 entity ALU is
 
 port(
-  A:  in std_logic_vector(7 downto 0);
-  B:  in std_logic_vector(7 downto 0);
+  AI:  in std_logic_vector(7 downto 0);
+  BI:  in std_logic_vector(7 downto 0);
   ADD:  out std_logic_vector(7 downto 0);
+  P: in std_logic_vector(7 downto 0);
+  opcode: in std_logic_vector(7 downto 0);
 
   ANDS: in std_logic;
   SUMS: in std_logic;
@@ -53,19 +55,19 @@ architecture rtl of ALU is
 
 begin
 
-    process(A, B, ANDS, SUMS, ORS, EORS, SRS, I_ADDC)
+    process(AI, BI, ANDS, SUMS, ORS, EORS, SRS, I_ADDC)
     begin
-      
+
       if (SUMS='1') then
         temp <= ('0'&AI) + ('0'&BI) + ("0"&I_ADDC);
         ADD <= temp(7 downto 0);
         ACR <= temp(8) or Mask_shortcut;
       elsif (ANDS='1') then
-        ADD <= A and B;
+        ADD <= AI and BI;
       elsif (ORS='1') then 
-        ADD <= A or B;
+        ADD <= AI or BI;
       elsif (EORS='1') then
-        ADD <= A xor B;
+        ADD <= AI xor BI;
 
       -- TOOD: Verify this is how shifting works in the 6502
       elsif (SRS='1') then

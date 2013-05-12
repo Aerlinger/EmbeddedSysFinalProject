@@ -39,8 +39,8 @@ architecture tb of DFF_tb is
 			wait;
 		end process;
 
-DFF:
-		entity work.DFlipFlop
-		port map (clk=> clk, input=>input, enable=>enable, reset=>reset);
+--DFF:
+--		entity work.DFlipFlop
+--		port map (clk=> clk, input=>input, enable=>enable, reset=>reset);
 										
 end tb;

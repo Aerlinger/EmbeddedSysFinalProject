@@ -12,6 +12,10 @@
 --     Anthony Erlinger
 --     Arthy Padma Anandhi Sundaram
 --
+--
+-- TOP-LEVEL 6502
+--
+--
 ------------------------------------------------------------------------------
 ------------------------------------------------------------------------------
 
@@ -25,16 +29,16 @@ entity SixFiveO2 is
     ------------------------------------------------------------------------------
     -- Default external interface (37 active pins)
     ------------------------------------------------------------------------------
-    Databus : in std_logic_vector(7 downto 0);
+    Databus : in std_logic_vector(7 downto 0);  -- TODO: This should probably be INOUT
     Addrbus : out std_logic_vector(15 downto 0);
-    reset: in std_logic;
+    clk: in std_logic;
     rdy: in std_logic;
     res: in std_logic;   -- Active low
     irq: in std_logic;   -- Active low
     nmi: in std_logic;   -- Active low
-    clk: in std_logic;
 
     r_w: out std_logic;   -- Write is Active low
+
 
     -- Unused in this implementation
     -- sync: out std_logic;
@@ -53,7 +57,7 @@ entity SixFiveO2 is
     Y_out: out std_logic_vector(7 downto 0);
     ACC_out: out std_logic_vector(7 downto 0);
 
-    SD1: out std_logic
+    SD1: out std_logic;
     SD2: out std_logic;
     VEC1: out std_logic;
     ACR_out: out std_logic;

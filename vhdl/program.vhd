@@ -33,19 +33,25 @@ use ieee.std_logic_unsigned.all;
 -- ROM -------------------------------------------------------------------------
 
 entity ROM is
-port(
-  clk : in std_logic;
-  read : in std_logic;
-  address : in std_logic(7 downto 0);
-  data_out : out std_logic(7 downto 0);
-);
+  generic (
+    ADDR_WIDTH :integer := 16
+  );
+
+  port(
+    Databus : out std_logic_vector(7 downto 0);
+    Addrbus : in std_logic_vector(15 downto 0);
+    clk : in std_logic;
+    read_en : in std_logic
+  );
 end ROM;
 
-architecture tb of ROM is
+architecture rtl of ROM is
   -- LOCAL SIGNALS
 
-  type ROM_Array is array (0 to 31)
-  of std_logic_vector(7 downto 0);
+  constant ADDR_SPACE :integer := 2**ADDR_WIDTH;
+
+  type ROM_Array is array (0 to ADDR_SPACE-1)
+    of std_logic_vector(7 downto 0);
 
   -- Rom of the basic program 
   -- Used from: http://skilldrick.github.io/easy6502/
@@ -69,7 +75,8 @@ architecture tb of ROM is
 
     12 => x"8D", -- STA Absolute
     13 => x"02",
-    14 => x"02"7
+    14 => x"02",
+    others => x"FF"
   );
 
   constant tax_test: ROM_Array := (
@@ -83,63 +90,69 @@ architecture tb of ROM is
     5 => x"c4",  -- the value to be added
 
     6 => x"00",  -- BRK
+    others => x"FF"
   );
 
 begin
 
-  process(clk, reset, read, address)
+  process(clk, read_en, Addrbus)
   begin
     if (clk'event and clk='1') then
-      if (read = '1') then
-        data_out <= Load_test(conv_integer(address));
+      if (read_en = '1') then
+        Databus <= Load_test(conv_integer(Addrbus));
       else
-        data_out <= "ZZZZZZZZ";
+        Databus <= "ZZZZZZZZ";
       end if;
     end if;
   end process;
 
-end tb;
+end rtl;
 
 
 -- 6502 Module ----------------------------------------------------------
 
-package SixFive02_package is
+package SixFiveO2_package is
 
   constant CLOCK_PERIOD: TIME := 20 ns;
 
-end SixFive02_package;
+end SixFiveO2_package;
 
 
-package body SixFive02_package is
+--package body SixFiveO2_package is
 
-end SixFive02_package;
+--end SixFiveO2_package;
 
 ------------------------------------------------------------------------------
+
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
 
 entity program is
 end program;
 
-architecture tb of program is is
-  component ROM is
+architecture tb of program is
+
+  component SixFiveO2
+  port (
+    Databus: in std_logic_vector(7 downto 0);
+    Addrbus: out std_logic_vector(15 downto 0);
+    clk: in std_logic;
+    rdy: in std_logic;
+    res: in std_logic;
+    irq: in std_logic;
+    nmi: in std_logic;
+    r_w: out std_logic
+  );
   end component;
 
-  component SixFive02 is
-    Databus => Databus,
-    Addrbus  => Addrbus,
-    clk => clk,
-    rdy => rdy,
-    res => res,
-    irq => irq,
-    nmi => nmi,
-    nmi => nmi,
-    r_w => r_w
-  end component;
-
-  component ROM is
-    clk => clk,
-    data_out => Databus,
-    address => Addrbus,
-    read <= '1',
+  component ROM
+  port (
+    Databus: out std_logic_vector(7 downto 0);
+    Addrbus: in std_logic_vector(15 downto 0);
+    clk: in std_logic;
+    read_en: in std_logic
+  );
   end component;
   -- Signals for the ROM are shared by the 6502
 
@@ -149,7 +162,7 @@ architecture tb of program is is
 
   -- External 6502 signals
   signal Databus : std_logic_vector(7 downto 0);
-  signal Addrbus : std_logic_vector(16 downto 0);
+  signal Addrbus : std_logic_vector(15 downto 0) := x"0000";
 
   signal clk: std_logic;
   signal rdy: std_logic;
@@ -157,53 +170,57 @@ architecture tb of program is is
   signal irq: std_logic;   -- Active low
   signal nmi: std_logic;   -- Active low
 
-  r_w: out std_logic;   -- Write is Active low
+  signal r_w: std_logic;   -- Write is Active low
 
   -- Exposed internal signals:
-  DOR     : out std_logic_vector(7 downto 0);
-  tcstate : out std_logic_vector(5 downto 0);  -- 6 bit mask for timing state (taken as input to decode ROM)
+  signal DOR     : std_logic_vector(7 downto 0);
+  signal tcstate : std_logic_vector(5 downto 0);  -- 6 bit mask for timing state (taken as input to decode ROM)
 
-  ABL_out: out std_logic_vector(7 downto 0);
-  ABH_out: out std_logic_vector(7 downto 0);
-  DOR: out std_logic_vector(7 downto 0);
-  X_out: out std_logic_vector(7 downto 0);
-  Y_out: out std_logic_vector(7 downto 0);
-  ACC_out: out std_logic_vector(7 downto 0);
+  signal ABL_out: std_logic_vector(7 downto 0);
+  signal ABH_out: std_logic_vector(7 downto 0);
+  signal X_out: std_logic_vector(7 downto 0);
+  signal Y_out: std_logic_vector(7 downto 0);
+  signal ACC_out: std_logic_vector(7 downto 0);
 
-  SD1: out std_logic
-  SD2: out std_logic;
-  VEC1: out std_logic;
-  ACR_out: out std_logic;
+  signal SD1: std_logic;
+  signal SD2: std_logic;
+  signal VEC1: std_logic;
+  signal ACR_out: std_logic;
 
   -- Outputs for 7seg debugging
-  XL, XH, YL, YH, ACCL, ACCH : out std_logic_vector(6 downto 0)
+  signal XL, XH, YL, YH, ACCL, ACCH : std_logic_vector(6 downto 0);
+
 begin
 
   -- TODO: Make connections for test outputs
-  U_SixFive02: SixFive02 port map(
-    Databus => Databus,
-    Addrbus => Addrbus,
-    DOR => DOR,
-    reset => reset,
-    clk => clk
-  );
+  --U_SIXFIVEO2: SixFiveO2 port map
+  --(
+  --  Databus,
+  --  Addrbus,
+  --  clk,
+  --  rdy,
+  --  res,
+  --  irq,
+  --  nmi,
+  --  r_w
+  --);
 
   U_ROM: ROM port map
   (
-    data_out => Databus,
-    Address <= addr_bus;
-    clk <= clk;
-    enable <= '1';
+    Databus,
+    Addrbus,
+    clk,
+    '1'
   );
 
   process
   begin
     loop
-      clk <= '0' wait for 20 ns;
-      clk <= '1' wait for 20 ns;
+      clk <= '0'; wait for 20 ns;
+      clk <= '1'; wait for 20 ns;
     end loop;
   end process;
 
-end
+end tb;
 
 ------------------------------------------------------------------------------

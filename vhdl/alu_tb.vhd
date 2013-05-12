@@ -116,7 +116,7 @@ end ALU_TB;
 architecture TB of ALU_TB is
 
   component ALU
-    port( 
+    port(
       A:  in std_logic_vector(7 downto 0);
       B:  in std_logic_vector(7 downto 0);
       ANDS: in std_logic;
