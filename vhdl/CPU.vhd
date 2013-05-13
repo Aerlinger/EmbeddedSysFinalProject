@@ -171,7 +171,7 @@ begin
 
         --  this part will be taken care by "BRK" later.
         --  if (opcode=x"00" and tcstate(1)='0') then
-        --    PC <= PC+1;
+        --    PC <= PC + 1;
         --    ABL <= std_logic_vector(PC(7 Downto 0));
         --    ABH <= std_logic_vector(PC(15 Downto 8));
         --  end if;
@@ -185,7 +185,7 @@ begin
           --Address Mode: Absolute;aaa: don't care;cc: don't care.
           --Timing: T2
           if (opcode(4 downto 2)="011" and tcstate(2)='0' ) then
-            PC <= PC+1;
+            PC <= PC + 1;
             ABL <= std_logic_vector(PC(7 Downto 0));
             ABH <= std_logic_vector(PC(15 Downto 8));
             Sums <= '1';
@@ -225,7 +225,7 @@ begin
           --Address Mode: Absolute X;aaa: don't care;cc: don't care.
           --Timing T2
           if (opcode(4 downto 2)="111" and tcstate(2)='0' and (not(opcode(7 downto 5)="101" and opcode(1 downto 0)="10"))) then
-            PC <= PC+1;
+            PC <= PC + 1;
             ABL <= std_logic_vector(PC(7 Downto 0));
             ABH <= std_logic_vector(PC(15 Downto 8));
             AI <= unsigned(X);
@@ -281,7 +281,7 @@ begin
         --Address Mode: Absolute Y;aaa: don't care;cc: 01
         --Timing T2
         if (opcode(4 downto 2)="110" and opcode(1 downto 0)="01" and tcstate(2)='0' ) then
-          PC <= PC+1;
+          PC <= PC + 1;
           ABL <= std_logic_vector(PC(7 Downto 0));
           ABH <= std_logic_vector(PC(15 Downto 8));
           AI <= unsigned(Y);
@@ -402,7 +402,8 @@ begin
           Mask_shortcut <= '0';
           Sums <= '0';
         end if;
-          --page crossing
+
+        --page crossing
         if (opcode(4 downto 2)="100" and opcode(1 downto 0)="01" and tcstate(4)='0' and ACR='1') then
           PC <= PC;
           ABH <= Databus;
@@ -428,7 +429,7 @@ begin
         --Instruction: LDA; aaa: 101; bbb: don't care; cc: 01
         --T0
         if (opcode(7 downto 5)="101" and opcode(1 downto 0)="01" and tcstate(0)='0' ) then
-          PC <= PC+1;
+          PC <= PC + 1;
           ABL <= std_logic_vector(PC(7 Downto 0));
           ABH <= std_logic_vector(PC(15 Downto 8));
           ACC <= unsigned(Databus);
@@ -439,8 +440,8 @@ begin
           PC  <= PC + 1;
           ABL <= std_logic_vector(PC(7 Downto 0));
           ABH <= std_logic_vector(PC(15 Downto 8));
-        P(7)<=ACC(7);
-        SUMS<='0';
+          P(7)<=ACC(7);
+          SUMS<='0';
 
           if ACC(7)='1' then
             P(7) <= '1';
@@ -458,7 +459,7 @@ begin
           --Instruction: ORA;aaa: 000;bbb: don't care;cc: 01
         --T0
         if (opcode(7 downto 5)="000" and opcode(1 downto 0)="01" and tcstate(0)='0' ) then
-          PC    <= PC+1;
+          PC    <= PC + 1;
           ABL   <= std_logic_vector(PC(7 Downto 0));
           ABH   <= std_logic_vector(PC(15 Downto 8));
           AI    <= ACC;
@@ -469,7 +470,7 @@ begin
 
         --T1
         if (opcode(7 downto 5)="000" and opcode(1 downto 0)="01" and tcstate(1)='0' ) then
-          PC  <= PC+1;
+          PC  <= PC + 1;
           ABL <= std_logic_vector(PC(7 Downto 0));
           ABH <= std_logic_vector(PC(15 Downto 8));
           ACC <= ADD;
@@ -491,7 +492,7 @@ begin
         --Instruction: AND; aaa: 001; bbb: don't care; cc: 01
         --T0
         if (opcode(7 downto 5)="001" and opcode(1 downto 0)="01" and tcstate(0)='0' ) then
-          PC <= PC+1;
+          PC <= PC + 1;
           ABL <= std_logic_vector(PC(7 Downto 0));
           ABH <= std_logic_vector(PC(15 Downto 8));
           AI <= ACC;
@@ -502,7 +503,7 @@ begin
 
         --T1
         if (opcode(7 downto 5)="001" and opcode(1 downto 0)="01" and tcstate(1)='0' ) then
-          PC <= PC+1;
+          PC <= PC + 1;
           ABL <= std_logic_vector(PC(7 Downto 0));
           ABH <= std_logic_vector(PC(15 Downto 8));
           ACC <= ADD;
@@ -524,7 +525,7 @@ begin
         --Instruction: EOR;aaa: 010;bbb: don't care;cc: 01
         --T0
         if (opcode(7 downto 5)="010" and opcode(1 downto 0)="01" and tcstate(0)='0' ) then
-          PC <= PC+1;
+          PC <= PC + 1;
           ABL <= std_logic_vector(PC(7 Downto 0));
           ABH <= std_logic_vector(PC(15 Downto 8));
           AI <= ACC;
@@ -534,7 +535,7 @@ begin
         end if;
 
         if (opcode(7 downto 5)="010" and opcode(1 downto 0)="01" and tcstate(1)='0' ) then
-          PC <= PC+1;
+          PC <= PC + 1;
           ABL <= std_logic_vector(PC(7 Downto 0));
           ABH <= std_logic_vector(PC(15 Downto 8));
           ACC <= ADD;
@@ -556,7 +557,7 @@ begin
         --Instruction: ADC;aaa: 011;bbb: don't care;cc: 01
         --T0
         if (opcode(7 downto 5)="011" and opcode(1 downto 0)="01" and tcstate(0)='0' ) then
-          PC <= PC+1;
+          PC <= PC + 1;
           ABL <= std_logic_vector(PC(7 Downto 0));
           ABH <= std_logic_vector(PC(15 Downto 8));
           AI <= ACC;
@@ -567,7 +568,7 @@ begin
 
         --T1
         if (opcode(7 downto 5)="011" and opcode(1 downto 0)="01" and tcstate(1)='0' ) then
-          PC <= PC+1;
+          PC <= PC + 1;
           ABL <= std_logic_vector(PC(7 Downto 0));
           ABH <= std_logic_vector(PC(15 Downto 8));
           ACC <= ADD;
@@ -598,7 +599,7 @@ begin
         --Instruction: CMP;aaa: 110;bbb: don't care;cc: 01
         --T0
         if (opcode(7 downto 5)="110" and opcode(1 downto 0)="01" and tcstate(0)='0' ) then
-          PC <= PC+1;
+          PC <= PC + 1;
           ABL <= std_logic_vector(PC(7 Downto 0));
           ABH <= std_logic_vector(PC(15 Downto 8));
           AI <= ACC;
@@ -609,7 +610,7 @@ begin
 
         --T1
         if (opcode(7 downto 5)="110" and opcode(1 downto 0)="01" and tcstate(1)='0' ) then
-          PC <= PC+1;
+          PC <= PC + 1;
           ABL <= std_logic_vector(PC(7 Downto 0));
           ABH <= std_logic_vector(PC(15 Downto 8));
           ACC <= ADD;
@@ -627,7 +628,7 @@ begin
             P(1) <= '0';
           end if;
 
-          if signed(std_logic_vector(AI))<signed(std_logic_vector(BI)) then
+          if signed(std_logic_vector(AI)) < signed(std_logic_vector(BI)) then
             P(0) <= '1';
           else
             P(0) <= '0';
@@ -637,7 +638,7 @@ begin
         --Instruction: SBC;aaa: 111;bbb: don't care;cc: 01
         --T0
         if (opcode(7 downto 5)="111" and opcode(1 downto 0)="01" and tcstate(0)='0' ) then
-          PC <= PC+1;
+          PC <= PC + 1;
           ABL <= std_logic_vector(PC(7 Downto 0));
           ABH <= std_logic_vector(PC(15 Downto 8));
           AI <= ACC;
@@ -648,7 +649,7 @@ begin
 
         --T1
         if (opcode(7 downto 5)="111" and opcode(1 downto 0)="01" and tcstate(1)='0' ) then
-          PC <= PC+1;
+          PC <= PC + 1;
           ABL <= std_logic_vector(PC(7 Downto 0));
           ABH <= std_logic_vector(PC(15 Downto 8));
           ACC <= ADD;
@@ -678,7 +679,7 @@ begin
         --Instruction: STA;aaa: 100;bbb: don't care;cc: 01
         --T0
         if (opcode(7 downto 5)="100" and opcode(1 downto 0)="01" and tcstate(0)='0' ) then
-          PC <= PC+1;
+          PC <= PC + 1;
           ABL <= std_logic_vector(PC(7 Downto 0));
           ABH <= std_logic_vector(PC(15 Downto 8));
           W_R <= '1';
@@ -686,7 +687,7 @@ begin
 
         --T1
         if (opcode(7 downto 5)="100" and opcode(1 downto 0)="01" and tcstate(1)='0' ) then
-          PC <= PC+1;
+          PC <= PC + 1;
           ABL <= std_logic_vector(PC(7 Downto 0));
           ABH <= std_logic_vector(PC(15 Downto 8));
         end if;
@@ -722,13 +723,14 @@ begin
 
         --2) Address Mode: absolute X==> absolute Y;Instruction: LDX
         --Timing T2
-        if (opcode(4 downto 2)="111" and tcstate(2)='0' and ((opcode(7 downto 5)="101" and opcode(1 downto 0)="10"))) then
-          PC <= PC+1;
-          ABL <= std_logic_vector(PC(7 Downto 0));
-          ABH <= std_logic_vector(PC(15 Downto 8));
-          AI <= unsigned(Y);
-          BI <= unsigned(Databus);
-          Sums <= '1';
+        if (opcode(4 downto 2)="111" and tcstate(2)='0' and 
+          ((opcode(7 downto 5)="101" and opcode(1 downto 0)="10"))) then
+          PC    <= PC + 1;
+          ABL   <= std_logic_vector(PC(7 Downto 0));
+          ABH   <= std_logic_vector(PC(15 Downto 8));
+          AI    <= unsigned(Y);
+          BI    <= unsigned(Databus);
+          Sums  <= '1';
         end if;
 
         --JB0511 To avoid conflict with Arthy's, avoid hex1>=8 and hex2=A.
@@ -736,10 +738,10 @@ begin
           --For all the instructions in this section (cc=10), T0 and T1 has the same behaviors
           --T0
           if (opcode(1 downto 0)="10" and tcstate(0)='0') then
-            PC <= PC+1;
-            ABL <= std_logic_vector(PC(7 Downto 0));
-            ABH <= std_logic_vector(PC(15 Downto 8));
-            W_R <= '1';
+            PC    <= PC + 1;
+            ABL   <= std_logic_vector(PC(7 Downto 0));
+            ABH   <= std_logic_vector(PC(15 Downto 8));
+            W_R   <= '1';
 
             --LDX needs one more operation
             if opcode(7 downto 5)="101" then
@@ -749,7 +751,7 @@ begin
 
           --T1
           if (opcode(1 downto 0)="10" and tcstate(1)='0') then
-            PC <= PC+1;
+            PC <= PC + 1;
             ABL <= std_logic_vector(PC(7 Downto 0));
             ABH <= std_logic_vector(PC(15 Downto 8));
 
@@ -772,29 +774,29 @@ begin
           --Instruction: ASL; aaa: 000; bbb: don't care; cc: 10
           --SD1
           if (opcode(7 downto 5)="000" and SD1='1') then
-            PC <= PC;
-            ABH <= ABH;
-            ABL <= ABL;
-          AI<=unsigned(Databus); --JB0511 correct? Why is W_R '0' while Databus=>DOR?
-            BI <= unsigned(Databus);
-            DOR <= Databus;
-            SUMS <= '1';
-            W_R <= '0';
-            I_ADDC <= '0';
+            PC      <= PC;
+            ABH     <= ABH;
+            ABL     <= ABL;
+            AI      <= unsigned(Databus); --JB0511 correct? Why is W_R '0' while Databus=>DOR?
+            BI      <= unsigned(Databus);
+            DOR     <= Databus;
+            SUMS    <= '1';
+            W_R     <= '0';
+            I_ADDC  <= '0';
           end if;
 
           --Instruction: ROL; aaa: 001; bbb: don't care; cc: 10
           --SD1
           if (opcode(7 downto 5)="001" and SD1='1') then
-            PC <= PC;
-            ABH <= ABH;
-            ABL <= ABL;
-            AI <= unsigned(Databus);
-            BI <= unsigned(Databus);
-            Sums <= '1';
-            I_ADDC <= P(0);
-            DOR <= Databus;
-            W_R <= '0';
+            PC      <= PC;
+            ABH     <= ABH;
+            ABL     <= ABL;
+            AI      <= unsigned(Databus);
+            BI      <= unsigned(Databus);
+            Sums    <= '1';
+            I_ADDC  <= P(0);
+            DOR     <= Databus;
+            W_R     <= '0';
           end if;
 
           --Instruction: LSR; aaa: 010; bbb: don't care; cc: 10
@@ -1009,7 +1011,7 @@ begin
             --Instruction: ASL or ROL or LSR or ROR
             --T1
             if tcstate(1)='0' then
-              PC <= PC+1;
+              PC <= PC + 1;
               ABL <= std_logic_vector(PC(7 Downto 0));
               ABH <= std_logic_vector(PC(15 Downto 8));
               ACC <= ADD;
@@ -1057,11 +1059,11 @@ begin
           if (opcode(4 downto 2)="100") then  --bbb=100 does not overlab with anything else.
             --T2
             if (tcstate(2)='0') then
-              PC <= PC+1;
+              PC  <= PC + 1;
               ABL <= std_logic_vector(PC(7 Downto 0));
               ABH <= std_logic_vector(PC(15 Downto 8));
-              BI <= unsigned(Databus);
-              AI <= PC(7 Downto 0);
+              BI  <= unsigned(Databus);
+              AI  <= PC(7 Downto 0);
               Sums <= '1';
 
               -- xx=00. N flag. P(7)
@@ -1161,7 +1163,7 @@ begin
               if (tcstate(5)='0') then
                 --Databus <= DOR;
                 W_R  <= '0';
-                PC   <= PC+1;
+                PC   <= PC + 1;
                 ABL  <= std_logic_vector(PC(7 Downto 0));
                 ABH  <= std_logic_vector(PC(15 Downto 8));
                 BI   <= ADD;
@@ -1223,12 +1225,12 @@ begin
               if (tcstate(5)='0') then
                 ABL <= std_logic_vector(PC(7 downto 0));
                 ABH <= Databus;
-                PC <= (unsigned(Databus) & PC(7 downto 0))+1; ----------------JB (+1 correct?????)
+                PC  <= (unsigned(Databus) & PC(7 downto 0))+1; ----------------JB (+1 correct?????)
               end if;
 
               --T0
               if (tcstate(0)='0') then
-                PC <= PC+1;
+                PC  <= PC + 1;
                 ABL <= std_logic_vector(PC(7 Downto 0));
                 ABH <= std_logic_vector(PC(15 Downto 8));
                 Sums<='0';
@@ -1236,10 +1238,10 @@ begin
 
               --T1
               if (tcstate(1)='0') then
-                PC <= PC+1;
-                ABL <= std_logic_vector(PC(7 Downto 0));
-                ABH <= std_logic_vector(PC(15 Downto 8));
-                Sums<='0';
+                PC    <= PC + 1;
+                ABL   <= std_logic_vector(PC(7 Downto 0));
+                ABH   <= std_logic_vector(PC(15 Downto 8));
+                Sums  <='0';
               end if;
             end if;
 
@@ -1249,24 +1251,24 @@ begin
 
               --T2
               if (tcstate(2)='0') then
-                DOR <= std_logic_vector(PC(15 downto 8));
-                ABL <= std_logic_vector(S);
-                ABH <= x"01";
-                BI <= S;
-                AI <= x"ff";
-                Sums <= '1';
+                DOR   <= std_logic_vector(PC(15 downto 8));
+                ABL   <= std_logic_vector(S);
+                ABH   <= x"01";
+                BI    <= S;
+                AI    <= x"ff";
+                Sums  <= '1';
               end if;
 
               --T3
               if (tcstate(3)='0') then
                 --Databus <= DOR;
-                W_R <= '0';
-                DOR <= std_logic_vector(PC(7 Downto 0));
-                ABL <= std_logic_vector(ADD);
-                ABH <= x"01";
-                BI <= ADD;
-                AI <= x"ff";
-                Sums <= '1';
+                W_R   <= '0';
+                DOR   <= std_logic_vector(PC(7 Downto 0));
+                ABL   <= std_logic_vector(ADD);
+                ABH   <= x"01";
+                BI    <= ADD;
+                AI    <= x"ff";
+                Sums  <= '1';
               end if;
 
               --T4
@@ -1285,14 +1287,14 @@ begin
               if (tcstate(5)='0') then
                 --Databus <= DOR;
                 W_R <= '0';
-                PC <= PC+1;
+                PC <= PC + 1;
                 ABL <= x"fe";
                 ABH <= x"ff";
                 S <= ADD;
                 Sums<='0';
               end if;
 
-              --EMPTY CYCLE!!!!!!!!! JB ('T6') **************************************************
+              -- EMPTY CYCLE!!!!!!!!! JB ('T6') ***********
               if (VEC1='1') then
                 W_R<='1';
                 PC(7 downto 0) <= unsigned(Databus);
@@ -1305,12 +1307,12 @@ begin
               if (tcstate(0)='0') then
                 ABL <= std_logic_vector(PC(7 downto 0));
                 ABH <= Databus;
-                PC <= (unsigned(Databus) & PC(7 downto 0))+1; ----------------JB (+1 correct?????)
+                PC <= (unsigned(Databus) & PC(7 downto 0))+1; ----- JB (+1 correct?????)
               end if;
 
               --T1
               if (tcstate(1)='0') then
-                PC <= PC+1;
+                PC <= PC + 1;
                 ABL <= std_logic_vector(PC(7 Downto 0));
                 ABH <= std_logic_vector(PC(15 Downto 8));
                 Sums<='0';
@@ -1370,7 +1372,7 @@ begin
 
               --T1
               if (tcstate(1)='0') then
-                PC <= PC+1;
+                PC <= PC + 1;
                 ABL <= std_logic_vector(PC(7 Downto 0));
                 ABH <= std_logic_vector(PC(15 Downto 8));
                 Sums<='0';
@@ -1386,7 +1388,7 @@ begin
             if (opcode(4 downto 2)="000") then
               --T1
               if (tcstate(1)='0') then
-                PC <= PC+1;
+                PC <= PC + 1;
                 ABL <= std_logic_vector(PC(7 Downto 0));
                 ABH <= std_logic_vector(PC(15 Downto 8));
                 Sums<='0';
@@ -1404,7 +1406,7 @@ begin
 
               --both T0 and T1
               if (tcstate(0)='0'or tcstate(1)='0') then
-                PC <= PC+1;
+                PC <= PC + 1;
                 ABL <= std_logic_vector(PC(7 Downto 0));
                 ABH <= std_logic_vector(PC(15 Downto 8));
                 Sums<='0';
@@ -1414,6 +1416,7 @@ begin
             ---3.bbb=011. absolute. exceptions to JMP ABS(aaa=010) and JMP IND(aaa=011)
             ---exception 1/2: JMP ABS. bbb=011, aaa=010
             if (opcode(4 downto 2)="011" and opcode(7 downto 5)="010") then
+
               --T2
               if (tcstate(2)='0') then
                 ABL <= std_logic_vector(PC(7 Downto 0));
@@ -1426,12 +1429,12 @@ begin
               if (tcstate(0)='0') then
                 ABL <= std_logic_vector(PC(7 Downto 0));
                 ABH <= Databus;
-                PC <= (unsigned(Databus) & PC(7 downto 0))+1; ----------------JB (+1 correct?????)
+                PC <= (unsigned(Databus) & PC(7 downto 0))+1; --  JB (+1 correct?????)
               end if;
 
               --T1
               if (tcstate(1)='0') then
-                PC <= PC+1;
+                PC <= PC + 1;
                 ABL <= std_logic_vector(PC(7 Downto 0));
                 ABH <= std_logic_vector(PC(15 Downto 8));
                 Sums<='0';
@@ -1457,7 +1460,7 @@ begin
 
               --T1
               if (tcstate(1)='0') then
-                PC <= PC+1;
+                PC <= PC + 1;
                 ABL <= std_logic_vector(PC(7 Downto 0));
                 ABH <= std_logic_vector(PC(15 Downto 8));
               end if;
@@ -1468,7 +1471,7 @@ begin
 
               --T2
               if (tcstate(2)='0') then
-                PC <= PC+1;
+                PC <= PC + 1;
                 ABL <= std_logic_vector(PC(7 Downto 0));
                 ABH <= std_logic_vector(PC(15 Downto 8));
                 BI <= unsigned(Databus);
@@ -1485,7 +1488,7 @@ begin
 
               --T0
               if (tcstate(0)='0') then
-                PC <= PC+1;
+                PC <= PC + 1;
                 ABL <= std_logic_vector(PC(7 Downto 0));
                 ABH <= std_logic_vector(PC(15 Downto 8));
                 Sums<='0';
@@ -1493,7 +1496,7 @@ begin
 
               --T1
               if (tcstate(1)='0') then
-                PC <= PC+1;
+                PC <= PC + 1;
                 ABL <= std_logic_vector(PC(7 Downto 0));
                 ABH <= std_logic_vector(PC(15 Downto 8));
                 Sums<='0';
@@ -1520,7 +1523,7 @@ begin
 
               --T0
               if (tcstate(0)='0') then
-                PC <= PC+1;
+                PC <= PC + 1;
                 ABL <= std_logic_vector(PC(7 Downto 0));
                 ABH <= std_logic_vector(PC(15 Downto 8));
                 Sums<='0';
@@ -1528,7 +1531,7 @@ begin
 
               --T1
               if (tcstate(1)='0') then
-                PC <= PC+1;
+                PC <= PC + 1;
                 ABL <= std_logic_vector(PC(7 Downto 0));
                 ABH <= std_logic_vector(PC(15 Downto 8));
                 Sums<='0';
@@ -1541,7 +1544,7 @@ begin
 
               --T2
               if (tcstate(2)='0') then
-                PC   <= PC+1;
+                PC   <= PC + 1;
                 ABL  <= std_logic_vector(PC(7 Downto 0));
                 ABH  <= std_logic_vector(PC(15 Downto 8));
                 BI   <= unsigned(Databus);
@@ -1572,7 +1575,7 @@ begin
 
               --T0
               if (tcstate(0)='0') then
-                PC <= PC+1;
+                PC <= PC + 1;
                 ABL <= std_logic_vector(PC(7 Downto 0));
                 ABH <= std_logic_vector(PC(15 Downto 8));
                 Sums<='0';
@@ -1580,7 +1583,7 @@ begin
 
               --T1
               if (tcstate(1)='0') then
-                PC <= PC+1;
+                PC <= PC + 1;
                 ABL <= std_logic_vector(PC(7 Downto 0));
                 ABH <= std_logic_vector(PC(15 Downto 8));
               end if;
@@ -1714,7 +1717,7 @@ begin
 
         ----------------------------------------------------------------------------------
         -----------------------------JAEBIN's code ends here------------------------------
-        -----------------------------------------------------------------------------------
+        ----------------------------------------------------------------------------------
 
 
 
@@ -1722,7 +1725,7 @@ begin
         -----------------------------ARTHY's code starts here------------------------------
         -----------------------------------------------------------------------------------
 
-        --------------------------=SINGLE BYTE INSTRUCTIONS---=BEGIN---------------------------------------
+        -------------------------- BEGIN SINGLE BYTE INSTRUCTIONS --------------------------
         --NOP
         if(opcode(7 downto 0) = x"EA") then
 
@@ -1731,7 +1734,7 @@ begin
           --end if;
 
           if (tcstate(1) = '0') then
-            PC <= PC+1;
+            PC  <= PC + 1;
             ABL <= std_logic_vector(PC(7 Downto 0));
             ABH <= std_logic_vector(PC(15 Downto 8));
           end if;
@@ -1743,15 +1746,15 @@ begin
 
           --T2
           if(tcstate(2)='0') then
-            PC <= PC - 1; --JB0511 PC-1?????
-            ABL<=std_logic_vector(S(7 downto 0) );
-            ABH<= x"01";
-            BI <= S;
-            SUMS<='1';
+            PC  <= PC - 1; --JB0511 PC-1?????
+            ABL <=std_logic_vector(S(7 downto 0) );
+            ABH <= x"01";
+            BI  <= S;
+            SUMS <='1';
 
             -- Push PHA / PHP
             if(opcode(5) = '0') then --subtract.
-              AI <= x"ff";
+              AI  <= x"FF";
               W_R <= '0';
               if(opcode(6) = '1') then
                 -- PHA put the acc onto databus
@@ -1857,17 +1860,17 @@ begin
 
           --T1
           if (tcstate(1) = '0') then
-            ABL<=std_logic_vector(PC(7 Downto 0));
-            ABH<=std_logic_vector(PC(15 Downto 8));
-            PC <= PC + 1;
+            ABL   <= std_logic_vector(PC(7 Downto 0));
+            ABH   <= std_logic_vector(PC(15 Downto 8));
+            PC    <= PC + 1;
 
             if (ADD = 0) then
               P(1) <= '1'; --Z flag
             end if;
 
-            P(7) <= ADD(7); --N flag
-            X <= ADD;
-            SUMS <= '0';
+            P(7)  <= ADD(7); --N flag
+            X     <= ADD;
+            SUMS  <= '0';
           end if;
         end if;
 
@@ -1877,15 +1880,16 @@ begin
 
           --T2+T0
           if (tcstate(2) = '0') then
-            SUMS <= '1';
-            BI <= Y; AI <= x"ff";
+            SUMS  <= '1';
+            BI    <= Y; 
+            AI    <= x"ff";
           end if;
 
           --T1
           if (tcstate(1) = '0') then
             ABL <= std_logic_vector(PC(7 Downto 0));
             ABH <= std_logic_vector(PC(15 Downto 8));
-            PC <= PC + 1;
+            PC  <= PC + 1;
 
             if (ADD = 0) then
               P(1) <= '1';   --Z flag
@@ -2084,9 +2088,9 @@ begin
 
           --T1
           if (tcstate(1) = '0') then
-              ABL<=std_logic_vector(PC(7 Downto 0));
-              ABH<=std_logic_vector(PC(15 Downto 8));
-              PC <= PC + 1;
+            ABL<=std_logic_vector(PC(7 Downto 0));
+            ABH<=std_logic_vector(PC(15 Downto 8));
+            PC <= PC + 1;
           end if;
         end if; -- Transfer instructions end.
 

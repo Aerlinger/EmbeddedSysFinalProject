@@ -19,10 +19,10 @@ begin
 	
 	process (clk, reset)
 		begin
-		if reset='1' then 
+		if reset = '1' then 
 			data <= x"00";
 		elsif rising_edge(clk) then
-			if enable='1' then
+			if enable = '1' then
 				data <= data_in;	
 			end if;
 		end if;

@@ -35,19 +35,19 @@ architecture tb of DFlipFlop_tb is
 	process
 	begin
 		wait for 100 ns;
-		data_in<= x"00";
+		data_in <= x"00";
 		wait for 300 ns;
-		data_in<= x"11";
+		data_in <= x"11";
 		wait;
 	end process;
 
 	DFF:
 		entity work.DFlipFlop
 		port map (
-			clk=> clk, 
-			data_in=>data_in, 
-			enable=>enable, 
-			reset=>reset
+			clk		=> clk, 
+			data_in	=> data_in, 
+			enable	=> enable, 
+			reset	=> reset
 		);
 										
 end tb;

@@ -179,7 +179,7 @@ begin
   -- BEGIN: 6502 Interface
   ------------------------------------------------- 
 
-	U_6502: entity work.lab1 port map (
+	U_6502: entity work.DE2_6502 port map (
 		clk => CLOCK_50,
 
     -- INPUT: 4 Button and 18 switch inputs

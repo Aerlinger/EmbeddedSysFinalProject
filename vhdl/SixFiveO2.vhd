@@ -38,7 +38,7 @@ entity SixFiveO2 is
     irq:      in std_logic;    -- Active low
     nmi:      in std_logic;    -- Active low
 
-    W_R: out std_logic;   -- Write is Active low
+    W_R_out: out std_logic;   -- Write is Active low
 
 
     ------------------------------------------------------------------------------
