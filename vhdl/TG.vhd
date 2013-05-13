@@ -5,15 +5,15 @@ use ieee.numeric_std.all;
 entity TG is
 
 	port(
-		clk		 : in	std_logic;
-		cycle_number	 : in	unsigned(3 downto 0);
-		RMW    : in std_logic;  --read-modify-write instruction
-		ACR	 : in std_logic;  --carry in from ALU
-		BRC	 : in std_logic;  --branch flag
-		reset	 : in	std_logic;
-		tcstate	 : out	std_logic_vector(5 downto 0);
-		SYNC, SD1, SD2	 : out std_logic;
-		VEC1 	 : out std_logic
+		clk: 			in	std_logic;
+		cycle_number: 	in	unsigned(3 downto 0);
+		RMW: 			in std_logic;  --read-modify-write instruction
+		ACR: 			in std_logic;  --carry in from ALU
+		BRC: 			in std_logic;  --branch flag
+		reset: 			in	std_logic;
+		tcstate: 		out	std_logic_vector(5 downto 0);
+		SYNC, SD1, SD2: out std_logic;
+		VEC1: 			out std_logic
 	);
 
 end TG;
@@ -22,15 +22,17 @@ architecture rtl of TG is
 
 	-- Build an enumerated type for the state machine
 	--type state_type is (s0, s1, s2, s3);
-	type state_type is (T0, T1F_T1, T2_T0, T2_3, T2_4, T3_4, T2_5, T3_5, T4_5,
-							  T2_6, T3_6, T4_6, T5_6, T2_7, T3_7, T4_7, T5_7, T6_7, 
-							  T2_B, T3_B, T1F,
-							  T2_RMW5, T3_RMW5, T4_RMW5, T2_RMW6, T3_RMW6, T4_RMW6, T5_RMW6, 
-							  T2_RMW7, T3_RMW7, T4_RMW7_a, T5_RMW7_a, T6_RMW7_a,
-							  T4_RMW7_b, T5_RMW7_b);
+	type state_type is (
+		T0, T1F_T1, T2_T0, T2_3, T2_4, T3_4, T2_5, T3_5, T4_5,
+		T2_6, T3_6, T4_6, T5_6, T2_7, T3_7, T4_7, T5_7, T6_7, 
+		T2_B, T3_B, T1F,
+		T2_RMW5, T3_RMW5, T4_RMW5, T2_RMW6, T3_RMW6, T4_RMW6, T5_RMW6, 
+		T2_RMW7, T3_RMW7, T4_RMW7_a, T5_RMW7_a, T6_RMW7_a,
+		T4_RMW7_b, T5_RMW7_b
+	);
 	
 	-- Register to hold the current state
-	signal state   : state_type;
+	signal state: state_type;
 
 begin
 
@@ -44,34 +46,34 @@ begin
 				when T0=>
 					state <= T1F_T1;
 				when T1F_T1=>
-				if RMW='0' then	--not read-modify-write instruction
-					if cycle_number = 2 then
-						state <= T2_T0;
-					elsif cycle_number = 3 then
-						state <= T2_3;
-					elsif cycle_number = 4 then
-						state <= T2_4;
-					elsif cycle_number = 5 then
-						state <= T2_5;
-					elsif cycle_number = 6 then
-						state <= T2_6;
-					elsif cycle_number = 7 then
-						state <= T2_7;
-					elsif cycle_number = 0 then --input =0 stands for the branch instruction
-						state <= T2_B;
+					if RMW='0' then	--not read-modify-write instruction
+						if cycle_number = 2 then
+							state <= T2_T0;
+						elsif cycle_number = 3 then
+							state <= T2_3;
+						elsif cycle_number = 4 then
+							state <= T2_4;
+						elsif cycle_number = 5 then
+							state <= T2_5;
+						elsif cycle_number = 6 then
+							state <= T2_6;
+						elsif cycle_number = 7 then
+							state <= T2_7;
+						elsif cycle_number = 0 then --input =0 stands for the branch instruction
+							state <= T2_B;
+						end if;
+					
+					elsif RMW='1' then  --read-modify-write instruction
+						if cycle_number = 2 then
+							state <= T2_T0;
+						elsif cycle_number = 5 then
+							state <= T2_RMW5;
+						elsif cycle_number = 6 then
+							state <= T2_RMW6;
+						elsif cycle_number = 7 then
+							state <= T2_RMW7;
+						end if;
 					end if;
-				
-				elsif RMW='1' then  --read-modify-write instruction
-					if cycle_number = 2 then
-						state <= T2_T0;
-					elsif cycle_number = 5 then
-						state <= T2_RMW5;
-					elsif cycle_number = 6 then
-						state <= T2_RMW6;
-					elsif cycle_number = 7 then
-						state <= T2_RMW7;
-					end if;
-				end if;
 				
 				when T2_T0=>
 					state <= T1F_T1;
@@ -172,6 +174,8 @@ begin
 					state <= T5_RMW7_b;
 				when T5_RMW7_b =>
 					state <= T0;
+				when others =>
+					state <= T0;
 			end case;
 		end if;
 	end process;
@@ -226,6 +230,8 @@ begin
 				tcstate <= "110111";
 				SYNC <= '0';
 				VEC1 <= '0';
+				SD1 <= '0';
+				SD2 <= '0';
 			when T4_5 =>
 				tcstate <= "101111";
 				SYNC <= '0';
@@ -388,6 +394,12 @@ begin
 				VEC1 <= '0';
 				SD1 <= '0';
 				SD2 <= '1';
+			when others =>
+				tcstate <= "111110";
+				SYNC <= '0';
+				VEC1 <= '0';
+				SD1 <= '0';
+				SD2 <= '0';
 				
 		end case;
 	end process;

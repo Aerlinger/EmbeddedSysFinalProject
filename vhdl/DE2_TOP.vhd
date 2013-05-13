@@ -173,12 +173,22 @@ entity DE2_TOP is
 end DE2_TOP;
 
 architecture datapath of DE2_TOP is
-
 begin
+
+  ------------------------------------------------- 
+  -- BEGIN: 6502 Interface
+  ------------------------------------------------- 
 
 	U_6502: entity work.lab1 port map (
 		clk => CLOCK_50,
+
+    -- INPUT: 4 Button and 18 switch inputs
+    -------------------------------------------------
 		key => KEY,
+    sw => SW,
+
+    -- OUTPUT: Hex Displays & LEDS
+    -------------------------------------------------
 		hex0 => HEX0,
 		hex1 => HEX1,
 		hex2 => HEX2,
@@ -187,22 +197,49 @@ begin
 		hex5 => HEX5,
 		hex6 => HEX6,
 		hex7 => HEX7,
-		sw => SW,
+		
 		ledg => LEDG,
-		ledr => LEDR
+		ledr => LEDR,
+
+    -- SRAM MEMORY
+    -------------------------------------------------
+    sram_dq    => SRAM_DQ,
+    sram_addr  => SRAM_ADDR,
+    sram_ub_n  => SRAM_UB_N,
+    sram_lb_n  => SRAM_LB_N,
+    sram_ce_n  => SRAM_CE_N,
+    sram_we_n  => SRAM_WE_N,
+    sram_oe_n  => SRAM_OE_N
 	);
+
+  ------------------------------------------------- 
+  -- END: 6502 Interface
+  ------------------------------------------------- 
   
-	--  HEX7     <= "0001001"; -- Leftmost
-	--  HEX6     <= "0000110";
-	--  HEX5     <= "1000111";
-	--  HEX4     <= "1000111";
-	--  HEX3     <= "1000000";
-	--  HEX2     <= (others => '1');
-	--  HEX1     <= (others => '1');
-	--  HEX0     <= (others => '1');          -- Rightmost
+  -- Commented lines are the Cyclone II outputs used for debugging:
+
+	-- HEX7     <= "0001001";          -- Leftmost
+	-- HEX6     <= "0000110";
+	-- HEX5     <= "1000111";
+	-- HEX4     <= "1000111";
+	-- HEX3     <= "1000000";
+	-- HEX2     <= (others => '1');
+	-- HEX1     <= (others => '1');
+	-- HEX0     <= (others => '1');    -- Rightmost
 	
   -- LEDG     <= (others => '0');
   -- LEDR     <= (others => '0');
+
+  -- SRAM_DQ <= (others => 'Z');
+  -- SRAM_ADDR <= (others => '0');
+  -- SRAM_UB_N <= '1';
+  -- SRAM_LB_N <= '1';
+  -- SRAM_CE_N <= '1';
+  -- SRAM_WE_N <= '1';
+  -- SRAM_OE_N <= '1';
+
+  -------------------------------------------------
+
 	
 	-- These are outputs only:
 	
@@ -225,14 +262,6 @@ begin
   SD_DAT3 <= '1';  
   SD_CMD <= '1';
   SD_CLK <= '1';
-
-  SRAM_DQ <= (others => 'Z');
-  SRAM_ADDR <= (others => '0');
-  SRAM_UB_N <= '1';
-  SRAM_LB_N <= '1';
-  SRAM_CE_N <= '1';
-  SRAM_WE_N <= '1';
-  SRAM_OE_N <= '1';
 
   UART_TXD <= '0';
   DRAM_ADDR <= (others => '0');
