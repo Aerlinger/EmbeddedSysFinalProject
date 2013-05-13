@@ -61,13 +61,13 @@ entity DE2_6502 is
 
 		-- SRAM MEMORY
 		-------------------------------------------------
-		sram_dq 	<= (others => 'Z');
-		sram_addr 	<= (others => '0');
-		sram_ub_n 	<= '1';
-		sram_lb_n 	<= '1';
-		sram_ce_n 	<= '1';
-		sram_we_n 	<= '1';
-		sram_oe_n 	<= '1'
+		sram_dq: inout unsigned(15 downto 0);
+		sram_addr: out unsigned(17 downto 0);
+		sram_ub_n,
+		sram_lb_n,
+		sram_ce_n,
+		sram_we_n,
+		sram_oe_n: out std_logic
 	);
 
 end DE2_6502;
@@ -106,7 +106,7 @@ architecture rtl of DE2_6502 is
 			reset, clk, W_R: in std_logic;
 			ROM_data, DOR : in 	std_logic_vector(7 downto 0);
 			Databus: 		out std_logic_vector(7 downto 0);
-			Addrbus: 	in 	std_logic_vector(15 downto 0);
+			Addrbus: 		in 	std_logic_vector(15 downto 0);
 			ROM_address: 	out std_logic_vector(15 downto 0);
 			sram_dq: 		inout unsigned(15 downto 0);
 			sram_addr: 		out unsigned(17 downto 0);
