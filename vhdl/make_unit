@@ -14,4 +14,4 @@ puts "Writing #{filename}"
 # Compile the test bench if it exists:
 `ghdl -a --ieee=synopsys -fexplicit #{filename}_tb.vhd`
 `ghdl -e --ieee=synopsys -fexplicit #{filename}_tb`
-`ghdl -r --ieee=synopsys -fexplicit #{filename}_tb --vcd=../timing_diagrams/#{filename}_tb.vcd`
+`ghdl -r --ieee=synopsys -fexplicit #{filename}_tb` #--vcd=../timing_diagrams/#{filename}_tb.vcd`

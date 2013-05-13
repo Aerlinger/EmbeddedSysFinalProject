@@ -9,5 +9,5 @@ Dir.glob("*.vhd*").shuffle.each do |filename|
 
   `ghdl -a --ieee=synopsys -fexplicit #{filename}`
   `ghdl -e --ieee=synopsys -fexplicit #{filename_no_extension}`
-  `ghdl -r --ieee=synopsys -fexplicit #{filename_no_extension} --vcd=../timing_diagrams/#{filename_no_extension}.vcd`
+  `ghdl -r --ieee=synopsys -fexplicit #{filename_no_extension}` #--vcd=../timing_diagrams/#{filename_no_extension}.vcd`
 end
