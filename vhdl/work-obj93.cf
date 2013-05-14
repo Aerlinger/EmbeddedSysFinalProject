@@ -1,66 +1,66 @@
 v 3
-file . "DE2_6502.vhd" "20130513045037.000" "20130513031816.173":
-  entity de2_6502 at 31( 818) + 0 on 4;
-  architecture rtl of de2_6502 at 75( 1836) + 0 on 4;
-file . "program_tb.vhd" "20130512180659.000" "20130513031816.589":
-  entity program_tb at 1( 0) + 0 on 16;
-  architecture tb of program_tb at 8( 111) + 0 on 17;
-file . "program.vhd" "20130512130642.000" "20130513031816.177":
-  architecture rtl of rom at 48( 1199) + 0 on 4;
-  package sixfiveo2_package at 114( 2713) + 0 on 4;
-  entity program at 127( 2952) + 0 on 4;
-  architecture tb of program at 134( 3054) + 0 on 4;
-file . "hextoseg.vhd" "20130511193152.000" "20130513031816.177":
-  entity hex7seg at 1( 0) + 0 on 4;
-  architecture combinational of hex7seg at 12( 262) + 0 on 4;
-file . "alu_tb.vhd" "20130513071557.000" "20130513031816.357":
-  entity alu_tb at 4( 177) + 0 on 13;
-  architecture tb of alu_tb at 14( 364) + 0 on 14;
-  configuration cfg_alu_tb at 171( 3811) + 0 on 15;
-file . "alu.vhd" "20130513065126.000" "20130513031816.176":
-  entity alu at 18( 568) + 0 on 4;
-  architecture rtl of alu at 57( 1390) + 0 on 4;
-file . "TG.vhd" "20130513001909.000" "20130513031816.176":
-  entity tg at 1( 0) + 0 on 4;
-  architecture rtl of tg at 21( 443) + 0 on 4;
-file . "SixFiveO2_tb.vhd" "20130512223912.000" "20130513031816.176":
-  entity sixfiveo2_tb at 1( 0) + 0 on 4;
-  architecture tb of sixfiveo2_tb at 17( 409) + 0 on 4;
-file . "SixFiveO2.vhd" "20130513071815.000" "20130513031816.175":
-  entity sixfiveo2 at 22( 595) + 0 on 4;
-  architecture imp of sixfiveo2 at 63( 2136) + 0 on 4;
-file . "SRAMCtrl.vhd" "20130513000447.000" "20130513031816.175":
-  entity sramctrl at 22( 575) + 0 on 4;
-  architecture rtl of sramctrl at 43( 1220) + 0 on 4;
-file . "ROM.vhd" "20130513000526.000" "20130513031816.191":
-  entity rom at 1( 0) + 0 on 11;
-  architecture imp of rom at 13( 206) + 0 on 12;
-file . "RAM.vhd" "20130512235415.000" "20130513031816.174":
-  entity memory at 3( 14) + 0 on 4;
-  architecture rtl of memory at 17( 299) + 0 on 4;
-file . "Predecode_tb.vhd" "20130511203626.000" "20130513031816.174":
-  entity predecode_tb at 1( 0) + 0 on 4;
-  architecture tb of predecode_tb at 8( 112) + 0 on 4;
-file . "Predecode.vhd" "20130513002220.000" "20130513031816.174":
-  entity predecode at 1( 0) + 0 on 4;
-  architecture rtl of predecode at 15( 315) + 0 on 4;
-file . "DFlipFlop_tb.vhd" "20130513071739.000" "20130513031816.174":
-  entity dflipflop_tb at 1( 0) + 0 on 4;
-  architecture tb of dflipflop_tb at 8( 112) + 0 on 4;
-file . "DFlipFlop.vhd" "20130513071542.000" "20130513031816.174":
-  entity dflipflop at 1( 0) + 0 on 4;
-  architecture rtl of dflipflop at 14( 277) + 0 on 4;
-file . "DE2_TOP.vhd" "20130513071403.000" "20130513031816.174":
-  entity de2_top at 10( 221) + 0 on 4;
-  architecture datapath of de2_top at 175( 7177) + 0 on 4;
+file . "CPU.vhd" "20130513193118.000" "20130513153305.171":
+  entity cpu at 22( 623) + 0 on 4;
+  architecture rtl of cpu at 55( 1356) + 0 on 4;
+file . "CPU_tb.vhd" "20130512223912.000" "20130513153305.172":
+  entity cpu_tb at 5( 226) + 0 on 4;
+  architecture tb of cpu_tb at 13( 327) + 0 on 4;
 file . "DE2_IO.vhd" "20130512223912.000" "20130512191847.333":
   entity raminfr at 33( 940) + 0 on 4;
   architecture rtl of raminfr at 49( 1313) + 0 on 4;
   entity lab1 at 73( 1829) + 0 on 6;
   architecture rtl of lab1 at 197( 4983) + 0 on 4;
-file . "CPU_tb.vhd" "20130512223912.000" "20130513031816.720":
-  entity cpu_tb at 5( 226) + 0 on 18;
-  architecture tb of cpu_tb at 13( 327) + 0 on 19;
-file . "CPU.vhd" "20130513071310.000" "20130513031816.172":
-  entity cpu at 22( 623) + 0 on 4;
-  architecture rtl of cpu at 55( 1356) + 0 on 4;
+file . "DE2_TOP.vhd" "20130513071403.000" "20130513153305.173":
+  entity de2_top at 10( 221) + 0 on 4;
+  architecture datapath of de2_top at 175( 7177) + 0 on 4;
+file . "DFlipFlop.vhd" "20130513071542.000" "20130513153305.573":
+  entity dflipflop at 1( 0) + 0 on 17;
+  architecture rtl of dflipflop at 14( 277) + 0 on 18;
+file . "DFlipFlop_tb.vhd" "20130513071739.000" "20130513153305.173":
+  entity dflipflop_tb at 1( 0) + 0 on 4;
+  architecture tb of dflipflop_tb at 8( 112) + 0 on 4;
+file . "Predecode.vhd" "20130513002220.000" "20130513153305.173":
+  entity predecode at 1( 0) + 0 on 6;
+  architecture rtl of predecode at 15( 315) + 0 on 4;
+file . "Predecode_tb.vhd" "20130511203626.000" "20130513153305.362":
+  entity predecode_tb at 1( 0) + 0 on 13;
+  architecture tb of predecode_tb at 8( 112) + 0 on 14;
+file . "RAM.vhd" "20130512235415.000" "20130513153305.718":
+  entity memory at 3( 14) + 0 on 19;
+  architecture rtl of memory at 17( 299) + 0 on 20;
+file . "ROM.vhd" "20130513000526.000" "20130513153305.174":
+  architecture imp of rom at 13( 206) + 0 on 4;
+file . "SRAMCtrl.vhd" "20130513000447.000" "20130513153305.174":
+  entity sramctrl at 22( 575) + 0 on 4;
+  architecture rtl of sramctrl at 43( 1220) + 0 on 4;
+file . "SixFiveO2.vhd" "20130513072027.000" "20130513153305.188":
+  entity sixfiveo2 at 22( 595) + 0 on 11;
+  architecture imp of sixfiveo2 at 63( 2136) + 0 on 12;
+file . "SixFiveO2_tb.vhd" "20130512223912.000" "20130513153305.175":
+  entity sixfiveo2_tb at 1( 0) + 0 on 4;
+  architecture tb of sixfiveo2_tb at 17( 409) + 0 on 4;
+file . "TG.vhd" "20130513001909.000" "20130513153305.175":
+  entity tg at 1( 0) + 0 on 4;
+  architecture rtl of tg at 21( 443) + 0 on 4;
+file . "alu.vhd" "20130513065126.000" "20130513153305.176":
+  entity alu at 18( 568) + 0 on 4;
+  architecture rtl of alu at 57( 1390) + 0 on 4;
+file . "alu_tb.vhd" "20130513193302.000" "20130513153305.176":
+  entity alu_tb at 4( 177) + 0 on 4;
+  architecture tb of alu_tb at 14( 364) + 0 on 4;
+  configuration cfg_alu_tb at 171( 3865) + 0 on 4;
+file . "hextoseg.vhd" "20130511193152.000" "20130513153305.543":
+  entity hex7seg at 1( 0) + 0 on 15;
+  architecture combinational of hex7seg at 12( 262) + 0 on 16;
+file . "program.vhd" "20130512130642.000" "20130513153305.750":
+  entity rom at 28( 778) + 0 on 21;
+  architecture rtl of rom at 48( 1199) + 0 on 22;
+  package sixfiveo2_package at 114( 2713) + 0 on 23;
+  entity program at 127( 2952) + 0 on 24;
+  architecture tb of program at 134( 3054) + 0 on 25;
+file . "program_tb.vhd" "20130512180659.000" "20130513153305.176":
+  entity program_tb at 1( 0) + 0 on 4;
+  architecture tb of program_tb at 8( 111) + 0 on 4;
+file . "DE2_6502.vhd" "20130513045037.000" "20130513153305.172":
+  entity de2_6502 at 31( 818) + 0 on 4;
+  architecture rtl of de2_6502 at 75( 1836) + 0 on 4;

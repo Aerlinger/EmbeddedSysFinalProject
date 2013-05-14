@@ -77,35 +77,35 @@ begin
 
     -- case 1: AND
     ----------------------------------------------------------------
-    sig_ANDS <= '1';
-    sig_AI   <= "11001100";
-    sig_BI   <= "10101010";
+    -- sig_ANDS <= '1';
+    -- sig_AI   <= "11001100";
+    -- sig_BI   <= "10101010";
 
-    wait for INTERVAL;
+    -- wait for INTERVAL;
 
-    assert(sig_ADD="10001000")
-    report "ERROR in AND"
-    severity error;
+    -- assert(sig_ADD="10001000")
+    -- report "ERROR in AND"
+    -- severity error;
 
-    wait for INTERVAL;
+    -- wait for INTERVAL;
     
-    sig_ANDS <= '0';
+    -- sig_ANDS <= '0';
 
 
     -- case 2: Basic Addition
     ----------------------------------------------------------------
-    sig_SUMS <= '1';
-    sig_AI   <= "11111111";
-    sig_BI   <= "11111111";
-    sig_I_ADDC  <= '1';
+    -- sig_SUMS <= '1';
+    -- sig_AI   <= "11111111";
+    -- sig_BI   <= "11111111";
+    -- sig_I_ADDC  <= '1';
 
-    wait for INTERVAL;
+    -- wait for INTERVAL;
 
-    assert(sig_ADD="11111111")
-    report "ERROR in ADDITION"
-    severity error;
+    -- assert(sig_ADD="11111111")
+    -- report "ERROR in ADDITION"
+    -- severity error;
 
-    wait for INTERVAL;
+    -- wait for INTERVAL;
 
 
     -- case 3: Addition With Carry Input

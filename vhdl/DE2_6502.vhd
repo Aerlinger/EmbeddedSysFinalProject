@@ -74,9 +74,27 @@ end DE2_6502;
 
 architecture rtl of DE2_6502 is
 
-	signal Databus, DOR, ROM_data : std_logic_vector(7 downto 0);
-	signal Addrbus, ROM_address  : std_logic_vector(15 downto 0);
-	signal W_R : std_logic;
+	signal sig_clk: std_logic;
+	signal sig_SD1: std_logic;
+	signal sig_SD2: std_logic;
+
+	-- Flags:
+	signal sig_reset: 	std_logic;
+	signal sig_BRC: 	std_logic;
+	signal sig_VEC1: 	std_logic;
+	signal sig_ACR: 	std_logic;
+	signal sig_W_R : 	std_logic;
+	
+	-- BUSSES:
+	signal sig_ABL_out:		std_logic_vector(7 downto 0);
+	signal sig_ABH_out:		std_logic_vector(7 downto 0);
+	signal sig_DOR: 		std_logic_vector(7 downto 0);
+	signal sid_ACC_out: 	std_logic_vector(7 downto 0);
+	signal sig_Databus: 	std_logic_vector(7 downto 0);
+	signal sig_ROM_data: 	std_logic_vector(7 downto 0);
+	signal sig_Addrbus:		std_logic_vector(7 downto 0);
+	signal sig_ROM_address: std_logic_vector(15 downto 0);
+	
 
 	component SixFiveO2 
 		port(
@@ -117,25 +135,34 @@ architecture rtl of DE2_6502 is
 			sram_oe_n : 	out std_logic  -- output enable
 		);
 	end component;
+
 begin
 
 	----------------------------------------------
 	-- 6502 Module with components:
 	----------------------------------------------
 
-	CPUConnect: SixFiveO2 port map(
-		clk 	=> CLOCK_50, 
-		reset 	=> SW(17), 
-		W_R		=> W_R, 
-		XH		=> HEX7, 
-		XL		=> HEX6, 
-		YH		=> HEX5, 
-		YL		=> HEX4, 
-		ACCH	=> HEX3, 
-		ACCL	=> HEX2,
-		Databus => Databus, 
-		DOR		=> DOR, 
-		Addrbus => Addrbus
+	CPUConnect: SixFiveO2 port map (
+		clk 	=> clk,
+		SD1 	=> SD1_out,
+		SD2		=> SD2_out,
+		reset 	=> ,
+		VEC1	=> ,
+
+		tcstate	=> ,
+		databus	=> ,
+
+		-- State signals
+		ACR_out	=> ,
+		W_R		=> W_R,
+		BRC		=> ,
+
+		-- Register outputs
+		ABL_out	=> ,
+		ABH_out => ,
+		X_out	=> ,
+		Y_out 	=> ,
+		ACC_out	=> 
 	);
 
 	InstructionROM: Rom port map(
@@ -165,6 +192,14 @@ begin
 	process(sw)
 	begin
 		ledr <= sw;
+	end process;
+
+	-- WHEN DEBUGGING: Key 0 (Leftmost) is clock:
+	process(key)
+	begin
+		if (key(0) not '1') then
+			sig_CLK <= key(0)
+		end if;
 	end process;
 
 

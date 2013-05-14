@@ -69,7 +69,6 @@ use work.T65_Pack.all;
 
 entity T65_MCode is
 	port(
-		Mode                    : in  std_logic_vector(1 downto 0);      -- "00" => 6502, "01" => 65C02, "10" => 65816
 		IR                      : in  std_logic_vector(7 downto 0);
 		MCycle                  : in  std_logic_vector(2 downto 0);
 		P                       : in  std_logic_vector(7 downto 0);
@@ -79,7 +78,7 @@ entity T65_MCode is
 		Set_Addr_To             : out std_logic_vector(1 downto 0); -- PC Adder,S,AD,BA
 		Write_Data              : out std_logic_vector(2 downto 0); -- DL,A,X,Y,S,P,PCL,PCH
 		Jump                    : out std_logic_vector(1 downto 0); -- PC,++,DIDL,Rel
-		BAAdd                   : out std_logic_vector(1 downto 0);     -- None,DB Inc,BA Add,BA Adj
+		BAAdd                   : out std_logic_vector(1 downto 0); -- None,DB Inc,BA Add,BA Adj
 		BreakAtNA               : out std_logic;
 		ADAdd                   : out std_logic;
 		AddY                    : out std_logic;
@@ -117,7 +116,7 @@ begin
 				  not P(Flag_Z) when "110",
 					  P(Flag_Z) when others;
 
-	process (IR, MCycle, P, Branch, Mode)
+	process (IR, MCycle, P, Branch)
 	begin
 		LCycle      <= "001";
 		Set_BusA_To <= "001"; -- A
@@ -303,7 +302,7 @@ begin
 			when "00001000" | "01001000" | "01011010" | "11011010" =>
 				-- PHP, PHA, PHY*, PHX*
 				LCycle <= "010";
-				if Mode = "00" and IR(1) = '1' then
+				if IR(1) = '1' then
 					LCycle <= "001";
 				end if;
 				case to_integer(unsigned(MCycle)) is
@@ -328,7 +327,7 @@ begin
 			when "00101000" | "01101000" | "01111010" | "11111010" =>
 				-- PLP, PLA, PLY*, PLX*
 				LCycle <= "011";
-				if Mode = "00" and IR(1) = '1' then
+				if IR(1) = '1' then
 					LCycle <= "001";
 				end if;
 				case IR(7 downto 4) is
@@ -337,13 +336,7 @@ begin
 				when "0110" =>
 					LDA <= '1';
 				when "0111" =>
-					if Mode /= "00" then
-						LDY <= '1';
-					end if;
 				when "1111" =>
-					if Mode /= "00" then
-						LDX <= '1';
-					end if;
 				when others =>
 				end case;
 				case to_integer(unsigned(MCycle)) is
@@ -387,9 +380,6 @@ begin
 				end case;
 			when "00011010" | "00111010" =>
 				-- INC*, DEC*
-				if Mode /= "00" then
-					LDA <= '1'; -- A
-				end if;
 				case to_integer(unsigned(MCycle)) is
 				when 0 =>
 				when 1 =>
@@ -604,20 +594,11 @@ begin
 						LDBAL <= '1';
 					when 2 =>
 						LDBAH <= '1';
-						if Mode /= "00" then
-							Jump <= "10"; -- DIDL
-						end if;
-						if Mode = "00" then
-							Set_Addr_To <= "11"; -- BA
-						end if;
+						Set_Addr_To <= "11"; -- BA
 					when 3 =>
 						LDDI <= '1';
-						if Mode = "00" then
-							Set_Addr_To <= "11"; -- BA
-							BAAdd <= "01";      -- DB Inc
-						else
-							Jump <= "01";
-						end if;
+						Set_Addr_To <= "11"; -- BA
+						BAAdd <= "01";      -- DB Inc
 					when 4 =>
 						Jump <= "10"; -- DIDL
 					when others =>

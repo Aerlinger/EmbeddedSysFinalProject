@@ -58,7 +58,6 @@ use work.T65_Pack.all;
 
 entity T65 is
 	port(
-		Mode	: in std_logic_vector(1 downto 0);	-- "00" => 6502, "01" => 65C02, "10" => 65C816
 		Res_n	: in std_logic;
 		Clk		: in std_logic;
 		Rdy		: in std_logic;

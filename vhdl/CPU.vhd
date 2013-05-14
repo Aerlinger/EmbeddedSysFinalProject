@@ -39,11 +39,11 @@ entity CPU is
     tcstate: in std_logic_vector(5 downto 0);
     databus: in std_logic_vector(7 downto 0);
 
-    ACR_out, 
+    ACR_out,
     W_R,
-    BRC: out std_logic; --JB0510 added BRC as CPU output
+    BRC: out std_logic; -- JB0510 added BRC as CPU output
 
-    ABL_out, 
+    ABL_out,
     ABH_out,
     DOR,
     X_out,
@@ -134,8 +134,8 @@ begin
       ABH_out <= ABH;
       ABL_out <= ABL;
       ACC_out <= std_logic_vector(ACC);
-      X_out <= std_logic_vector(X);
-      Y_out <= std_logic_vector(Y);
+      X_out   <= std_logic_vector(X);
+      Y_out   <= std_logic_vector(Y);
   end process;
 
   ----- CLOCK RISING EDGE: ---------------------------------------------------
@@ -175,7 +175,6 @@ begin
         --    ABL <= std_logic_vector(PC(7 Downto 0));
         --    ABH <= std_logic_vector(PC(15 Downto 8));
         --  end if;
-        --
 
         ---------------------------Yu's code starts here----------------------------
         -----------------------= bbb is the only concern ------------------------=
@@ -1455,7 +1454,7 @@ begin
               if (tcstate(3)='0' and tcstate(0)='0') then
                 ABL <= std_logic_vector(PC(7 Downto 0));
                 ABH <= Databus;
-                PC <= (unsigned(Databus) & PC(7 downto 0))+1; ----------------JB (+1 correct?????)
+                PC <= (unsigned(Databus) & PC(7 downto 0))+1; --  JB (+1 correct?????)
               end if;
 
               --T1

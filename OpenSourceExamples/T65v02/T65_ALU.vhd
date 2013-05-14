@@ -63,7 +63,6 @@ use work.T65_Pack.all;
 
 entity T65_ALU is
 	port(
-		Mode    : in std_logic_vector(1 downto 0);      -- "00" => 6502, "01" => 65C02, "10" => 65816
 		Op      : in std_logic_vector(3 downto 0);
 		BusA    : in std_logic_vector(7 downto 0);
 		BusB    : in std_logic_vector(7 downto 0);

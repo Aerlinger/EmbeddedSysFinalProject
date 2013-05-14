@@ -1,66 +1,3 @@
--- ****
--- T65(b) core. In an effort to merge and maintain bug fixes ....
---
---
--- Ver 301 more merging
--- Ver 300 Bugfixes by ehenciak added, started tidyup *bust*
--- MikeJ March 2005
--- Latest version from www.fpgaarcade.com (original www.opencores.org)
---
--- ****
---
--- 65xx compatible microprocessor core
---
--- Version : 0246
---
--- Copyright (c) 2002 Daniel Wallner (jesus@opencores.org)
---
--- All rights reserved
---
--- Redistribution and use in source and synthezised forms, with or without
--- modification, are permitted provided that the following conditions are met:
---
--- Redistributions of source code must retain the above copyright notice,
--- this list of conditions and the following disclaimer.
---
--- Redistributions in synthesized form must reproduce the above copyright
--- notice, this list of conditions and the following disclaimer in the
--- documentation and/or other materials provided with the distribution.
---
--- Neither the name of the author nor the names of other contributors may
--- be used to endorse or promote products derived from this software without
--- specific prior written permission.
---
--- THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
--- AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
--- THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
--- PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE AUTHOR OR CONTRIBUTORS BE
--- LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
--- CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
--- SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
--- INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
--- CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
--- ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
--- POSSIBILITY OF SUCH DAMAGE.
---
--- Please report bugs to the author, but before you do so, please
--- make sure that this is not a derivative work and that
--- you have the latest version of this file.
---
--- The latest version of this file can be found at:
---      http://www.opencores.org/cvsweb.shtml/t65/
---
--- Limitations :
---
--- 65C02 and 65C816 modes are incomplete
--- Undocumented instructions are not supported
--- Some interface signals behaves incorrect
---
--- File history :
---
---      0246 : First release
---
-
 library IEEE;
   use IEEE.std_logic_1164.all;
   use IEEE.numeric_std.all;
@@ -70,7 +7,6 @@ library IEEE;
 -- the ready signal to limit the CPU.
 entity T65 is
 	port(
-		Mode    : in  std_logic_vector(1 downto 0);      -- "00" => 6502, "01" => 65C02, "10" => 65C816
 		Res_n   : in  std_logic;
 		Enable  : in  std_logic;
 		Clk     : in  std_logic;
@@ -112,7 +48,6 @@ architecture rtl of T65 is
 	signal IR                 : std_logic_vector(7 downto 0);
 	signal MCycle             : std_logic_vector(2 downto 0);
 
-	signal Mode_r             : std_logic_vector(1 downto 0);
 	signal ALU_Op_r           : std_logic_vector(3 downto 0);
 	signal Write_Data_r       : std_logic_vector(2 downto 0);
 	signal Set_Addr_To_r      : std_logic_vector(1 downto 0);
@@ -177,17 +112,16 @@ begin
 	R_W_n      <= R_W_n_i;
 
 	Sync <= '1' when MCycle = "000" else '0';
-	EF <= EF_i;
-	MF <= MF_i;
-	XF <= XF_i;
-	ML_n <= '0' when IR(7 downto 6) /= "10" and IR(2 downto 1) = "11" and MCycle(2 downto 1) /= "00" else '1';
-	VP_n <= '0' when IRQCycle = '1' and (MCycle = "101" or MCycle = "110") else '1';
-	VDA <= '1' when Set_Addr_To_r /= "000" else '0';            -- Incorrect !!!!!!!!!!!!
-	VPA <= '1' when Jump(1) = '0' else '0';                     -- Incorrect !!!!!!!!!!!!
+	EF 		<= EF_i;
+	MF 		<= MF_i;
+	XF 		<= XF_i;
+	ML_n 	<= '0' when IR(7 downto 6) /= "10" and IR(2 downto 1) = "11" and MCycle(2 downto 1) /= "00" else '1';
+	VP_n 	<= '0' when IRQCycle = '1' and (MCycle = "101" or MCycle = "110") else '1';
+	VDA 	<= '1' when Set_Addr_To_r /= "000" else '0';            -- Incorrect !!!!!!!!!!!!
+	VPA 	<= '1' when Jump(1) = '0' else '0';                     -- Incorrect !!!!!!!!!!!!
 
 	mcode : T65_MCode
 		port map(
-			Mode        => Mode_r,
 			IR          => IR,
 			MCycle      => MCycle,
 			P           => P,
@@ -216,18 +150,17 @@ begin
 			LDBAH       => LDBAH,
 			SaveP       => SaveP,
 			Write       => Write
-			);
+		);
 
 	alu : T65_ALU
 		port map(
-			Mode => Mode_r,
 			Op => ALU_Op_r,
 			BusA => BusA_r,
 			BusB => BusB,
 			P_In => P,
 			P_Out => P_Out,
 			Q => ALU_Q
-			);
+		);
 
 	process (Res_n, Clk)
 	begin
@@ -239,7 +172,6 @@ begin
 			PBR <= (others => '0');
 			DBR <= (others => '0');
 
-			Mode_r <= (others => '0');
 			ALU_Op_r <= "1100";
 			Write_Data_r <= "000";
 			Set_Addr_To_r <= "00";
@@ -262,7 +194,6 @@ begin
 				XF_i <= '0';    -- Dummy
 
 				if MCycle  = "000" then
-					Mode_r <= Mode;
 
 					if IRQCycle = '0' and NMICycle = '0' then
 						PC <= PC + 1;
@@ -380,7 +311,7 @@ begin
 				if SO_n_o = '1' and SO_n = '0' then
 					P(Flag_V) <= '1';
 				end if;
-				if RstCycle = '1' and Mode_r /= "00" then
+				if RstCycle = '1' then
 					P(Flag_1) <= '1';
 					P(Flag_D) <= '0';
 					P(Flag_I) <= '1';
@@ -506,11 +437,11 @@ begin
 			std_logic_vector(PC(7 downto 0)) when "110",
 			std_logic_vector(PC(15 downto 8)) when others;
 
--------------------------------------------------------------------------
---
--- Main state machine
---
--------------------------------------------------------------------------
+	-------------------------------------------------------------------------
+	--
+	-- Main state machine
+	--
+	-------------------------------------------------------------------------
 
 	process (Res_n, Clk)
 	begin

@@ -21,29 +21,31 @@
 
 library ieee;
 use ieee.std_logic_1164.all;
-use ieee.numeric_std.all;
 
 entity SixFiveO2 is
   port(
+    clk: in std_logic;
+
+    Databus:      in std_logic_vector(7 downto 0);   -- TODO: This should probably be INOUT
+    Databus_out:  out std_logic_vector(7 downto 0);  -- TODO: This should probably be INOUT
+    Addrbus:  out std_logic_vector(15 downto 0);
+
+    irq:      in std_logic;    -- Active low
+    nmi:      in std_logic;    -- Active low
+    rdy:      in std_logic;
+    
+    reset:    in std_logic;    -- Active low
+    VEC1_out: buffer std_logic;
+    W_R_out:  out std_logic;   -- Write is Active low
 
     ------------------------------------------------------------------------------
     -- Default external interface (37 active pins)
     --  Sync, sv are unused in this implementation
+    --
+    --  Internal variables exposed to parent module for debugging purposes:
     ------------------------------------------------------------------------------
-    Databus:  in std_logic_vector(7 downto 0);  -- TODO: This should probably be INOUT
-    Addrbus:  out std_logic_vector(15 downto 0);
-    clk:      in std_logic;
-    rdy:      in std_logic;
-    reset:    in std_logic;  -- Active low
-    irq:      in std_logic;    -- Active low
-    nmi:      in std_logic;    -- Active low
-
-    W_R_out: out std_logic;   -- Write is Active low
-
-
-    ------------------------------------------------------------------------------
-    -- Internal variables exposed to parent module for debugging purposes:
-    ------------------------------------------------------------------------------
+    SD1_out:  buffer std_logic;
+    SD2_out:  buffer std_logic;
     DOR :     out std_logic_vector(7 downto 0);
     tcstate_out: buffer std_logic_vector(5 downto 0);  -- 6 bit mask for timing state (taken as input to decode ROM)
 
@@ -53,32 +55,57 @@ entity SixFiveO2 is
     Y_out:    out std_logic_vector(7 downto 0);
     ACC_out:  out std_logic_vector(7 downto 0);
 
-    SD1_out:  buffer std_logic;
-    SD2_out:  buffer std_logic;
-    VEC1_out: buffer std_logic;
     ACR_out:  out std_logic
   );
 end SixFiveO2;
 
 architecture imp of SixFiveO2 is
 
-  signal instruction, opcode : std_logic_vector(7 downto 0);
-
-  signal tcstate: std_logic_vector(5 downto 0);
-  signal cycle_number: unsigned(3 downto 0);
-  signal BRC:   std_logic;
-  signal ACR:   std_logic;
-  signal RMW:   std_logic;
-  signal SYNC:  std_logic;
-  signal SD1:   std_logic;
-  signal SD2:   std_logic;
-  signal VEC1:  std_logic;
-  signal W_R :  std_logic;
-
   -- Programmer visible registers
-  signal X_Reg: std_logic_vector(7 downto 0);
-  signal Y_Reg: std_logic_vector(7 downto 0);
+  signal X_Reg:   std_logic_vector(7 downto 0);
+  signal Y_Reg:   std_logic_vector(7 downto 0);
   signal ACC_Reg: std_logic_vector(7 downto 0);
+  signal D_reg:   std_logic_vector(7 downto 0);
+
+  signal PC_low:  std_logic_vector(7 downto 0);
+  signal PC_high: std_logic_vector(7 downto 0);
+
+  -- Break taken?
+  signal Break: std_logic;
+
+
+  component Control_6502
+    port(
+      IR          => IR,
+      MCycle      => MCycle,
+      P           => P,
+      LCycle      => LCycle,
+      ALU_Op      => ALU_Op,
+      Set_BusA_To => Set_BusA_To,
+      Set_Addr_To => Set_Addr_To,
+      Write_Data  => Write_Data,
+      Jump        => Jump,
+      BAAdd       => BAAdd,
+      BreakAtNA   => BreakAtNA,
+      ADAdd       => ADAdd,
+      AddY        => AddY,
+      PCAdd       => PCAdd,
+      Inc_S       => Inc_S,
+      Dec_S       => Dec_S,
+      LDA         => LDA,
+      LDP         => LDP,
+      LDX         => LDX,
+      LDY         => LDY,
+      LDS         => LDS,
+      LDDI        => LDDI,
+      LDALU       => LDALU,
+      LDAD        => LDAD,
+      LDBAL       => LDBAL,
+      LDBAH       => LDBAH,
+      SaveP       => SaveP,
+      Write       => Write
+    );
+  end component;
 
   component Predecode
     port (
@@ -90,25 +117,15 @@ architecture imp of SixFiveO2 is
     );
   end component;
 
-  component DFlipFlop
-    port(
-      input  : in std_logic_vector(7 downto 0);
-      enable : in  std_logic;
-      clk    : in std_logic;
-      reset  : in std_logic;
-      output : out std_logic_vector(7 downto 0)
-    );
-  end component;
-
   component TG
     port(
-      clk:      in	std_logic;
+      clk:          in	std_logic;
       cycle_number: in	unsigned(3 downto 0);
-      RMW:      in std_logic;  --read-modify-write instruction
-      ACR:        in std_logic;  --carry in from ALU
-      BRC:        in std_logic;  --branch flag
-      reset:      in	std_logic;
-      tcstate:    out	std_logic_vector(5 downto 0);
+      RMW:          in std_logic;  --read-modify-write instruction
+      ACR:          in std_logic;  --carry in from ALU
+      BRC:          in std_logic;  --branch flag
+      reset:        in	std_logic;
+      tcstate:      out	std_logic_vector(5 downto 0);
       SYNC, SD1, SD2: out std_logic;
       VEC1: out std_logic
     );
@@ -116,17 +133,17 @@ architecture imp of SixFiveO2 is
 
   component CPU
     port(
-        clk, SD1, SD2, reset, VEC1: in std_logic;
-        opcode: in std_logic_vector(7 downto 0);
-        tcstate: in std_logic_vector(5 downto 0);
-        databus: in std_logic_vector(7 downto 0);
-        ACR_out, W_R: out std_logic;
-        ABL_out, 
-        ABH_out, 
-        DOR, 
-        X_out, 
-        Y_out, 
-        ACC_out: out std_logic_vector(7 downto 0)
+      clk, SD1, SD2, reset, VEC1: in std_logic;
+      opcode: in std_logic_vector(7 downto 0);
+      tcstate: in std_logic_vector(5 downto 0);
+      databus: in std_logic_vector(7 downto 0);
+      ACR_out, W_R: out std_logic;
+      ABL_out, 
+      ABH_out, 
+      DOR, 
+      X_out, 
+      Y_out, 
+      ACC_out: out std_logic_vector(7 downto 0)
     );
   end component;
 
@@ -141,15 +158,7 @@ begin
     RMW           => RMW
   );
 
-  IR: DFlipFlop port map(
-    input   => instruction,
-    enable  => SYNC,
-    clk     => clk,
-    reset   => reset,
-    output  => opcode
-  );
-
-  Timing: TG port map(
+  Timing: TG port map (
     clk           => clk,
     cycle_number  => cycle_number,
     RMW           => RMW,

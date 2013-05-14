@@ -58,54 +58,53 @@ use work.T65_Pack.all;
 
 entity T65_MCode is
 	port(
-		Mode			: in std_logic_vector(1 downto 0);	-- "00" => 6502, "01" => 65C02, "10" => 65816
-		IR				: in std_logic_vector(7 downto 0);
-		MCycle			: in std_logic_vector(2 downto 0);
-		P				: in std_logic_vector(7 downto 0);
-		LCycle			: out std_logic_vector(2 downto 0);
-		ALU_Op			: out std_logic_vector(3 downto 0);
+		IR				: in std_logic_vector(7 downto 0);	-- Instruction state
+		MCycle			: in std_logic_vector(2 downto 0);	-- What timing cycle are we in?
+		P				: in std_logic_vector(7 downto 0);	-- Processor status register
+		LCycle			: out std_logic_vector(2 downto 0);	-- ???
+		ALU_Op			: out std_logic_vector(3 downto 0);	-- Opcode for the ALU
 		Set_BusA_To		: out std_logic_vector(2 downto 0); -- DI,A,X,Y,S,P
 		Set_Addr_To		: out std_logic_vector(1 downto 0); -- PC Adder,S,AD,BA
 		Write_Data		: out std_logic_vector(2 downto 0); -- DL,A,X,Y,S,P,PCL,PCH
 		Jump			: out std_logic_vector(1 downto 0); -- PC,++,DIDL,Rel
 		BAAdd			: out std_logic_vector(1 downto 0);	-- None,DB Inc,BA Add,BA Adj
-		BreakAtNA		: out std_logic;
-		ADAdd			: out std_logic;
-		PCAdd			: out std_logic;
-		Inc_S			: out std_logic;
-		Dec_S			: out std_logic;
-		LDA				: out std_logic;
-		LDP				: out std_logic;
-		LDX				: out std_logic;
-		LDY				: out std_logic;
-		LDS				: out std_logic;
-		LDDI			: out std_logic;
-		LDALU			: out std_logic;
+		BreakAtNA		: out std_logic;	-- ???
+		ADAdd			: out std_logic;	-- ???
+		PCAdd			: out std_logic;	-- Program counter add
+		Inc_S			: out std_logic;	-- Increment Stack
+		Dec_S			: out std_logic;	-- Decrement Stack
+		LDA				: out std_logic;	-- Load Accumulator
+		LDP				: out std_logic;	-- Load Processor status register
+		LDX				: out std_logic;	-- Load X Register
+		LDY				: out std_logic;	-- Load Y Register
+		LDS				: out std_logic;	-- Load Stack Register
+		LDDI			: out std_logic;	-- Load (I_ADDC?)
+		LDALU			: out std_logic;	-- Load Allue
 		LDAD			: out std_logic;
 		LDBAL			: out std_logic;
-		LDBAH			: out std_logic;
-		SaveP			: out std_logic;
+		LDBAH			: out std_logic;	
+		SaveP			: out std_logic;	-- Save processor status
 		Write			: out std_logic
 	);
 end T65_MCode;
 
 architecture rtl of T65_MCode is
 
-	signal Branch : std_logic;
+	signal Branch : std_logic;	-- Branch taken?
 
 begin
 
 	with IR(7 downto 5) select
-		Branch <= not P(Flag_N) when "000",
-			P(Flag_N) when "001",
-			not P(Flag_V) when "010",
-			P(Flag_V) when "011",
-			not P(Flag_C) when "100",
-			P(Flag_C) when "101",
-			not P(Flag_Z) when "110",
-			P(Flag_Z) when others;
+		Branch 	<= 	not P(Flag_N) when "000",
+					P(Flag_N) when "001",
+					not P(Flag_V) when "010",
+					P(Flag_V) when "011",
+					not P(Flag_C) when "100",
+					P(Flag_C) when "101",
+					not P(Flag_Z) when "110",
+					P(Flag_Z) when others;
 
-	process (IR, MCycle, P, Branch, Mode)
+	process (IR, MCycle, P, Branch)
 	begin
 		LCycle <= "001";
 		Set_BusA_To <= "001"; -- A
@@ -135,14 +134,15 @@ begin
 		when "100" =>
 			case IR(1 downto 0) is
 			when "00" =>
-				Set_BusA_To <= "011"; -- Y
-				Write_Data <= "011"; -- Y
+				Set_BusA_To <= "011"; 	-- Y
+				Write_Data <= "011"; 	-- Y
 			when "10" =>
-				Set_BusA_To <= "010"; -- X
-				Write_Data <= "010"; -- X
+				Set_BusA_To <= "010"; 	-- X
+				Write_Data <= "010"; 	-- X
 			when others =>
-				Write_Data <= "001"; -- A
+				Write_Data <= "001"; 	-- A
 			end case;
+
 		when "101" =>
 			case IR(1 downto 0) is
 			when "00" =>
@@ -154,7 +154,8 @@ begin
 			when others =>
 				LDA <= '1';
 			end case;
-			Set_BusA_To <= "000"; -- DI
+			Set_BusA_To <= "000"; -- Data Input
+
 		when "110" =>
 			case IR(1 downto 0) is
 			when "00" =>
@@ -165,6 +166,7 @@ begin
 			when others =>
 				Set_BusA_To <= "001"; -- A
 			end case;
+
 		when "111" =>
 			case IR(1 downto 0) is
 			when "00" =>
@@ -214,6 +216,7 @@ begin
 					Jump <= "10"; -- DIDL
 				when others =>
 				end case;
+
 			when "00100000" =>
 				-- JSR
 				LCycle <= "101";
@@ -237,6 +240,7 @@ begin
 					Jump <= "10"; -- DIDL
 				when others =>
 				end case;
+
 			when "01000000" =>
 				-- RTI
 				LCycle <= "101";
@@ -259,6 +263,7 @@ begin
 					Jump <= "10"; -- DIDL
 				when others =>
 				end case;
+
 			when "01100000" =>
 				-- RTS
 				LCycle <= "101";
@@ -278,6 +283,7 @@ begin
 					Jump <= "01";
 				when others =>
 				end case;
+
 			when "00001000" | "01001000" | "01011010" | "11011010" =>
 				-- PHP, PHA, PHY*, PHX*
 				LCycle <= "010";
@@ -303,6 +309,7 @@ begin
 					Dec_S <= '1';
 				when others =>
 				end case;
+				
 			when "00101000" | "01101000" | "01111010" | "11111010" =>
 				-- PLP, PLA, PLY*, PLX*
 				LCycle <= "011";
