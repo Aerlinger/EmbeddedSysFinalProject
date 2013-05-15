@@ -1,0 +1,197 @@
+# //  ModelSim SE 5.8e Aug 28 2004 Linux 2.6.18-274.3.1.el5
+# //
+# //  Copyright Model Technology, a Mentor Graphics Corporation company, 2004
+# //                         All Rights Reserved.
+# //                   UNPUBLISHED, LICENSED SOFTWARE.
+# //         CONFIDENTIAL AND PROPRIETARY INFORMATION WHICH IS THE
+# //        PROPERTY OF MENTOR GRAPHICS CORPORATION OR ITS LICENSORS.
+# //
+# Loading project fuckthis
+# Compile of CPU.vhd was successful.
+# Compile of DE2_TOP.vhd was successful.
+# Compile of de2_vga_raster.vhd was successful.
+# Compile of debounce.vhd was successful.
+# Compile of DFlipFlop.vhd was successful.
+# Compile of hextoseg.vhd was successful.
+# Compile of Predecode.vhd was successful.
+# Compile of Predecode_tb.vhd was successful with warnings.
+# Compile of QuasiTopLevel.vhd was successful.
+# Compile of QuasiTopLevel_tb.vhd was successful with warnings.
+# Compile of ROM.vhd was successful.
+# Compile of SixFiveO2.vhd was successful.
+# Compile of SixFiveO2_tb.vhd was successful with warnings.
+# Compile of slowclk.vhd was successful.
+# Compile of SRAMCtrl.vhd was successful.
+# Compile of TG.vhd was successful.
+# 16 compiles, 0 failed with no errors. 
+# Compile of CPU.vhd was successful.
+# Compile of DE2_TOP.vhd was successful.
+# Compile of de2_vga_raster.vhd was successful.
+# Compile of debounce.vhd was successful.
+# Compile of DFlipFlop.vhd was successful.
+# Compile of hextoseg.vhd was successful.
+# Compile of Predecode.vhd was successful.
+# Compile of Predecode_tb.vhd was successful with warnings.
+# Compile of QuasiTopLevel.vhd was successful.
+# Compile of QuasiTopLevel_tb.vhd was successful with warnings.
+# Compile of ROM.vhd was successful.
+# Compile of SixFiveO2.vhd was successful.
+# Compile of SixFiveO2_tb.vhd was successful with warnings.
+# Compile of slowclk.vhd was successful.
+# Compile of SRAMCtrl.vhd was successful.
+# Compile of TG.vhd was successful.
+# 16 compiles, 0 failed with no errors. 
+# Compile of CPU.vhd was successful.
+# Compile of DE2_TOP.vhd was successful.
+# Compile of de2_vga_raster.vhd was successful.
+# Compile of debounce.vhd was successful.
+# Compile of DFlipFlop.vhd was successful.
+# Compile of hextoseg.vhd was successful.
+# Compile of Predecode.vhd was successful.
+# Compile of Predecode_tb.vhd was successful with warnings.
+# Compile of QuasiTopLevel.vhd was successful.
+# Compile of QuasiTopLevel_tb.vhd was successful with warnings.
+# Compile of ROM.vhd was successful.
+# Compile of SixFiveO2.vhd was successful.
+# Compile of SixFiveO2_tb.vhd was successful with warnings.
+# Compile of slowclk.vhd was successful.
+# Compile of SRAMCtrl.vhd was successful.
+# Compile of TG.vhd was successful.
+# 16 compiles, 0 failed with no errors. 
+vsim work.sixfiveo2_tb
+# vsim work.sixfiveo2_tb 
+# Loading /work/tools3/modeltech/linux/../std.standard
+# Loading /work/tools3/modeltech/linux/../ieee.std_logic_1164(body)
+# Loading /work/tools3/modeltech/linux/../ieee.numeric_std(body)
+# Loading work.sixfiveo2_tb(tb)
+# Loading work.sixfiveo2(imp)
+# Loading work.predecode(rtl)
+# Loading work.dflipflop(rtl)
+# Loading work.tg(rtl)
+# Loading work.cpu(rtl)
+# Loading work.hex7seg(combinational)
+# ** Warning: (vsim-WLF-5000) Log file vsim.wlf currently in use.
+# File in use by: yc2615  Hostname: micro3  ProcessID: 17574
+#           Attempting to use alternate file "./wlftnuu7mk".
+# ** Warning: (vsim-WLF-5001) Could not open log file vsim.wlf.  Using ./wlftnuu7mk instead.
+run
+run
+run
+run
+run
+# Compile of CPU.vhd was successful.
+# Compile of DE2_TOP.vhd was successful.
+# Compile of de2_vga_raster.vhd was successful.
+# Compile of debounce.vhd was successful.
+# Compile of DFlipFlop.vhd was successful.
+# Compile of hextoseg.vhd was successful.
+# Compile of Predecode.vhd was successful.
+# Compile of Predecode_tb.vhd was successful with warnings.
+# Compile of QuasiTopLevel.vhd was successful.
+# Compile of QuasiTopLevel_tb.vhd was successful with warnings.
+# Compile of ROM.vhd was successful.
+# Compile of SixFiveO2.vhd was successful.
+# Compile of SixFiveO2_tb.vhd was successful with warnings.
+# Compile of slowclk.vhd was successful.
+# Compile of SRAMCtrl.vhd was successful.
+# Compile of TG.vhd was successful.
+# 16 compiles, 0 failed with no errors. 
+vsim work.sixfiveo2_tb
+# vsim work.sixfiveo2_tb 
+# Loading /work/tools3/modeltech/linux/../std.standard
+# Loading /work/tools3/modeltech/linux/../ieee.std_logic_1164(body)
+# Loading /work/tools3/modeltech/linux/../ieee.numeric_std(body)
+# Loading work.sixfiveo2_tb(tb)
+# Loading work.sixfiveo2(imp)
+# Loading work.predecode(rtl)
+# Loading work.dflipflop(rtl)
+# Loading work.tg(rtl)
+# Loading work.cpu(rtl)
+# Loading work.hex7seg(combinational)
+# ** Warning: (vsim-WLF-5000) Log file vsim.wlf currently in use.
+# File in use by: yc2615  Hostname: micro3  ProcessID: 17574
+#           Attempting to use alternate file "./wlftQlf9Xd".
+# ** Warning: (vsim-WLF-5001) Could not open log file vsim.wlf.  Using ./wlftQlf9Xd instead.
+run
+run
+run
+run
+run
+# Compile of CPU.vhd was successful.
+# Compile of DE2_TOP.vhd was successful.
+# Compile of de2_vga_raster.vhd was successful.
+# Compile of debounce.vhd was successful.
+# Compile of DFlipFlop.vhd was successful.
+# Compile of hextoseg.vhd was successful.
+# Compile of Predecode.vhd was successful.
+# Compile of Predecode_tb.vhd was successful with warnings.
+# Compile of QuasiTopLevel.vhd was successful.
+# Compile of QuasiTopLevel_tb.vhd was successful with warnings.
+# Compile of ROM.vhd was successful.
+# Compile of SixFiveO2.vhd was successful.
+# Compile of SixFiveO2_tb.vhd was successful with warnings.
+# Compile of slowclk.vhd was successful.
+# Compile of SRAMCtrl.vhd was successful.
+# Compile of TG.vhd was successful.
+# 16 compiles, 0 failed with no errors. 
+vsim work.sixfiveo2_tb
+# vsim work.sixfiveo2_tb 
+# Loading /work/tools3/modeltech/linux/../std.standard
+# Loading /work/tools3/modeltech/linux/../ieee.std_logic_1164(body)
+# Loading /work/tools3/modeltech/linux/../ieee.numeric_std(body)
+# Loading work.sixfiveo2_tb(tb)
+# Loading work.sixfiveo2(imp)
+# Loading work.predecode(rtl)
+# Loading work.dflipflop(rtl)
+# Loading work.tg(rtl)
+# Loading work.cpu(rtl)
+# Loading work.hex7seg(combinational)
+# ** Warning: (vsim-WLF-5000) Log file vsim.wlf currently in use.
+# File in use by: yc2615  Hostname: micro3  ProcessID: 17574
+#           Attempting to use alternate file "./wlftiwqTDI".
+# ** Warning: (vsim-WLF-5001) Could not open log file vsim.wlf.  Using ./wlftiwqTDI instead.
+run
+run
+run
+run
+# Compile of CPU.vhd was successful.
+# Compile of DE2_TOP.vhd was successful.
+# Compile of de2_vga_raster.vhd was successful.
+# Compile of debounce.vhd was successful.
+# Compile of DFlipFlop.vhd was successful.
+# Compile of hextoseg.vhd was successful.
+# Compile of Predecode.vhd was successful.
+# Compile of Predecode_tb.vhd was successful with warnings.
+# Compile of QuasiTopLevel.vhd was successful.
+# Compile of QuasiTopLevel_tb.vhd was successful with warnings.
+# Compile of ROM.vhd was successful.
+# Compile of SixFiveO2.vhd was successful.
+# Compile of SixFiveO2_tb.vhd was successful with warnings.
+# Compile of slowclk.vhd was successful.
+# Compile of SRAMCtrl.vhd was successful.
+# Compile of TG.vhd was successful.
+# 16 compiles, 0 failed with no errors. 
+vsim work.sixfiveo2_tb
+# vsim work.sixfiveo2_tb 
+# Loading /work/tools3/modeltech/linux/../std.standard
+# Loading /work/tools3/modeltech/linux/../ieee.std_logic_1164(body)
+# Loading /work/tools3/modeltech/linux/../ieee.numeric_std(body)
+# Loading work.sixfiveo2_tb(tb)
+# Loading work.sixfiveo2(imp)
+# Loading work.predecode(rtl)
+# Loading work.dflipflop(rtl)
+# Loading work.tg(rtl)
+# Loading work.cpu(rtl)
+# Loading work.hex7seg(combinational)
+# ** Warning: (vsim-WLF-5000) Log file vsim.wlf currently in use.
+# File in use by: yc2615  Hostname: micro3  ProcessID: 17574
+#           Attempting to use alternate file "./wlftohfv78".
+# ** Warning: (vsim-WLF-5001) Could not open log file vsim.wlf.  Using ./wlftohfv78 instead.
+run
+run
+run
+run
+run
+run
+run
+run

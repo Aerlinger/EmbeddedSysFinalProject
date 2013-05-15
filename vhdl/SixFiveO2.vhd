@@ -70,9 +70,12 @@ architecture imp of SixFiveO2 is
   signal PC_low:  std_logic_vector(7 downto 0);
   signal PC_high: std_logic_vector(7 downto 0);
 
+  signal RstThisCycle: std_logic;
+  signal IRQThisCycle: std_logic;
+  signal NMIThisCycle: std_logic;
+
   -- Break taken?
   signal Break: std_logic;
-
 
   component Control_6502
     port(
@@ -104,16 +107,6 @@ architecture imp of SixFiveO2 is
       LDBAH       => LDBAH,
       SaveP       => SaveP,
       Write       => Write
-    );
-  end component;
-
-  component Predecode
-    port (
-      databus:      in  std_logic_vector(7 downto 0);
-      reset:        in  std_logic;
-      cycle_number: out	unsigned(3 downto 0);
-      Instruction:  out std_logic_vector(7 downto 0);
-      BRC, RMW:     out std_logic
     );
   end component;
 
