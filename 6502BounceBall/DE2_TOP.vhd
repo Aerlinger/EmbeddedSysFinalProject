@@ -11,6 +11,9 @@ library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
+use work.ram_lib.all;
+use work.components.all;
+
 entity DE2_TOP is
 
   port (
@@ -173,164 +176,75 @@ entity DE2_TOP is
 end DE2_TOP;
 
 architecture datapath of DE2_TOP is
-signal Databus, DOR, ROM_data, X, Y : std_logic_vector(7 downto 0);--yuchen0514
-signal Addrbus, ROM_address  : std_logic_vector(15 downto 0);
-signal W_R : std_logic;
-signal reset : std_logic; --JB0513
-signal Sclk : std_logic; --JB0513
-signal clk25 : std_logic := '0'; --yuchen0514
-
-component SixFiveO2 
-port(
-		Databus :in std_logic_vector(7 downto 0);
-		Addrbus :out std_logic_vector(15 downto 0);
-		DOR , P, X_Reg_out, Y_Reg_out : out std_logic_vector(7 downto 0);
-      reset, clk   :in std_logic;
-		XL, XH, YL, YH, ACCL, ACCH  : out std_logic_vector(6 downto 0);
-		W_R     : out std_logic);
-end component;
-
-component rom is
-port(addr  : in std_logic_vector(15 downto 0);
-		data : out std_logic_vector(7 downto 0));
-end component;
-
-component SRAMCtrl is
-port (
-		reset, clk, W_R : in  std_logic;
-		ROM_data, DOR  : in std_logic_vector(7 downto 0);
-		databus    : out std_logic_vector(7 downto 0);
-		AddressBus : in std_logic_vector(15 downto 0);
-		ROM_address : out std_logic_vector(15 downto 0);
-		SRAM_DQ    : inout unsigned(15 downto 0);
-		SRAM_ADDR  : out unsigned(17 downto 0);
-		SRAM_UB_N,            -- High-byte Data Mask
-		SRAM_LB_N,            -- Low-byte Data Mask
-		SRAM_WE_N,            -- Write Enable
-		SRAM_CE_N,            -- Chip Enable
-		SRAM_OE_N : out std_logic  -- Output Enable
-);
-end component;
-
-component debounce --JB0513
-	port (
-		clk, resetsw : in std_logic;
-		resetout  : out std_logic
-		);
-end component debounce;
-
-component slowclk --JB0513
-	port (
-		clkin : in std_logic;
-		clkout  : out std_logic
-		);
-end component slowclk;
-
-component de2_vga_raster is
-  
-  port (
-    reset : in std_logic;
-    clk   : in std_logic;                    -- Should be 25.125 MHz
-
-    center: in std_logic_vector(15 downto 0) := X"f0f0"; -- circle center
-     
-    VGA_CLK,                         -- Clock
-    VGA_HS,                          -- H_SYNC
-    VGA_VS,                          -- V_SYNC
-    VGA_BLANK,                       -- BLANK
-    VGA_SYNC : out std_logic;        -- SYNC
-    VGA_R,                           -- Red[9:0]
-    VGA_G,                           -- Green[9:0]
-    VGA_B : out unsigned(9 downto 0) -- Blue[9:0]
-    );
-
-end component;
-
+	signal Databus, DOR, ROM_data, X, Y : std_logic_vector(7 downto 0);	--	yuchen0514
+	signal Addrbus, ROM_address  : std_logic_vector(15 downto 0);
+	signal W_R 		: std_logic;
+	signal reset 	: std_logic; --JB0513
+	signal Sclk 	: std_logic; --JB0513
+	signal clk25 	: std_logic := '0'; --yuchen0514 
+	
+	signal LCycle 	: std_logic_vector(2 downto 0); -- afe2104 
+	signal MCycle 	: std_logic_vector(2 downto 0); -- afe2104
 begin
-  
-  --HEX7     <= "0001001"; -- Leftmost
-  --HEX6     <= "0000110";
-  --HEX5     <= "1000111";
-  --HEX4     <= "1000111";
-  --HEX3     <= "1000000";
-  --HEX2     <= (others => '1');
-  HEX1     <= (others => '1');
-  HEX0     <= (others => '1');          -- Rightmost
-  LEDG(8)     <= '0';
-  LEDR     <= (others => '0');
-  LCD_ON   <= '1';
-  LCD_BLON <= '1';
-  LCD_RW <= '1';
-  LCD_EN <= '0';
-  LCD_RS <= '0';
-
-
---  VGA_CLK <= '0';
---  VGA_HS <= '0';
---  VGA_VS <= '0';
---  VGA_BLANK <= '0';
---  VGA_SYNC <= '0';
---  VGA_R <= (others => '0');
---  VGA_G <= (others => '0');
---  VGA_B <= (others => '0');
+	
+  --HEX1     	<= (others => '1');
+  --HEX0     	<= (others => '1');          -- Rightmost
+  LEDG(8)   <= '0';
+  --LEDR     	<= (others => '0');
+  LCD_ON   	<= '1';
+  LCD_BLON 	<= '1';
+  LCD_RW 		<= '1';
+  LCD_EN 		<= '0';
+  LCD_RS 		<= '0';
 
   SD_DAT3 <= '1';  
-  SD_CMD <= '1';
-  SD_CLK <= '1';
+  SD_CMD 	<= '1';
+  SD_CLK 	<= '1';
 
---  SRAM_DQ <= (others => 'Z');
---  SRAM_ADDR <= (others => '0');
---  SRAM_UB_N <= '1';
---  SRAM_LB_N <= '1';
---  SRAM_CE_N <= '1';
---  SRAM_WE_N <= '1';
---  SRAM_OE_N <= '1';
-
-  UART_TXD <= '0';
-  DRAM_ADDR <= (others => '0');
-  DRAM_LDQM <= '0';
-  DRAM_UDQM <= '0';
-  DRAM_WE_N <= '1';
-  DRAM_CAS_N <= '1';
-  DRAM_RAS_N <= '1';
-  DRAM_CS_N <= '1';
-  DRAM_BA_0 <= '0';
-  DRAM_BA_1 <= '0';
-  DRAM_CLK <= '0';
-  DRAM_CKE <= '0';
-  FL_ADDR <= (others => '0');
-  FL_WE_N <= '1';
-  FL_RST_N <= '0';
-  FL_OE_N <= '1';
-  FL_CE_N <= '1';
-  OTG_ADDR <= (others => '0');
-  OTG_CS_N <= '1';
-  OTG_RD_N <= '1';
-  OTG_RD_N <= '1';
-  OTG_WR_N <= '1';
-  OTG_RST_N <= '1';
-  OTG_FSPEED <= '1';
-  OTG_LSPEED <= '1';
+  UART_TXD 		<= '0';
+  DRAM_ADDR 	<= (others => '0');
+  DRAM_LDQM 	<= '0';
+  DRAM_UDQM 	<= '0';
+  DRAM_WE_N 	<= '1';
+  DRAM_CAS_N 	<= '1';
+  DRAM_RAS_N 	<= '1';
+  DRAM_CS_N 	<= '1';
+  DRAM_BA_0 	<= '0';
+  DRAM_BA_1 	<= '0';
+  DRAM_CLK 		<= '0';
+  DRAM_CKE 		<= '0';
+  FL_ADDR 		<= (others => '0');
+  FL_WE_N 		<= '1';
+  FL_RST_N 		<= '0';
+  FL_OE_N 		<= '1';
+  FL_CE_N 		<= '1';
+  OTG_ADDR 		<= (others => '0');
+  OTG_CS_N 		<= '1';
+  OTG_RD_N 		<= '1';
+  OTG_RD_N 		<= '1';
+  OTG_WR_N 		<= '1';
+  OTG_RST_N 	<= '1';
+  OTG_FSPEED 	<= '1';
+  OTG_LSPEED 	<= '1';
   OTG_DACK0_N <= '1';
   OTG_DACK1_N <= '1';
 
-  TDO <= '0';
+  TDO 				<= '0';
 
-  I2C_SCLK <= '0';
+  I2C_SCLK 		<= '0';
+  IRDA_TXD 		<= '0';
 
-  IRDA_TXD <= '0';
+  ENET_CMD 		<= '0';
+  ENET_CS_N 	<= '1';
+  ENET_WR_N 	<= '1';
+  ENET_RD_N 	<= '1';
+  ENET_RST_N 	<= '1';
+  ENET_CLK 		<= '0';
 
-  ENET_CMD <= '0';
-  ENET_CS_N <= '1';
-  ENET_WR_N <= '1';
-  ENET_RD_N <= '1';
-  ENET_RST_N <= '1';
-  ENET_CLK <= '0';
+  AUD_DACDAT 	<= '0';
+  AUD_XCK 		<= '0';
 
-  AUD_DACDAT <= '0';
-  AUD_XCK <= '0';
-
-  TD_RESET <= '0';
+  TD_RESET 		<= '0';
 
   -- Set all bidirectional ports to tri-state
   DRAM_DQ     <= (others => 'Z');
@@ -344,46 +258,129 @@ begin
   AUD_BCLK    <= 'Z';
   GPIO_0      <= (others => 'Z');
   GPIO_1      <= (others => 'Z');
-
-  
---JB0513: port map below changed to fit in debounce
-
-debouncecode: debounce port map(clk=>CLOCK_50, resetsw=>SW(17), resetout=>reset); --JB0513
-slowclkcode: slowclk port map(clkin=>CLOCK_50, clkout=>Sclk); --JB0513
-
-CPUConnect: SixFiveO2 port map(clk=>Sclk, reset=>reset, W_R=>W_R, XH=>HEX7, XL=>HEX6, YH=>HEX5, YL=>HEX4, ACCH=>HEX3, ACCL=>HEX2,
-										 X_Reg_out=>X, Y_Reg_out=>Y,	Databus=>Databus, DOR=>DOR, Addrbus=>Addrbus,P=>LEDG(7 downto 0));
+						
+	-- 32 bits total
+	-- CYCLE COMPLETE FOR ALL 154 INSTRUCTIONS
+	CPUConnect: mos_6502 port map(
+		clk 	=> Sclk,
+		reset => not reset,
+		ready => '1',
+		
+		A			=> Addrbus,
+		DI 		=> Databus, 
+		DO 		=> DOR,
+		
+		IRQ_n => '0',
+		NMI_n	=> '0',
+		SO_n  => '0',
+		R_W_n	=> W_R,
+		L_Cycle_out => LCycle,
+		M_Cycle_out => MCycle
+	);
+	
+	--JB0513: port map below changed to fit in debounce
+	debouncecode: debounce port map(
+		clk				=> CLOCK_50, 
+		resetsw		=> SW(17), 
+		resetout	=> reset
+	); --JB0513
+	
+	slowclkcode: slowclk port map(
+		clkin		=>	CLOCK_50, 
+		clkout	=>	Sclk
+	); --JB0513
 											
-InstructionROM: Rom port map(addr=>ROM_address, data=>ROM_data);
+	InstructionROM: Rom port map(
+		addr	=>	ROM_address, 
+		data	=>	ROM_data
+	);
 
-MemorySRAM: SRAMCtrl port map(reset=>reset, clk=>Sclk, W_R=>W_R, ROM_data=>ROM_data, DOR=>DOR,
-										databus=>databus, AddressBus=>Addrbus, ROM_address=>ROM_address, 
-										SRAM_DQ=>SRAM_DQ,    
-										SRAM_ADDR=>SRAM_ADDR,  
-										SRAM_UB_N=>SRAM_UB_N,
-										SRAM_LB_N=>SRAM_LB_N,            
-										SRAM_WE_N=>SRAM_WE_N,          
-										SRAM_CE_N=>SRAM_CE_N,    
-										SRAM_OE_N=>SRAM_OE_N);
+	MemorySRAM: SRAMCtrl port map(
+		reset				=> reset, 
+		clk					=> Sclk,
+		W_R					=> W_R, 
+		ROM_data		=> ROM_data, 
+		DOR					=> DOR,
+		databus			=> databus, 
+		AddressBus	=> Addrbus, 
+		ROM_address	=> ROM_address, 
+		SRAM_DQ			=> SRAM_DQ,    
+		SRAM_ADDR		=> SRAM_ADDR,  
+		SRAM_UB_N		=> SRAM_UB_N,
+		SRAM_LB_N		=> SRAM_LB_N,            
+		SRAM_WE_N		=> SRAM_WE_N,          
+		SRAM_CE_N		=> SRAM_CE_N,    
+		SRAM_OE_N		=> SRAM_OE_N
+	);
 
-VGAClock: 
-process (CLOCK_50)
-  begin
-    if rising_edge(CLOCK_50) then
-      clk25 <= not clk25;
-    end if;
-end process;
+	VGAClock: 
+	process (CLOCK_50)
+		begin
+			if rising_edge(CLOCK_50) then
+				clk25 <= not clk25;
+			end if;
+	end process;
 										
-VGA:  de2_vga_raster port map (reset => reset, clk => clk25,
-										 VGA_CLK => VGA_CLK,
-										 VGA_HS => VGA_HS,
-									    VGA_VS => VGA_VS,
-										 VGA_BLANK => VGA_BLANK,
-										 VGA_SYNC => VGA_SYNC,
-										 VGA_R => VGA_R,
-										 VGA_G => VGA_G,
-										 VGA_B => VGA_B,
-										 center(15 downto 8) => X,
-										 center(7 downto 0)=>Y
+	VGA:  de2_vga_raster port map (
+		reset 			=> reset, 
+		clk 				=> clk25,
+		VGA_CLK 		=> VGA_CLK,
+		VGA_HS 			=> VGA_HS,
+		VGA_VS 			=> VGA_VS,
+		VGA_BLANK 	=> VGA_BLANK,
+		VGA_SYNC 		=> VGA_SYNC,
+		VGA_R 			=> VGA_R,
+		VGA_G 			=> VGA_G,
+		VGA_B 			=> VGA_B,
+		center(15 downto 8) 	=> X,
+		center(7 downto 0)		=> Y
   );
+	
+	-- DEBUG
+	LEDR(16) <= W_R;
+	LEDR(0) <= sw(0);
+	
+	
+	-- ADDR LEDS
+	U_HEX0: hex7seg port map(
+		input		=> Addrbus(15 downto 12),
+		output	=> hex0
+	);
+	
+		U_HEX1: hex7seg port map(
+		input		=> Addrbus(11 downto 8),
+		output	=> hex1
+	);
+	
+	U_HEX2: hex7seg port map(
+		input		=> Addrbus(7 downto 4),
+		output	=> hex2
+	);
+	
+	U_HEX3: hex7seg port map(
+		input		=> Addrbus(3 downto 0),
+		output	=> hex3
+	);
+	
+	-- DATA LEDS
+	U_HEX4: hex7seg port map(
+		input		=> Databus(3 downto 0),
+		output	=> hex4
+	);
+	
+	U_HEX5: hex7seg port map(
+		input		=> Databus(7 downto 4),
+		output	=> hex5
+	);
+	
+	U_HEX6: hex7seg port map(
+		input		=> '0' & LCycle,
+		output	=> hex6
+	);
+	
+	U_HEX7: hex7seg port map(
+		input		=> '0' & MCycle,
+		output	=> hex7
+	);
+	
 end datapath;

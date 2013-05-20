@@ -1,6 +1,7 @@
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
+use work.components.all;
 
 entity SixFiveO2 is
 port(
@@ -13,13 +14,13 @@ port(
 end SixFiveO2;
 
 architecture imp of SixFiveO2 is
-signal instruction, opcode : std_logic_vector(7 downto 0);
-signal tcstate : std_logic_vector(5 downto 0);
-signal cycle_number : unsigned(3 downto 0);
-signal BRC, ACR, RMW, SYNC, SD1, SD2, VEC1: std_logic;
---signal DOR, databus  : std_logic_vector(7 downto 0);
---signal Addrbus: std_logic_vector(15 downto 0);
-signal  ACC_Reg, X_Reg, Y_Reg  : std_logic_vector(7 downto 0);
+	signal instruction, opcode : std_logic_vector(7 downto 0);
+	signal tcstate : std_logic_vector(5 downto 0);
+	signal cycle_number : unsigned(3 downto 0);
+	signal BRC, ACR, RMW, SYNC, SD1, SD2, VEC1: std_logic;
+	--signal DOR, databus  : std_logic_vector(7 downto 0);
+	--signal Addrbus: std_logic_vector(15 downto 0);
+	signal  ACC_Reg, X_Reg, Y_Reg  : std_logic_vector(7 downto 0);
 
 component Predecode
 port (

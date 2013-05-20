@@ -1,0 +1,190 @@
+/*
+WARNING: Do NOT edit the input and output ports in this file in a text
+editor if you plan to continue editing the block that represents it in
+the Block Editor! File corruption is VERY likely to occur.
+*/
+/*
+Copyright (C) 1991-2005 Altera Corporation
+Your use of Altera Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic       
+functions, and any output files any of the foregoing           
+(including device programming or simulation files), and any    
+associated documentation or information are expressly subject  
+to the terms and conditions of the Altera Program License      
+Subscription Agreement, Altera MegaCore Function License       
+Agreement, or other applicable license agreement, including,   
+without limitation, that your use is for the sole purpose of   
+programming logic devices manufactured by Altera and sold by   
+Altera or its authorized distributors.  Please refer to the    
+applicable agreement for further details.
+*/
+(header "symbol" (version "1.1"))
+(symbol
+	(rect 16 16 200 272)
+	(text "gbridge" (rect 5 0 40 12)(font "Arial" ))
+	(text "inst" (rect 8 240 25 252)(font "Arial" ))
+	(port
+		(pt 0 32)
+		(input)
+		(text "GBmode" (rect 0 0 42 12)(font "Arial" ))
+		(text "GBmode" (rect 21 27 63 39)(font "Arial" ))
+		(line (pt 0 32)(pt 16 32)(line_width 1))
+	)
+	(port
+		(pt 0 48)
+		(input)
+		(text "sysclk" (rect 0 0 33 12)(font "Arial" ))
+		(text "sysclk" (rect 21 43 54 55)(font "Arial" ))
+		(line (pt 0 48)(pt 16 48)(line_width 1))
+	)
+	(port
+		(pt 0 64)
+		(input)
+		(text "vid[15..0]" (rect 0 0 47 12)(font "Arial" ))
+		(text "vid[15..0]" (rect 21 59 68 71)(font "Arial" ))
+		(line (pt 0 64)(pt 16 64)(line_width 3))
+	)
+	(port
+		(pt 0 80)
+		(input)
+		(text "vsync" (rect 0 0 31 12)(font "Arial" ))
+		(text "vsync" (rect 21 75 52 87)(font "Arial" ))
+		(line (pt 0 80)(pt 16 80)(line_width 1))
+	)
+	(port
+		(pt 0 96)
+		(input)
+		(text "hsync" (rect 0 0 30 12)(font "Arial" ))
+		(text "hsync" (rect 21 91 51 103)(font "Arial" ))
+		(line (pt 0 96)(pt 16 96)(line_width 1))
+	)
+	(port
+		(pt 0 112)
+		(input)
+		(text "gbi[7]" (rect 0 0 27 12)(font "Arial" ))
+		(text "gbi[7]" (rect 21 107 48 119)(font "Arial" ))
+		(line (pt 0 112)(pt 16 112)(line_width 1))
+	)
+	(port
+		(pt 0 128)
+		(input)
+		(text "right[15..0]" (rect 0 0 53 12)(font "Arial" ))
+		(text "right[15..0]" (rect 21 123 74 135)(font "Arial" ))
+		(line (pt 0 128)(pt 16 128)(line_width 3))
+	)
+	(port
+		(pt 0 144)
+		(input)
+		(text "left[15..0]" (rect 0 0 48 12)(font "Arial" ))
+		(text "left[15..0]" (rect 21 139 69 151)(font "Arial" ))
+		(line (pt 0 144)(pt 16 144)(line_width 3))
+	)
+	(port
+		(pt 0 160)
+		(input)
+		(text "SID1MHz" (rect 0 0 46 12)(font "Arial" ))
+		(text "SID1MHz" (rect 21 155 67 167)(font "Arial" ))
+		(line (pt 0 160)(pt 16 160)(line_width 1))
+	)
+	(port
+		(pt 0 176)
+		(input)
+		(text "ioselects[3..0]" (rect 0 0 69 12)(font "Arial" ))
+		(text "ioselects[3..0]" (rect 21 171 90 183)(font "Arial" ))
+		(line (pt 0 176)(pt 16 176)(line_width 3))
+	)
+	(port
+		(pt 0 192)
+		(input)
+		(text "ioshift" (rect 0 0 30 12)(font "Arial" ))
+		(text "ioshift" (rect 21 187 51 199)(font "Arial" ))
+		(line (pt 0 192)(pt 16 192)(line_width 1))
+	)
+	(port
+		(pt 0 208)
+		(input)
+		(text "ioshiftclk" (rect 0 0 44 12)(font "Arial" ))
+		(text "ioshiftclk" (rect 21 203 65 215)(font "Arial" ))
+		(line (pt 0 208)(pt 16 208)(line_width 1))
+	)
+	(port
+		(pt 184 32)
+		(output)
+		(text "pixclkena" (rect 0 0 46 12)(font "Arial" ))
+		(text "pixclkena" (rect 117 27 163 39)(font "Arial" ))
+		(line (pt 184 32)(pt 168 32)(line_width 1))
+	)
+	(port
+		(pt 184 48)
+		(output)
+		(text "gb[6..0]" (rect 0 0 37 12)(font "Arial" ))
+		(text "gb[6..0]" (rect 126 43 163 55)(font "Arial" ))
+		(line (pt 184 48)(pt 168 48)(line_width 3))
+	)
+	(port
+		(pt 184 64)
+		(output)
+		(text "adr[19..0]" (rect 0 0 47 12)(font "Arial" ))
+		(text "adr[19..0]" (rect 116 59 163 71)(font "Arial" ))
+		(line (pt 184 64)(pt 168 64)(line_width 3))
+	)
+	(port
+		(pt 184 80)
+		(output)
+		(text "data[7..0]" (rect 0 0 47 12)(font "Arial" ))
+		(text "data[7..0]" (rect 116 75 163 87)(font "Arial" ))
+		(line (pt 184 80)(pt 168 80)(line_width 3))
+	)
+	(port
+		(pt 184 96)
+		(output)
+		(text "iowr" (rect 0 0 18 12)(font "Arial" ))
+		(text "iowr" (rect 145 91 163 103)(font "Arial" ))
+		(line (pt 184 96)(pt 168 96)(line_width 1))
+	)
+	(port
+		(pt 184 112)
+		(output)
+		(text "memwr" (rect 0 0 35 12)(font "Arial" ))
+		(text "memwr" (rect 128 107 163 119)(font "Arial" ))
+		(line (pt 184 112)(pt 168 112)(line_width 1))
+	)
+	(port
+		(pt 184 128)
+		(output)
+		(text "wrshift[14..0]" (rect 0 0 64 12)(font "Arial" ))
+		(text "wrshift[14..0]" (rect 99 123 163 135)(font "Arial" ))
+		(line (pt 184 128)(pt 168 128)(line_width 3))
+	)
+	(port
+		(pt 184 144)
+		(output)
+		(text "lpt_bsy" (rect 0 0 36 12)(font "Arial" ))
+		(text "lpt_bsy" (rect 127 139 163 151)(font "Arial" ))
+		(line (pt 184 144)(pt 168 144)(line_width 1))
+	)
+	(port
+		(pt 184 160)
+		(output)
+		(text "JoyA[5..0]" (rect 0 0 51 12)(font "Arial" ))
+		(text "JoyA[5..0]" (rect 112 155 163 167)(font "Arial" ))
+		(line (pt 184 160)(pt 168 160)(line_width 3))
+	)
+	(port
+		(pt 184 176)
+		(output)
+		(text "JoyB[5..0]" (rect 0 0 51 12)(font "Arial" ))
+		(text "JoyB[5..0]" (rect 112 171 163 183)(font "Arial" ))
+		(line (pt 184 176)(pt 168 176)(line_width 3))
+	)
+	(port
+		(pt 184 192)
+		(output)
+		(text "2MHz" (rect 0 0 27 12)(font "Arial" ))
+		(text "2MHz" (rect 136 187 163 199)(font "Arial" ))
+		(line (pt 184 192)(pt 168 192)(line_width 1))
+	)
+	(drawing
+		(rectangle (rect 16 16 168 240)(line_width 1))
+	)
+)

@@ -67,30 +67,30 @@ main (int argc, char *argv[])
       t = strtok (s2, " \t\x0A\x0D");
       if (t!=NULL)
         {
-          if (stricmp(t, "--addrbits")==0)
+          if (strcasecmp(t, "--addrbits")==0)
             {
               t = strtok (NULL, " \t\x0A\x0D");
               addrbits = atoi (t);
             }
-          else if (stricmp(t, "--databits")==0)
+          else if (strcasecmp(t, "--databits")==0)
             {
               t = strtok (NULL, " \t\x0A\x0D");
               databits = atoi (t);
             }
-          else if (stricmp(t, "--varname")==0)
+          else if (strcasecmp(t, "--varname")==0)
             {
               t = strtok (NULL, " \t\x0A\x0D");
               strcpy (varname, t);
             }
-          else if (stricmp(t, "--big-endian")==0)
+          else if (strcasecmp(t, "--big-endian")==0)
             {
               big_endian=1;
             }
-          else if (stricmp(t, "--little-endian")==0)
+          else if (strcasecmp(t, "--little-endian")==0)
             {
               big_endian=0;
             }
-          else if (stricmp(t, "--start_of_rom")==0)
+          else if (strcasecmp(t, "--start_of_rom")==0)
             {
               rom_flag = 1;
               fputs (s, ftmp);
@@ -107,7 +107,7 @@ main (int argc, char *argv[])
                   return (1);
                 }
             }
-          else if (stricmp(t, "--end_of_rom")==0)
+          else if (strcasecmp(t, "--end_of_rom")==0)
             {
               rom_flag = 0;
             }

@@ -4,8 +4,8 @@ use ieee.numeric_std.all;
 
 entity QuasiTopLevel is
 port(
-		    CLOCK_50 : std_logic;
-			 HEX2, HEX3, HEX4, HEX5, HEX6, HEX7 -- 7-segment displays
+		  CLOCK_50 : std_logic;
+			HEX2, HEX3, HEX4, HEX5, HEX6, HEX7 -- 7-segment displays
 					: out std_logic_vector(6 downto 0);         -- (active low)
 			SW : in std_logic;         -- DPDT switches
 			SRAM_DQ : inout unsigned(15 downto 0);         -- Data bus 16 Bits

@@ -9,6 +9,7 @@
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
+use work.components.all;
 
 entity de2_vga_raster is
   
@@ -57,9 +58,9 @@ architecture rtl of de2_vga_raster is
   --constant RECTANGLE_VEND   : integer := 180;
   
   -- Signals related to ball drawing 
-  constant RADIUS	  : integer :=10;   --radius of the ball
-  constant Hinitial : integer :=400;  --initial x value of the center of the ball
-  constant Vinitial : integer :=263;  --initial y value of the center of the ball
+  constant RADIUS	  : integer := 50;   --radius of the ball
+  constant Hinitial : integer := 400;  --initial x value of the center of the ball
+  constant Vinitial : integer := 263;  --initial y value of the center of the ball
   
 	
   -- Signals for the video controller
@@ -195,9 +196,9 @@ begin
 --  end process RectangleVGen;
 
 BallGen : process (clk)
-variable distance_square : integer;
-variable distance_H      : integer;
-variable distance_V      : integer;
+	variable distance_square : integer;
+	variable distance_H      : integer;
+	variable distance_V      : integer;
 begin
    
 	if rising_edge (clk) then
@@ -233,12 +234,12 @@ end process BallGen;
     elsif clk'event and clk = '1' then
       if rectangle = '1' then --color of ball
         VGA_R <= "1111111111";
+        VGA_G <= "1111111111";
+        VGA_B <= "0000000000";
+      elsif vga_hblank = '0' and vga_vblank ='0' then
+        VGA_R <= "1111111111"; --color of background
         VGA_G <= "0000000000";
         VGA_B <= "1111111111";
-      elsif vga_hblank = '0' and vga_vblank ='0' then
-        VGA_R <= "0111011100"; --color of background
-        VGA_G <= "1110000000";
-        VGA_B <= "1110111000";
       else
         VGA_R <= "0000000000";
         VGA_G <= "0000000000";

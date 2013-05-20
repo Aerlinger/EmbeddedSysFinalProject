@@ -1,0 +1,80 @@
+----------------------------------------------------------------------------
+----------------------------------------------------------------------------
+--  The Free IP Project
+--  VHDL DES Core
+--  (c) 1999, The Free IP Project and David Kessner
+--
+--
+--  FREE IP GENERAL PUBLIC LICENSE
+--  TERMS AND CONDITIONS FOR USE, COPYING, DISTRIBUTION, AND MODIFICATION
+--
+--  1.  You may copy and distribute verbatim copies of this core, as long
+--      as this file, and the other associated files, remain intact and
+--      unmodified.  Modifications are outlined below.  Also, see the
+--      import/export warning above for further restrictions on
+--      distribution.
+--  2.  You may use this core in any way, be it academic, commercial, or
+--      military.  Modified or not.  
+--  3.  Distribution of this core must be free of charge.  Charging is
+--      allowed only for value added services.  Value added services
+--      would include copying fees, modifications, customizations, and
+--      inclusion in other products.
+--  4.  If a modified source code is distributed, the original unmodified
+--      source code must also be included (or a link to the Free IP web
+--      site).  In the modified source code there must be clear
+--      identification of the modified version.
+--  5.  Visit the Free IP web site for additional information.
+--      http://www.free-ip.com
+--
+----------------------------------------------------------------------------
+----------------------------------------------------------------------------
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.std_logic_arith.all;
+use ieee.std_logic_unsigned.all;
+library work;
+
+package test_suite is
+  component test_rom 
+    port (addr	:in std_logic_vector (11 downto 0);
+          data  :out std_logic_vector (7 downto 0)
+         );
+  end component;
+end test_suite;
+
+
+------------------------------------------------------------------------------
+------------------------------------------------------------------------------
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.std_logic_arith.all;
+use ieee.std_logic_unsigned.all;
+library work;
+use work.test_suite.all;
+
+entity test_rom is
+    port (addr	:in std_logic_vector (11 downto 0);
+          data  :out std_logic_vector (7 downto 0)
+         );
+end test_rom;
+
+architecture arch_test_rom of test_rom is
+begin
+  process (addr)
+  begin
+    case addr(11 downto 0) is
+      --addrbits 12
+      --databits 8
+      --varname data
+      --little-endian
+      --start_of_rom
+      --end_of_rom
+      when others =>  data <= "00000000";
+    end case;
+  end process;
+
+end arch_test_rom;
+
+------------------------------------------------------------------------------
+------------------------------------------------------------------------------
+

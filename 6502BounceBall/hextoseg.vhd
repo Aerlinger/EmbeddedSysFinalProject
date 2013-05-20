@@ -1,7 +1,7 @@
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
--- Provides the unsigned type 
+use work.components.all;
 
 entity hex7seg is 
 	port

@@ -1,6 +1,7 @@
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
+use work.components.all;
 
 --the delay settings has been changed to enable efficient simulations.
 --original settings for the board: 24 bits for 'count'
